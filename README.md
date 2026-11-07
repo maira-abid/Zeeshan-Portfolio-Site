@@ -97,9 +97,9 @@ projects grid) and a page-by-page build guide. Summary of the approach:
 
 ## GitHub and preview hosting
 
-The repository is private. GitHub Pages serves the `gh-pages` branch, which contains only the `site/` folder (no originals,
+The repository is public and the preview is at https://maira-abid.github.io/Zeeshan-Portfolio-Site/. GitHub Pages serves the `gh-pages` branch, which contains only the `site/` folder (no originals,
 brand files or tools). To publish changes: commit and push to `main`, then run `bash tools/publish-pages.sh`.
 (An automatic deploy on every push would need a GitHub Actions workflow, which requires the `workflow` permission on the
 GitHub login: `gh auth refresh -s workflow`.)
 The preview is for review only: it is marked `noindex` (meta tag + `robots.txt`) so it does not compete with the live Framer site.
-Remove those two when/if this copy should ever be public. Note: a Pages site is publicly reachable by anyone with the link even when the repo is private.
+Remove those two when/if this copy should ever be public. Because the repo is public, everything committed (including the fonts in brand/ and the photos in site/assets) is downloadable by anyone.
