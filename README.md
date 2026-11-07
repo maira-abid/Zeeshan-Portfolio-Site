@@ -28,6 +28,7 @@ site/         the website itself (this is what gets published)
   assets/                fonts, optimised images, videos, icons, background pattern
 tools/
   serve.js               local preview server
+  extract-ambient.js     cuts the floating background elements out of brand/Patterns & Icons
   prepare-assets.js      rebuilds site/assets from originals/ (cd tools, npm i, node prepare-assets.js)
   export-framer.js       regenerates the Framer CSVs/data file
   extracts/              PDF pages used in the CarSwitch / Evercare write-ups
@@ -52,9 +53,7 @@ Typical image weight per page is 150 KB to 900 KB (the Annual Winter Sale and ma
 - `privacy.html` is a generic Canadian (PIPEDA) policy, content in `SITE.privacy` in `js/data.js`. It is a template, not
   legal advice: have it reviewed, and fill in `SITE.privacy.email` (shows a placeholder until then).
 - Background: the checkerboard (fading down the page) is on every page; a sparse card-suit pattern (`assets/icons/pattern-tile.svg`) is only on Home, About and Contact (see the `body[data-page=...]` rule in `style.css`).
-- `js/ambient.js` adds floating icons in the background (Home, Projects, About, Contact, Privacy): they drift, move at
-  different speeds on scroll and gently move away from the mouse; it pauses when the tab is hidden and is static with
-  "reduce motion". Tune the count per page in `cfg` at the top of that file.
+- `js/ambient.js` adds floating background elements in three sizes (big / medium / small). They are cut out of the artwork in `brand/Patterns & Icons` (`node tools/extract-ambient.js` regenerates them into `site/assets/img/ambient/` and `js/ambient-assets.js`) plus shapes drawn in the same style (`js/icons.js`). Each page has its own theme and the mix is randomised on every load; they spiral slowly, shift at different speeds on scroll and move away from the mouse; paused when the tab is hidden and static with "reduce motion". Tune the themes in `THEMES` at the top of `ambient.js`.
 
 ## Brand
 
