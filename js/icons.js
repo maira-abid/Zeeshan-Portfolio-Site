@@ -6,6 +6,7 @@
   var o = 'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"';
   var shapes = {
     // design / motion themed shapes (used by the floating background)
+    flame: 'M12 1.8c.6 3.8 5.4 6.2 5.4 11.2a5.4 5.4 0 0 1-10.8 0c0-2.6 1.400-4.200 2.700-5.800.4 1.900 1.300 3 2.200 3.200C11 7.600 10.400 4.600 12 1.800z',
     sparkle: 'M12 1.5c.9 5.6 4.9 9.6 10.5 10.5-5.6.9-9.6 4.9-10.5 10.5-.9-5.6-4.9-9.6-10.5-10.5C7.1 11.1 11.1 7.1 12 1.5z',
     cursor: 'M5 2.5l14.5 8.2-6.3 1.8 3.7 6.6-2.8 1.6-3.7-6.6-4.5 4.7z',
     play: 'M7 3.5l13 8.5-13 8.5z',
@@ -37,6 +38,20 @@
   }
   out += '<symbol id="i-spiral-o" viewBox="0 0 24 24"><path ' + o + ' d="' + sp + '"/></symbol>';
   out += '<symbol id="i-orbit-o" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4.500" ' + o + ' transform="rotate(-30 12 12)"/><circle cx="12" cy="12" r="2.600" fill="currentColor"/><circle cx="19.500" cy="7.700" r="1.500" fill="currentColor"/></symbol>';
+  // drawn in the style of the Patterns & Icons folder: sunburst, halftone star, poker chip, playing card, zigzag band, checker strip
+  var sb = '';
+  for (var k = 0; k < 12; k += 2) {
+    var a1 = k * Math.PI / 6, a2 = (k + 1) * Math.PI / 6;
+    sb += 'M12 12L' + (12 + 11 * Math.cos(a1)).toFixed(2) + ' ' + (12 + 11 * Math.sin(a1)).toFixed(2) + 'A11 11 0 0 1 ' + (12 + 11 * Math.cos(a2)).toFixed(2) + ' ' + (12 + 11 * Math.sin(a2)).toFixed(2) + 'Z';
+  }
+  out += '<symbol id="i-sunburst" viewBox="0 0 24 24"><path fill="currentColor" d="' + sb + '"/></symbol>';
+  var dots = '';
+  for (var gy = 3; gy < 23; gy += 2.2) for (var gx = 1.5; gx < 23; gx += 2.2) dots += '<circle cx="' + gx.toFixed(1) + '" cy="' + gy.toFixed(1) + '" r=".85"/>';
+  out += '<symbol id="i-hstar" viewBox="0 0 24 24"><clipPath id="i-hstar-clip"><path d="' + shapes.star + '"/></clipPath><g clip-path="url(#i-hstar-clip)" fill="currentColor">' + dots + '</g></symbol>';
+  out += '<symbol id="i-chip-o" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.500" ' + o + '/><circle cx="12" cy="12" r="7" ' + o + ' stroke-dasharray="2.400 2.400"/><circle cx="12" cy="12" r="3.200" ' + o + '/></symbol>';
+  out += '<symbol id="i-card-o" viewBox="0 0 24 24"><rect x="4.500" y="1.500" width="15" height="21" rx="2.200" ' + o + '/><use href="#i-spade" x="8" y="8.500" width="8" height="8"/><circle cx="7.600" cy="5.200" r=".9" fill="currentColor"/><circle cx="16.400" cy="18.800" r=".9" fill="currentColor"/></symbol>';
+  out += '<symbol id="i-zigzagband-o" viewBox="0 0 24 24"><path ' + o + ' d="M1.500 7l4-4 4 4 4-4 4 4 4-4M1.500 13l4-4 4 4 4-4 4 4 4-4M1.500 19l4-4 4 4 4-4 4 4 4-4"/></symbol>';
+  out += '<symbol id="i-checkerstrip-o" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="10" ' + o + '/><path fill="currentColor" d="M2 6h5v5H2zM12 6h5v5h-5zM7 11h5v5H7zM17 11h5v5h-5z"/></symbol>';
   // social
   out += '<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.200" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.200" cy="6.800" r="1.200" fill="currentColor"/></symbol>';
   out += '<symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3.300a2.500 2.500 0 1 1 0 5 2.500 2.500 0 0 1 0-5zM3 9.800h4v11.400H3zM9.500 9.800h3.800v1.600h.1c.5-1 1.800-1.900 3.700-1.900 4 0 4.700 2.600 4.700 6v5.700h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700v5.100h-4z"/></symbol>';
