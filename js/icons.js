@@ -5,6 +5,12 @@
 (function () {
   var o = 'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"';
   var shapes = {
+    // design / motion themed shapes (used by the floating background)
+    sparkle: 'M12 1.5c.9 5.6 4.9 9.6 10.5 10.5-5.6.9-9.6 4.9-10.5 10.5-.9-5.6-4.9-9.6-10.5-10.5C7.1 11.1 11.1 7.1 12 1.5z',
+    cursor: 'M5 2.5l14.5 8.2-6.3 1.8 3.7 6.6-2.8 1.6-3.7-6.6-4.5 4.7z',
+    play: 'M7 3.5l13 8.5-13 8.5z',
+    triangle: 'M12 3l10 17.5H2z',
+    bubble: 'M3.5 4h17A1.5 1.5 0 0 1 22 5.5v10a1.5 1.5 0 0 1-1.5 1.5H11l-5.5 4.5V17h-2A1.5 1.5 0 0 1 2 15.5v-10A1.5 1.5 0 0 1 3.5 4z',
     heart: 'M12 21.8C5 15.6 2.2 12.4 2.2 8.6 2.2 5.6 4.4 3.4 7.2 3.4c1.9 0 3.6 1 4.8 2.9 1.2-1.9 2.9-2.9 4.8-2.9 2.8 0 5 2.2 5 5.200 0 3.800-2.800 7-9.800 13.200z',
     club: 'M12 2a4.200 4.200 0 0 0-3 7.100 4.500 4.500 0 1 0 2.300 8.200c-.1 2.200-.9 3.900-2.500 4.700h6.400c-1.600-.8-2.400-2.500-2.500-4.700a4.500 4.500 0 1 0 2.300-8.200A4.200 4.200 0 0 0 12 2z',
     diamond: 'M12 1.800l7 10.200-7 10.200L5 12z',
@@ -17,6 +23,12 @@
     out += '<symbol id="i-' + k + '" viewBox="0 0 24 24"><path fill="currentColor" d="' + shapes[k] + '"/></symbol>';
     out += '<symbol id="i-' + k + '-o" viewBox="0 0 24 24"><path ' + o + ' d="' + shapes[k] + '"/></symbol>';
   });
+  // line-art shapes (outline only)
+  out += '<symbol id="i-ring-o" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" ' + o + '/></symbol>';
+  out += '<symbol id="i-plus-o" viewBox="0 0 24 24"><path ' + o + ' d="M12 3.500v17M3.500 12h17"/></symbol>';
+  out += '<symbol id="i-zigzag-o" viewBox="0 0 24 24"><path ' + o + ' d="M1.500 15.500l5-8 5 8 5-8 5 8"/></symbol>';
+  out += '<symbol id="i-bezier-o" viewBox="0 0 24 24"><path ' + o + ' d="M3.500 19.500C6 4 17 20 20.500 4.500"/><circle cx="3.500" cy="19.500" r="1.800" fill="currentColor"/><circle cx="20.500" cy="4.500" r="1.800" fill="currentColor"/></symbol>';
+  out += '<symbol id="i-checker-o" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ' + o + '/><path ' + o + ' d="M3 12h18M12 3v18"/><rect x="3" y="3" width="9" height="9" fill="currentColor"/><rect x="12" y="12" width="9" height="9" fill="currentColor"/></symbol>';
   // social
   out += '<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.200" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.200" cy="6.800" r="1.200" fill="currentColor"/></symbol>';
   out += '<symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3.300a2.500 2.500 0 1 1 0 5 2.500 2.500 0 0 1 0-5zM3 9.800h4v11.400H3zM9.500 9.800h3.800v1.600h.1c.5-1 1.800-1.900 3.700-1.900 4 0 4.700 2.600 4.700 6v5.700h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700v5.100h-4z"/></symbol>';
