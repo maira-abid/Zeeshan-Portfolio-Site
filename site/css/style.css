@@ -313,7 +313,7 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 @media (max-width: 960px) { .prose { grid-template-columns: minmax(0, 1fr); } .prose__toc { position: static; } }
 
 /* ---------- Ambient background (floating icons: drift, scroll-parallax, gently avoid the cursor) ---------- */
-.ambient { position: absolute; top: 0; left: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; } /* height is set by ambient.js to the page height */
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; } /* pinned behind the page; does not move on scroll */
 .amb { position: absolute; left: 0; top: 0; will-change: transform; }
 .amb svg, .amb img { display: block; color: var(--grey); animation: amb-float var(--dur, 12s) ease-in-out var(--delay, 0s) infinite alternate; }
 @keyframes amb-float { from { transform: translateY(-9px) rotate(calc(var(--rot, 0deg) - 7deg)); } to { transform: translateY(9px) rotate(calc(var(--rot, 0deg) + 7deg)); } }
