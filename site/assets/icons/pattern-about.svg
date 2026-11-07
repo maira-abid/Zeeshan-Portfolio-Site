@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <!-- About page: stars, sparkles, hearts and suits, widely scattered. -->
+  <defs>
+    <path id="heart" d="M12 21.8C5 15.6 2.2 12.4 2.2 8.6 2.2 5.6 4.4 3.4 7.2 3.4c1.9 0 3.6 1 4.8 2.9 1.2-1.9 2.9-2.9 4.8-2.9 2.8 0 5 2.2 5 5.2 0 3.8-2.8 7-9.8 13.2z"/>
+    <path id="spade" d="M12 1.8C9.6 5.6 4 9.1 4 13.6a4.1 4.1 0 0 0 7.2 2.7c-.1 2.4-.9 4.4-2.7 5.5h7c-1.8-1.1-2.6-3.1-2.7-5.5A4.1 4.1 0 0 0 20 13.6C20 9.1 14.4 5.6 12 1.8z"/>
+    <path id="diamond" d="M12 1.8l7 10.2-7 10.2L5 12z"/>
+    <path id="star" d="M12 2l2.9 6.9 7.5.5-5.8 4.8 1.9 7.3L12 17.5l-6.5 4 1.9-7.3L1.6 9.4l7.5-.5z"/>
+    <path id="sparkle" d="M12 1.5c.9 5.6 4.9 9.6 10.5 10.5-5.6.9-9.6 4.9-10.5 10.5-.9-5.6-4.9-9.6-10.5-10.5C7.1 11.1 11.1 7.1 12 1.5z"/>
+  </defs>
+  <g fill="none" stroke="#a77fe0" stroke-width="1.1" stroke-linejoin="round" opacity=".18">
+    <use href="#heart"   transform="translate(80 120) rotate(10) scale(3)"/>
+    <use href="#star"    transform="translate(360 60) rotate(-14) scale(2.6)"/>
+    <use href="#sparkle" transform="translate(650 150) rotate(8) scale(3)"/>
+    <use href="#spade"   transform="translate(820 430) rotate(-12) scale(2.4)"/>
+    <use href="#diamond" transform="translate(210 410) rotate(14) scale(2.2)"/>
+    <use href="#sparkle" transform="translate(480 540) rotate(-8) scale(2.2)"/>
+    <use href="#heart"   transform="translate(90 720) rotate(-16) scale(2.6)"/>
+    <use href="#star"    transform="translate(720 770) rotate(12) scale(3.2)"/>
+    <use href="#spade"   transform="translate(370 850) rotate(6) scale(2.4)"/>
+  </g>
+  <g fill="#a77fe0" opacity=".06">
+    <use href="#heart"   transform="translate(570 330) rotate(-6) scale(1.5)"/>
+    <use href="#star"    transform="translate(150 270) rotate(8) scale(1.4)"/>
+    <use href="#diamond" transform="translate(850 640) rotate(12) scale(1.3)"/>
+  </g>
+</svg>
