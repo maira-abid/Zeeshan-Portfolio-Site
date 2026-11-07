@@ -29,6 +29,12 @@ type Sort = "default" | "az" | "za"
 
 export default function ProjectsExplorer(props: Props) {
     const { basePath, imageBase, accent, accentLight, panel, line, text, muted, fontFamily, displayFamily, style } = props
+    // Colours follow the light/dark switch when ThemeSwitch + the theme snippet are on the page (CSS variables); otherwise the property values are used.
+    const v = (name: string, fallback: string) => `var(${name}, ${fallback})`
+    const c = {
+        text: v("--zk-text", text), muted: v("--zk-muted", muted), panel: v("--zk-card", panel), line: v("--zk-line", line), accent: accent,
+        accentText: v("--zk-accent", accentLight), side: v("--zk-surface", "rgba(27, 27, 27, .88)"), soft: v("--zk-soft", "#E5E5E5"), hover: v("--zk-hover", "#313131"),
+    }
     const [filter, setFilter] = React.useState<Filter>({ type: "all", id: "" })
     const [sort, setSort] = React.useState<Sort>("default")
 
@@ -61,8 +67,8 @@ export default function ProjectsExplorer(props: Props) {
             className="zk-fbtn"
             style={{
                 display: "flex", width: "100%", alignItems: "center", justifyContent: "space-between", gap: 10, padding: "8px 12px", borderRadius: 10,
-                border: 0, borderLeft: `3px solid ${p.active ? "#fff" : "transparent"}`, background: p.active ? accent : "transparent",
-                color: p.active ? "#fff" : p.n === 0 ? "#8C8C8C" : "#E5E5E5", font: `600 15px ${fontFamily}`, textAlign: "left", cursor: "pointer",
+                border: 0, background: p.active ? accent : "transparent", // the selected item is purple only (no white tip)
+                color: p.active ? "#fff" : p.n === 0 ? "#8C8C8C" : c.soft, font: `600 15px ${fontFamily}`, textAlign: "left", cursor: "pointer",
             }}
         >
             <span>{p.label}</span>
@@ -70,15 +76,16 @@ export default function ProjectsExplorer(props: Props) {
         </button>
     )
     const Heading = (p: { children: React.ReactNode }) => (
-        <h2 style={{ margin: "24px 0 8px", padding: "0 12px", font: `800 12px ${fontFamily}`, letterSpacing: "0.24em", textTransform: "uppercase", color: accentLight }}>{p.children}</h2>
+        <h2 style={{ margin: "24px 0 8px", padding: "0 12px", font: `800 12px ${fontFamily}`, letterSpacing: "0.24em", textTransform: "uppercase", color: c.accentText }}>{p.children}</h2>
     )
     const Chip = (p: { label: string; onClick: () => void; solid: boolean }) => (
         <button
             type="button"
             onClick={p.onClick}
             style={{
-                padding: "4px 11px", borderRadius: 999, border: p.solid ? "1px solid transparent" : "1px solid rgba(255,255,255,.55)",
-                background: p.solid ? "rgba(136, 0, 255,.92)" : "rgba(12, 12, 12,.86)", color: "#fff", font: `700 11px ${fontFamily}`,
+                // every tag is the same: Carbon Black at 65% with white text (not purple), a hairline border, so it reads on any thumbnail
+                padding: "4px 11px", borderRadius: 999, border: "1px solid rgba(255,255,255,.16)",
+                background: "rgba(27, 27, 27, .65)", color: "#fff", font: `700 11px ${fontFamily}`,
                 letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", whiteSpace: "nowrap",
             }}
         >
@@ -87,11 +94,11 @@ export default function ProjectsExplorer(props: Props) {
     )
 
     return (
-        <div style={{ width: "100%", color: text, fontFamily, ...style }}>
+        <div style={{ width: "100%", color: c.text, fontFamily, ...style }}>
             <style>{`
                 .zk-grid { display:grid; grid-template-columns: 250px minmax(0,1fr); gap: 48px; align-items:start; }
                 .zk-cards { display:grid; grid-template-columns: repeat(auto-fill, minmax(min(100%,285px),1fr)); gap: 32px; }
-                .zk-fbtn:hover { background: #292929; }
+                .zk-fbtn:hover { background: ${c.hover}; }
                 .zk-card:hover .zk-img { border-color: ${accent}; }
                 .zk-card:hover .zk-img img { transform: scale(1.05); }
                 .zk-title a { color: inherit; text-decoration: none; }
@@ -99,7 +106,7 @@ export default function ProjectsExplorer(props: Props) {
                 @media (max-width: 960px) { .zk-grid { grid-template-columns: 1fr; } .zk-side { position: static !important; } }
             `}</style>
             <div className="zk-grid">
-                <aside className="zk-side" aria-label="Filter projects" style={{ position: "sticky", top: 20, background: "rgba(20, 20, 20,.88)", border: `1px solid ${line}`, borderRadius: 14, padding: "22px 20px" }}>
+                <aside className="zk-side" aria-label="Filter projects" style={{ position: "sticky", top: 20, background: c.side, border: `1px solid ${c.line}`, borderRadius: 14, padding: "22px 20px" }}>
                     <Heading>Projects</Heading>
                     <FilterBtn label="All projects" n={projects.length} active={filter.type === "all"} onClick={() => setFilter({ type: "all", id: "" })} />
                     <Heading>Categories</Heading>
@@ -113,17 +120,17 @@ export default function ProjectsExplorer(props: Props) {
                 </aside>
 
                 <div>
-                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 14, marginBottom: 26, paddingBottom: 16, borderBottom: `1px solid ${line}` }}>
-                        <p aria-live="polite" style={{ margin: 0, font: `600 15px ${fontFamily}`, color: "#E5E5E5" }}>
-                            <b style={{ color: accentLight, fontWeight: 800 }}>{list.length}</b> {list.length === 1 ? "project" : "projects"}
-                            {label && <> in <b style={{ color: accentLight, fontWeight: 800 }}>{label}</b></>}
+                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 14, marginBottom: 26, paddingBottom: 16, borderBottom: `1px solid ${c.line}` }}>
+                        <p aria-live="polite" style={{ margin: 0, font: `600 15px ${fontFamily}`, color: c.soft }}>
+                            <b style={{ color: c.accentText, fontWeight: 800 }}>{list.length}</b> {list.length === 1 ? "project" : "projects"}
+                            {label && <> in <b style={{ color: c.accentText, fontWeight: 800 }}>{label}</b></>}
                         </p>
-                        <label style={{ display: "inline-flex", alignItems: "center", gap: 10, font: `700 12px ${fontFamily}`, letterSpacing: "0.14em", textTransform: "uppercase", color: muted }}>
+                        <label style={{ display: "inline-flex", alignItems: "center", gap: 10, font: `700 12px ${fontFamily}`, letterSpacing: "0.14em", textTransform: "uppercase", color: c.muted }}>
                             Sort by
                             <select
                                 value={sort}
                                 onChange={(e) => setSort(e.target.value as Sort)}
-                                style={{ background: panel, border: `1px solid ${line}`, borderRadius: 999, padding: "10px 18px", font: `600 14px ${fontFamily}`, letterSpacing: 0, textTransform: "none", color: text, cursor: "pointer" }}
+                                style={{ background: c.panel, border: `1px solid ${c.line}`, borderRadius: 999, padding: "10px 18px", font: `600 14px ${fontFamily}`, letterSpacing: 0, textTransform: "none", color: c.text, cursor: "pointer" }}
                             >
                                 <option value="default">Featured</option>
                                 <option value="az">Name: A → Z</option>
@@ -133,8 +140,8 @@ export default function ProjectsExplorer(props: Props) {
                     </div>
 
                     {list.length === 0 ? (
-                        <div style={{ padding: "60px 20px", textAlign: "center", border: `1px dashed ${line}`, borderRadius: 14, color: muted }}>
-                            <h3 style={{ margin: 0, fontFamily: displayFamily, fontWeight: 400, fontSize: 32, color: text }}>Coming soon</h3>
+                        <div style={{ padding: "60px 20px", textAlign: "center", border: `1px dashed ${c.line}`, borderRadius: 14, color: c.muted }}>
+                            <h3 style={{ margin: 0, fontFamily: displayFamily, fontWeight: 800, fontSize: 28, color: c.text }}>Coming soon</h3>
                             <p>No projects here yet.</p>
                         </div>
                     ) : (
@@ -146,7 +153,7 @@ export default function ProjectsExplorer(props: Props) {
                                         href={`${basePath.replace(/\/$/, "")}/${p.slug}`}
                                         tabIndex={-1}
                                         aria-hidden="true"
-                                        style={{ display: "block", aspectRatio: "4 / 3", overflow: "hidden", borderRadius: 14, background: panel, border: `1px solid ${line}`, transition: "border-color .25s" }}
+                                        style={{ display: "block", aspectRatio: "4 / 3", overflow: "hidden", borderRadius: 14, background: c.panel, border: `1px solid ${c.line}`, transition: "border-color .25s" }}
                                     >
                                         <img src={src(p.thumb)} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform .6s" }} />
                                     </a>
@@ -162,7 +169,7 @@ export default function ProjectsExplorer(props: Props) {
                                         <h3 className="zk-title" style={{ margin: 0, font: `800 22px/1.2 ${fontFamily}` }}>
                                             <a href={`${basePath.replace(/\/$/, "")}/${p.slug}`}>{p.title}</a>
                                         </h3>
-                                        <p style={{ margin: "4px 0 0", font: `500 14px/1.4 ${fontFamily}`, color: muted }}>{p.client}</p>
+                                        <p style={{ margin: "4px 0 0", font: `500 14px/1.4 ${fontFamily}`, color: c.muted }}>{p.client}</p>
                                     </div>
                                 </article>
                             ))}
@@ -177,14 +184,14 @@ export default function ProjectsExplorer(props: Props) {
 ProjectsExplorer.defaultProps = {
     basePath: "/projects",
     imageBase: "",
-    accent: "#8800ff",
-    accentLight: "#cba6ff",
-    panel: "#1f1f1f",
-    line: "#333333",
+    accent: "#8F00FF",
+    accentLight: "#CBA6FF",
+    panel: "#262626",
+    line: "#3B3B3B",
     text: "#FFFFFF",
     muted: "#B5B5B5",
     fontFamily: "Raleway, sans-serif",
-    displayFamily: "Magazine Letter, Raleway, sans-serif",
+    displayFamily: "Raleway, sans-serif",
 }
 
 addPropertyControls(ProjectsExplorer, {

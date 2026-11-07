@@ -51,16 +51,20 @@ type Props = {
     checkerSize: number
     checkerOpacity: number
     fadeHeight: number
+    fade: boolean
     showSuits: boolean
     suitColor: string
+    followTheme: boolean
     style?: React.CSSProperties
 }
 
 export default function BackgroundPattern(props: Props) {
-    const { background, checkerColor, checkerDark, checkerSize, checkerOpacity, fadeHeight, showSuits, suitColor, style } = props
-    const mask = "linear-gradient(to bottom, #000 0, rgba(0,0,0,.5) 30%, transparent 100%)"
+    const { background, checkerColor, checkerDark, checkerSize, checkerOpacity, fadeHeight, fade, showSuits, suitColor, followTheme, style } = props
+    // With "Follow theme" the page colour and the checker's second square follow the light / dark switch (CSS variables from ThemeSwitch).
+    const v = (name: string, fallback: string) => (followTheme ? `var(${name}, ${fallback})` : fallback)
+    const mask = fade ? "linear-gradient(to bottom, #000 0, rgba(0,0,0,.5) 30%, transparent 100%)" : undefined
     return (
-        <div aria-hidden="true" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background, pointerEvents: "none", ...style }}>
+        <div aria-hidden="true" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background: v("--zk-page", background), pointerEvents: "none", ...style }}>
             {showSuits && <div style={{ position: "absolute", inset: 0, backgroundImage: suitTile(suitColor), backgroundSize: "900px 900px" }} />}
             <div
                 style={{
@@ -68,9 +72,9 @@ export default function BackgroundPattern(props: Props) {
                     left: 0,
                     right: 0,
                     top: 0,
-                    height: fadeHeight,
-                    opacity: checkerOpacity,
-                    background: `conic-gradient(${checkerColor} 25%, ${checkerDark} 0 50%, ${checkerColor} 0 75%, ${checkerDark} 0) 0 0 / ${checkerSize}px ${checkerSize}px`,
+                    height: fade ? fadeHeight : "100%",
+                    opacity: v("--zk-checker-opacity", String(checkerOpacity)) as unknown as number,
+                    background: `conic-gradient(${checkerColor} 25%, ${v("--zk-page", checkerDark)} 0 50%, ${checkerColor} 0 75%, ${v("--zk-page", checkerDark)} 0) 0 0 / ${checkerSize}px ${checkerSize}px`,
                     WebkitMaskImage: mask,
                     maskImage: mask,
                 }}
@@ -80,14 +84,16 @@ export default function BackgroundPattern(props: Props) {
 }
 
 BackgroundPattern.defaultProps = {
-    background: "#141414",
-    checkerColor: "#5b2a99",
-    checkerDark: "#0C0C0C",
+    background: "#1B1B1B",
+    checkerColor: "#8F00FF", // Violet Ray; the squares are 104 px on every page
+    checkerDark: "#1B1B1B",
     checkerSize: 104,
     checkerOpacity: 0.32,
     fadeHeight: 2400,
+    fade: true,
     showSuits: false,
     suitColor: "#A77FE0",
+    followTheme: true,
 }
 
 addPropertyControls(BackgroundPattern, {
@@ -96,7 +102,9 @@ addPropertyControls(BackgroundPattern, {
     checkerDark: { type: ControlType.Color, title: "Checker dark" },
     checkerSize: { type: ControlType.Number, title: "Tile size", min: 40, max: 240, step: 4 },
     checkerOpacity: { type: ControlType.Number, title: "Opacity", min: 0, max: 1, step: 0.02 },
-    fadeHeight: { type: ControlType.Number, title: "Fade height", min: 300, max: 6000, step: 50 },
+    fade: { type: ControlType.Boolean, title: "Fade out", description: "Off = a plain strip (the new site's footer strip: height 24)" },
+    fadeHeight: { type: ControlType.Number, title: "Fade height", min: 300, max: 6000, step: 50, hidden: (p: Props) => !p.fade },
+    followTheme: { type: ControlType.Boolean, title: "Follow theme" },
     showSuits: { type: ControlType.Boolean, title: "Sparse suits" },
     suitColor: { type: ControlType.Color, title: "Suit color", hidden: (p: Props) => !p.showSuits },
 })

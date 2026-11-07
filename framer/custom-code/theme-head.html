@@ -1,0 +1,19 @@
+<!--
+  Light / dark version, no flash on load.
+  Where: Framer > Site Settings > General > Custom Code > "Start of <head> tag". (Custom code needs a paid Framer plan.)
+  It applies the visitor's saved choice (or dark, the approved look) BEFORE the page paints, using the same CSS variables the ThemeSwitch
+  component sets. Keep the two palettes identical to THEMES in components/ThemeSwitch.tsx.
+-->
+<script>
+(function () {
+  var T = {
+    dark: { "--zk-page": "#1B1B1B", "--zk-text": "#FFFFFF", "--zk-soft": "#E9E9E9", "--zk-muted": "#B5B5B5", "--zk-card": "#262626", "--zk-hover": "#313131", "--zk-line": "#3B3B3B", "--zk-surface": "rgba(27,27,27,.88)", "--zk-surface-strong": "rgba(27,27,27,.92)", "--zk-accent": "#CBA6FF", "--zk-ticker": "rgba(229,229,229,.78)", "--zk-footer": "#1B1B1B", "--zk-checker-opacity": ".32" },
+    light: { "--zk-page": "#E5E5E5", "--zk-text": "#1B1B1B", "--zk-soft": "#2B2B2B", "--zk-muted": "#4F4F4F", "--zk-card": "#FFFFFF", "--zk-hover": "#D4D4D4", "--zk-line": "#BDBDBD", "--zk-surface": "rgba(255,255,255,.9)", "--zk-surface-strong": "rgba(255,255,255,.92)", "--zk-accent": "#8F00FF", "--zk-ticker": "rgba(27,27,27,.8)", "--zk-footer": "#E5E5E5", "--zk-checker-opacity": ".22" }
+  };
+  var m = "dark";
+  try { if (localStorage.getItem("zk-theme") === "light") m = "light"; } catch (e) {}
+  var r = document.documentElement, t = T[m];
+  for (var k in t) r.style.setProperty(k, t[k]);
+  if (m === "light") r.setAttribute("data-theme", "light");
+})();
+</script>

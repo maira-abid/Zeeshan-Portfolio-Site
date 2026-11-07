@@ -61,14 +61,16 @@ S.projects.forEach((p) => {
 async function ogImages() {
   const out = path.join(SITE, 'assets', 'og');
   fs.mkdirSync(out, { recursive: true });
-  const hero = path.join(SITE, 'assets', 'img', 'posters', 'hero-reel.webp');
+  // Pages that are not a project (home, projects, about, contact, privacy) share one preview picture: three project images side by side
+  // (Pizza Now, Collegiate Survival Sale, CarSwitch), the same look as the new site's link preview.
+  const trio = ['pizza-now/box-1.webp', 'collegiate-survival-sale/hero-5.webp', 'carswitch/intro.webp'];
+  const tiles = await Promise.all(trio.map((f) => sharp(path.join(SITE, 'assets', 'img', f)).resize(400, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82 }).toBuffer()));
+  const collage = await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#1b1b1b' } })
+    .composite(tiles.map((input, i) => ({ input, left: i * 400, top: 0 }))).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
   for (const r of routes) {
-    let src = hero;
-    if (r.project) {
-      const lead = r.project.lead;
-      if (lead.t === 'img') src = path.join(SITE, 'assets', 'img', lead.src);
-      else src = path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '.webp');
-    }
+    if (!r.project) { fs.writeFileSync(path.join(out, r.og + '.jpg'), collage); continue; }
+    const lead = r.project.lead;
+    const src = lead.t === 'img' ? path.join(SITE, 'assets', 'img', lead.src) : path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '.webp');
     await sharp(src).resize(1200, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(out, r.og + '.jpg'));
   }
 }

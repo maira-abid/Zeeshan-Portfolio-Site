@@ -51,10 +51,19 @@ function imageList(p) {
   p.blocks.forEach((b) => { (b.media || []).forEach(add); (b.items || []).forEach(add); });
   return files.join('; ');
 }
-const rows = [['Title', 'Slug', 'Client', 'Categories', 'Industries', 'Summary', 'Thumbnail (file)', 'Lead video (Vimeo URL)', 'Write-up', 'Images to place (files)', 'Write-up coming soon', 'Featured']];
+// One compact line of the published results, shown at the top of each project page (same figures as the Outcome section; none invented)
+function keyResults(p) {
+  const b = p.blocks.filter((x) => x.stats)[0];
+  if (!b) return '';
+  return b.stats.map((s) => String(s.n).replace(/^-(?=\d)/, '−').replace(/(\d)-(\d)/g, '$1–$2') + ' ' + s.l).join(' · ');
+}
+const rows = [['Title', 'Slug', 'Client', 'Categories', 'Industries', 'Summary', 'Thumbnail (file)', 'Lead video (Vimeo URL)', 'Write-up', 'Images to place (files)', 'Write-up coming soon', 'Featured',
+  'Key results (one line)', 'Home panel: kicker', 'Home panel: big number', 'Home panel: after number', 'Home panel: outcome', 'Home panel: colour', 'Home panel: text colour', 'Home panel: image (file)', 'Home panel: image focus']];
 S.projects.forEach((p) => {
+  const m = S.featuredMeta[p.slug];
   rows.push([p.title, p.slug, p.client, p.categories.map(catName).join(', '), p.industries.map(indName).join(', '), p.summary,
-    'site/assets/img/thumbs/' + p.slug + '.webp', p.lead.t === 'vimeo' ? 'https://vimeo.com/' + p.lead.id : '', writeupHTML(p), imageList(p), p.placeholder ? 'true' : 'false', S.featured.indexOf(p.slug) > -1 ? 'true' : 'false']);
+    'framer/assets/thumbs/' + p.slug + '.webp', p.lead.t === 'vimeo' ? 'https://vimeo.com/' + p.lead.id : '', writeupHTML(p), imageList(p), p.placeholder ? 'true' : 'false', S.featured.indexOf(p.slug) > -1 ? 'true' : 'false',
+    keyResults(p), m ? m.need : '', m ? m.metric : '', m ? m.words : '', m ? m.outcome : '', m ? m.color[0] : '', m ? m.color[1] : '', m ? 'framer/assets/featured/' + p.slug + '.webp' : '', m ? (m.pos || '50% 50%') : '']);
 });
 fs.writeFileSync(path.join(outCms, 'projects.csv'), csv(rows));
 
@@ -82,5 +91,33 @@ fs.writeFileSync(path.join(outCmp, 'ProjectsData.ts'), ts);
   const from = path.join(ROOT, 'site', 'assets', 'img', 'ambient'), to = path.join(ROOT, 'framer', 'assets', 'ambient');
   fs.rmSync(to, { recursive: true, force: true }); fs.mkdirSync(to, { recursive: true });
   fs.readdirSync(from).forEach((f) => fs.copyFileSync(path.join(from, f), path.join(to, f)));
+}
+
+// Upload-ready pictures for Framer: the card thumbnails, the six home-panel pictures and the tall designs (emails etc., the trimmed copies).
+// Only the web-size files already on the site are copied (never the full-size originals): they are 1800 px wide at most.
+{
+  const img = path.join(ROOT, 'site', 'assets', 'img'), out = path.join(ROOT, 'framer', 'assets');
+  const copy = (src, dir, name) => { fs.mkdirSync(path.join(out, dir), { recursive: true }); fs.copyFileSync(path.join(img, src), path.join(out, dir, name)); };
+  ['thumbs', 'featured', 'tall'].forEach((d) => fs.rmSync(path.join(out, d), { recursive: true, force: true }));
+  S.projects.forEach((p) => copy('thumbs/' + p.slug + '.webp', 'thumbs', p.slug + '.webp'));
+  S.featured.forEach((slug) => copy(S.featuredMeta[slug].img, 'featured', slug + '.webp'));
+  const tall = [];
+  S.projects.forEach((p) => p.blocks.forEach((b) => (b.items || []).concat(b.media || []).forEach((m) => { if (m.t === 'scroll') tall.push(m.src); })));
+  tall.forEach((src) => copy(src, 'tall', src.replace('/', '-')));
+  console.log('assets:', S.projects.length, 'thumbs,', S.featured.length, 'featured,', tall.length, 'tall designs');
+}
+
+// Default panels for the FeaturedPanels component (between the generated markers)
+{
+  const f = path.join(outCmp, 'FeaturedPanels.tsx');
+  let src = fs.readFileSync(f, 'utf8');
+  const items = S.featured.map((slug) => {
+    const p = S.projects.find((x) => x.slug === slug), m = S.featuredMeta[slug];
+    return { kicker: m.need, metric: m.metric, words: m.words, title: p.title, outcome: m.outcome, chips: p.categories.map(catName).join(', '), href: '/projects/' + slug,
+      panel: m.color[0], text: m.color[1], imageFile: slug + '.webp', imagePos: m.pos || '50% 50%', alt: m.alt };
+  });
+  const block = '// <generated:items>\nconst DEFAULT_ITEMS: Item[] = ' + JSON.stringify(items, null, 4) + '\n// </generated:items>';
+  src = src.replace(/\/\/ <generated:items>[\s\S]*?\/\/ <\/generated:items>/, () => block);
+  fs.writeFileSync(f, src);
 }
 console.log('exported', S.categories.length, 'categories,', S.industries.length, 'industries,', S.projects.length, 'projects');

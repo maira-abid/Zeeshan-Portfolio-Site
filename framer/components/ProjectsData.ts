@@ -71,18 +71,6 @@ export const industries: Item[] = [
 ]
 export const projects: Project[] = [
   {
-    "slug": "showreel",
-    "title": "Animation Showreel",
-    "client": "Zeeshan Abid",
-    "categories": [
-      "animations-videos"
-    ],
-    "industries": [
-      "advertising"
-    ],
-    "thumb": "thumbs/showreel.webp"
-  },
-  {
     "slug": "carswitch",
     "title": "CarSwitch Animations",
     "client": "CarSwitch, Dubai, UAE",
@@ -107,30 +95,6 @@ export const projects: Project[] = [
       "healthcare"
     ],
     "thumb": "thumbs/evercare.webp"
-  },
-  {
-    "slug": "app-launch",
-    "title": "App Launch Videos",
-    "client": "COLABS / UT / Treble",
-    "categories": [
-      "animations-videos"
-    ],
-    "industries": [
-      "tech"
-    ],
-    "thumb": "thumbs/app-launch.webp"
-  },
-  {
-    "slug": "startup-grind",
-    "title": "Startup Grind 2019",
-    "client": "Startup Grind",
-    "categories": [
-      "animations-videos"
-    ],
-    "industries": [
-      "tech"
-    ],
-    "thumb": "thumbs/startup-grind.webp"
   },
   {
     "slug": "pizza-now",
@@ -218,17 +182,5 @@ export const projects: Project[] = [
       "tech"
     ],
     "thumb": "thumbs/byte-app.webp"
-  },
-  {
-    "slug": "tango-photos",
-    "title": "Tango Photos",
-    "client": "Toronto Tango 8 Festival, 2026",
-    "categories": [
-      "photography"
-    ],
-    "industries": [
-      "events"
-    ],
-    "thumb": "thumbs/tango-photos.webp"
   }
 ]

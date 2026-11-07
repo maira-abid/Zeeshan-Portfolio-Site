@@ -1,0 +1,17 @@
+<!--
+  Image protection (a deterrent, not a lock).
+  Where: Framer > Site Settings > General > Custom Code > "End of <body> tag". (Custom code needs a paid Framer plan.)
+  What it does: stops right-click "Open image in new tab / Save image as", dragging an image out of the page, and long-press saving on phones.
+  What it does NOT do: stop screenshots, "view source" or developer tools, and anyone who can read the page can still find the image address.
+  The real protection is the file you upload: upload web-size copies (1200 px wide at most, never the full-size originals).
+-->
+<style>
+  img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+</style>
+<script>
+(function () {
+  function isImg(e) { return e.target && e.target.tagName === "IMG"; }
+  document.addEventListener("contextmenu", function (e) { if (isImg(e)) e.preventDefault(); });
+  document.addEventListener("dragstart", function (e) { if (isImg(e)) e.preventDefault(); });
+})();
+</script>
