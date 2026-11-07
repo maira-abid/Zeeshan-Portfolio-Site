@@ -8,11 +8,13 @@
  */
 (function () {
   var page = document.body.dataset.page;
-  var cfg = { home: 14, projects: 10, about: 12, contact: 12, privacy: 6 }; // icons per page (none on project pages)
+  var cfg = { home: 12, projects: 8, about: 10, contact: 10, privacy: 5 }; // shapes per page (none on project pages)
   var count = cfg[page];
   if (!count) return;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var names = ['spade-o', 'heart-o', 'bolt-o', 'diamond-o', 'star-o', 'club-o', 'spade', 'star', 'bolt', 'heart'];
+  // A mix of design / motion shapes with only a few card suits (order is varied so any page gets a good spread)
+  var names = ['sparkle-o', 'cursor', 'checker-o', 'spade-o', 'play-o', 'ring-o', 'bolt-o', 'zigzag-o', 'bezier-o', 'star-o',
+    'bubble-o', 'plus-o', 'triangle-o', 'heart-o', 'sparkle', 'play', 'club-o', 'ring-o', 'star', 'diamond-o'];
   var root = document.createElement('div');
   root.className = 'ambient';
   root.setAttribute('aria-hidden', 'true');
@@ -22,12 +24,12 @@
   for (var i = 0; i < count; i++) {
     var name = names[i % names.length];
     var filled = name.indexOf('-o') < 0;
-    var size = 36 + Math.round(rnd() * 64);
+    var size = 60 + Math.round(rnd() * 80); // 60-140 px (larger than before)
     var depth = 0.25 + rnd() * 0.75;
     var el = document.createElement('div');
     el.className = 'amb';
     el.innerHTML = '<svg class="ico" width="' + size + '" height="' + size + '" style="--rot:' + Math.round(rnd() * 50 - 25) + 'deg;--dur:' +
-      (9 + rnd() * 9).toFixed(1) + 's;--delay:-' + (rnd() * 9).toFixed(1) + 's;opacity:' + (filled ? 0.1 : 0.2 + rnd() * 0.12).toFixed(2) + '"><use href="#i-' + name + '"/></svg>';
+      (9 + rnd() * 9).toFixed(1) + 's;--delay:-' + (rnd() * 9).toFixed(1) + 's;opacity:' + (filled ? 0.12 : 0.22 + rnd() * 0.12).toFixed(2) + '"><use href="#i-' + name + '"/></svg>';
     root.appendChild(el);
     items.push({ el: el, x: rnd(), y: rnd(), depth: depth, size: size, ox: 0, oy: 0 });
   }
@@ -46,8 +48,8 @@
       if (!reduce) {
         // push away from the pointer
         var dx = x + it.size / 2 - mx, dy = y + it.size / 2 - my;
-        var d = Math.sqrt(dx * dx + dy * dy), R = 190, tx = 0, ty = 0;
-        if (d < R && d > 0) { var f = (1 - d / R) * 70 * it.depth; tx = dx / d * f; ty = dy / d * f; }
+        var d = Math.sqrt(dx * dx + dy * dy), R = 240, tx = 0, ty = 0;
+        if (d < R && d > 0) { var f = (1 - d / R) * 90 * it.depth; tx = dx / d * f; ty = dy / d * f; }
         it.ox += (tx - it.ox) * 0.12;
         it.oy += (ty - it.oy) * 0.12;
       }
