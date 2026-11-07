@@ -29,6 +29,14 @@
   out += '<symbol id="i-zigzag-o" viewBox="0 0 24 24"><path ' + o + ' d="M1.500 15.500l5-8 5 8 5-8 5 8"/></symbol>';
   out += '<symbol id="i-bezier-o" viewBox="0 0 24 24"><path ' + o + ' d="M3.500 19.500C6 4 17 20 20.500 4.500"/><circle cx="3.500" cy="19.500" r="1.800" fill="currentColor"/><circle cx="20.500" cy="4.500" r="1.800" fill="currentColor"/></symbol>';
   out += '<symbol id="i-checker-o" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ' + o + '/><path ' + o + ' d="M3 12h18M12 3v18"/><rect x="3" y="3" width="9" height="9" fill="currentColor"/><rect x="12" y="12" width="9" height="9" fill="currentColor"/></symbol>';
+  // spiral (Archimedean, 2.25 turns) and orbit (ring with a moving-planet dot)
+  var sp = '';
+  for (var a = 0; a <= 4.5 * Math.PI; a += 0.12) {
+    var r = 1.2 + 9.3 * a / (4.5 * Math.PI);
+    sp += (sp ? 'L' : 'M') + (12 + r * Math.cos(a)).toFixed(2) + ' ' + (12 + r * Math.sin(a)).toFixed(2);
+  }
+  out += '<symbol id="i-spiral-o" viewBox="0 0 24 24"><path ' + o + ' d="' + sp + '"/></symbol>';
+  out += '<symbol id="i-orbit-o" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="4.500" ' + o + ' transform="rotate(-30 12 12)"/><circle cx="12" cy="12" r="2.600" fill="currentColor"/><circle cx="19.500" cy="7.700" r="1.500" fill="currentColor"/></symbol>';
   // social
   out += '<symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.200" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.200" cy="6.800" r="1.200" fill="currentColor"/></symbol>';
   out += '<symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M5 3.300a2.500 2.500 0 1 1 0 5 2.500 2.500 0 0 1 0-5zM3 9.800h4v11.400H3zM9.500 9.800h3.800v1.600h.1c.5-1 1.800-1.900 3.700-1.900 4 0 4.700 2.600 4.700 6v5.700h-4v-5c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700v5.100h-4z"/></symbol>';
