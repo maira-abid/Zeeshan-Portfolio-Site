@@ -48,7 +48,8 @@
     // Placeholder logo (replace with the real one)
     var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home"><span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
 
-    var header = '<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap">' + logo + '<nav class="nav" aria-label="Main">' + nav + '</nav></div></header>';
+    var header = '<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap">' + logo + '<nav class="nav" aria-label="Main">' + nav + '</nav>' +
+      '<button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to the light version"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg></button></div></header>';
     document.body.insertAdjacentHTML('afterbegin', '<div class="checker-bg" aria-hidden="true"></div>' + header);
 
     var socials = S.social.map(function (s) {
@@ -388,6 +389,22 @@
     e.preventDefault(); t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); t.scrollIntoView({ block: 'start' });
     try { history.replaceState(null, '', location.pathname + location.search + '#' + id); } catch (err) { /* ignore */ }
   });
+
+  /* Light / dark switch (the header button). Same site, same pages: only the colours change. Remembered on this device; dark is the default.
+     A tiny script in <head> (tools/templates/shell.html) applies the saved choice before the page paints, so there is no flash. */
+  (function initTheme() {
+    var btn = $('#themeToggle'); if (!btn) return;
+    var root = document.documentElement, meta = $('meta[name="theme-color"]');
+    function isLight() { return root.getAttribute('data-theme') === 'light'; }
+    function apply(light, save) {
+      if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+      btn.setAttribute('aria-label', light ? 'Switch to the dark version' : 'Switch to the light version');
+      if (meta) meta.setAttribute('content', light ? '#ffffff' : '#1b1b1b');
+      if (save) { try { localStorage.setItem('zk-theme', light ? 'light' : 'dark'); } catch (e) {} }
+    }
+    btn.addEventListener('click', function () { apply(!isLight(), true); });
+    apply(isLight(), false);
+  })();
 
   /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */
   (function initMotion() {

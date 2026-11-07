@@ -160,6 +160,15 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 
 - **Key results line (project pages only):** each project page that has published figures shows them as one compact line at the top, above the main image (`keystats` in `app.js`; the figures are the ones in the Outcome section of `data.js`). Annual Winter Sale, Generation Magazines and Byte App have no figures, so they have no line. The Projects listing page is unchanged.
 
+## Light version (a switch, not a second site)
+
+- **The switch:** a round half-moon button in the top-right of the header on every page. It flips the same site between dark (the default, the approved look) and light, and remembers the choice on that device (`localStorage` key `zk-theme`). A one-line script in `<head>` (`tools/templates/shell.html`) applies the saved choice before the page paints, so there is no flash. To make the site follow the visitor's system setting by default instead, change that script to also check `prefers-color-scheme`.
+- **Light colours (from the style guide only):** the page is That Other Grey `#E5E5E5`, cards, fields, image frames, the ticker and the footer are White, text is Carbon Black `#1B1B1B`, accents and violet text are Violet Ray `#8F00FF` (5.8:1 on white, 4.6:1 on the grey page). Only the hover shade (`#D4D4D4`) and the card border (`#BDBDBD`) are tints of the grey. The neon lime cannot be read on a light page, so in the light version the lime accents (eyebrow labels, bullet diamonds, logo mark) use the brand violet.
+- **Hero edge:** the video ends in a clean dark edge in both versions. (A white fade at the bottom was tried and removed because it looked like a glow.)
+- **What stays the same in both:** the home hero video with its white header and buttons, the six coloured Featured Work panels (white text on their own colours), the tags on thumbnails (white on dark), the image viewer, and every violet button.
+- **How it works:** `html[data-theme="light"]` in `site/css/style.css` swaps the colour tokens (`--white` is "the text colour", `--black` is "the page colour"); the few colours that were fixed values are now tokens (`--surface-*`, `--soft`, `--footer`, `--ticker-text`, `--err`). The floating background art is darkened in the light version so it still shows faintly. The switch code is `initTheme()` in `site/js/app.js`.
+- **Checked:** axe (WCAG 2 AA) is clean in both versions on Projects, two project pages, About, Contact and Privacy. The Home page has the same known low-contrast items in both versions (white text on the lighter Featured Work panel colours).
+
 ## Email newsletters (and other tall designs) sized like the new site
 
 - **Trimmed images:** the five email newsletters (Black Friday x3, Collegiate Survival Sale x2) used to sit in a wide light-grey canvas, so the email itself looked small inside its frame. `node tools/trim-emails.js` cuts the side margins off (full height kept, no resizing), so each email is 750 px wide and fills its frame. They are under 1200 px, so they have no smaller copies and the old `-640` files were removed. Run it after `prepare-assets.js` (same pattern as `recompose-thumbs.js`).
