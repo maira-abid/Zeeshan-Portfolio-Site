@@ -11,8 +11,8 @@
   function icon(name, cls) { return '<svg class="ico ' + (cls || '') + '" aria-hidden="true" focusable="false"><use href="#i-' + name + '"/></svg>'; }
   function cat(id) { return S.categories.filter(function (c) { return c.id === id; })[0]; }
   function ind(id) { return S.industries.filter(function (c) { return c.id === id; })[0]; }
-  function projectUrl(p) { return 'project.html?p=' + encodeURIComponent(p.slug); }
-  function filterUrl(type, id) { return 'projects.html?' + type + '=' + encodeURIComponent(id); }
+  function projectUrl(p) { return 'projects/' + encodeURIComponent(p.slug) + '/'; }
+  function filterUrl(type, id) { return 'projects/?' + type + '=' + encodeURIComponent(id); }
   // Responsive image: srcset lists the smaller copies made by tools/prepare-assets.js so the browser downloads the lightest
   // one that fits. sizes = how wide the image is shown; eager = above the fold (loads first, high priority).
   function imgTag(src, alt, extra, sizes, eager) {
@@ -30,11 +30,13 @@
 
   /* ---------- shared chrome ---------- */
   function renderChrome() {
-    var navItems = [['index.html', 'Home', 'home'], ['projects.html', 'Projects', 'projects'], ['about.html', 'About Me', 'about'], ['contact.html', 'Contact', 'contact']];
+    // the pre-built HTML already contains the header and footer; replace them instead of duplicating
+    Array.prototype.forEach.call(document.querySelectorAll('.checker-bg, .skip, .site-header, .site-footer'), function (el) { el.parentNode.removeChild(el); });
+    var navItems = [['./', 'Home', 'home'], ['projects/', 'Projects', 'projects'], ['about/', 'About Me', 'about'], ['contact/', 'Contact', 'contact']];
     var activePage = page === 'project' ? 'projects' : page;
     var nav = navItems.map(function (n) { return '<a href="' + n[0] + '"' + (n[2] === activePage ? ' aria-current="page"' : '') + '>' + n[1] + '</a>'; }).join('');
     // Placeholder logo (replace with the real one)
-    var logo = '<a class="logo" href="index.html" aria-label="' + esc(S.fullName) + ' - home">' + icon('spade') + '<span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
+    var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home">' + icon('spade') + '<span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
 
     var header = '<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap">' + logo + '<nav class="nav" aria-label="Main">' + nav + '</nav></div></header>';
     document.body.insertAdjacentHTML('afterbegin', '<div class="checker-bg" aria-hidden="true"></div>' + header);
@@ -46,15 +48,16 @@
       '<div class="footer__brand">' + logo.replace('class="logo"', 'class="logo"') + '<p>Multi-disciplinary designer based in ' + esc(S.location) + '.</p></div>' +
       '<div><h2>Pages</h2><nav class="footer__links" aria-label="Footer">' + nav.replace(/ aria-current="page"/g, '') + '</nav></div>' +
       '<div><h2>Elsewhere</h2><div class="socials">' + socials + '</div></div>' +
-      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><span class="footer__links2"><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause animations</button><a href="privacy.html">Privacy Policy</a></span></div></div></footer>';
-    document.body.insertAdjacentHTML('beforeend', footer);
+      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><span class="footer__links2"><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause animations</button><a href="privacy/">Privacy Policy</a></span></div></div></footer>';
+    var mainForFooter = $('main'); // directly after <main> (before any scripts) so the pre-built footer is already in the page when this runs
+    if (mainForFooter) mainForFooter.insertAdjacentHTML('afterend', footer); else document.body.insertAdjacentHTML('beforeend', footer);
     var mainEl = $('main'); if (mainEl) mainEl.id = 'main';
   }
 
   /* ---------- cards ---------- */
   function cardHTML(p, eager) {
-    var tags = p.categories.map(function (c) { return '<a class="chip chip--cat" data-filter href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('') +
-      p.industries.map(function (i) { return '<a class="chip chip--ind" data-filter href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
+    var tags = p.categories.map(function (c) { return '<a class="chip chip--cat" data-filter rel="nofollow" href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('') +
+      p.industries.map(function (i) { return '<a class="chip chip--ind" data-filter rel="nofollow" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
     return '<article class="card"><a class="card__img" href="' + projectUrl(p) + '" tabindex="-1" aria-hidden="true">' +
       '<img src="assets/img/thumbs/' + p.slug + '.webp" srcset="assets/img/thumbs/' + p.slug + '-450.webp 450w, assets/img/thumbs/' + p.slug + '.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
       '<div class="card__tags">' + tags + '</div>' +
@@ -67,7 +70,7 @@
     var hero = '<section class="hero" aria-label="Introduction">' +
       '<video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/' + h.poster + '"><source src="assets/' + h.video + '" type="video/mp4"></video>' +
       '<div class="hero__inner"><h1 class="sr-only">Zeeshan Abid, multi-disciplinary designer in Toronto</h1><p class="hero__sub">' + esc(h.sub) + '</p>' +
-      '<div class="hero__actions"><a class="btn btn--fill" href="projects.html">View Projects</a><a class="btn btn--outline" href="about.html">About Me</a></div></div>' +
+      '<div class="hero__actions"><a class="btn btn--fill" href="projects/">View Projects</a><a class="btn btn--outline" href="about/">About Me</a></div></div>' +
       '<button class="hero__toggle" id="heroToggle" type="button" aria-label="Pause background video"><svg viewBox="0 0 16 16" aria-hidden="true"><path id="heroToggleIcon" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg></button>' +
       '<div class="checker-strip" aria-hidden="true"></div></section>';
 
@@ -83,7 +86,7 @@
     var featuredHTML = '<section class="cat" aria-labelledby="h-featured"><div class="cat__head">' + icon('star') + '<h2 id="h-featured">Featured Work</h2></div>' +
       '<div class="grid grid--3">' + featured.map(function (p) { return cardHTML(p, false); }).join('') + '</div>' +
       '<div class="browse"><p class="browse__label">Browse by category</p><div class="browse__list">' + browse + '</div>' +
-      '<a class="btn btn--fill" href="projects.html">View all projects</a></div></section>';
+      '<a class="btn btn--fill" href="projects/">View all projects</a></div></section>';
 
     $('main').innerHTML = hero + ticker + '<div class="wrap home-cats">' + featuredHTML + '</div>';
 
@@ -105,7 +108,7 @@
     }
     function link(label, count, params, current) {
       var q = []; Object.keys(params).forEach(function (k) { if (params[k]) q.push(k + '=' + encodeURIComponent(params[k])); });
-      return '<a data-filter href="projects.html' + (q.length ? '?' + q.join('&') : '') + '"' + (current ? ' aria-current="true"' : '') + (count === 0 ? ' class="is-empty"' : '') + '><span>' + esc(label) + '</span><span class="n">' + count + '</span></a>';
+      return '<a data-filter rel="nofollow" href="projects/' + (q.length ? '?' + q.join('&') : '') + '"' + (current ? ' aria-current="true"' : '') + (count === 0 ? ' class="is-empty"' : '') + '><span>' + esc(label) + '</span><span class="n">' + count + '</span></a>';
     }
     function filtered() {
       var list = S.projects.slice();
@@ -124,26 +127,33 @@
       var label = all ? 'All projects' : (state.category ? cat(state.category) : ind(state.industry));
       label = typeof label === 'string' ? label : (label ? label.name : 'All projects');
       var grid = list.length ? '<div class="grid">' + list.map(function (p, i) { return cardHTML(p, i < 3); }).join('') + '</div>' :
-        '<div class="empty">' + icon('heart-o') + '<h3>Coming soon</h3><p>No projects in &ldquo;' + esc(label) + '&rdquo; yet. <a data-filter href="projects.html" style="color:var(--violet-light)">See all projects</a></p></div>';
+        '<div class="empty">' + icon('heart-o') + '<h3>Coming soon</h3><p>No projects in &ldquo;' + esc(label) + '&rdquo; yet. <a data-filter href="projects/" style="color:var(--violet-light)">See all projects</a></p></div>';
       $('#side').innerHTML = side;
+      $('#filtersLabel').textContent = label;
       $('#results').innerHTML = '<div class="results__bar"><p class="results__count" aria-live="polite"><b>' + list.length + '</b> ' + (list.length === 1 ? 'project' : 'projects') + (all ? '' : ' in <b>' + esc(label) + '</b>') + '</p>' +
         '<label class="sort">Sort by <select id="sort"><option value="default">Featured</option><option value="az">Name: A &rarr; Z</option><option value="za">Name: Z &rarr; A</option></select></label></div>' + grid;
       $('#sort').value = state.sort;
     }
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">The work</p><h1>Projects</h1></div>' +
-      '<div class="projects-layout"><aside class="filters" id="side" aria-label="Filter projects"></aside><div id="results"></div></div></div>';
+      '<div class="projects-layout"><button type="button" class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="side"><span>Filter</span><b id="filtersLabel">All projects</b></button><aside class="filters" id="side" aria-label="Filter projects"></aside><div id="results"></div></div></div>';
     render();
+
+    // On phones the filter list is hidden behind a "Filter" button
+    var toggle = $('#filtersToggle'), panel = $('#side');
+    function setFilters(open) { panel.classList.toggle('is-open', open); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    toggle.addEventListener('click', function () { setFilters(!panel.classList.contains('is-open')); });
 
     function push() {
       var q = []; if (state.category) q.push('category=' + state.category); if (state.industry) q.push('industry=' + state.industry); if (state.sort !== 'default') q.push('sort=' + state.sort);
-      history.pushState(null, '', 'projects.html' + (q.length ? '?' + q.join('&') : ''));
+      history.pushState(null, '', 'projects/' + (q.length ? '?' + q.join('&') : ''));
     }
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a[data-filter]'); if (!a) return;
       e.preventDefault();
       var u = new URL(a.href);
       state.category = u.searchParams.get('category') || ''; state.industry = u.searchParams.get('industry') || '';
-      push(); render(); window.scrollTo({ top: 0, behavior: 'smooth' });
+      push(); render(); setFilters(false);
+      window.scrollTo({ top: toggle.offsetParent && getComputedStyle(toggle).display !== 'none' ? $('.projects-layout').offsetTop - 12 : 0, behavior: 'smooth' });
     });
     document.addEventListener('change', function (e) { if (e.target.id === 'sort') { state.sort = e.target.value; push(); render(); $('#sort').focus(); } });
     window.addEventListener('popstate', function () { state = readState(); render(); });
@@ -169,20 +179,22 @@
   };
 
   function renderProject() {
-    var slug = new URLSearchParams(location.search).get('p');
+    var slug = document.body.dataset.slug || new URLSearchParams(location.search).get('p');
     var idx = -1; S.projects.forEach(function (p, i) { if (p.slug === slug) idx = i; });
     if (idx < 0) {
       document.title = 'Project not found - ' + S.fullName;
-      $('main').innerHTML = '<div class="wrap"><div class="page-head"><h1>Project not found</h1><p><a href="projects.html" style="color:var(--violet-light)">Back to all projects</a></p></div></div>';
+      $('main').innerHTML = '<div class="wrap"><div class="page-head"><h1>Project not found</h1><p><a href="projects/" style="color:var(--violet-light)">Back to all projects</a></p></div></div>';
       return;
     }
     var p = S.projects[idx];
-    document.title = p.title + ' - ' + S.fullName;
-    var desc = $('meta[name="description"]'); if (desc) desc.setAttribute('content', p.summary);
+    if (!document.body.dataset.prerendered) { // the build writes the real title/description; only set them when previewing an un-built page
+      document.title = p.title + ' - ' + S.fullName;
+      var desc = $('meta[name="description"]'); if (desc) desc.setAttribute('content', p.summary);
+    }
 
     var catChips = p.categories.map(function (c) { return '<a class="chip chip--cat" href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('');
     var indChips = p.industries.map(function (i) { return '<a class="chip chip--ind" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
-    var head = '<div class="wrap"><div class="p-head"><a class="back" href="projects.html">' + icon('bolt-o') + ' All projects</a><h1>' + esc(p.title) + '</h1>' +
+    var head = '<div class="wrap"><div class="p-head"><a class="back" href="projects/">' + icon('bolt-o') + ' All projects</a><h1>' + esc(p.title) + '</h1>' +
       '<dl class="meta"><div><dt>Client</dt><dd>' + esc(p.client) + '</dd></div><div><dt>Industry</dt><dd class="chips">' + indChips + '</dd></div><div><dt>Design category</dt><dd class="chips">' + catChips + '</dd></div></dl>' +
       '<p class="lede">' + esc(p.summary) + '</p>' + (p.placeholder ? '<p class="notice">' + icon('star-o') + ' Full write-up coming soon</p>' : '') + '</div></div>';
 
@@ -209,7 +221,7 @@
 
     var prev = S.projects[(idx - 1 + S.projects.length) % S.projects.length], next = S.projects[(idx + 1) % S.projects.length];
     var pager = '<nav class="pager" aria-label="More projects"><a class="prev" href="' + projectUrl(prev) + '"><span>&larr; Previous</span><b>' + esc(prev.title) + '</b></a><a class="next" href="' + projectUrl(next) + '"><span>Next &rarr;</span><b>' + esc(next.title) + '</b></a>' +
-      '<a class="btn btn--outline pager__all" href="projects.html" style="display:inline-flex;flex-direction:row;padding:0 30px;border-width:2px">Back to all projects</a></nav>';
+      '<a class="btn btn--outline pager__all" href="projects/" style="display:inline-flex;flex-direction:row;padding:0 30px;border-width:2px">Back to all projects</a></nav>';
 
     $('main').innerHTML = head + lead + '<div class="wrap">' + body + pager + '</div>';
     initLightbox();
@@ -239,7 +251,7 @@
   /* ---------- ABOUT ---------- */
   function renderAbout() {
     var paras = S.about.map(function (t) {
-      var h = esc(t).replace('{{work}}', '<a href="projects.html">versatile art-style</a>').replace('{{contact}}', '<a href="contact.html">Drop me a message</a>');
+      var h = esc(t).replace('{{work}}', '<a href="projects/">versatile art-style</a>').replace('{{contact}}', '<a href="contact/">Drop me a message</a>');
       return '<p>' + h + '</p>';
     }).join('');
     var facts = '<ul class="facts"><li>' + icon('heart') + esc(S.location) + '</li><li>' + icon('bolt') + 'Designing professionally since 2017</li><li>' + icon('star') + 'Branding &middot; Motion &middot; Marketing &middot; UI/UX</li></ul>';
@@ -259,7 +271,7 @@
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Say hello</p><h1>Contact</h1><p>Have a design question or a project in mind? Fill in the form and your message will land straight in my inbox.</p></div>' +
       '<div class="contact"><form class="form" id="contactForm" novalidate><div class="form__row">' + field('first', 'First name', 'text', 'autocomplete="given-name"') + field('last', 'Last name', 'text', 'autocomplete="family-name"') + '</div>' +
       field('email', 'Email address', 'email', 'autocomplete="email" inputmode="email"') + field('subject', 'Subject', 'text') + field('message', 'Message', 'textarea') +
-      '<button class="btn btn--fill" type="submit">Send message</button><p class="form__note">By sending this message you agree to the use of your details to reply to you, as described in the <a href="privacy.html">Privacy Policy</a>.</p><div class="form__status" id="formStatus" role="status"></div></form>' +
+      '<button class="btn btn--fill" type="submit">Send message</button><p class="form__note">By sending this message you agree to the use of your details to reply to you, as described in the <a href="privacy/">Privacy Policy</a>.</p><div class="form__status" id="formStatus" role="status"></div></form>' +
       '<aside class="side"><div class="side__card"><h2>Based in Toronto</h2><p>' + esc(S.location) + '. Happy to work with clients anywhere.</p></div>' +
       '<div class="side__card"><h2>Find me online</h2><div class="socials" style="margin-top:14px">' + socials + '</div></div></aside></div></div>';
 
@@ -311,6 +323,14 @@
   renderChrome();
   var routes = { home: renderHome, projects: renderProjects, project: renderProject, about: renderAbout, contact: renderContact, privacy: renderPrivacy };
   if (routes[page]) routes[page]();
+
+  /* In-page links (skip link, privacy contents): pages use a <base href>, so a bare "#id" would point at the site root. Handle them here. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute('href').slice(1), t = id && document.getElementById(id); if (!t) return;
+    e.preventDefault(); t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); t.scrollIntoView({ block: 'start' });
+    try { history.replaceState(null, '', location.pathname + location.search + '#' + id); } catch (err) { /* ignore */ }
+  });
 
   /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */
   (function initMotion() {

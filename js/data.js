@@ -10,6 +10,26 @@ window.SITE = {
   fullName: 'Zeeshan Abid',
   location: 'Toronto, ON, Canada',
 
+  // SEO and GEO (search engines + AI assistants). Used by tools/build-seo.js; run it after changing anything here.
+  seo: {
+    // TODO: replace with the real custom domain (no trailing slash). Used for canonical links, the sitemap and structured data.
+    url: 'https://maira-abid.github.io/Zeeshan-Portfolio-Site',
+    // Keep false while this copy is only a preview (the live site is on Framer): pages get noindex and robots.txt blocks crawlers.
+    indexable: false,
+    locale: 'en_CA',
+    siteName: 'Zeeshan Abid',
+    jobTitle: 'Multi-disciplinary designer',
+    city: 'Toronto', province: 'Ontario', provinceCode: 'ON', country: 'Canada', countryCode: 'CA', lat: 43.6532, lon: -79.3832,
+    knowsAbout: ['Branding', 'Motion graphics', 'Animation', 'Social media design', 'Digital marketing design', 'Print and packaging design', 'UI/UX design', 'Service design', 'Photography', 'Design research'],
+    pages: {
+      home: { title: 'Zeeshan Abid | Multi-disciplinary Designer in Toronto', description: 'Multi-disciplinary designer in Toronto, ON. Branding, motion graphics, marketing campaigns, social media and UI/UX for brands since 2017. See featured projects.' },
+      projects: { title: 'Design Projects by Category and Industry | Zeeshan Abid', description: 'Browse design projects by Zeeshan Abid, Toronto: animation, branding, digital and print marketing, UI/UX and photography. Filter by category or industry.' },
+      about: { title: 'About Zeeshan Abid | Designer in Toronto, Ontario', description: 'Zeeshan Abid is a designer in Toronto, ON, working since 2017 in branding, motion graphics, marketing, packaging and UI/UX across fashion, healthcare and tech.' },
+      contact: { title: 'Contact Zeeshan Abid | Hire a Designer in Toronto', description: 'Get in touch with Zeeshan Abid, a multi-disciplinary designer in Toronto, ON, about branding, motion graphics, marketing or UI/UX work.' },
+      privacy: { title: 'Privacy Policy | Zeeshan Abid', description: 'How personal information is collected, used and protected on this website, under Canadian privacy law (PIPEDA).' },
+    },
+  },
+
   hero: {
     sub: 'Multi-disciplinary designer based in Toronto, ON, working in branding, motion, marketing and product design since 2017.',
     video: 'video/hero-reel.mp4',

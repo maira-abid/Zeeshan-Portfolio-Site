@@ -3,6 +3,7 @@
  * social icons are simple one-colour marks. Use as: <svg class="ico"><use href="#i-spade"/></svg>
  */
 (function () {
+  if (document.getElementById('i-spade')) return; // the pre-built page already contains the sprite
   var o = 'fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"';
   var shapes = {
     // design / motion themed shapes (used by the floating background)
