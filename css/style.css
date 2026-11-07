@@ -317,6 +317,7 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 .amb { position: absolute; left: 0; top: 0; will-change: transform; }
 .amb svg { display: block; color: var(--violet-light); animation: amb-float var(--dur, 12s) ease-in-out var(--delay, 0s) infinite alternate; }
 @keyframes amb-float { from { transform: translateY(-9px) rotate(calc(var(--rot, 0deg) - 7deg)); } to { transform: translateY(9px) rotate(calc(var(--rot, 0deg) + 7deg)); } }
+.amb svg.amb--spin { animation: none; } /* spirals/orbits are spun by ambient.js instead */
 @media (prefers-reduced-motion: reduce) { .amb svg { animation: none; transform: rotate(var(--rot, 0deg)); } }
 
 /* ---------- Footer ---------- */
