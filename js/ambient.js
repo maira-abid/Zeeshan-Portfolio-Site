@@ -2,7 +2,8 @@
  * Ambient background: floating elements in three size tiers (big / medium / small), drawn from the Patterns & Icons artwork
  * (cut-outs listed in ambient-assets.js) plus shapes drawn in the same style. Each page has its own theme (how many, which
  * sizes, which kinds) and the mix is randomised on every load, so no two pages (or visits) look the same.
- * All one neutral grey, small and faint so they never compete with the text. They stay fixed on screen (they do NOT scroll with the page) and
+ * All one neutral grey, small and faint so they never compete with the text. They are part of the page background: scattered over the whole
+ * page height and they scroll away with the content like the checkerboard (no parallax, not pinned to the screen). They
  *  - spiral slowly around their resting point (the radius breathes in and out); spirals/sunbursts/chips also spin,
  *  - gently move away from the mouse pointer.
  * Transforms only; paused when the tab is hidden; static when the visitor prefers reduced motion.
@@ -50,10 +51,14 @@
   root.className = 'ambient';
   root.setAttribute('aria-hidden', 'true');
   var items = [], used = {};
-  var xs = []; for (var s = 0; s < theme.count; s++) xs.push((s + rnd()) / theme.count);
-  for (var j = xs.length - 1; j > 0; j--) { var r2 = Math.floor(rnd() * (j + 1)), t = xs[j]; xs[j] = xs[r2]; xs[r2] = t; } // spread across the width
+  var body = document.body, H = innerHeight, W = innerWidth;
+  var pageH = Math.max(body.offsetHeight, H);
+  // longer pages get proportionally more elements (never denser than a short page), so they stay sparse
+  var count = Math.round(theme.count * Math.min(2.2, Math.max(1, pageH / 1400)));
+  function spread(n) { var a = []; for (var q = 0; q < n; q++) a.push((q + rnd()) / n); for (var j = a.length - 1; j > 0; j--) { var k = Math.floor(rnd() * (j + 1)), t = a[j]; a[j] = a[k]; a[k] = t; } return a; }
+  var xs = spread(count), ys = spread(count); // evenly spread over the page width and height, in random order
 
-  for (var i = 0; i < theme.count; i++) {
+  for (var i = 0; i < count; i++) {
     var tier = pickWeighted(theme.tiers);
     var useVector = rnd() < theme.vector || !ASSETS.length;
     var inner, name, filled = false, opacity, spin = false, aspect = 1;
@@ -79,19 +84,22 @@
     el.innerHTML = inner;
     root.appendChild(el);
     items.push({
-      el: el, x: xs[i], y: rnd(), depth: between(DEPTH[tier][0], DEPTH[tier][1]), size: side, ox: 0, oy: 0,
+      el: el, x: xs[i], y: ys[i], depth: between(DEPTH[tier][0], DEPTH[tier][1]), size: side, ox: 0, oy: 0,
       phase: rnd() * 6.283, speed: between(0.16, 0.46) * (rnd() < 0.5 ? -1 : 1), orbit: between(tier === 'big' ? 12 : 16, tier === 'big' ? 30 : 44), spin: spin
     });
   }
   document.body.insertBefore(root, document.querySelector('main'));
 
-  var W = innerWidth, H = innerHeight, mx = -9999, my = -9999, raf = 0, running = false;
+  var mx = -9999, my = -9999, raf = 0, running = false;
+  function sizeRoot() { pageH = Math.max(body.offsetHeight, innerHeight); root.style.height = pageH + 'px'; }
+  sizeRoot();
+  if (window.ResizeObserver) new ResizeObserver(sizeRoot).observe(body); // follows the page if its height changes (images, filters, resize)
 
   function draw(time) {
     for (var i = 0; i < items.length; i++) {
       var it = items[i];
       var x = it.x * (W - it.size);
-      var y = it.y * (H - it.size);   // fixed in the viewport: no scroll movement
+      var y = it.y * (pageH - it.size);   // a spot on the page itself, so it scrolls with the content
       var rot = 0;
       if (!reduce) {
         // spiral path around the resting point: angle advances with time, radius breathes in and out
@@ -101,7 +109,7 @@
         y += Math.sin(ang) * rad;
         if (it.spin) rot = (time * it.speed * 40) % 360;
         // push away from the pointer (a bigger reach for bigger elements)
-        var dx = x + it.size / 2 - mx, dy = y + it.size / 2 - my;
+        var dx = x + it.size / 2 - mx, dy = y + it.size / 2 - (my + scrollY); // pointer converted to page coordinates
         var d = Math.sqrt(dx * dx + dy * dy), R = 120 + it.size * 0.6, tx = 0, ty = 0;
         if (d < R && d > 0) { var f = (1 - d / R) * 90 * it.depth; tx = dx / d * f; ty = dy / d * f; }
         it.ox += (tx - it.ox) * 0.12;
@@ -116,7 +124,7 @@
 
   addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; } }, { passive: true });
   document.addEventListener('pointerleave', function () { mx = my = -9999; });
-  addEventListener('resize', function () { W = innerWidth; H = innerHeight; draw(performance.now() / 1000); });
+  addEventListener('resize', function () { W = innerWidth; H = innerHeight; sizeRoot(); draw(performance.now() / 1000); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
   draw(0);
   start();
