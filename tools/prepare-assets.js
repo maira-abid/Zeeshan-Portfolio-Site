@@ -60,6 +60,8 @@ add('black-friday', 'post-starts-1', `${BF}/Black-Friday_Nov,2025_STARTS_POST_1.
 add('black-friday', 'post-starts-2', `${BF}/Black-Friday_Nov,2025_STARTS_POST_2.jpg`);
 add('black-friday', 'post-still-on-1', `${BF}/Black-Friday_Nov,2025_Still-On_POST_1.jpg`);
 add('black-friday', 'post-still-on-2', `${BF}/Black-Friday_Nov,2025_Still-On_POST_2.jpg`);
+// NOTE: the five email newsletters (here and under Collegiate Survival Sale) are trimmed to the email's own width (no side margins, no -640 copy).
+// After running this script, run `node tools/trim-emails.js` to apply that; the 'tall' entries below are only the starting point.
 add('black-friday', 'email-rewards', `${BF}/2025-11-Black-Friday-Sale-2-Rewards.png`, 'tall');
 add('black-friday', 'email-starts', `${BF}/2025-11-Black-Friday-Sale-3-Sale-STARTS.png`, 'tall');
 add('black-friday', 'email-whats-left', `${BF}/2025-11-Black-Friday-Sale-5-Whats-Left.png`, 'tall');
@@ -106,9 +108,11 @@ const TANGO = '../Toronto Tango 8 Festival, 2026';
   .forEach((n) => add('tango-photos', `tango-${n}`, `${TANGO}/IMG_${n}.JPG`, 'photo'));
 
 // ---- THUMBNAILS (4:3 crop) -----------------------------------------------------------------------------
+// NOTE: carswitch, evercare, breakfast-box and annual-winter-sale are recomposed with exact crops (the automatic crop clipped their logos and
+// captions). After running this script, run `node tools/recompose-thumbs.js` to apply them; the entries below are only the starting point.
 const thumbs = [
-  { slug: 'carswitch', from: ['carswitch', 'intro'] },
-  { slug: 'evercare', from: ['evercare', 'storyboard-5'] },
+  { slug: 'carswitch', from: ['carswitch', 'storyboard-4'] },
+  { slug: 'evercare', from: ['evercare', 'flatten-curve'] },
   { slug: 'pizza-now', from: ['pizza-now', 'box-1'] },
   { slug: 'breakfast-box', from: ['breakfast-box', 'bb-3'] },
   { slug: 'black-friday', from: ['black-friday', 'hero-1'] },
@@ -236,16 +240,16 @@ async function doVideos() {
     ff(['-ss', String(Math.min(pr.d * 0.3, 20)), '-i', input, '-frames:v', '1', '-vf', 'scale=960:-2:force_original_aspect_ratio=decrease', '-c:v', 'libwebp', '-quality', '72', poster]);
     media[rel('video', v.out + '.mp4')] = { w: pr.w, h: pr.h };
   }
-  // Hero reel (silent, 1280x720)
+  // Hero reel (silent, 960x540: it is a background under a dark overlay, so this halves the download with no visible loss)
   const reel = path.join(OUT_VID, 'hero-reel.mp4');
   console.log('hero reel');
   const inputs = []; const filters = [];
   reelClips.forEach(([src, ss], i) => {
     inputs.push('-ss', String(ss), '-t', String(REEL_SEG), '-i', path.join(SRC, src));
-    filters.push(`[${i}:v]scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,fps=25,format=yuv420p[v${i}]`);
+    filters.push(`[${i}:v]scale=960:540:force_original_aspect_ratio=decrease,pad=960:540:(ow-iw)/2:(oh-ih)/2:color=black,setsar=1,fps=25,format=yuv420p[v${i}]`);
   });
   const concat = reelClips.map((_, i) => `[v${i}]`).join('') + `concat=n=${reelClips.length}:v=1:a=0[out]`;
-  ff([...inputs, '-filter_complex', filters.join(';') + ';' + concat, '-map', '[out]', '-c:v', 'libx264', '-crf', '28', '-preset', 'fast', '-an', '-movflags', '+faststart', reel]);
+  ff([...inputs, '-filter_complex', filters.join(';') + ';' + concat, '-map', '[out]', '-c:v', 'libx264', '-crf', '30', '-preset', 'slow', '-an', '-movflags', '+faststart', reel]);
   ff(['-ss', '3', '-i', reel, '-frames:v', '1', '-vf', 'scale=1280:-2', '-c:v', 'libwebp', '-quality', '72', path.join(OUT_IMG, 'posters', 'hero-reel.webp')]);
 }
 

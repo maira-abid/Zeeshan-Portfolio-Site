@@ -217,6 +217,16 @@ function writeRedirects() {
   fs.writeFileSync(path.join(SITE, 'project.html'), redirectPage('projects/', '<script>var m=location.search.match(/[?&]p=([\\w-]+)/);if(m)location.replace("projects/"+m[1]+"/");</script>'));
 }
 
+// Projects marked `hidden: true` in data.js get no page of their own. Any page left over from an earlier build is replaced by a small
+// "moved" stub (noindex, redirects to the Projects page) so old links and bookmarks still land somewhere sensible.
+function writeHiddenProjectStubs() {
+  (S.hiddenProjects || []).forEach((p) => {
+    const dir = path.join(SITE, 'projects', p.slug);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html>\n<html lang="en-CA"><head><meta charset="utf-8"><title>Moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${BASE}/projects/">\n<meta http-equiv="refresh" content="0; url=../"></head><body><p>This project is not on show right now. <a href="../">See all projects</a></p></body></html>\n`);
+  });
+}
+
 // ---------- Framer pack: the same titles/descriptions/schema, ready to paste into Framer ----------
 function writeFramerPack() {
   const dir = path.join(ROOT, 'framer', 'seo');
@@ -240,7 +250,7 @@ function writeFramerPack() {
   await ogImages();
   const stats = [];
   for (const r of routes) { const s = await prerender(r); stats.push(`${r.url.padEnd(34)} ${String(s.words).padStart(5)} words | title ${r.title.length} | description ${r.description.length}`); if (r.title.length > 65) warnings.push(`${r.url}: title is ${r.title.length} chars (aim for 60 or less)`); if (r.description.length > 160) warnings.push(`${r.url}: description is ${r.description.length} chars`); }
-  writeSitemap(); writeRobots(); writeLlms(); writeRedirects(); writeFramerPack();
+  writeSitemap(); writeRobots(); writeLlms(); writeRedirects(); writeHiddenProjectStubs(); writeFramerPack();
   console.log(stats.join('\n'));
   console.log(`\nDomain: ${BASE} | indexable: ${SEO.indexable} | ${routes.length} pages, sitemap.xml, robots.txt, llms.txt, llms-full.txt, ${routes.length} share images`);
   if (BASE.includes('github.io')) console.log('NOTE: SITE.seo.url is still the GitHub preview address; replace it with the real domain before going live.');

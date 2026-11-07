@@ -25,7 +25,9 @@ http.createServer((req, res) => {
     if (range) {
       const [s, e] = range.replace('bytes=', '').split('-');
       const start = parseInt(s, 10) || 0;
-      const end = e ? parseInt(e, 10) : st.size - 1;
+      const end = Math.min(e ? parseInt(e, 10) : st.size - 1, st.size - 1);
+      // a range that starts at or past the end of the file (browsers probe like this) must get 416, not a crash
+      if (start >= st.size || start > end) { res.writeHead(416, { 'Content-Range': `bytes */${st.size}` }); return res.end(); }
       res.writeHead(206, { 'Content-Type': type, 'Content-Range': `bytes ${start}-${end}/${st.size}`, 'Accept-Ranges': 'bytes', 'Content-Length': end - start + 1 });
       fs.createReadStream(file, { start, end }).pipe(res);
     } else {

@@ -53,7 +53,7 @@ Typical image weight per page is 150 KB to 900 KB (the Annual Winter Sale and ma
 
 - `privacy.html` is a generic Canadian (PIPEDA) policy, content in `SITE.privacy` in `js/data.js`. It is a template, not
   legal advice: have it reviewed, and fill in `SITE.privacy.email` (shows a placeholder until then).
-- Background: the checkerboard (fading down the page) is on every page; a sparse card-suit pattern (`assets/icons/pattern-tile.svg`) is only on Home, About and Contact (see the `body[data-page=...]` rule in `style.css`).
+- Background: the checkerboard (fading down the page) is on every page. The card-suit pattern tiles that used to sit on Home, About and Contact were removed at the owner's request (the files are still in `assets/icons/`).
 - `js/ambient.js` adds floating background elements in three sizes (big / medium / small, all small and faint, one neutral grey so they never hurt readability). They are cut out of the artwork in `brand/Patterns & Icons` (`node tools/extract-ambient.js` regenerates them into `site/assets/img/ambient/` and `js/ambient-assets.js`) plus shapes drawn in the same style (`js/icons.js`). Each page has its own theme and the mix is randomised on every load; they are a layer pinned behind the page (they do not move when you scroll, and their motion freezes while you scroll, like a fixed wallpaper), spiral slowly and move away from the mouse; paused when the tab is hidden and static with "reduce motion". Tune the themes in `THEMES` at the top of `ambient.js`.
 
 ## Brand
@@ -61,9 +61,16 @@ Typical image weight per page is 150 KB to 900 KB (the Annual Winter Sale and ma
 - Colours: Violet Ray `#8F00FF`, Carbon Black `#1B1B1B`, Grey `#E5E5E5`, White `#FFFFFF`.
   The style-guide PDF *renders* Violet Ray as a muted purple (about `#7352A0`), so that tone is used for the
   checkerboard and the icon patterns (`--violet-soft`) and `#8F00FF` for buttons and highlights.
-- Typefaces (only the supplied ones): **Raleway** for body/UI; **Magazine Letter** for page and category
-  headings; **Kingthings Extortion** for write-up subheadings; **Jockey Full of Bourbon** for the placeholder logo;
-  **Hit Me Punk (04)** for stat numbers and small eyebrows.
+- **Source of truth: the style-guide PDF** (`brand/Website Branding_style-guide.pdf`, 4 pages: colours, typeface, patterns, icons), not the
+  Illustrator file. Client feedback (2026-11-07): the Illustrator file contained extra fonts that were never part of the style guide.
+- Typefaces: **Raleway only**, as the PDF specifies, in different weights for headings, labels, numbers and body text. The one exception
+  is the **placeholder logo lettering** (Jockey Full of Bourbon, trimmed to a 49 KB logo-only file): the client confirmed the punk font is for
+  the logo only and will supply their own logo later. Magazine Letter, Kingthings Extortion, Hit Me Punk and Anton are no longer loaded
+  (the old files are still in `site/assets/fonts/`). Note for Framer: Raleway is in Framer's font list, so no custom font upload (and no paid
+  plan for fonts) is needed except for the placeholder logo. The `framer/` files still mention the old fonts and have no stacked Featured
+  Work yet; they get updated in the single Framer pass at the end.
+- Colours in the stylesheet now match the PDF exactly: Violet Ray `#8F00FF`, Carbon Black `#1B1B1B` (they were `#8800ff` and `#141414`,
+  taken from the Illustrator file).
 
 ## Placeholders to replace
 
@@ -126,3 +133,42 @@ Settings are in `SITE.seo` in `site/js/data.js`:
 - titles/descriptions of the main pages; project titles and descriptions are generated from the project data (kept within about 60 / 160 characters).
 
 The Framer equivalents (page titles and descriptions, share images, site-wide schema, llms.txt) are in `framer/seo/`; see `framer/README.md`.
+
+## Performance and hidden projects (quick wins)
+
+- **Logo font:** `site/assets/fonts/JockeyFullOfBourbon-logo.woff2` is a 49 KB cut of the supplied 883 KB font containing only capitals, digits and a few marks (the logo always upper-cases the name). The original `.ttf` is kept for reference. Check the font's licence allows web use and modification before launch.
+- **Hero video:** 960x540, about 1 MB (was 2 MB, 1280x720). It no longer autoplays on page load: it starts after the page has loaded, and stays still for reduced-motion and Save-Data visitors (the play button still works). `tools/prepare-assets.js` uses the same settings.
+- **Hidden projects:** `showreel`, `app-launch` and `startup-grind` carry `hidden: true` in `site/js/data.js`, so they appear nowhere (pages, filters, counts, sitemap, search files). Their old addresses redirect to the Projects page. Delete the flag and run `cd tools && npm run build` to bring one back.
+- **Social links:** Behance, LinkedIn, Instagram and Vimeo are set in `SITE.social` in `data.js`.
+
+## Tango photos hidden, image protection, white panels
+
+- **Tango photos are hidden, not deleted:** `tango-photos` carries `hidden: true` in `site/js/data.js`. It disappears from the Projects list, filters, sitemap and search files, and its old address redirects to Projects. Delete the flag and run `cd tools && npm run build` to show it again. The image files are still in `site/assets/img/tango-photos/`.
+- **Image protection (a deterrent only):** images do not offer the right-click menu ("Open image in new tab", "Save image as"), cannot be dragged out, and are not long-press savable (`app.js` and the last rule in `style.css`). It cannot stop screenshots, developer tools, or someone who already knows an image's address.
+- **Featured panels use white text on every colour (owner's choice).** The three light colours from the work were darkened only slightly so white reads better: CarSwitch `#f6a623` to `#c97c00`, Breakfast Box `#f4a6bd` to `#dc6b8e`, Black Friday `#34d8a4` to `#14a074` (white contrast about 2.0 / 1.9 / 1.8 up to 3.3 / 3.2 / 3.3 : 1). That passes WCAG for large text (3:1: the big result numbers and titles) but not for small text (4.5:1: the small labels and body line). The other three panels (green, red, navy) pass.
+
+## Client feedback of 07-Nov-2026: what was done
+
+- **Thumbnails (Projects page):** all 4:3 (900x675 and 450x338). Four were recomposed with exact crops via `node tools/recompose-thumbs.js` (CarSwitch, Evercare, Breakfast Box, Annual Winter Sale) so logos, headlines and badges are never cut off; the tool also records which frame each one uses. Tags are black `#1B1B1B` at 65% opacity with white text (no purple). On project pages the tags are outlined, also not purple.
+- **Side navigation:** the selected item is purple only (no white tip).
+- **Category icons ("Browse by category"):** filled icons only (bolt, spade, diamond, club, heart), same 18 px icon box and 10 px gap on every button.
+- **Ticker:** the client's list of 11 names, alphabetical.
+- **Project pages:** one steady layout (title left, writing and pictures right, same every time); subheading icons are stroked with no box; the opening paragraph is the same size and colour as the body text; no image can be opened in a new tab, dragged out or saved from the right-click menu, and only a web copy (1200 px at most) is ever served, never the full-size file (a deterrent, not a lock: screenshots and developer tools still work). **CarSwitch:** every section now has a picture or a video.
+- **Colours:** every black is `#1B1B1B` and every purple is `#8F00FF` (the style-guide values). Text in a lighter purple (`--violet-light`, `#CBA6FF`) is kept for small text on black, because `#8F00FF` itself is only about 3:1 against black.
+- **Skipped on purpose (owner's instruction):** everything about the floating background icons (scroll behaviour, filled and stroked variety, the shiny diamond, the checkered bolt and the spirals).
+- **Known accessibility trade-off:** white text on the three light panel colours (orange, pink, mint) is about 3.2 to 3.3:1, fine for large text but under 4.5:1 for small text, so axe flags the small labels on those panels.
+
+- **Key results line (project pages only):** each project page that has published figures shows them as one compact line at the top, above the main image (`keystats` in `app.js`; the figures are the ones in the Outcome section of `data.js`). Annual Winter Sale, Generation Magazines and Byte App have no figures, so they have no line. The Projects listing page is unchanged.
+
+## Email newsletters (and other tall designs) sized like the new site
+
+- **Trimmed images:** the five email newsletters (Black Friday x3, Collegiate Survival Sale x2) used to sit in a wide light-grey canvas, so the email itself looked small inside its frame. `node tools/trim-emails.js` cuts the side margins off (full height kept, no resizing), so each email is 750 px wide and fills its frame. They are under 1200 px, so they have no smaller copies and the old `-640` files were removed. Run it after `prepare-assets.js` (same pattern as `recompose-thumbs.js`).
+- **Layout:** on the project pages these designs now sit in the right-hand text column like every other chapter (title on the left), up to three in one row about 270 px wide at a 1280 px window, each in a frame with a 6 px gap around the image and a "Scroll to explore" line. They stack to one column on small phones. This applies to every tall-design block: the email newsletters, the magazines and the Byte app screens.
+- **Code:** `renderProject()` in `site/js/app.js` (the `layout === 'scroll'` branch) and `.sec__media--s` in `site/css/style.css`.
+
+## Contact page redesign
+
+- **Layout:** facts on the left (a violet "Based in Toronto" block with the live Toronto time, an "Open to new roles and projects" line, social links, and a "Helpful to include" list), the form on the right. On tablets and phones it stacks.
+- **Form:** unchanged (first name, last name, email, subject, message). The three "What brings you here?" choice cards were tried and removed at the owner's request. It still posts to `window.CONTACT_ENDPOINT` when one is set (in Framer it is replaced by the built-in form).
+- **Not included:** an email address and a Copy button. The original site has no contact email yet (`privacy.email` in `data.js` is blank); add one and it can be shown beside the social links.
+- **Code:** `renderContact()` in `site/js/app.js`; styles under "Contact" (`.side__hero`, `.intent*`) in `site/css/style.css`. Rebuilt with `cd tools && npm run build`.

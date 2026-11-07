@@ -38,24 +38,26 @@ window.SITE = {
 
   // Social links - TODO: add the real URLs (the owner will provide them).
   social: [
-    { id: 'behance', label: 'Behance', href: '#' },
+    { id: 'behance', label: 'Behance', href: 'https://www.behance.net/Zeeshan-Abid' },
     { id: 'vimeo', label: 'Vimeo', href: 'https://vimeo.com/zeeshanabid' },
-    { id: 'linkedin', label: 'LinkedIn', href: '#' },
-    { id: 'instagram', label: 'Instagram', href: '#' },
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/zeeshan-abid1/' },
+    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/zeeshanabid_photodesign/' },
   ],
 
   // Placeholder client "logos" for the ticker (names as text until real logos are supplied).
-  clients: ['CarSwitch', 'Evercare Hospital', 'Byte', 'Pizza Now', 'Breakfast Box', 'Generation', 'Multiverse', 'Milkyway', 'Startup Grind', 'COLABS', 'Treble', 'UT'],
+  // the client's list (07-Nov-2026), in alphabetical order
+  clients: ['Breakfast Box', 'Byte Technology Systems', 'CarSwitch', 'Colabs', 'Evercare Hospital', 'Generation (Pvt) Ltd', 'Multiverse', 'Pizza Now', 'Start-up Grind', 'Treble App', 'Uncle Tetsu'],
 
   categories: [
+    // filled icons only, taken from the style guide's icon page (heart, club, diamond, spade, bolt); repeats are fine
     { id: 'animations-videos', name: 'Animations / Videos', icon: 'bolt' },
-    { id: 'branding', name: 'Branding', icon: 'star' },
+    { id: 'branding', name: 'Branding', icon: 'spade' },
     { id: 'digital-marketing', name: 'Digital Marketing', icon: 'diamond' },
     { id: 'print-marketing', name: 'Print Marketing', icon: 'club' },
     { id: 'service-design', name: 'Service Design', icon: 'heart' },
-    { id: 'social-media', name: 'Social Media', icon: 'spade' },
-    { id: 'ui-ux', name: 'UI/UX', icon: 'bolt-o' },
-    { id: 'photography', name: 'Photography', icon: 'star-o' },
+    { id: 'social-media', name: 'Social Media', icon: 'bolt' },
+    { id: 'ui-ux', name: 'UI/UX', icon: 'diamond' },
+    { id: 'photography', name: 'Photography', icon: 'club' },
   ],
 
   industries: [
@@ -71,6 +73,15 @@ window.SITE = {
 
   // Projects shown on the home page, in this order (slugs). Everything else lives on the Projects page.
   featured: ['carswitch', 'evercare', 'pizza-now', 'collegiate-survival-sale', 'breakfast-box', 'black-friday'],
+  // Home page "Featured Work" panels. Every figure comes from the project write-ups below. color = [panel colour taken from the work, readable text colour on it].
+  featuredMeta: {
+    carswitch: { need: 'Animation that gets noticed', metric: '35k', words: 'views, 30% fewer queries', outcome: '35k views, 30% fewer queries and 50% more website visits.', color: ['#c97c00', '#ffffff'], img: 'carswitch/storyboard-4.webp', pos: '64% 50%', alt: 'CarSwitch animation frame: a seller character beside the question "Looking to sell your car?"' },
+    evercare: { need: 'A hard message made simple', metric: '−40%', words: 'common COVID-19 queries', outcome: 'Cut common COVID-19 queries by 40% with explainers averaging 20K views.', color: ['#14367a', '#ffffff'], img: 'evercare/flatten-curve.webp', pos: '50% 50%', alt: 'Evercare Hospital explainer animation frame: a woman working at home in a red cape' },
+    'pizza-now': { need: 'A brand that sells', metric: '#1', words: 'selling brand for a year', outcome: 'The highest-selling brand on the Byte app for a year, driving 50–60% of daily sales.', color: ['#17763a', '#ffffff'], img: 'pizza-now/box-1.webp', alt: 'Pizza Now pizza boxes' },
+    'collegiate-survival-sale': { need: 'A campaign that converts', metric: '3x', words: 'sales in five days', outcome: 'Tripled sales and sold 60% of the stock in five days.', color: ['#d3202b', '#ffffff'], img: 'collegiate-survival-sale/hero-5.webp', alt: 'Collegiate Survival Sale campaign on social media and devices' },
+    'breakfast-box': { need: 'A launch that gets orders', metric: '150–200', words: 'orders a day', outcome: '150–200 orders a day for the four months after launch.', color: ['#dc6b8e', '#ffffff'], img: 'breakfast-box/bb-3.webp', pos: '0% 50%', alt: 'Breakfast Box branding with the logo on a plate of breakfast' },
+    'black-friday': { need: 'A sale that stands out', metric: '+60–70%', words: 'Black Friday sales', outcome: 'Lifted Black Friday product sales by 60–70%.', color: ['#14a074', '#ffffff'], img: 'black-friday/hero-1.webp', alt: 'Black Friday sale social posts' },
+  },
 
   // Planned projects with no material yet (from NEW PORTFOLIO, 2026 - 2027.txt). Not shown anywhere at the moment;
   // kept here for when those projects are ready. Apollo Wealth Management is left out (NDA check).
@@ -150,7 +161,7 @@ window.SITE = {
   projects: [
     /* ------------------------------------------------------------------ ANIMATIONS / VIDEOS */
     {
-      slug: 'showreel',
+      slug: 'showreel', hidden: true, // hidden until the real showreel exists; delete this flag to show it again
       title: 'Animation Showreel',
       client: 'Zeeshan Abid',
       industries: ['advertising'],
@@ -177,14 +188,6 @@ window.SITE = {
           media: [{ t: 'img', src: 'carswitch/intro.webp', alt: 'CarSwitch animation opening frame with the seller character and logo' }],
         },
         {
-          type: 'media', layout: 'videos', heading: 'The Animations',
-          items: [
-            { t: 'vimeo', id: '453608494', title: 'Selling Your Car Made Easy' },
-            { t: 'vimeo', id: '453612550', title: 'Avoid the Chaos' },
-            { t: 'vimeo', id: '453621297', title: 'Get More Value with Us' },
-          ],
-        },
-        {
           type: 'section', title: 'Problem Identification', icon: 'diamond',
           paras: ['CarSwitch wanted to market its services and the unique advantages they offer to both vehicle buyers and sellers. For sellers, CarSwitch handles all of the problems, process and paperwork that come with selling the car. Sellers can expect to get the selling price that they want and not lose value of their car. For buyers, CarSwitch inspects and tests the cars. This way buyers know that they\'re not being sold "lemon cars". They wanted to highlight how and why all of these services set them apart from other brands in Dubai\'s used car market and that they offer a complete solution from beginning to end. Customers do not need to put in effort and instead CarSwitch does the work for them.'],
           media: [
@@ -195,32 +198,35 @@ window.SITE = {
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['I started by first understanding the client\'s business model and their requirements for the animations including the message they wanted to get across. I was at the forefront of communicating with the client throughout the entire project. At every stage, I made sure to incorporate the client\'s feedback into the animations without compromising on the quality and aesthetic of the brand.'],
+          media: [{ t: 'img', src: 'carswitch/characters.webp', alt: 'CarSwitch character sheet' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['My process started with research on the brand\'s mission, vision, values and personality which I then used to design the art direction. Presenting the storyboard to the client before starting work on the animation made sure that they had a clear idea of how the animation would look once it was complete. I also worked together with social media managers and project managers and the client. However, I also had to adhere to the constraints put around the animations (such as a limited duration) as they were to be used for YouTube ads as well.'],
-        },
-        {
-          type: 'media', layout: 'grid3', heading: 'Colour, Typography & Characters',
-          items: [
+          media: [
             { t: 'img', src: 'carswitch/palette.webp', alt: 'CarSwitch animation colour palette' },
             { t: 'img', src: 'carswitch/typography.webp', alt: 'CarSwitch animation typography: Comforta and Titillium' },
-            { t: 'img', src: 'carswitch/characters.webp', alt: 'CarSwitch character sheet' },
           ],
         },
         {
           type: 'media', layout: 'grid3', heading: 'Storyboards',
-          items: [1, 4, 5, 6].map((n) => ({ t: 'img', src: `carswitch/storyboard-${n}.webp`, alt: `CarSwitch storyboard ${n}` })),
+          items: [1, 4, 5].map((n) => ({ t: 'img', src: `carswitch/storyboard-${n}.webp`, alt: `CarSwitch storyboard ${n}` })),
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['3 animated videos for social media and YouTube.', '35k views on Instagram + Facebook.', 'Social media queries dropped by 30%.', 'Customers visiting the website increased by 50%.'],
           stats: [{ n: '3', l: 'animated videos for social media and YouTube' }, { n: '35k', l: 'views on Instagram + Facebook' }, { n: '-30%', l: 'social media queries' }, { n: '+50%', l: 'customers visiting the website' }],
           paras: ['These animations that used humour to explain CarSwitch\'s car selling and buying process; a process that was usually thought to be very boring. They communicated all of CarSwitch\'s services and benefits without coming off as an ad trying to sell a product or service while still adhering to the requirements of the brand, the client and the time limits.'],
+          media: [
+            { t: 'vimeo', id: '453608494', title: 'Selling Your Car Made Easy' },
+            { t: 'vimeo', id: '453612550', title: 'Avoid the Chaos' },
+            { t: 'vimeo', id: '453621297', title: 'Get More Value with Us' },
+          ],
         },
         {
           type: 'section', title: 'Reframe', icon: 'heart',
           paras: ['CarSwitch, a Dubai based car selling platform wanted to market their services to car buyers and sellers by communicating them through engaging and humorous animations. They wanted to highlight the unique benefits that set them apart from other competitors in the market. After understanding their business model and their brand guidelines, I designed 3 motion graphics animations that explained their services in a humorous and entertaining way using characters and kinetic typography. The videos lowered queries by 30% and increased visibility of their website and brand by 50%.'],
+          media: [{ t: 'img', src: 'carswitch/storyboard-6.webp', alt: 'Storyboard frame: online inspection reports rated 4.5 out of 5' }],
         },
       ],
     },
@@ -275,7 +281,7 @@ window.SITE = {
           items: [1, 2, 4, 6, 7, 8, 9, 10, 11, 12].map((n) => ({ t: 'img', src: `evercare/storyboard-${n}.webp`, alt: `Evercare storyboard ${n}` })),
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['Animations averaged around 20K views on Instagram and Facebook.', 'Common queries about COVID-19 dropped significantly by 40%.'],
           stats: [{ n: '~20K', l: 'average views per animation' }, { n: '-40%', l: 'common COVID-19 queries' }, { n: '4', l: 'explainer animations' }],
           paras: ['The animations were positively received by the client and were put up on the hospital\'s social media. Animations are an effective medium to explain a complex topic in a much simpler way, and get far more traction on social media platforms. They help the viewer understand complex topics easily, so that they can take preventative measures accordingly. They also help the brand develop a better reputation with its audience.'],
@@ -287,7 +293,7 @@ window.SITE = {
       ],
     },
     {
-      slug: 'app-launch',
+      slug: 'app-launch', hidden: true, // hidden until it has a write-up; delete this flag to show it again
       title: 'App Launch Videos',
       client: 'COLABS / UT / Treble',
       industries: ['tech'],
@@ -306,7 +312,7 @@ window.SITE = {
       ],
     },
     {
-      slug: 'startup-grind',
+      slug: 'startup-grind', hidden: true, // hidden until it has a write-up; delete this flag to show it again
       title: 'Startup Grind 2019',
       client: 'Startup Grind',
       industries: ['tech'],
@@ -351,7 +357,7 @@ window.SITE = {
           ],
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['Pizza Now became the highest selling brand on the Byte app for the next 1 year.', 'It contributed to around 50-60% of all daily sales by customers on the app (new and returning).'],
           stats: [{ n: '#1', l: 'selling brand on the Byte app for 1 year' }, { n: '50-60%', l: 'of all daily sales on the app' }],
           paras: [
@@ -396,7 +402,7 @@ window.SITE = {
           media: [{ t: 'img', src: 'breakfast-box/bb-6.webp', alt: 'Breakfast Box logo on a hanging sign' }],
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['The branding resulted in around 150-200 orders per day for the next 4 months.'],
           stats: [{ n: '150-200', l: 'orders per day for the next 4 months' }],
           paras: ['The outcome was a vintage but minimal aesthetic branding style with pastel colours all of which signified a high end premium brand. The launch ready brand identity included the logo, typography, colour palette, social media strategy and sample social media posts. Vintage and pastel colours were an effective way to make breakfast, bakery and confectionery items look premium and high end.'],
@@ -447,7 +453,7 @@ window.SITE = {
           ],
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['Product sales increased by 60-70% for Black Friday.', 'Emails achieved a click rate of around 4.67%.'],
           stats: [{ n: '+60-70%', l: 'product sales over Black Friday' }, { n: '4.67%', l: 'email click rate' }],
           paras: ['I learned that customers are looking for good deals and discounts and will buy from companies they trust if they are getting an advantage.'],
@@ -503,7 +509,7 @@ window.SITE = {
           ],
         },
         {
-          type: 'section', title: 'The Outcome', icon: 'star',
+          type: 'section', title: 'The Outcome', icon: 'bolt',
           bullets: ['The sales increased by 3x.', 'Around 60% of the stock was sold within 5 days of the sale.', 'Approx 180 products were sold throughout the sale. 5x more than regular days.', 'Click rate achieved was 2.2%.'],
           stats: [{ n: '3x', l: 'sales' }, { n: '60%', l: 'of stock sold in 5 days' }, { n: '5x', l: 'more products sold than on a regular day (approx. 180)' }, { n: '2.2%', l: 'email click rate' }],
           paras: ['The timing of the sale and the target demographic plays an important role in selling any given product. Having the sale at the start of the academic year and targeting it towards university students paid off in terms of increased sales and greater revenue as compared to regular days. The target demographic likes to see graphics that relate to them and are tailored towards them.', 'Bold graphics with eye catching colors and typography helped to cut through the competition. It often pays off to take the sale as an opportunity to design graphics that are different from regular routine branding graphics.'],
@@ -620,7 +626,7 @@ window.SITE = {
 
     /* ----------------------------------------------------------------------- PHOTOGRAPHY */
     {
-      slug: 'tango-photos',
+      slug: 'tango-photos', hidden: true, // hidden at the owner's request; delete this flag to show the tango photos again
       title: 'Tango Photos',
       client: 'Toronto Tango 8 Festival, 2026',
       industries: ['events'],
@@ -638,3 +644,7 @@ window.SITE = {
     },
   ],
 };
+
+// Projects flagged `hidden: true` stay in the data but are not shown anywhere (pages, filters, counts, search data) until the flag is removed.
+window.SITE.hiddenProjects = window.SITE.projects.filter(function (p) { return p.hidden; });
+window.SITE.projects = window.SITE.projects.filter(function (p) { return !p.hidden; });

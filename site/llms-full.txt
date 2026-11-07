@@ -7,19 +7,6 @@ Recently, I have developed a keen interest in design research, creative manageme
 When I'm not working, you'll usually find me exploring other hobbies such as tango dancing, going to the cinema, reading fiction or somewhere in a restaurant/ cafe critiquing the menu design.
 So if you're looking for someone to answer your design questions, someone with a versatile art-style and skill-set and someone who has built brands that have raised significantly and consistently raised revenues, look no further. Drop me a message and we'll start answering those questions.
 
-## Animation Showreel
-
-URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/showreel/
-Client: Zeeshan Abid
-Industry: Advertising
-Category: Animations / Videos
-
-A selection of motion graphics and animation work. Placeholder cut made from existing projects until the final showreel is supplied.
-
-### The Reel
-
-The final showreel will live here. This is a placeholder cut assembled from the CarSwitch, Evercare, UT, Treble and Startup Grind projects.
-
 ## CarSwitch Animations
 
 URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/carswitch/
@@ -87,24 +74,6 @@ Results: ~20K average views per animation; -40% common COVID-19 queries; 4 expla
 ### Reframe
 
 Evercare Hospital needed an effective way to communicate a complex topic to an audience that did not understand a very recent and complex pandemic such as COVID-19. As a designer, leading the project, I suggested utilizing animations as the main component of the campaign as they could quickly get the message across through engaging visuals and simplified information. The animations were put up on the hospital's social media and became some of the most viewed videos on their channels, averaging around 20k views.
-
-## App Launch Videos
-
-URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/app-launch/
-Client: COLABS / UT / Treble
-Industry: Tech
-Category: Animations / Videos
-
-Launch and product videos for three digital products.
-
-## Startup Grind 2019
-
-URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/startup-grind/
-Client: Startup Grind
-Industry: Tech
-Category: Animations / Videos
-
-Video work for Startup Grind 2019.
 
 ## Pizza Now
 
@@ -285,13 +254,4 @@ A redesign of the Byte food delivery app to be easier to use and look more conte
 ### Introduction
 
 Byte Technology Systems was a Y-Combinator funded food delivery start-up based in Lahore, Pakistan. The aim of this project was to re-design the whole Byte app to make it easier in terms of usability and to make it look more visually appealing and contemporary.
-
-## Tango Photos
-
-URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/tango-photos/
-Client: Toronto Tango 8 Festival, 2026
-Industry: Events
-Category: Photography
-
-Photography from the Toronto Tango 8 Festival, 2026.
 
