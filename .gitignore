@@ -1,0 +1,20 @@
+# --- Local-only source material (huge: raw photos, source videos, big PDFs) ---
+# The website only needs the optimised copies in site/assets, which ARE committed.
+/originals/
+
+# --- Raw / working files should never be committed ---
+*.CR2
+*.cr2
+*.psd
+*.zip
+
+# --- Dependencies and logs ---
+node_modules/
+*.log
+
+# --- Editor, OS and local tool settings ---
+.claude/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

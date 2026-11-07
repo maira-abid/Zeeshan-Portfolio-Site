@@ -1,0 +1,39 @@
+WEBSITE BRIEF
+
+The primary purpose of the website is to show
+
+HOME/ LANDING PAGE:
+- Logo in the top middle of the page with clickable tabs. (use placeholder logo for now).
+- Clickable tabs: Home, Projects, About Me, Contact.
+- 1st fold/ Hero image is the animation reel playing (silent) with a text overlay and two buttons on top.
+- Text overlay says: 
+- The two buttons on the hero video say: "View Projects" and "About Me". "View projects" is a filled button while "About Me" has an outline only.
+- Below the 1st fold have a slider/ ticker hat shows the logos of all the clients that i have worked with.
+- After the ticker, have subheadings for all of the categories of design work. (Animations/ Videos, Branding, Digital Marketing, Print Marketing, Service Design, Social Media, UI/UX.
+- After each sub-heading, have a thumbnail for each project in its respective category. The name of the project should be below each thumbnail and should be hyperlinked to go to the project page.
+- The footer of the website have to contain links to all of the other pages mentioned previously (Home, Projects, About Me, Contact).
+- The footer also needs to have links to other pages such as "Behance", "Vimeo", "LinkedIn" and "Instagram" (with their respective icons).
+- For the background of the landing page, use the purple and black checkered pattern and the icons. The checkered patterns can appear on top and fade away towards the end of the page. Use the icons to make patterns that can be added in the background as well. However, the icons and patterns should not be overwhelming and should be subdued. They should just serve to create a visual interest and a texture/ pattern for the background.
+
+PROJECTS PAGE:
+- On the projects page, all projects need to be displayed in a grid with thumbnails. All of these thumbnails should be coloured. Below each thumbnail should be the name of the project and the name of the client. The size of the title text will be larger than that of the client text.
+- On the top right corner of each thumbnail, add the tags of the categories and the industry of the project. For example, "Animations/ Videos" and "Healthcare". These tags need to be clickable and act as a filtering mechanism to lead to the respective category/ industry of the projects.
+- On the left hand column of the projects page, include options for "all projects", "Categories" and "Industries". The names of the categories and industries need to be listed so that the user can click on them to filter out the projects.
+- On the top of the projects grid, include a drop down to filter by name ascending and descending.
+
+FORMAT FOR INDIVIDUAL PROJECT
+- When the user opens a project, the project page needs to have a headline (the name of the project). Below the headline, the name of the client, the industry and the design category need to be mentioned.
+- The write up should be according to the write-ups for each project provided. The subheading of the write-ups need to be prominent and capture the attention of the user as they're scrolling through the project.
+- You can use the provided icons with the subheadings to draw attention to them.
+- The layout of the project pages should have a balance between the text and the images.
+
+ABOUT ME:
+- On the about me page, include a headshot photograph and the "about me" text besides it.
+- Hyperlink the words "versatile art style". This should lead the user to the projects page.
+- Hyperlink the words "Drop me a message". This should lead the user to the Contact page.
+
+CONTACT:
+- Add a form that the user can fill up and send directly as an email.
+- The form should include: First name, Last name, email address, subject and message.
+
+
