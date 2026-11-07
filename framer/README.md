@@ -88,3 +88,24 @@ framer/
 - **ProjectsExplorer keeps its own copy of the project list** (`ProjectsData.ts`); adding a project means editing the CMS and that file.
   The alternative is Framer's native CMS filter and sort on a Collection List (less custom styling, one place to edit).
 - **Code components render in the browser**, so keep headings and body text in normal Framer layers (good for SEO).
+
+## 7. SEO and GEO in Framer (the live site)
+
+Framer renders real HTML on its servers and gives every page a clean URL, so the pre-rendering the prototype needs is not an issue there. What to set up
+(`framer/seo/` has the ready-made text):
+
+| Item | Where | Notes |
+|---|---|---|
+| Page titles and descriptions | `seo/seo.csv` | Page settings > Title and Description, one row per page and per project. For the CMS Project pages, build the title and description from CMS fields (`{Title}: ... | Zeeshan Abid`). |
+| Social share images | `seo/og/*.jpg` (1200x630) | Page settings > Social preview image. |
+| Site-wide structured data | `seo/site-jsonld.html` | Site Settings > General > Custom Code > End of `<head>`. Replace the domain first. Needs a paid plan. Gives search engines and AI the "who, what, where" (designer, Toronto, services). |
+| Per-project structured data | not provided | I could not confirm that Framer's custom code can read CMS fields, so project pages get the site-wide data plus good titles and text. Check in Framer; if it can, the project schema in `build-seo.js` is the template. |
+| `llms.txt` / `llms-full.txt` | `seo/` | **Framer cannot serve arbitrary files at the site root** (as far as I know). Options: host them elsewhere and use a redirect, or skip: AI assistants mostly rely on page text and schema. Treat as optional. |
+| Sitemap and robots | automatic | Framer generates `sitemap.xml`. Check the robots setting in Site Settings; decide whether to welcome AI crawlers (see `site/robots.txt` logic). |
+| Headings | in each text layer | One H1 per page (set the tag on the text layer). Use H2 for section titles, H3 for card titles. The hero headline was removed, so give the home page a real H1 (can be visually small). |
+| Image alt text | each image / CMS image | Describe what is shown; the prototype's alt text is in `site/js/data.js`. |
+| Keep text in normal Framer text layers | whole site | Text inside code components is rendered in the browser and is less visible to crawlers. Use code components only for decoration and interaction. |
+| Domain | Site Settings > Domains | Use one canonical domain (with or without www) and redirect the other. Do not let the GitHub preview be indexed (it is set to noindex). |
+| Local signals | text + schema | "Toronto, Ontario, Canada" appears in the page text, titles, schema and footer. Consider a Google Business Profile if clients should find the business locally. |
+
+Not done by any file here: Google Search Console / Bing Webmaster verification and submitting the sitemap (needs the live domain and your accounts).

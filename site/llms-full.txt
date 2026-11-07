@@ -1,0 +1,297 @@
+# Zeeshan Abid: full portfolio text
+
+Hello, my name is Zeeshan. I'm a multi-disciplinary designer based in Toronto, ON, Canada and have been professionally working as a designer since 2017.
+I have worked on graphic design, social media design, print/ packaging design, branding, motion graphics animations and marketing campaigns in many different industries such as fashion, advertising, healthcare, retail, tech, apps, food and cannabis.
+Within the design process I enjoy working with clients, building brands, understanding various design challenges, problem solving and answering questions through design.
+Recently, I have developed a keen interest in design research, creative management and marketing and looking for ways in which I can apply my skills, knowledge and experience within these domains as well.
+When I'm not working, you'll usually find me exploring other hobbies such as tango dancing, going to the cinema, reading fiction or somewhere in a restaurant/ cafe critiquing the menu design.
+So if you're looking for someone to answer your design questions, someone with a versatile art-style and skill-set and someone who has built brands that have raised significantly and consistently raised revenues, look no further. Drop me a message and we'll start answering those questions.
+
+## Animation Showreel
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/showreel/
+Client: Zeeshan Abid
+Industry: Advertising
+Category: Animations / Videos
+
+A selection of motion graphics and animation work. Placeholder cut made from existing projects until the final showreel is supplied.
+
+### The Reel
+
+The final showreel will live here. This is a placeholder cut assembled from the CarSwitch, Evercare, UT, Treble and Startup Grind projects.
+
+## CarSwitch Animations
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/carswitch/
+Client: CarSwitch, Dubai, UAE
+Industry: Automotive
+Category: Animations / Videos, Social Media
+
+Three humorous motion graphics animations that explain how CarSwitch makes buying and selling a used car easy.
+
+### Introduction
+
+Carswitch is a Dubai (UAE) based brand that enables you to buy or sell a used car without the worry and hassle of any paperwork. It steers you clear of any shady transactions or sketchy conversations which may lead you to sell your car for a lesser value or buy a “lemon car”. My role in the project was to use playful and humorous visuals together with its branding to create these animations. The purpose of the animations was to showcase the unique features and benefits that users can enjoy with peace of mind when they use CarSwitch.
+
+### Problem Identification
+
+CarSwitch wanted to market its services and the unique advantages they offer to both vehicle buyers and sellers. For sellers, CarSwitch handles all of the problems, process and paperwork that come with selling the car. Sellers can expect to get the selling price that they want and not lose value of their car. For buyers, CarSwitch inspects and tests the cars. This way buyers know that they're not being sold "lemon cars". They wanted to highlight how and why all of these services set them apart from other brands in Dubai's used car market and that they offer a complete solution from beginning to end. Customers do not need to put in effort and instead CarSwitch does the work for them.
+
+### My Role
+
+I started by first understanding the client's business model and their requirements for the animations including the message they wanted to get across. I was at the forefront of communicating with the client throughout the entire project. At every stage, I made sure to incorporate the client's feedback into the animations without compromising on the quality and aesthetic of the brand.
+
+### Process & Problem Solving
+
+My process started with research on the brand's mission, vision, values and personality which I then used to design the art direction. Presenting the storyboard to the client before starting work on the animation made sure that they had a clear idea of how the animation would look once it was complete. I also worked together with social media managers and project managers and the client. However, I also had to adhere to the constraints put around the animations (such as a limited duration) as they were to be used for YouTube ads as well.
+
+### The Outcome
+
+These animations that used humour to explain CarSwitch's car selling and buying process; a process that was usually thought to be very boring. They communicated all of CarSwitch's services and benefits without coming off as an ad trying to sell a product or service while still adhering to the requirements of the brand, the client and the time limits.
+Results: 3 animated videos for social media and YouTube; 35k views on Instagram + Facebook; -30% social media queries; +50% customers visiting the website
+
+### Reframe
+
+CarSwitch, a Dubai based car selling platform wanted to market their services to car buyers and sellers by communicating them through engaging and humorous animations. They wanted to highlight the unique benefits that set them apart from other competitors in the market. After understanding their business model and their brand guidelines, I designed 3 motion graphics animations that explained their services in a humorous and entertaining way using characters and kinetic typography. The videos lowered queries by 30% and increased visibility of their website and brand by 50%.
+
+## Evercare Hospital Animations
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/evercare/
+Client: Evercare Hospital
+Industry: Healthcare
+Category: Animations / Videos, Social Media
+
+Four explainer animations that helped the public understand COVID-19 at a time of confusion and panic.
+
+### Introduction
+
+As an esteemed hospital and healthcare brand present in 6 countries, Evercare aims to provide accessible high quality health and medical care for low and middle income patients in countries with emerging markets.
+
+### Problem Identification
+
+As the COVID-19 pandemic started to spread quickly in Lahore and other major cities of Pakistan, there was an up-rise in cases across the country, causing panic amongst the public. People did not understand what COVID-19 was, how to avoid it and what to do if they contract it. People were confused by either an excess of information or a lack of information about COVID-19.
+
+### My Role
+
+I designed the art direction for the explainer animations using the brand guidelines and brand manuals that they had provided. The design of the animations also included all the characters and backgrounds. I also animated 4 different videos, with each animation explaining a different topic related to COVID-19.
+
+### Process & Problem Solving
+
+The client emphasized on visually communicating the branding of the hospital in the videos. The colours and typography of the brand needed to be at the forefront. The brand had previously used vectors illustrations and characters to communicate to its audience. I had previously used these design elements for their social media posts and graphics. Backgrounds were kept simple to avoid clutter and to focus more on the characters and the animated text. A calm background music was added to relax and de-stress the viewer.
+
+### The Outcome
+
+The animations were positively received by the client and were put up on the hospital's social media. Animations are an effective medium to explain a complex topic in a much simpler way, and get far more traction on social media platforms. They help the viewer understand complex topics easily, so that they can take preventative measures accordingly. They also help the brand develop a better reputation with its audience.
+Results: ~20K average views per animation; -40% common COVID-19 queries; 4 explainer animations
+
+### Reframe
+
+Evercare Hospital needed an effective way to communicate a complex topic to an audience that did not understand a very recent and complex pandemic such as COVID-19. As a designer, leading the project, I suggested utilizing animations as the main component of the campaign as they could quickly get the message across through engaging visuals and simplified information. The animations were put up on the hospital's social media and became some of the most viewed videos on their channels, averaging around 20k views.
+
+## App Launch Videos
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/app-launch/
+Client: COLABS / UT / Treble
+Industry: Tech
+Category: Animations / Videos
+
+Launch and product videos for three digital products.
+
+## Startup Grind 2019
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/startup-grind/
+Client: Startup Grind
+Industry: Tech
+Category: Animations / Videos
+
+Video work for Startup Grind 2019.
+
+## Pizza Now
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/pizza-now/
+Client: Byte Technology Systems
+Industry: Food
+Category: Branding
+
+A mid-tier pizza brand, created from scratch, that became the highest selling brand on the Byte app.
+
+### Introduction
+
+Byte Technology Systems was a Y-Combinator funded food delivery start-up based in Lahore, Pakistan. The start-up sought to utilize smartphone apps and similar technologies to help deliver good quality food to customers at affordable and accessible prices throughout the city.
+
+### Problem Identification
+
+Byte wanted to create a brand to sell affordable pizzas to a Pakistani audience that's on a limited budget but want to treat themselves and/ or their families to pizzas. The objective was to create a mid-tier brand that appeals to the majority of fast-food consumers. The visual identity around it had to reflect the type of pizzas commonly available at bakeries and small restaurants. The visuals had to appeal to the target audience.
+
+### My Role
+
+At the start of the project, the brand did not even have a name. It needed to have the word "pizza" in it and had to have something related to "quick service and delivery". I eventually came up with the name “Pizza Now”. For the visuals, I determined the look and feel of the whole brand and developed the visual identity including logos, colour palettes, typography, slogans, patterns. Additionally, I designed the social media posts and also came up with the slogans that would be the voice of the brand.
+
+### Process & Problem Solving
+
+I started the design process by researching on mid-tier logo styles that mirrored the look and feel that the brand needed to express. I created mood-boards and reference boards that compiled different ideas and visual directions. Then I used the research to iterate the logos and brand identity. The colour palette was influenced by the Italian Flag (as pizza originated in Italy). These colours are also typically associated with pizza and small pizza shops. Since the brand had an aspirational nature to it, a serif font was used for the logo.
+
+### The Outcome
+
+A complete visual identity was designed that included the logo (with variations), colour palette, typography and photography references/ guides. The packaging design also needed to be in line with the aesthetics of the brand and the slogans were added to the packaging to give the brand its voice.
+This was a unique design challenge as the objective was to "not make it look too good". Mid-tier aesthetics are different than high-end which is why they need to be designed accordingly. The design and visuals needed to reflect the target audience it was being designed for. The audience needed to relate to it and create an association with it. In this case, going with the norm was the good choice.
+Results: #1 selling brand on the Byte app for 1 year; 50-60% of all daily sales on the app
+
+### Reframe
+
+Byte wanted to develop a mid-tier brand with the purpose of selling affordable decent quality pizzas to a Pakistani audience that has a limited budget. To successfully create a brand with these qualities, the design of the brand needed to reflect the "mid-tier aesthetic" that audiences typically/ usually associate with mid-tier affordable brands. Basic colours that are typically associated with pizza shops (red, white, green) combined with serif fonts helped to create the perfect aesthetic and sell the brand making it the most popular brand on the app.
+
+## Breakfast Box
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/breakfast-box/
+Client: Byte Technology Systems
+Industry: Food
+Category: Branding
+
+A premium yet playful cloud-kitchen breakfast brand that drove 150-200 orders a day after launch.
+
+### Introduction
+
+Byte Technology Systems was a Y-Combinator funded food delivery start-up based in Lahore, Pakistan. The start-up sought to utilize smartphone apps and similar technologies to help deliver good quality food to customers at affordable and accessible prices throughout the city.
+
+### Problem Identification
+
+Byte wanted to launch a new online cloud kitchen based restaurant on their app. This restaurant brand, called Breakfast Box, aimed to provide high quality intercontinental breakfast items such as croissants, pancakes, french toast, muffins, etc conveniently at affordable prices to a Pakistani audience. Byte needed branding and visual designs that would market and sell the products.
+
+### My Role
+
+I researched on various art styles, developed initial mood boards and reference boards and used the research and data to come up with various visual directions that the brand could take for a successful launch on the app. Based on my research and the initial feedback from upper management, I refined the brand identity and presented steps on how to launch the brand on the platform. The qualities that I derived for the brand were: “premium” and “elegant” yet “playful” and “light-hearted”.
+
+### Process & Problem Solving
+
+After the creative direction of the brand was finalized, I researched on the photography and aesthetics of the food products that the brand aimed to sell. This helped in creating the art direction of the brand including photography style, colours and typography. This was followed by development of the logo and other visual design collateral for the brand and its products. The logo consists of the name of the restaurant written in a rounded manner at the top. The words “Premium Continental Breakfast” are written at the bottom to signify the restaurant's primary offering of cuisine. At the center is an image of a stack of pancakes drawn in a style that pays homage to old etching drawings. The words ESTD and 2022 are written on either sides to show the legacy of the brand.
+
+### The Outcome
+
+The outcome was a vintage but minimal aesthetic branding style with pastel colours all of which signified a high end premium brand. The launch ready brand identity included the logo, typography, colour palette, social media strategy and sample social media posts. Vintage and pastel colours were an effective way to make breakfast, bakery and confectionery items look premium and high end.
+Results: 150-200 orders per day for the next 4 months
+
+### Reframe
+
+Byte Technology Systems needed to launch their new premium online restaurant on their food delivery app. The objective of this new brand was to sell high quality intercontinental breakfast to its users. To achieve this objective, Byte needed branding, visual identity and aesthetics that matched the brand's promise. By designing the new visual identity complete with photography, colours, typography, social media posts and a launch plan, I was able to meet the brand's requirements, thus enabling a successful launch for the brand.
+
+## Black Friday Sale
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/black-friday/
+Client: Multiverse / XP Enterprise / Milkyway Glass
+Industry: Cannabis
+Category: Digital Marketing, Social Media
+
+A turquoise-on-black Black Friday campaign across email and social that lifted product sales by 60-70%.
+
+### Introduction
+
+Multiverse is a brand that provides unique, high quality artistic cannabis smoking products and accessories across North America with a focus on aesthetics, function and price. Their portfolio consists of three brands, Milkyway, Milkyway X and Wormhole, through which they aim to create collectable works of art, prized for their unique style, quality and craftsmanship.
+
+### Problem Identification
+
+The goal of the project was to utilize and take advantage of the yearly time for Black Friday Sales across North America to market and advertise products at a time when people are looking for good deals to spend money on. The goal was to sell more products and generate more revenue. The campaign was targeted towards the brand's current customers as well as new customers.
+
+### My Role
+
+As the brand's designer, I came up with the art direction and design for the key visuals of the marketing and sales material that included marketing emails and social media posts.
+
+### Process & Problem Solving
+
+For the visuals, I introduced a new color palette and typography style. Common colours such as red had been done a lot previously, whereas turquoise was unfamiliar to the brand yet aligned with the brand values.
+The design used the texture of the products as backgrounds, contrary to having them at the forefront. The typeface was decorated with colours and strokes to make it visually appealing to the audience. The % of the discount needed to be emphasized as it was the main selling point.
+
+### The Outcome
+
+I learned that customers are looking for good deals and discounts and will buy from companies they trust if they are getting an advantage.
+Results: +60-70% product sales over Black Friday; 4.67% email click rate
+
+### Reframe
+
+Multiverse's Black Friday Sale aimed to utilize the Black Friday trend to market their products to existing and new customers to ultimately increase revenue for the company. This also reassured customers that the brand's products are more reliable and offer greater quality as compared to the competition.
+
+## Collegiate Survival Sale
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/collegiate-survival-sale/
+Client: Multiverse / XP Enterprise / Milkyway Glass
+Industry: Cannabis
+Category: Digital Marketing, Social Media
+
+A rough, chaotic back-to-school campaign that tripled sales and sold 60% of stock within five days.
+
+### Introduction
+
+Multiverse is a brand that provides unique, high quality artistic cannabis smoking products and accessories across North America with a focus on aesthetics, function and price. Their portfolio consists of three brands, Milkyway, Milkyway X and Wormhole, through which they aim to create collectable works of art, prized for their unique style, quality and craftsmanship.
+
+### Problem Identification
+
+Usually, at the start of the academic year, students are stressed or frustrated because of their studies and assignments and are looking to relieve their stress. Potheads and smokers use cannabis to relieve and relax themselves and the brand wanted to capitalize on this moment.
+Milkyway wanted to sell more of its products to the young university going student demographic. They wanted to take advantage of the "Back to School" time (August/ September) when students are returning to the university after summer holidays.
+
+### My Role
+
+I directed and designed the art direction of the whole campaign which included all of the digital marketing materials; emails, social media posts, animations.
+
+### Process & Problem Solving
+
+The art direction needed to be rough and chaotic with bold colors that are captivating and portray the stress of university life. The typography also needed to be just as rough and bold.
+I took inspiration from collages that use torn paper, photographs and coloured markings. I used visuals such as papers, laptops, scribbles, stationery, eyes, mouths as decorative design elements and elements such as assignment sheets, grids and torn paper as essential background design elements. The text was arranged in a tilted fashion to show urgency and chaos.
+
+### The Outcome
+
+The timing of the sale and the target demographic plays an important role in selling any given product. Having the sale at the start of the academic year and targeting it towards university students paid off in terms of increased sales and greater revenue as compared to regular days. The target demographic likes to see graphics that relate to them and are tailored towards them.
+Bold graphics with eye catching colors and typography helped to cut through the competition. It often pays off to take the sale as an opportunity to design graphics that are different from regular routine branding graphics.
+Results: 3x sales; 60% of stock sold in 5 days; 5x more products sold than on a regular day (approx. 180); 2.2% email click rate
+
+### Reframe
+
+The Collegiate Survival Sale capitalized on the time when university going students are returning to university after summer holidays. This is a time when students reunite with friends, socialize and seek to de-stress themselves as the new academic year starts. Milkyway took advantage of the opportunity and pushed out a new sale with new bold, eye-catching visuals while at the same time offering irresistible discounts on their products.
+
+## Annual Winter Sale
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/annual-winter-sale/
+Client: Generation
+Industry: Fashion
+Category: Print Marketing
+
+A newspaper advertisement for the launch of Generation's Annual Winter Sale, adapted for print, web and social media.
+
+### The Brief
+
+Design a newspaper advertisement that informs customers and newspaper readers about Generation's Annual Winter Sale launch. Full write-up coming soon.
+
+### Inspirations & References
+
+Reference artwork collected before sketching the first layouts.
+
+## Generation Magazines
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/generation-magazines/
+Client: Generation
+Industry: Fashion
+Category: Print Marketing
+
+Editorial design for three Generation magazines, shown together as one project.
+
+## Byte App
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/byte-app/
+Client: Byte Technology Systems
+Industry: Food, Tech
+Category: UI/UX
+
+A redesign of the Byte food delivery app to be easier to use and look more contemporary.
+
+### Introduction
+
+Byte Technology Systems was a Y-Combinator funded food delivery start-up based in Lahore, Pakistan. The aim of this project was to re-design the whole Byte app to make it easier in terms of usability and to make it look more visually appealing and contemporary.
+
+## Tango Photos
+
+URL: https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/tango-photos/
+Client: Toronto Tango 8 Festival, 2026
+Industry: Events
+Category: Photography
+
+Photography from the Toronto Tango 8 Festival, 2026.
+

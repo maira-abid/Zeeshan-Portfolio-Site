@@ -18,7 +18,7 @@ brief/        the website brief and About Me text
 brand/        style guide, colour/pattern references, icons, typefaces (source files)
 originals/    LOCAL ONLY, not in git: raw photos, source videos, PDFs ("Portfolio Work Compilations ...", tango photos)
 site/         the website itself (this is what gets published)
-  index.html  projects.html  project.html?p=<slug>  about.html  contact.html  privacy.html
+  index.html  projects/  projects/<slug>/  about/  contact/  privacy/   (one folder + index.html per page: generated, see "SEO and GEO")
   css/style.css          all styling + design tokens (:root)
   js/data.js             ALL content: projects, write-ups, categories, industries, about text, privacy policy, social links
   js/app.js              page rendering, filtering/sorting, form, lightbox
@@ -29,6 +29,7 @@ site/         the website itself (this is what gets published)
 tools/
   serve.js               local preview server
   extract-ambient.js     cuts the floating background elements out of brand/Patterns & Icons
+  build-seo.js           SEO + GEO build: pre-renders every page to static HTML, titles, schema, sitemap, robots, llms.txt (npm run build)
   prepare-assets.js      rebuilds site/assets from originals/ (cd tools, npm i, node prepare-assets.js)
   export-framer.js       regenerates the Framer CSVs/data file
   extracts/              PDF pages used in the CarSwitch / Evercare write-ups
@@ -102,3 +103,26 @@ brand files or tools). To publish changes: commit and push to `main`, then run `
 GitHub login: `gh auth refresh -s workflow`.)
 The preview is for review only: it is marked `noindex` (meta tag + `robots.txt`) so it does not compete with the live Framer site.
 Remove those two when/if this copy should ever be public. Because the repo is public, everything committed (including the fonts in brand/ and the photos in site/assets) is downloadable by anyone.
+
+## SEO and GEO (search engines and AI assistants)
+
+Every page has its own clean URL (`/`, `/projects/`, `/projects/<slug>/`, `/about/`, `/contact/`, `/privacy/`). The site's JavaScript builds the
+pages in the browser, but search engines and especially AI crawlers often do not run JavaScript, so `tools/build-seo.js` runs the site in a headless
+DOM and saves the finished HTML (text, headings, links, image alt text) into each page file. Run it after any content change:
+
+```bash
+cd tools && npm run build
+```
+
+It also writes, per page: a unique `<title>` and meta description, canonical link, Open Graph and Twitter cards, geo tags, and JSON-LD structured
+data (Person, ProfessionalService with Toronto / Ontario / Canada, WebSite, CollectionPage, AboutPage, ContactPage, CreativeWork per project,
+BreadcrumbList). Site-wide: `sitemap.xml`, `robots.txt`, `llms.txt` and `llms-full.txt` (a plain-text summary and the full write-ups for AI assistants),
+and 1200x630 share images in `assets/og/`. Old addresses such as `about.html` and `project.html?p=carswitch` redirect to the new ones.
+
+Settings are in `SITE.seo` in `site/js/data.js`:
+- `url`: the real domain (currently the GitHub preview address, replace before going live; used in canonical links, sitemap and schema)
+- `indexable`: `false` keeps the preview out of search results (noindex + robots.txt block) so it does not compete with the live Framer site.
+  Set `true` only when this copy itself should be indexed. When true, robots.txt also welcomes AI search/assistant crawlers (edit the list in `build-seo.js` to opt out).
+- titles/descriptions of the main pages; project titles and descriptions are generated from the project data (kept within about 60 / 160 characters).
+
+The Framer equivalents (page titles and descriptions, share images, site-wide schema, llms.txt) are in `framer/seo/`; see `framer/README.md`.

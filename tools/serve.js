@@ -17,6 +17,8 @@ http.createServer((req, res) => {
   const file = path.normalize(path.join(root, p));
   if (!file.startsWith(root)) { res.writeHead(403); return res.end('Forbidden'); }
   fs.stat(file, (err, st) => {
+    // like GitHub Pages / most hosts: /about -> /about/ when a folder with an index.html exists
+    if (!err && st.isDirectory() && fs.existsSync(path.join(file, 'index.html'))) { res.writeHead(301, { Location: req.url.split('?')[0] + '/' + (req.url.includes('?') ? '?' + req.url.split('?')[1] : '') }); return res.end(); }
     if (err || !st.isFile()) { res.writeHead(404); return res.end('Not found'); }
     const type = types[path.extname(file).toLowerCase()] || 'application/octet-stream';
     const range = req.headers.range;

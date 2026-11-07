@@ -14,11 +14,11 @@
 
   // Per-page themes: count, share of each size tier, share of drawn (vector) shapes, and favourites for that page.
   var THEMES = {
-    home:     { count: 15, tiers: { big: 0.22, medium: 0.33, small: 0.45 }, vector: 0.35, prefer: ['checker-bolt', 'hand-cards', 'thunder-outline', 'sunburst', 'flame', 'spiral-o', 'chip-o'] },
-    projects: { count: 9,  tiers: { big: 0.1,  medium: 0.3,  small: 0.6 },  vector: 0.5,  prefer: ['bolt-', 'star-', 'zigzagband-o', 'checkerstrip-o', 'chip-o', 'sparkle'] },
-    about:    { count: 5,  tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'star-', 'hstar', 'card-o', 'spiral-o', 'heart-o'] },
-    contact:  { count: 11, tiers: { big: 0.15, medium: 0.3,  small: 0.55 }, vector: 0.55, prefer: ['cursor', 'bubble-o', 'play', 'plus-o', 'bezier-o', 'sparkle', 'orbit-o'] },
-    privacy:  { count: 5,  tiers: { big: 0,    medium: 0.4,  small: 0.6 },  vector: 0.6,  prefer: ['plus-o', 'ring-o', 'sparkle', 'star-'] }
+    home:     { count: 8,  tiers: { big: 0.22, medium: 0.33, small: 0.45 }, vector: 0.35, prefer: ['checker-bolt', 'hand-cards', 'thunder-outline', 'sunburst', 'flame', 'spiral-o', 'chip-o'] },
+    projects: { count: 5,  tiers: { big: 0.1,  medium: 0.3,  small: 0.6 },  vector: 0.5,  prefer: ['bolt-', 'star-', 'zigzagband-o', 'checkerstrip-o', 'chip-o', 'sparkle'] },
+    about:    { count: 3,  tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'star-', 'hstar', 'card-o', 'spiral-o', 'heart-o'] },
+    contact:  { count: 6,  tiers: { big: 0.15, medium: 0.3,  small: 0.55 }, vector: 0.55, prefer: ['cursor', 'bubble-o', 'play', 'plus-o', 'bezier-o', 'sparkle', 'orbit-o'] },
+    privacy:  { count: 3,  tiers: { big: 0,    medium: 0.4,  small: 0.6 },  vector: 0.6,  prefer: ['plus-o', 'ring-o', 'sparkle', 'star-'] }
   };
   var theme = THEMES[page];            // none on project pages
   if (!theme) return;
@@ -89,13 +89,17 @@
   document.body.insertBefore(root, document.querySelector('main'));
 
   var mx = -9999, my = -9999, raf = 0, running = false;
+  // keep every element below the header (logo + nav) so nothing sits behind the navigation
+  var safeTop = 0;
+  function measureHeader() { var hd = document.querySelector('.site-header'); safeTop = hd ? Math.ceil(hd.getBoundingClientRect().bottom) + 12 : 0; if (safeTop < 0) safeTop = 0; }
+  measureHeader();
   var paused = false, calm = 0, vt = 0, lastTs = 0; // vt = animation clock; it stops while the page is scrolling
 
   function draw(time) {
     for (var i = 0; i < items.length; i++) {
       var it = items[i];
       var x = it.x * (W - it.size);
-      var y = it.y * (H - it.size);       // a spot on the screen: the layer is pinned, it does not move with scroll
+      var y = safeTop + it.y * Math.max(H - safeTop - it.size, 0); // a spot on the screen below the header; the layer is pinned, it does not move with scroll
       var rot = 0;
       if (!reduce) {
         // spiral path around the resting point: angle advances with time, radius breathes in and out
@@ -111,7 +115,8 @@
         it.ox += (tx - it.ox) * 0.12;
         it.oy += (ty - it.oy) * 0.12;
       }
-      it.el.style.transform = 'translate3d(' + (x + it.ox).toFixed(1) + 'px,' + (y + it.oy).toFixed(1) + 'px,0) rotate(' + rot.toFixed(1) + 'deg)';
+      var fy = Math.max(y + it.oy, safeTop);   // never drift or get pushed up into the header / nav area
+      it.el.style.transform = 'translate3d(' + (x + it.ox).toFixed(1) + 'px,' + fy.toFixed(1) + 'px,0) rotate(' + rot.toFixed(1) + 'deg)';
     }
   }
   function loop(ts) {
@@ -125,7 +130,7 @@
   addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; } }, { passive: true });
   document.addEventListener('pointerleave', function () { mx = my = -9999; });
   addEventListener('scroll', function () { paused = true; clearTimeout(calm); calm = setTimeout(function () { paused = false; }, 220); }, { passive: true });
-  addEventListener('resize', function () { W = innerWidth; H = innerHeight; draw(vt); });
+  addEventListener('resize', function () { W = innerWidth; H = innerHeight; measureHeader(); draw(vt); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
   draw(0);
   start();

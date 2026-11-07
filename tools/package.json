@@ -2,6 +2,14 @@
   "name": "zeeshan-site-tools",
   "private": true,
   "description": "Asset pipeline for the portfolio site: resizes images, transcodes videos, builds the hero reel.",
-  "scripts": { "assets": "node prepare-assets.js", "images": "node prepare-assets.js images", "videos": "node prepare-assets.js videos" },
-  "dependencies": { "sharp": "^0.33.5" }
+  "scripts": {
+    "assets": "node prepare-assets.js",
+    "images": "node prepare-assets.js images",
+    "videos": "node prepare-assets.js videos",
+    "build": "node build-seo.js"
+  },
+  "dependencies": {
+    "jsdom": "^31.0.0",
+    "sharp": "^0.33.5"
+  }
 }
