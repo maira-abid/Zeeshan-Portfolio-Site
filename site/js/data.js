@@ -11,8 +11,6 @@ window.SITE = {
   location: 'Toronto, ON, Canada',
 
   hero: {
-    // TODO: the brief leaves the overlay text blank. Placeholder drawn from the About Me text.
-    headline: 'Design that answers questions.',
     sub: 'Multi-disciplinary designer based in Toronto, ON, working in branding, motion, marketing and product design since 2017.',
     video: 'video/hero-reel.mp4',
     poster: 'img/posters/hero-reel.webp',

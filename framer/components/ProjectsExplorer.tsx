@@ -78,7 +78,7 @@ export default function ProjectsExplorer(props: Props) {
             onClick={p.onClick}
             style={{
                 padding: "4px 11px", borderRadius: 999, border: p.solid ? "1px solid transparent" : "1px solid rgba(255,255,255,.55)",
-                background: p.solid ? "rgba(143,0,255,.92)" : "rgba(19,19,19,.86)", color: "#fff", font: `700 11px ${fontFamily}`,
+                background: p.solid ? "rgba(136, 0, 255,.92)" : "rgba(12, 12, 12,.86)", color: "#fff", font: `700 11px ${fontFamily}`,
                 letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer", whiteSpace: "nowrap",
             }}
         >
@@ -91,7 +91,7 @@ export default function ProjectsExplorer(props: Props) {
             <style>{`
                 .zk-grid { display:grid; grid-template-columns: 250px minmax(0,1fr); gap: 48px; align-items:start; }
                 .zk-cards { display:grid; grid-template-columns: repeat(auto-fill, minmax(min(100%,285px),1fr)); gap: 32px; }
-                .zk-fbtn:hover { background: #2C2C2C; }
+                .zk-fbtn:hover { background: #292929; }
                 .zk-card:hover .zk-img { border-color: ${accent}; }
                 .zk-card:hover .zk-img img { transform: scale(1.05); }
                 .zk-title a { color: inherit; text-decoration: none; }
@@ -99,7 +99,7 @@ export default function ProjectsExplorer(props: Props) {
                 @media (max-width: 960px) { .zk-grid { grid-template-columns: 1fr; } .zk-side { position: static !important; } }
             `}</style>
             <div className="zk-grid">
-                <aside className="zk-side" aria-label="Filter projects" style={{ position: "sticky", top: 20, background: "rgba(27,27,27,.88)", border: `1px solid ${line}`, borderRadius: 14, padding: "22px 20px" }}>
+                <aside className="zk-side" aria-label="Filter projects" style={{ position: "sticky", top: 20, background: "rgba(20, 20, 20,.88)", border: `1px solid ${line}`, borderRadius: 14, padding: "22px 20px" }}>
                     <Heading>Projects</Heading>
                     <FilterBtn label="All projects" n={projects.length} active={filter.type === "all"} onClick={() => setFilter({ type: "all", id: "" })} />
                     <Heading>Categories</Heading>
@@ -177,10 +177,10 @@ export default function ProjectsExplorer(props: Props) {
 ProjectsExplorer.defaultProps = {
     basePath: "/projects",
     imageBase: "",
-    accent: "#8F00FF",
-    accentLight: "#C9A0FF",
-    panel: "#242424",
-    line: "#3A3A3A",
+    accent: "#8800ff",
+    accentLight: "#cba6ff",
+    panel: "#1f1f1f",
+    line: "#333333",
     text: "#FFFFFF",
     muted: "#B5B5B5",
     fontFamily: "Raleway, sans-serif",

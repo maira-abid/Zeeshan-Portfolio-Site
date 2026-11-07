@@ -116,7 +116,7 @@
   }
   function loop(ts) {
     var dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.1) : 0; lastTs = ts;
-    if (!paused) { vt += dt; draw(vt); }     // frozen (nothing moves) while the page is being scrolled
+    if (!paused && !document.documentElement.classList.contains('motion-off')) { vt += dt; draw(vt); }     // frozen (nothing moves) while the page is being scrolled
     raf = requestAnimationFrame(loop);
   }
   function start() { if (!running && !reduce) { running = true; raf = requestAnimationFrame(loop); } }

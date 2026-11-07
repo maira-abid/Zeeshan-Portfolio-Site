@@ -2,9 +2,9 @@ import * as React from "react"
 import { addPropertyControls, ControlType } from "framer"
 
 /**
- * Checkerboard that fades away + subdued suit/bolt/star icon pattern.
- * Drop it on a page, set it to fill the page (position: absolute / top 0, width 100%, height e.g. 2400px)
- * and send it to the back.
+ * Checkerboard that fades away down the page, with an optional SPARSE scatter of card-suit / bolt / star outlines
+ * (the site uses the suits only on Home, About and Contact; the checkerboard is on every page).
+ * Place it at the top of a page, behind everything, full width (e.g. height 2400 on Home, 760 on other pages).
  *
  * @framerSupportedLayoutWidth any
  * @framerSupportedLayoutHeight any
@@ -18,37 +18,29 @@ const PATHS = {
     star: "M12 2l2.9 6.9 7.5.5-5.8 4.8 1.9 7.3L12 17.5l-6.5 4 1.9-7.3L1.6 9.4l7.5-.5z",
 }
 
-function iconTile(color: string) {
-    const defs = Object.entries(PATHS)
-        .map(([id, d]) => `<path id="${id}" d="${d}"/>`)
-        .join("")
-    const outline = [
-        ["spade", "translate(18 14) rotate(-14) scale(2.4)"],
-        ["heart", "translate(170 6) rotate(10) scale(2)"],
-        ["bolt", "translate(282 30) rotate(18) scale(2.6)"],
-        ["diamond", "translate(84 112) rotate(-8) scale(2.3)"],
-        ["star", "translate(226 120) rotate(14) scale(2.2)"],
-        ["club", "translate(14 214) rotate(8) scale(2.2)"],
-        ["heart", "translate(150 224) rotate(-18) scale(2.5)"],
-        ["spade", "translate(292 218) rotate(12) scale(2)"],
-        ["bolt", "translate(76 304) rotate(-10) scale(2)"],
-        ["diamond", "translate(206 312) rotate(6) scale(1.9)"],
+// 900 x 900 tile, 8 outlines + 3 faint filled shapes: far fewer icons than a dense wallpaper
+function suitTile(color: string) {
+    const defs = Object.entries(PATHS).map(([id, d]) => `<path id="${id}" d="${d}"/>`).join("")
+    const outline: [string, string][] = [
+        ["spade", "translate(60 70) rotate(-12) scale(3.2)"],
+        ["bolt", "translate(610 40) rotate(18) scale(2.8)"],
+        ["heart", "translate(330 300) rotate(-10) scale(2.4)"],
+        ["star", "translate(760 360) rotate(14) scale(2.6)"],
+        ["diamond", "translate(120 520) rotate(8) scale(2.2)"],
+        ["club", "translate(470 610) rotate(-16) scale(3)"],
+        ["spade", "translate(800 760) rotate(10) scale(2.2)"],
+        ["heart", "translate(230 800) rotate(-6) scale(2.8)"],
     ]
-        .map(([id, t]) => `<use href="#${id}" transform="${t}"/>`)
-        .join("")
-    const filled = [
-        ["star", "translate(110 40) rotate(-6) scale(1.5)"],
-        ["club", "translate(330 128) rotate(10) scale(1.5)"],
-        ["spade", "translate(48 170) rotate(16) scale(1.4)"],
-        ["heart", "translate(272 300) rotate(-12) scale(1.4)"],
-        ["bolt", "translate(338 330) rotate(8) scale(1.3)"],
+    const filled: [string, string][] = [
+        ["star", "translate(430 110) rotate(-6) scale(1.6)"],
+        ["bolt", "translate(30 330) rotate(8) scale(1.5)"],
+        ["club", "translate(660 560) rotate(12) scale(1.5)"],
     ]
-        .map(([id, t]) => `<use href="#${id}" transform="${t}"/>`)
-        .join("")
+    const use = (a: [string, string][]) => a.map(([id, t]) => `<use href="#${id}" transform="${t}"/>`).join("")
     const svg =
-        `<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360"><defs>${defs}</defs>` +
-        `<g fill="none" stroke="${color}" stroke-width="1.1" stroke-linejoin="round" opacity=".2">${outline}</g>` +
-        `<g fill="${color}" opacity=".07">${filled}</g></svg>`
+        `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900"><defs>${defs}</defs>` +
+        `<g fill="none" stroke="${color}" stroke-width="1.1" stroke-linejoin="round" opacity=".18">${use(outline)}</g>` +
+        `<g fill="${color}" opacity=".06">${use(filled)}</g></svg>`
     return `url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}")`
 }
 
@@ -59,22 +51,17 @@ type Props = {
     checkerSize: number
     checkerOpacity: number
     fadeHeight: number
-    showIcons: boolean
-    iconColor: string
+    showSuits: boolean
+    suitColor: string
     style?: React.CSSProperties
 }
 
 export default function BackgroundPattern(props: Props) {
-    const { background, checkerColor, checkerDark, checkerSize, checkerOpacity, fadeHeight, showIcons, iconColor, style } = props
+    const { background, checkerColor, checkerDark, checkerSize, checkerOpacity, fadeHeight, showSuits, suitColor, style } = props
     const mask = "linear-gradient(to bottom, #000 0, rgba(0,0,0,.5) 30%, transparent 100%)"
     return (
-        <div
-            aria-hidden="true"
-            style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background, pointerEvents: "none", ...style }}
-        >
-            {showIcons && (
-                <div style={{ position: "absolute", inset: 0, backgroundImage: iconTile(iconColor), backgroundSize: "360px 360px" }} />
-            )}
+        <div aria-hidden="true" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background, pointerEvents: "none", ...style }}>
+            {showSuits && <div style={{ position: "absolute", inset: 0, backgroundImage: suitTile(suitColor), backgroundSize: "900px 900px" }} />}
             <div
                 style={{
                     position: "absolute",
@@ -93,14 +80,14 @@ export default function BackgroundPattern(props: Props) {
 }
 
 BackgroundPattern.defaultProps = {
-    background: "#1B1B1B",
-    checkerColor: "#7352A0",
+    background: "#141414",
+    checkerColor: "#5b2a99",
     checkerDark: "#0C0C0C",
     checkerSize: 104,
     checkerOpacity: 0.32,
     fadeHeight: 2400,
-    showIcons: true,
-    iconColor: "#A77FE0",
+    showSuits: false,
+    suitColor: "#A77FE0",
 }
 
 addPropertyControls(BackgroundPattern, {
@@ -110,6 +97,6 @@ addPropertyControls(BackgroundPattern, {
     checkerSize: { type: ControlType.Number, title: "Tile size", min: 40, max: 240, step: 4 },
     checkerOpacity: { type: ControlType.Number, title: "Opacity", min: 0, max: 1, step: 0.02 },
     fadeHeight: { type: ControlType.Number, title: "Fade height", min: 300, max: 6000, step: 50 },
-    showIcons: { type: ControlType.Boolean, title: "Icons" },
-    iconColor: { type: ControlType.Color, title: "Icon color", hidden: (p: Props) => !p.showIcons },
+    showSuits: { type: ControlType.Boolean, title: "Sparse suits" },
+    suitColor: { type: ControlType.Color, title: "Suit color", hidden: (p: Props) => !p.showSuits },
 })

@@ -60,7 +60,7 @@ export default function ClientTicker(props: Props) {
     return (
         <section
             aria-label="Clients"
-            style={{ width: "100%", padding: "26px 0 22px", background: "rgba(19,19,19,.92)", borderTop: "1px solid #3A3A3A", borderBottom: "1px solid #3A3A3A", overflow: "hidden", ...style }}
+            style={{ width: "100%", padding: "26px 0 22px", background: "rgba(12, 12, 12,.92)", borderTop: "1px solid #333333", borderBottom: "1px solid #333333", overflow: "hidden", ...style }}
         >
             <style>{`
                 @keyframes zk-ticker { to { transform: translateX(-50%); } }
@@ -96,7 +96,7 @@ ClientTicker.defaultProps = {
     gap: 48,
     fontSize: 24,
     textColor: "rgba(229,229,229,.78)",
-    starColor: "#7352A0",
+    starColor: "#5b2a99",
     label: "Brands I've worked with",
     labelColor: "#B5B5B5",
     fontFamily: "Raleway, sans-serif",

@@ -63,6 +63,10 @@ export const industries: Item[] = [
   {
     "id": "advertising",
     "name": "Advertising"
+  },
+  {
+    "id": "events",
+    "name": "Events"
   }
 ]
 export const projects: Project[] = [
@@ -214,5 +218,17 @@ export const projects: Project[] = [
       "tech"
     ],
     "thumb": "thumbs/byte-app.webp"
+  },
+  {
+    "slug": "tango-photos",
+    "title": "Tango Photos",
+    "client": "Toronto Tango 8 Festival, 2026",
+    "categories": [
+      "photography"
+    ],
+    "industries": [
+      "events"
+    ],
+    "thumb": "thumbs/tango-photos.webp"
   }
 ]

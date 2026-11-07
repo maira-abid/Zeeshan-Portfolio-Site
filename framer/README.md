@@ -1,71 +1,90 @@
 # Copying the site into Framer
 
 Framer cannot import an HTML/CSS/JS site, so the local build (`site/`) is the design reference and this folder holds
-everything that can be pasted or imported into Framer:
+everything that can be pasted or imported into Framer. Regenerate the exports after editing `site/js/data.js`:
+`cd tools && node export-framer.js` (and `node extract-ambient.js` if the background artwork changes).
 
 ```
 framer/
-  cms/categories.csv  industries.csv  projects.csv   -> CMS "Import from CSV"
-  components/BackgroundPattern.tsx                   -> checkerboard fade + icon pattern
-  components/ClientTicker.tsx                        -> client ticker
-  components/ProjectsExplorer.tsx                    -> the whole Projects page body (filters + sort + grid)
-  components/ProjectsData.ts                         -> data used by ProjectsExplorer
+  cms/categories.csv  industries.csv  projects.csv     -> CMS "Import from CSV" (8 categories, 8 industries, 13 projects)
+  cms/privacy-policy.html                              -> text of the Privacy Policy page (paste into a Framer page)
+  components/BackgroundPattern.tsx                     -> checkerboard fade + optional SPARSE suit scatter
+  components/AmbientElements.tsx                       -> floating grey background elements (pinned, freeze on scroll)
+  components/ClientTicker.tsx                          -> client ticker
+  components/ProjectsExplorer.tsx + ProjectsData.ts    -> Projects page body (filters + sort + grid)
+  components/PhotoGallery.tsx                          -> masonry photo gallery with click-to-enlarge (for the tango photos)
+  assets/ambient/*.webp                                -> cut-out artwork for AmbientElements (upload in Framer)
 ```
 
-Regenerate the CSVs and data file after editing `site/js/data.js`: `cd tools && node export-framer.js`.
+## What was tested, and what was not
 
-**Tested:** the three components compile with TypeScript (strict) and render with React using a stand-in for the `framer`
-module. **Not yet tested inside Framer itself** (no access to the project from here), so expect small tweaks when first pasted.
+- **Tested:** all five components pass TypeScript strict mode, and were run in a real browser with a stand-in for the `framer`
+  module: the ambient layer moves, freezes while scrolling and resumes; the gallery opens, pages with the arrow keys and closes with
+  Esc; the Projects filter works (13 projects, Photography filter gives Tango Photos); the ticker and background render.
+- **Not tested:** inside Framer itself (no access to your Framer project from here). Expect small adjustments on first paste, e.g.
+  the code-file import path in `ProjectsExplorer.tsx` and how Framer lists the property controls.
 
 ## 1. Set up the project
 
-1. **Colour styles**: Violet Ray `#8F00FF`, Violet soft `#7352A0` (checker/icons), Violet light `#C9A0FF` (text on dark),
-   Carbon Black `#1B1B1B`, Ink `#131313`, Panel `#242424`, Line `#3A3A3A`, Grey `#E5E5E5`, White.
+1. **Colour styles**: Violet `#8800FF`, Violet soft `#5b2a99` (checker), Violet light `#cba6ff` (text on dark), Carbon Black `#141414`,
+   Ink `#0c0c0c`, Panel `#1f1f1f`, Line `#333333`, Grey `#E5E5E5`, White.
 2. **Fonts**: upload the TTFs from `brand/Typefaces/` (Magazine Letter, Kingthings Extortion, Jockey Full of Bourbon, Hit Me Punk 04).
-   Raleway is already in Framer's font list. Custom fonts need a paid Framer plan.
-3. **Text styles**: Body = Raleway 17/1.7. H1/H2 headings = Magazine Letter. Write-up subheadings (H2 in project pages) =
-   Kingthings Extortion, large. Stat numbers = Hit Me Punk 04. Logo placeholder = Jockey Full of Bourbon.
-4. **Breakpoints**: Desktop 1240 content width, Tablet 960, Phone 640 (matches `css/style.css`).
+   Raleway is in Framer's font list. **Custom fonts need a paid Framer plan, and check the licences allow web use.**
+3. **Text styles**: Body = Raleway 17/1.7. Page and category headings = Magazine Letter. Write-up subheadings = Kingthings Extortion (large).
+   Stat numbers = Hit Me Punk 04. Logo placeholder = Jockey Full of Bourbon.
+4. **Breakpoints**: Desktop (content width 1240), Tablet 960, Phone 640.
 
 ## 2. CMS (Framer > CMS)
 
-1. Create **Categories** and **Industries** collections (fields: Title, Slug, Order). Import `cms/categories.csv`, `cms/industries.csv`.
-2. Create **Projects** with fields: Title, Slug, Client (text), Categories (multi-reference), Industries (multi-reference),
-   Summary (plain text), Thumbnail (image), Lead video (link), Write-up (formatted text), Write-up coming soon (toggle), Featured (toggle, used on the Home page),
-   Images (optional gallery). Import `cms/projects.csv`.
-   - The CSV has Categories/Industries as comma-separated names so Framer can match them to the reference collections;
-     if Framer does not map them, set them once by hand (12 projects).
-   - `Write-up` is HTML (headings, paragraphs, stat lists, Vimeo links) for a Formatted text field.
-   - Image columns hold file paths on this computer. Upload the images (from `site/assets/img/`) in Framer and attach them.
-3. Pages: create a **Projects detail page** (`/projects/:slug`) with the layout from the local site: H1 title, a row for
-   Client / Industry / Category, the lead video or image, then the Write-up rich text. Add icon + violet badge to the H2 style.
-   Vimeo embeds: paste the Vimeo link into a Framer Video/Embed element bound to the CMS field.
+1. Create **Categories** and **Industries** (Title, Slug, Order) and import the two CSVs.
+2. Create **Projects**: Title, Slug, Client, Categories (multi-reference), Industries (multi-reference), Summary, Thumbnail (image),
+   Lead video (link), Write-up (formatted text), Write-up coming soon (toggle), Featured (toggle, used on Home). Import `projects.csv`.
+   - If Framer does not map the comma-separated Categories/Industries names to the references, set them by hand once (13 projects).
+   - `Write-up` is HTML (headings, paragraphs, stat lists, Vimeo links). The image columns are file paths on this computer: upload the
+     images (`site/assets/img/`, use the 1800 px files, not the `-640`/`-1200` copies: Framer makes its own sizes) and attach them.
+3. **Project page template** (`/projects/:slug`): H1 title, Client / Industry / Category row, lead video or image, then the Write-up.
 
-## 3. Build the pages
+## 3. Pages
 
 | Page | Build |
 |---|---|
-| **Home** | Hero: Framer Video (silent, loop, autoplay) with overlay text and two buttons (filled "View Projects", outline "About Me"). Then **ClientTicker** (or Framer's Ticker with logos). Then a "Featured Work" section: a **Collection List** (3-column grid, card = thumbnail, tag chips, title link, client) filtered by a "Featured" toggle on the Projects CMS (6 projects: CarSwitch, Evercare, Pizza Now, Collegiate Survival Sale, Breakfast Box, Black Friday). Below it a "Browse by category" row of links to `/projects?category=...` and a "View all projects" button. |
-| **Projects** | Heading + **ProjectsExplorer** (paste component; set *Project path* `/projects`). For images either host `site/assets/img/thumbs/` somewhere public and enter it as *Image base URL*, or put full Framer image URLs in the `thumb` field of `ProjectsData.ts`. |
-| **About** | Image (headshot) + text. Link "versatile art-style" to `/projects` and "Drop me a message" to `/contact` (text is in `site/js/data.js`). |
-| **Contact** | Framer's built-in **Form** component with First name, Last name, Email, Subject, Message; set the notification email in the form settings. |
-| **Global** | Header (logo centre, tabs Home / Projects / About Me / Contact) and footer (page links + Behance, Vimeo, LinkedIn, Instagram with icons) as shared components. |
+| **Home** | Hero: Framer Video (silent, loop, autoplay), overlay text, buttons "View Projects" (filled) and "About Me" (outline). **ClientTicker**. "Featured Work": Collection List (3 columns) filtered by the Featured toggle (CarSwitch, Evercare, Pizza Now, Collegiate Survival Sale, Breakfast Box, Black Friday), a "Browse by category" row linking to `/projects?category=...`, and a "View all projects" button. |
+| **Projects** | Heading + **ProjectsExplorer** (Project path `/projects`). Images: host `site/assets/img/thumbs/` somewhere public and set *Image base URL*, or put full Framer image URLs in the `thumb` fields of `ProjectsData.ts`. |
+| **About** | Headshot + text; link "versatile art-style" to `/projects` and "Drop me a message" to `/contact`. |
+| **Contact** | Framer's built-in **Form**: First name, Last name, Email, Subject, Message; set the notification email. Add the line "By sending this message you agree to the use of your details to reply to you, as described in the Privacy Policy" linking to `/privacy`. |
+| **Privacy** | A text page; paste `cms/privacy-policy.html`. Add the privacy contact email (placeholder until supplied). Link it in the footer. |
+| **Tango Photos** (project) | Use **PhotoGallery** on the project page with the photos from `site/assets/img/tango-photos/` (see limits). |
+| **Global** | Header (logo centre; Home / Projects / About Me / Contact) and footer (page links, Privacy Policy, Behance / Vimeo / LinkedIn / Instagram icons) as shared components. |
 
-Background: drop **BackgroundPattern** at the top of each page, behind everything (`Position: Absolute`, width 100%,
-height about 2400, Fade height about 2400 on Home and 760 elsewhere).
+## 4. Background (matches the website)
 
-## 4. Components: how to add
+- **Checkerboard on every page**: **BackgroundPattern** at the top, behind everything (height about 2400 on Home, 760 elsewhere).
+- **Sparse card-suit scatter only on Home, About and Contact**: turn on "Sparse suits" in BackgroundPattern on those pages.
+- **Floating elements**: **AmbientElements** on Home, Projects, About, Contact and Privacy (not on project pages). Set its **Position to Fixed**,
+  width 100%, height 100vh, and send it to the back. Counts used on the site: Home 15, Projects 9, About 5, Contact 11, Privacy 5.
+  Add the images from `assets/ambient/` under "Artwork" to mix your own artwork with the drawn shapes.
 
-1. Framer > Assets > Code > **New file**, name it exactly as the file here (e.g. `BackgroundPattern`).
-2. Replace its contents with the matching file from `components/`.
-3. For ProjectsExplorer also create the code file `ProjectsData` (paste `ProjectsData.ts`). If the import line at the top of
-   `ProjectsExplorer.tsx` shows an error, use the path Framer suggests for your `ProjectsData` file.
-4. Drag the component from Assets onto the canvas; the right-hand panel shows the colours, sizes and text as controls.
+## 5. Adding components
 
-## 5. Known limits / decisions to confirm
+1. Assets > Code > New file, named exactly like the file here (`BackgroundPattern`, `AmbientElements`, `ClientTicker`, `PhotoGallery`,
+   `ProjectsData`, `ProjectsExplorer`).
+2. Replace the contents with the matching file from `components/`.
+3. If the import line at the top of `ProjectsExplorer.tsx` shows an error, use the path Framer suggests for your `ProjectsData` file.
+4. Drag the component from Assets onto the canvas; colours, sizes and text appear as controls in the right-hand panel.
 
-- ProjectsExplorer keeps its own copy of the project list (`ProjectsData.ts`) instead of reading the CMS live; adding a
-  project means updating both. Alternative: use Framer's native CMS filtering/sorting on a Collection List (fewer moving parts,
-  less custom styling). Say which you prefer.
-- Pages built with code components render in the browser, so keep headings and text in normal Framer layers for SEO.
-- Video: host on Vimeo and embed rather than uploading large MP4s (the compressed files in `site/assets/video/` total about 30 MB).
+## 6. What Framer does differently from the website (decide early)
+
+- **Project page layout**: the website alternates text and images in each write-up section with big icon badges and stat cards. A
+  Framer CMS rich-text field gives headings, paragraphs and inline images, but not icon badges, stat cards or text/image side-by-side
+  sections. Options: (a) accept a simpler rich-text layout; (b) build one hand-made layout per project (more control, more work, not
+  driven by the CMS). Tell me which.
+- **Tall scrolling designs** (emails, magazines, app screens): use a Framer frame with vertical scroll overflow; they are not CMS-driven.
+- **Photo galleries**: I could not confirm that Framer's CMS has a many-photos field, so the tango gallery uses the **PhotoGallery** component
+  (photos added in its properties, not in the CMS).
+- **Random mix on every load**: Framer cannot do this natively; AmbientElements does it in code, so it only shows in Preview/published site.
+  On the canvas it shows nothing animated.
+- **Videos**: embed Vimeo links (Embed component) instead of uploading large MP4s. The hero reel should be a small, silent MP4.
+- **Privacy policy**: generic template, not legal advice; have it reviewed.
+- **ProjectsExplorer keeps its own copy of the project list** (`ProjectsData.ts`); adding a project means editing the CMS and that file.
+  The alternative is Framer's native CMS filter and sort on a Collection List (less custom styling, one place to edit).
+- **Code components render in the browser**, so keep headings and body text in normal Framer layers (good for SEO).

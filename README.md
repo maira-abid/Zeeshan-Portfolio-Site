@@ -70,7 +70,7 @@ Typical image weight per page is 150 KB to 900 KB (the Annual Winter Sale and ma
 |---|---|
 | Logo | `renderChrome()` in `js/app.js` (spade + "ZEESHAN" wordmark) |
 | Hero reel | `assets/video/hero-reel.mp4` is a cut from existing projects; replace with the real reel (silent, 16:9) |
-| Hero headline / sub text | `SITE.hero` in `js/data.js` (brief left it blank) |
+| Hero text | `SITE.hero.sub` in `js/data.js` (the headline was removed; the page keeps a screen-reader-only h1) |
 | Client logos | `SITE.clients` (text names for now) |
 | Headshot | About page (`renderAbout`) |
 | Social URLs | `SITE.social` (Vimeo points to vimeo.com/zeeshanabid) |

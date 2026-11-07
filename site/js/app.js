@@ -46,7 +46,7 @@
       '<div class="footer__brand">' + logo.replace('class="logo"', 'class="logo"') + '<p>Multi-disciplinary designer based in ' + esc(S.location) + '.</p></div>' +
       '<div><h2>Pages</h2><nav class="footer__links" aria-label="Footer">' + nav.replace(/ aria-current="page"/g, '') + '</nav></div>' +
       '<div><h2>Elsewhere</h2><div class="socials">' + socials + '</div></div>' +
-      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><a href="privacy.html">Privacy Policy</a></div></div></footer>';
+      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><span class="footer__links2"><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause animations</button><a href="privacy.html">Privacy Policy</a></span></div></div></footer>';
     document.body.insertAdjacentHTML('beforeend', footer);
     var mainEl = $('main'); if (mainEl) mainEl.id = 'main';
   }
@@ -66,7 +66,7 @@
     var h = S.hero;
     var hero = '<section class="hero" aria-label="Introduction">' +
       '<video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/' + h.poster + '"><source src="assets/' + h.video + '" type="video/mp4"></video>' +
-      '<div class="hero__inner"><h1>' + esc(h.headline) + '</h1><p>' + esc(h.sub) + '</p>' +
+      '<div class="hero__inner"><h1 class="sr-only">Zeeshan Abid, multi-disciplinary designer in Toronto</h1><p class="hero__sub">' + esc(h.sub) + '</p>' +
       '<div class="hero__actions"><a class="btn btn--fill" href="projects.html">View Projects</a><a class="btn btn--outline" href="about.html">About Me</a></div></div>' +
       '<button class="hero__toggle" id="heroToggle" type="button" aria-label="Pause background video"><svg viewBox="0 0 16 16" aria-hidden="true"><path id="heroToggleIcon" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg></button>' +
       '<div class="checker-strip" aria-hidden="true"></div></section>';
@@ -151,7 +151,7 @@
 
   /* ---------- PROJECT ---------- */
   function mediaItem(m, sizes, eager) {
-    if (m.t === 'img') return '<figure class="media media--zoom">' + imgTag(m.src, m.alt, ' data-zoom data-full="assets/img/' + m.src + '"', sizes, eager) + (m.caption ? '<figcaption class="media__cap">' + esc(m.caption) + '</figcaption>' : '') + '</figure>';
+    if (m.t === 'img') return '<figure class="media media--zoom">' + imgTag(m.src, m.alt, ' data-zoom data-full="assets/img/' + m.src + '" tabindex="0" role="button" aria-label="Enlarge image: ' + esc(m.alt) + '"', sizes, eager) + (m.caption ? '<figcaption class="media__cap">' + esc(m.caption) + '</figcaption>' : '') + '</figure>';
     if (m.t === 'scroll') return '<figure class="media"><div class="scrollframe" tabindex="0" role="region" aria-label="' + esc(m.alt) + ' (scrollable)">' + imgTag(m.src, m.alt, '', sizes) + '</div><div class="scrollhint">' + icon('bolt-o') + ' Scroll to explore</div></figure>';
     if (m.t === 'vimeo') return '<figure class="media"><div class="ratio"><iframe src="https://player.vimeo.com/video/' + m.id + '?dnt=1" title="' + esc(m.title) + '" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
     if (m.t === 'video') {
@@ -220,12 +220,20 @@
     lb.innerHTML = '<button type="button" aria-label="Close image">&times;</button><img alt="">'; document.body.appendChild(lb);
     var im = $('img', lb), last = null;
     function close() { lb.classList.remove('is-open'); document.body.style.overflow = ''; if (last) last.focus(); }
+    function openZoom(t) { last = t; im.src = t.dataset.full || t.currentSrc || t.src; im.alt = t.alt; lb.classList.add('is-open'); document.body.style.overflow = 'hidden'; $('button', lb).focus(); }
     document.addEventListener('click', function (e) {
       var t = e.target;
-      if (t.matches('img[data-zoom]')) { last = t; im.src = t.dataset.full || t.currentSrc || t.src; im.alt = t.alt; lb.classList.add('is-open'); document.body.style.overflow = 'hidden'; $('button', lb).focus(); }
+      if (t.matches('img[data-zoom]')) openZoom(t);
       else if (lb.classList.contains('is-open') && (t === lb || t.tagName === 'BUTTON')) close();
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('is-open')) close(); });
+    document.addEventListener('keydown', function (e) { // Enter or Space on a focused image opens it
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('img[data-zoom]')) { e.preventDefault(); openZoom(e.target); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'Tab') { e.preventDefault(); $('button', lb).focus(); } // the close button is the only control: keep focus on it
+    });
   }
 
   /* ---------- ABOUT ---------- */
@@ -244,7 +252,7 @@
   function renderContact() {
     function field(id, label, type, extra) {
       return '<div class="field"><label for="' + id + '">' + label + ' <i aria-hidden="true">*</i></label>' +
-        (type === 'textarea' ? '<textarea id="' + id + '" name="' + id + '" required ' + (extra || '') + '></textarea>' : '<input id="' + id + '" name="' + id + '" type="' + type + '" required ' + (extra || '') + '>') +
+        (type === 'textarea' ? '<textarea id="' + id + '" name="' + id + '" required aria-describedby="' + id + '-err" ' + (extra || '') + '></textarea>' : '<input id="' + id + '" name="' + id + '" type="' + type + '" required aria-describedby="' + id + '-err" ' + (extra || '') + '>') +
         '<span class="err" id="' + id + '-err"></span></div>';
     }
     var socials = S.social.map(function (s) { return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + icon(s.id) + '<span>' + s.label + '</span></a>'; }).join('');
@@ -303,4 +311,18 @@
   renderChrome();
   var routes = { home: renderHome, projects: renderProjects, project: renderProject, about: renderAbout, contact: renderContact, privacy: renderPrivacy };
   if (routes[page]) routes[page]();
+
+  /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */
+  (function initMotion() {
+    var btn = $('#motionToggle'); if (!btn) return;
+    var off = false; try { off = localStorage.getItem('zk-motion') === 'off'; } catch (e) {}
+    function apply(isOff, save) {
+      off = isOff; document.documentElement.classList.toggle('motion-off', off);
+      btn.setAttribute('aria-pressed', off ? 'true' : 'false'); btn.textContent = off ? 'Play animations' : 'Pause animations';
+      var v = $('#heroVideo'); if (v) { if (off) v.pause(); else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
+      if (save) { try { localStorage.setItem('zk-motion', off ? 'off' : 'on'); } catch (e) {} }
+    }
+    btn.addEventListener('click', function () { apply(!off, true); });
+    if (off) apply(true, false);
+  })();
 })();
