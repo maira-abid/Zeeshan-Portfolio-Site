@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="820" viewBox="0 0 820 820">
+  <!-- Contact page: lightning bolts, speech bubbles, cursors and play buttons, widely scattered. -->
+  <defs>
+    <path id="bolt" d="M10 1.8h8l-4 7h4.5L6 22.2l3-9H5z"/>
+    <path id="bubble" d="M3.5 4h17A1.5 1.5 0 0 1 22 5.5v10a1.5 1.5 0 0 1-1.5 1.5H11l-5.5 4.5V17h-2A1.5 1.5 0 0 1 2 15.5v-10A1.5 1.5 0 0 1 3.5 4z"/>
+    <path id="cursor" d="M5 2.5l14.5 8.2-6.3 1.8 3.7 6.6-2.8 1.6-3.7-6.6-4.5 4.7z"/>
+    <path id="play" d="M7 3.5l13 8.5-13 8.5z"/>
+    <path id="plus" d="M12 3.5v17M3.5 12h17"/>
+    <path id="star" d="M12 2l2.9 6.9 7.5.5-5.8 4.8 1.9 7.3L12 17.5l-6.5 4 1.9-7.3L1.6 9.4l7.5-.5z"/>
+    <path id="club" d="M12 2a4.2 4.2 0 0 0-3 7.1 4.5 4.5 0 1 0 2.3 8.2c-.1 2.2-.9 3.9-2.5 4.7h6.4c-1.6-.8-2.4-2.5-2.5-4.7a4.5 4.5 0 1 0 2.3-8.2A4.2 4.2 0 0 0 12 2z"/>
+  </defs>
+  <g fill="none" stroke="#a77fe0" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round" opacity=".18">
+    <use href="#bolt"   transform="translate(60 80) rotate(-14) scale(3)"/>
+    <use href="#bubble" transform="translate(360 60) rotate(6) scale(3.2)"/>
+    <use href="#cursor" transform="translate(640 190) rotate(10) scale(3)"/>
+    <use href="#play"   transform="translate(190 330) rotate(12) scale(2.4)"/>
+    <use href="#bubble" transform="translate(510 430) rotate(-10) scale(2.6)"/>
+    <use href="#plus"   transform="translate(700 500) scale(2.4)"/>
+    <use href="#bolt"   transform="translate(100 590) rotate(16) scale(2.6)"/>
+    <use href="#cursor" transform="translate(380 640) rotate(-8) scale(2.4)"/>
+    <use href="#star"   transform="translate(650 700) rotate(8) scale(2.2)"/>
+    <use href="#club"   transform="translate(250 760) rotate(-12) scale(2)"/>
+  </g>
+  <g fill="#a77fe0" opacity=".06">
+    <use href="#bolt"   transform="translate(300 250) rotate(8) scale(1.4)"/>
+    <use href="#cursor" transform="translate(740 50) rotate(-6) scale(1.3)"/>
+    <use href="#play"   transform="translate(560 620) rotate(10) scale(1.4)"/>
+  </g>
+</svg>

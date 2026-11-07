@@ -49,8 +49,15 @@ body {
   font-family: var(--f-body); font-size: 17px; line-height: 1.7; font-weight: 400;
   position: relative; overflow-x: hidden;
 }
-/* Sparse card-suit pattern: only on Home, About and Contact (the checkerboard is on every page) */
-body[data-page="home"], body[data-page="about"], body[data-page="contact"] { background-image: url('../assets/icons/pattern-tile.svg'); background-size: 900px 900px; }
+/* Sparse card-suit pattern: only on Home, About and Contact, and only below the header (it is painted on <main>, never behind the logo or nav). The checkerboard is on every page. */
+body[data-page="home"] main { background-image: url('../assets/icons/pattern-tile.svg'); background-size: 900px 900px; }
+body[data-page="about"] main { background-image: url('../assets/icons/pattern-about.svg'); background-size: 1000px 1000px; background-position: 140px 40px; }
+body[data-page="contact"] main { background-image: url('../assets/icons/pattern-contact.svg'); background-size: 820px 820px; background-position: -60px 90px; }
+/* Each page also gets its own checkerboard square size so the backgrounds are not identical */
+body[data-page="about"] .checker-bg { background-size: 84px 84px; }
+body[data-page="contact"] .checker-bg { background-size: 132px 132px; }
+body[data-page="projects"] .checker-bg { background-size: 96px 96px; }
+body[data-page="privacy"] .checker-bg { background-size: 116px 116px; }
 main { flex: 1; position: relative; z-index: 1; }
 img, video, iframe { display: block; max-width: 100%; }
 a { color: inherit; }
