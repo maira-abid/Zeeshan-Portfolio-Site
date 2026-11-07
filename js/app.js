@@ -15,16 +15,26 @@
   function filterUrl(type, id) { return 'projects/?' + type + '=' + encodeURIComponent(id); }
   // Responsive image: srcset lists the smaller copies made by tools/prepare-assets.js so the browser downloads the lightest
   // one that fits. sizes = how wide the image is shown; eager = above the fold (loads first, high priority).
+  // High-resolution protection: the page and the enlarge viewer never use the full-size file, only the largest web copy (1200 px wide at most),
+  // so a visitor is not handed the high-resolution artwork. (A deterrent, like the right-click block further down.)
+  function webSrc(src) {
+    var m = MEDIA['img/' + src] || {};
+    return (m.v && m.v.length) ? 'assets/img/' + src.replace(/\.webp$/, '') + '-' + m.v[m.v.length - 1] + '.webp' : 'assets/img/' + src;
+  }
   function imgTag(src, alt, extra, sizes, eager) {
     var m = MEDIA['img/' + src] || {};
     var dims = m.w ? ' width="' + m.w + '" height="' + m.h + '"' : '';
     var srcset = '';
     if (m.v && m.v.length) {
-      var base = src.replace(/.webp$/, '');
-      srcset = ' srcset="' + m.v.map(function (w) { return 'assets/img/' + base + '-' + w + '.webp ' + w + 'w'; }).join(', ') + ', assets/img/' + src + ' ' + m.w + 'w" sizes="' + (sizes || '100vw') + '"';
+      var base = src.replace(/\.webp$/, '');
+      srcset = ' srcset="' + m.v.map(function (w) { return 'assets/img/' + base + '-' + w + '.webp ' + w + 'w'; }).join(', ') + '" sizes="' + (sizes || '100vw') + '"';
     }
-    return '<img src="assets/img/' + src + '" alt="' + esc(alt || '') + '"' + dims + srcset + (eager ? ' fetchpriority="high" loading="eager"' : ' loading="lazy"') + ' decoding="async"' + (extra || '') + '>';
+    return '<img src="' + webSrc(src) + '" alt="' + esc(alt || '') + '"' + dims + srcset + (eager ? ' fetchpriority="high" loading="eager"' : ' loading="lazy"') + ' decoding="async"' + (extra || '') + '>';
   }
+  /* Image protection (a deterrent, not a lock): no right-click menu, no dragging an image out and no long-press "save image" on images,
+     so "Open image in new tab" and "Save image as" are not offered. It cannot stop screenshots or the browser's developer tools. */
+  document.addEventListener('contextmenu', function (e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
   function projectsInCategory(id) { return S.projects.filter(function (p) { return p.categories.indexOf(id) > -1; }); }
   function projectsInIndustry(id) { return S.projects.filter(function (p) { return p.industries.indexOf(id) > -1; }); }
 
@@ -36,7 +46,7 @@
     var activePage = page === 'project' ? 'projects' : page;
     var nav = navItems.map(function (n) { return '<a href="' + n[0] + '"' + (n[2] === activePage ? ' aria-current="page"' : '') + '>' + n[1] + '</a>'; }).join('');
     // Placeholder logo (replace with the real one)
-    var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home">' + icon('spade') + '<span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
+    var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home"><span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
 
     var header = '<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap">' + logo + '<nav class="nav" aria-label="Main">' + nav + '</nav></div></header>';
     document.body.insertAdjacentHTML('afterbegin', '<div class="checker-bg" aria-hidden="true"></div>' + header);
@@ -44,7 +54,7 @@
     var socials = S.social.map(function (s) {
       return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener"' + (s.href === '#' ? ' title="Link coming soon"' : '') + '>' + icon(s.id) + '<span>' + s.label + '</span></a>';
     }).join('');
-    var footer = '<footer class="site-footer"><div class="checker-strip" aria-hidden="true"></div><div class="wrap"><div class="footer__grid">' +
+    var footer = '<footer class="site-footer"><div class="wrap"><div class="footer__grid">' +
       '<div class="footer__brand">' + logo.replace('class="logo"', 'class="logo"') + '<p>Multi-disciplinary designer based in ' + esc(S.location) + '.</p></div>' +
       '<div><h2>Pages</h2><nav class="footer__links" aria-label="Footer">' + nav.replace(/ aria-current="page"/g, '') + '</nav></div>' +
       '<div><h2>Elsewhere</h2><div class="socials">' + socials + '</div></div>' +
@@ -68,13 +78,13 @@
   function renderHome() {
     var h = S.hero;
     var hero = '<section class="hero" aria-label="Introduction">' +
-      '<video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/' + h.poster + '"><source src="assets/' + h.video + '" type="video/mp4"></video>' +
+      '<video class="hero__video" id="heroVideo" muted loop playsinline preload="none" poster="assets/' + h.poster + '"><source src="assets/' + h.video + '" type="video/mp4"></video>' +
       '<div class="hero__inner"><h1 class="sr-only">Zeeshan Abid, multi-disciplinary designer in Toronto</h1><p class="hero__sub">' + esc(h.sub) + '</p>' +
       '<div class="hero__actions"><a class="btn btn--fill" href="projects/">View Projects</a><a class="btn btn--outline" href="about/">About Me</a></div></div>' +
       '<button class="hero__toggle" id="heroToggle" type="button" aria-label="Pause background video"><svg viewBox="0 0 16 16" aria-hidden="true"><path id="heroToggleIcon" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg></button>' +
-      '<div class="checker-strip" aria-hidden="true"></div></section>';
+      '</section>';
 
-    var group = S.clients.map(function (c) { return '<li class="ticker__item"><span>' + esc(c) + '</span>' + icon('star') + '</li>'; }).join('');
+    var group = S.clients.map(function (c) { return '<li class="ticker__item"><span>' + esc(c) + '</span><i class="ticker__dot" aria-hidden="true"></i></li>'; }).join('');
     var ticker = '<section class="ticker" aria-label="Clients"><p class="ticker__label">Brands I\'ve worked with</p><div class="ticker__viewport"><div class="ticker__track">' +
       '<ul class="ticker__group">' + group + '</ul><ul class="ticker__group" aria-hidden="true">' + group + '</ul></div></div></section>';
 
@@ -83,20 +93,33 @@
     var browse = S.categories.filter(function (c) { return projectsInCategory(c.id).length; }).map(function (c) {
       return '<a class="catlink" href="' + filterUrl('category', c.id) + '">' + icon(c.icon) + '<span>' + esc(c.name) + '</span></a>';
     }).join('');
-    var featuredHTML = '<section class="cat" aria-labelledby="h-featured"><div class="cat__head">' + icon('star') + '<h2 id="h-featured">Featured Work</h2></div>' +
-      '<div class="grid grid--3">' + featured.map(function (p) { return cardHTML(p, false); }).join('') + '</div>' +
-      '<div class="browse"><p class="browse__label">Browse by category</p><div class="browse__list">' + browse + '</div>' +
-      '<a class="btn btn--fill" href="projects/">View all projects</a></div></section>';
+    // Featured Work: full-screen panels that slide over one another, each led by the result it delivered
+    var panels = featured.map(function (p, i) {
+      var m = S.featuredMeta[p.slug];
+      var chips = p.categories.map(function (c) { return '<span class="pan__chip">' + esc(cat(c).name) + '</span>'; }).join('');
+      return '<li class="pan" style="--pa:' + m.color[0] + ';--on:' + m.color[1] + '"><div class="pan__in"><div class="pan__txt">' +
+        '<p class="pan__kick"><b>0' + (i + 1) + '</b> ' + esc(m.need) + '</p>' +
+        '<p class="pan__metric">' + esc(m.metric) + '</p><p class="pan__words">' + esc(m.words) + '</p>' +
+        '<h3><a class="pan__link" href="' + projectUrl(p) + '">' + esc(p.title) + '</a></h3><p class="pan__out">' + esc(m.outcome) + '</p><div class="pan__chips">' + chips + '</div></div>' +
+        '<div class="pan__img">' + imgTag(m.img, m.alt, m.pos ? ' style="object-position:' + m.pos + '"' : '', '(max-width: 860px) 100vw, 58vw', false) + '</div></div></li>';
+    }).join('');
+    var featuredHTML = '<section class="stack" aria-labelledby="h-featured"><div class="wrap"><div class="cat__head"><h2 id="h-featured">Featured Work</h2></div></div><ol class="stack__list">' + panels + '</ol></section>' +
+      '<div class="wrap home-cats"><section class="cat"><div class="browse"><p class="browse__label">Browse by category</p><div class="browse__list">' + browse + '</div>' +
+      '<a class="btn btn--fill" href="projects/">View all projects</a></div></section></div>';
 
-    $('main').innerHTML = hero + ticker + '<div class="wrap home-cats">' + featuredHTML + '</div>';
+    $('main').innerHTML = hero + ticker + featuredHTML;
 
     // video play/pause control (WCAG 2.2.2) + respect reduced motion
     var v = $('#heroVideo'), t = $('#heroToggle'), ic = $('#heroToggleIcon');
     var PLAY = 'M4 2l10 6-10 6z', PAUSE = 'M3 2h4v12H3zM9 2h4v12H9z';
     function sync() { var paused = v.paused; ic.setAttribute('d', paused ? PLAY : PAUSE); t.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video'); }
     t.addEventListener('click', function () { if (v.paused) v.play(); else v.pause(); sync(); });
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.pause(); }
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData);
     v.addEventListener('pause', sync); v.addEventListener('play', sync); sync();
+    // The video is not fetched until the page has finished loading, so the first screen paints from the poster image instead of competing
+    // with a 1 MB download. It stays still for visitors who ask for reduced motion or have Save-Data on (the play button still works).
+    function startHero() { if (calm) return; v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (document.readyState === 'complete') setTimeout(startHero, 200); else window.addEventListener('load', function () { setTimeout(startHero, 300); });
   }
 
   /* ---------- PROJECTS ---------- */
@@ -108,7 +131,7 @@
     }
     function link(label, count, params, current) {
       var q = []; Object.keys(params).forEach(function (k) { if (params[k]) q.push(k + '=' + encodeURIComponent(params[k])); });
-      return '<a data-filter rel="nofollow" href="projects/' + (q.length ? '?' + q.join('&') : '') + '"' + (current ? ' aria-current="true"' : '') + (count === 0 ? ' class="is-empty"' : '') + '><span>' + esc(label) + '</span><span class="n">' + count + '</span></a>';
+      return '<a data-filter rel="nofollow" href="projects/' + (q.length ? '?' + q.join('&') : '') + '"' + (current ? ' aria-current="true"' : '') + (count === 0 ? ' class="is-empty"' : '') + '><span>' + esc(label) + '</span>' + (count === '' ? '' : '<span class="n">' + count + '</span>') + '</a>';
     }
     function filtered() {
       var list = S.projects.slice();
@@ -121,7 +144,7 @@
     function render() {
       var list = filtered();
       var all = !state.category && !state.industry;
-      var side = '<h2>Projects</h2><div class="list">' + link('All projects', S.projects.length, {}, all) + '</div>' +
+      var side = '<h2>Projects</h2><div class="list">' + link('All projects', '', {}, all) + '</div>' +
         '<h2>Categories</h2><div class="list">' + S.categories.map(function (c) { return link(c.name, projectsInCategory(c.id).length, { category: c.id }, state.category === c.id); }).join('') + '</div>' +
         '<h2>Industries</h2><div class="list">' + S.industries.map(function (i) { return link(i.name, projectsInIndustry(i.id).length, { industry: i.id }, state.industry === i.id); }).join('') + '</div>';
       var label = all ? 'All projects' : (state.category ? cat(state.category) : ind(state.industry));
@@ -130,7 +153,7 @@
         '<div class="empty">' + icon('heart-o') + '<h3>Coming soon</h3><p>No projects in &ldquo;' + esc(label) + '&rdquo; yet. <a data-filter href="projects/" style="color:var(--violet-light)">See all projects</a></p></div>';
       $('#side').innerHTML = side;
       $('#filtersLabel').textContent = label;
-      $('#results').innerHTML = '<div class="results__bar"><p class="results__count" aria-live="polite"><b>' + list.length + '</b> ' + (list.length === 1 ? 'project' : 'projects') + (all ? '' : ' in <b>' + esc(label) + '</b>') + '</p>' +
+      $('#results').innerHTML = '<div class="results__bar"><p class="sr-only" aria-live="polite">' + list.length + ' ' + (list.length === 1 ? 'project' : 'projects') + (all ? '' : ' in ' + esc(label)) + '</p>' +
         '<label class="sort">Sort by <select id="sort"><option value="default">Featured</option><option value="az">Name: A &rarr; Z</option><option value="za">Name: Z &rarr; A</option></select></label></div>' + grid;
       $('#sort').value = state.sort;
     }
@@ -161,7 +184,7 @@
 
   /* ---------- PROJECT ---------- */
   function mediaItem(m, sizes, eager) {
-    if (m.t === 'img') return '<figure class="media media--zoom">' + imgTag(m.src, m.alt, ' data-zoom data-full="assets/img/' + m.src + '" tabindex="0" role="button" aria-label="Enlarge image: ' + esc(m.alt) + '"', sizes, eager) + (m.caption ? '<figcaption class="media__cap">' + esc(m.caption) + '</figcaption>' : '') + '</figure>';
+    if (m.t === 'img') return '<figure class="media media--zoom">' + imgTag(m.src, m.alt, ' data-zoom data-full="' + webSrc(m.src) + '" tabindex="0" role="button" aria-label="Enlarge image: ' + esc(m.alt) + '"', sizes, eager) + (m.caption ? '<figcaption class="media__cap">' + esc(m.caption) + '</figcaption>' : '') + '</figure>';
     if (m.t === 'scroll') return '<figure class="media"><div class="scrollframe" tabindex="0" role="region" aria-label="' + esc(m.alt) + ' (scrollable)">' + imgTag(m.src, m.alt, '', sizes) + '</div><div class="scrollhint">' + icon('bolt-o') + ' Scroll to explore</div></figure>';
     if (m.t === 'vimeo') return '<figure class="media"><div class="ratio"><iframe src="https://player.vimeo.com/video/' + m.id + '?dnt=1" title="' + esc(m.title) + '" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
     if (m.t === 'video') {
@@ -196,22 +219,48 @@
     var indChips = p.industries.map(function (i) { return '<a class="chip chip--ind" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
     var head = '<div class="wrap"><div class="p-head"><a class="back" href="projects/">' + icon('bolt-o') + ' All projects</a><h1>' + esc(p.title) + '</h1>' +
       '<dl class="meta"><div><dt>Client</dt><dd>' + esc(p.client) + '</dd></div><div><dt>Industry</dt><dd class="chips">' + indChips + '</dd></div><div><dt>Design category</dt><dd class="chips">' + catChips + '</dd></div></dl>' +
-      '<p class="lede">' + esc(p.summary) + '</p>' + (p.placeholder ? '<p class="notice">' + icon('star-o') + ' Full write-up coming soon</p>' : '') + '</div></div>';
+      '<p class="lede">' + esc(p.summary) + '</p>' + (p.placeholder ? '<p class="notice">Full write-up coming soon</p>' : '') + '</div></div>';
 
     var lead = '<div class="wrap lead-media">' + mediaItem(p.lead, '(max-width: 1280px) 100vw, 1240px', true) + '</div>';
 
-    var flip = false;
+    // Key results as one compact line at the very top of the page (same figures as the Outcome section; none are invented, so projects
+    // without published figures get no line).
+    var keyBlock = p.blocks.filter(function (b) { return b.stats; })[0];
+    var keystats = keyBlock ? '<div class="wrap"><ul class="keystats" aria-label="Key results">' + keyBlock.stats.map(function (s) {
+      var n = String(s.n).replace(/^-(?=\d)/, '−').replace(/(\d)-(\d)/g, '$1–$2');
+      return '<li><b>' + esc(n) + '</b> <span>' + esc(s.l) + '</span></li>';
+    }).join('') + '</ul></div>' : '';
+
+    // One steady layout for every chapter: the title sits in a left column, the writing and pictures in a right column, always in the same
+    // place. How the pictures are arranged depends on their shape: one tall picture sits beside the text; several tall pictures sit side by
+    // side in equal frames under it; wide pictures use the full width.
+    function shape(m) {
+      var d = null;
+      if (m.t === 'img' || m.t === 'scroll') d = MEDIA['img/' + m.src]; else if (m.t === 'video') d = MEDIA['video/' + m.src.replace('video/', '')];
+      return d && d.h > d.w * 1.1 ? 'p' : 'l';
+    }
     var body = p.blocks.map(function (b) {
       if (b.type === 'section') {
-        var text = '<div class="sec__text"><h2 class="sec__title"><span class="badge">' + icon(b.icon || 'star') + '</span><span>' + esc(b.title) + '</span></h2>' +
+        var head = '<div class="sec__head"><h2 class="sec__title"><span class="badge">' + icon((b.icon || 'bolt').replace(/-o$/, '') + '-o') + '</span><span>' + esc(b.title) + '</span></h2></div>';
+        var text = '<div class="sec__text">' +
           (b.paras || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
           (b.stats ? '<div class="stats">' + b.stats.map(function (s) { return '<div class="stat"><b>' + esc(s.n) + '</b><span>' + esc(s.l) + '</span></div>'; }).join('') + '</div>' : '') +
-          (b.bullets && !b.stats ? '<ul class="sec__list">' + b.bullets.map(function (t) { return '<li>' + icon('star') + '<span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
+          (b.bullets && !b.stats ? '<ul class="sec__list">' + b.bullets.map(function (t) { return '<li><i class="bullet" aria-hidden="true"></i><span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
         if (b.media && b.media.length) {
-          var html = '<section class="sec' + (flip ? ' sec--flip' : '') + '">' + text + '<div class="sec__media">' + b.media.map(function (m) { return mediaItem(m, '(max-width: 960px) 100vw, 660px'); }).join('') + '</div></section>';
-          flip = !flip; return html;
+          var n = b.media.length, o = shape(b.media[0]), side = n === 1 && o === 'p';
+          var sizes = side ? '(max-width: 960px) 100vw, 360px' : (n === 1 ? '(max-width: 960px) 100vw, 840px' : '(max-width: 960px) 50vw, 420px');
+          return '<section class="sec">' + head + '<div class="sec__body' + (side ? ' sec__body--side' : '') + '">' + text +
+            '<div class="sec__media sec__media--' + o + ' sec__media--n' + Math.min(n, 3) + '">' + b.media.map(function (m) { return mediaItem(m, sizes); }).join('') + '</div></div></section>';
         }
-        return '<section class="sec sec--solo">' + text + '</section>';
+        return '<section class="sec">' + head + '<div class="sec__body">' + text + '</div></section>';
+      }
+      if (b.type === 'media' && b.layout === 'scroll') {
+        // Tall designs (the email newsletters, magazines, app screens): same title-left / content-right layout as every other chapter, with the
+        // scrolling frames inside the text column, up to three in one row (they stack on small phones).
+        var ns = b.items.length;
+        return '<section class="sec"><div class="sec__head"><h2 class="sec__title"><span class="badge">' + icon('bolt-o') + '</span><span>' + esc(b.heading) + '</span></h2></div>' +
+          '<div class="sec__body">' + (b.note ? '<div class="sec__text"><p>' + esc(b.note) + '</p></div>' : '') +
+          '<div class="sec__media sec__media--s sec__media--n' + Math.min(ns, 3) + '">' + b.items.map(function (m) { return mediaItem(m, '(max-width: 599px) 100vw, 300px'); }).join('') + '</div></div></section>';
       }
       if (b.type === 'media') {
         return '<section class="mb"><div class="mb__head"><h2>' + esc(b.heading) + '</h2>' + (b.note ? '<p>' + esc(b.note) + '</p>' : '') + '</div><div class="mb__grid mb__grid--' + b.layout + '">' + b.items.map(function (m) { return mediaItem(m, BLOCK_SIZES[b.layout]); }).join('') + '</div></section>';
@@ -223,7 +272,7 @@
     var pager = '<nav class="pager" aria-label="More projects"><a class="prev" href="' + projectUrl(prev) + '"><span>&larr; Previous</span><b>' + esc(prev.title) + '</b></a><a class="next" href="' + projectUrl(next) + '"><span>Next &rarr;</span><b>' + esc(next.title) + '</b></a>' +
       '<a class="btn btn--outline pager__all" href="projects/" style="display:inline-flex;flex-direction:row;padding:0 30px;border-width:2px">Back to all projects</a></nav>';
 
-    $('main').innerHTML = head + lead + '<div class="wrap">' + body + pager + '</div>';
+    $('main').innerHTML = head + keystats + lead + '<div class="wrap">' + body + pager + '</div>';
     initLightbox();
   }
 
@@ -254,7 +303,7 @@
       var h = esc(t).replace('{{work}}', '<a href="projects/">versatile art-style</a>').replace('{{contact}}', '<a href="contact/">Drop me a message</a>');
       return '<p>' + h + '</p>';
     }).join('');
-    var facts = '<ul class="facts"><li>' + icon('heart') + esc(S.location) + '</li><li>' + icon('bolt') + 'Designing professionally since 2017</li><li>' + icon('star') + 'Branding &middot; Motion &middot; Marketing &middot; UI/UX</li></ul>';
+    var facts = '<ul class="facts"><li>' + icon('heart') + esc(S.location) + '</li><li>' + icon('bolt') + 'Designing professionally since 2017</li><li>' + icon('diamond') + 'Branding &middot; Motion &middot; Marketing &middot; UI/UX</li></ul>';
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Hello there</p><h1>About Me</h1></div>' +
       '<div class="about"><div class="headshot" role="img" aria-label="Headshot placeholder"><div class="headshot__ph">' + icon('spade') + 'Headshot<br>coming soon</div></div>' +
       '<div class="about__text">' + paras + facts + '</div></div></div>';
@@ -269,13 +318,21 @@
     }
     var socials = S.social.map(function (s) { return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + icon(s.id) + '<span>' + s.label + '</span></a>'; }).join('');
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Say hello</p><h1>Contact</h1><p>Have a design question or a project in mind? Fill in the form and your message will land straight in my inbox.</p></div>' +
-      '<div class="contact"><form class="form" id="contactForm" novalidate><div class="form__row">' + field('first', 'First name', 'text', 'autocomplete="given-name"') + field('last', 'Last name', 'text', 'autocomplete="family-name"') + '</div>' +
+      '<div class="contact"><aside class="side">' +
+      '<div class="side__hero"><h2>Based in Toronto</h2><p>' + esc(S.location) + '. Happy to work with clients anywhere.</p><p class="side__time" id="localTime"></p><p class="side__open"><i aria-hidden="true"></i>Open to new roles and projects</p></div>' +
+      '<div class="side__card"><h2>Find me online</h2><div class="socials" style="margin-top:14px">' + socials + '</div></div>' +
+      '<div class="side__card"><h2>Helpful to include</h2><ul class="side__list"><li>What you want to achieve</li><li>Your timeline</li><li>A link to anything relevant</li></ul></div></aside>' +
+      '<form class="form" id="contactForm" novalidate><div class="form__row">' + field('first', 'First name', 'text', 'autocomplete="given-name"') + field('last', 'Last name', 'text', 'autocomplete="family-name"') + '</div>' +
       field('email', 'Email address', 'email', 'autocomplete="email" inputmode="email"') + field('subject', 'Subject', 'text') + field('message', 'Message', 'textarea') +
-      '<button class="btn btn--fill" type="submit">Send message</button><p class="form__note">By sending this message you agree to the use of your details to reply to you, as described in the <a href="privacy/">Privacy Policy</a>.</p><div class="form__status" id="formStatus" role="status"></div></form>' +
-      '<aside class="side"><div class="side__card"><h2>Based in Toronto</h2><p>' + esc(S.location) + '. Happy to work with clients anywhere.</p></div>' +
-      '<div class="side__card"><h2>Find me online</h2><div class="socials" style="margin-top:14px">' + socials + '</div></div></aside></div></div>';
+      '<button class="btn btn--fill" type="submit">Send message</button><p class="form__note">By sending this message you agree to the use of your details to reply to you, as described in the <a href="privacy/">Privacy Policy</a>.</p><div class="form__status" id="formStatus" role="status"></div></form></div></div>';
 
     var form = $('#contactForm'), status = $('#formStatus');
+    var clock = $('#localTime');
+    if (clock && window.Intl && Intl.DateTimeFormat) {
+      var fmt = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', hour: 'numeric', minute: '2-digit' });
+      var tick = function () { if (!document.body.contains(clock)) return; clock.textContent = fmt.format(new Date()).replace(/\./g, '').toLowerCase() + ' in Toronto now'; setTimeout(tick, 30000); };
+      tick();
+    }
     var labels = { first: 'your first name', last: 'your last name', email: 'a valid email address', subject: 'a subject', message: 'a message' };
     function validate() {
       var ok = true;

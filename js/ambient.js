@@ -14,22 +14,23 @@
 
   // Per-page themes: count, share of each size tier, share of drawn (vector) shapes, and favourites for that page.
   var THEMES = {
-    home:     { count: 8,  tiers: { big: 0.22, medium: 0.33, small: 0.45 }, vector: 0.35, prefer: ['checker-bolt', 'hand-cards', 'thunder-outline', 'sunburst', 'flame', 'spiral-o', 'chip-o'] },
-    projects: { count: 5,  tiers: { big: 0.1,  medium: 0.3,  small: 0.6 },  vector: 0.5,  prefer: ['bolt-', 'star-', 'zigzagband-o', 'checkerstrip-o', 'chip-o', 'sparkle'] },
-    about:    { count: 3,  tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'star-', 'hstar', 'card-o', 'spiral-o', 'heart-o'] },
-    contact:  { count: 6,  tiers: { big: 0.15, medium: 0.3,  small: 0.55 }, vector: 0.55, prefer: ['cursor', 'bubble-o', 'play', 'plus-o', 'bezier-o', 'sparkle', 'orbit-o'] },
-    privacy:  { count: 3,  tiers: { big: 0,    medium: 0.4,  small: 0.6 },  vector: 0.6,  prefer: ['plus-o', 'ring-o', 'sparkle', 'star-'] }
+    // counts are deliberately low: just a few elements per page. No star shapes anywhere (removed at the owner's request).
+    home:     { count: 4,  tiers: { big: 0.22, medium: 0.33, small: 0.45 }, vector: 0.35, prefer: ['checker-bolt', 'hand-cards', 'thunder-outline', 'sunburst', 'flame', 'spiral-o', 'chip-o'] },
+    projects: { count: 3,  tiers: { big: 0.1,  medium: 0.3,  small: 0.6 },  vector: 0.5,  prefer: ['bolt-', 'zigzagband-o', 'checkerstrip-o', 'chip-o'] },
+    about:    { count: 2,  tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'card-o', 'spiral-o', 'heart-o'] },
+    contact:  { count: 3,  tiers: { big: 0.15, medium: 0.3,  small: 0.55 }, vector: 0.55, prefer: ['cursor', 'bubble-o', 'play', 'plus-o', 'bezier-o', 'orbit-o'] },
+    privacy:  { count: 2,  tiers: { big: 0,    medium: 0.4,  small: 0.6 },  vector: 0.6,  prefer: ['plus-o', 'ring-o'] }
   };
   var theme = THEMES[page];            // none on project pages
   if (!theme) return;
 
   var VECTORS = ['spiral-o', 'orbit-o', 'sparkle-o', 'sparkle', 'cursor', 'play-o', 'play', 'ring-o', 'bezier-o', 'plus-o', 'bubble-o',
-    'triangle-o', 'checker-o', 'checkerstrip-o', 'zigzag-o', 'zigzagband-o', 'sunburst', 'flame-o', 'flame', 'chip-o', 'card-o', 'hstar',
-    'bolt-o', 'star-o', 'spade-o', 'heart-o'];
+    'triangle-o', 'checker-o', 'checkerstrip-o', 'zigzag-o', 'zigzagband-o', 'sunburst', 'flame-o', 'flame', 'chip-o', 'card-o',
+    'bolt-o', 'spade-o', 'heart-o'];
   var SPIN = { 'spiral-o': 1, 'orbit-o': 1, 'sunburst': 1, 'chip-o': 1 };
   var SIZE = { big: [110, 180], medium: [56, 96], small: [26, 48] };     // longest side, px (biggest was 320, now 180: 44% smaller)
   var DEPTH = { big: [0.4, 0.6], medium: [0.55, 0.8], small: [0.7, 1] }; // scales how far the pointer pushes an element
-  var ASSETS = window.AMBIENT || [];
+  var ASSETS = (window.AMBIENT || []).filter(function (a) { return !/\/star-/.test(a.src); }); // no star images
 
   // random per load (mixed with the page name so pages differ even with the same clock)
   var seed = (Math.floor(Math.random() * 2147483000) + page.length * 7919) % 2147483646 + 1;
