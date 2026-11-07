@@ -2,8 +2,8 @@
  * Ambient background: floating elements in three size tiers (big / medium / small), drawn from the Patterns & Icons artwork
  * (cut-outs listed in ambient-assets.js) plus shapes drawn in the same style. Each page has its own theme (how many, which
  * sizes, which kinds) and the mix is randomised on every load, so no two pages (or visits) look the same.
- * All one neutral grey, small and faint so they never compete with the text. They are part of the page background: scattered over the whole
- * page height and they scroll away with the content like the checkerboard (no parallax, not pinned to the screen). They
+ * All one neutral grey, small and faint so they never compete with the text. They are a layer pinned behind the page (like a fixed
+ * wallpaper): they do NOT move when you scroll, and their motion is frozen while the page is scrolling, then resumes. They
  *  - spiral slowly around their resting point (the radius breathes in and out); spirals/sunbursts/chips also spin,
  *  - gently move away from the mouse pointer.
  * Transforms only; paused when the tab is hidden; static when the visitor prefers reduced motion.
@@ -16,7 +16,7 @@
   var THEMES = {
     home:     { count: 15, tiers: { big: 0.22, medium: 0.33, small: 0.45 }, vector: 0.35, prefer: ['checker-bolt', 'hand-cards', 'thunder-outline', 'sunburst', 'flame', 'spiral-o', 'chip-o'] },
     projects: { count: 9,  tiers: { big: 0.1,  medium: 0.3,  small: 0.6 },  vector: 0.5,  prefer: ['bolt-', 'star-', 'zigzagband-o', 'checkerstrip-o', 'chip-o', 'sparkle'] },
-    about:    { count: 12, tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'star-', 'hstar', 'card-o', 'spiral-o', 'heart-o'] },
+    about:    { count: 5,  tiers: { big: 0.15, medium: 0.5,  small: 0.35 }, vector: 0.3,  prefer: ['suit-', 'star-', 'hstar', 'card-o', 'spiral-o', 'heart-o'] },
     contact:  { count: 11, tiers: { big: 0.15, medium: 0.3,  small: 0.55 }, vector: 0.55, prefer: ['cursor', 'bubble-o', 'play', 'plus-o', 'bezier-o', 'sparkle', 'orbit-o'] },
     privacy:  { count: 5,  tiers: { big: 0,    medium: 0.4,  small: 0.6 },  vector: 0.6,  prefer: ['plus-o', 'ring-o', 'sparkle', 'star-'] }
   };
@@ -51,10 +51,8 @@
   root.className = 'ambient';
   root.setAttribute('aria-hidden', 'true');
   var items = [], used = {};
-  var body = document.body, H = innerHeight, W = innerWidth;
-  var pageH = Math.max(body.offsetHeight, H);
-  // longer pages get proportionally more elements (never denser than a short page), so they stay sparse
-  var count = Math.round(theme.count * Math.min(2.2, Math.max(1, pageH / 1400)));
+  var H = innerHeight, W = innerWidth;
+  var count = theme.count;
   function spread(n) { var a = []; for (var q = 0; q < n; q++) a.push((q + rnd()) / n); for (var j = a.length - 1; j > 0; j--) { var k = Math.floor(rnd() * (j + 1)), t = a[j]; a[j] = a[k]; a[k] = t; } return a; }
   var xs = spread(count), ys = spread(count); // evenly spread over the page width and height, in random order
 
@@ -91,15 +89,13 @@
   document.body.insertBefore(root, document.querySelector('main'));
 
   var mx = -9999, my = -9999, raf = 0, running = false;
-  function sizeRoot() { pageH = Math.max(body.offsetHeight, innerHeight); root.style.height = pageH + 'px'; }
-  sizeRoot();
-  if (window.ResizeObserver) new ResizeObserver(sizeRoot).observe(body); // follows the page if its height changes (images, filters, resize)
+  var paused = false, calm = 0, vt = 0, lastTs = 0; // vt = animation clock; it stops while the page is scrolling
 
   function draw(time) {
     for (var i = 0; i < items.length; i++) {
       var it = items[i];
       var x = it.x * (W - it.size);
-      var y = it.y * (pageH - it.size);   // a spot on the page itself, so it scrolls with the content
+      var y = it.y * (H - it.size);       // a spot on the screen: the layer is pinned, it does not move with scroll
       var rot = 0;
       if (!reduce) {
         // spiral path around the resting point: angle advances with time, radius breathes in and out
@@ -109,7 +105,7 @@
         y += Math.sin(ang) * rad;
         if (it.spin) rot = (time * it.speed * 40) % 360;
         // push away from the pointer (a bigger reach for bigger elements)
-        var dx = x + it.size / 2 - mx, dy = y + it.size / 2 - (my + scrollY); // pointer converted to page coordinates
+        var dx = x + it.size / 2 - mx, dy = y + it.size / 2 - my;
         var d = Math.sqrt(dx * dx + dy * dy), R = 120 + it.size * 0.6, tx = 0, ty = 0;
         if (d < R && d > 0) { var f = (1 - d / R) * 90 * it.depth; tx = dx / d * f; ty = dy / d * f; }
         it.ox += (tx - it.ox) * 0.12;
@@ -118,13 +114,18 @@
       it.el.style.transform = 'translate3d(' + (x + it.ox).toFixed(1) + 'px,' + (y + it.oy).toFixed(1) + 'px,0) rotate(' + rot.toFixed(1) + 'deg)';
     }
   }
-  function loop(ts) { draw(ts / 1000); raf = requestAnimationFrame(loop); }
+  function loop(ts) {
+    var dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.1) : 0; lastTs = ts;
+    if (!paused) { vt += dt; draw(vt); }     // frozen (nothing moves) while the page is being scrolled
+    raf = requestAnimationFrame(loop);
+  }
   function start() { if (!running && !reduce) { running = true; raf = requestAnimationFrame(loop); } }
-  function stop() { running = false; cancelAnimationFrame(raf); }
+  function stop() { running = false; lastTs = 0; cancelAnimationFrame(raf); }
 
   addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; } }, { passive: true });
   document.addEventListener('pointerleave', function () { mx = my = -9999; });
-  addEventListener('resize', function () { W = innerWidth; H = innerHeight; sizeRoot(); draw(performance.now() / 1000); });
+  addEventListener('scroll', function () { paused = true; clearTimeout(calm); calm = setTimeout(function () { paused = false; }, 220); }, { passive: true });
+  addEventListener('resize', function () { W = innerWidth; H = innerHeight; draw(vt); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
   draw(0);
   start();
