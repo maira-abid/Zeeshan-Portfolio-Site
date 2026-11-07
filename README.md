@@ -32,7 +32,7 @@ tools/
   export-framer.js       regenerates the Framer CSVs/data file
   extracts/              PDF pages used in the CarSwitch / Evercare write-ups
 framer/       CMS CSVs, code components and the Framer guide
-.github/      GitHub Pages deploy (publishes site/ only)
+(GitHub Pages is served from the gh-pages branch, which holds only the site/ folder; see below)
 ```
 
 Originals are never modified. To add a project: put the files in `originals/`, add them to `tools/prepare-assets.js`, run it, then add an entry to
@@ -97,6 +97,9 @@ projects grid) and a page-by-page build guide. Summary of the approach:
 
 ## GitHub and preview hosting
 
-The repository is private. `.github/workflows/pages.yml` publishes the `site/` folder to GitHub Pages on every push to `main`.
+The repository is private. GitHub Pages serves the `gh-pages` branch, which contains only the `site/` folder (no originals,
+brand files or tools). To publish changes: commit and push to `main`, then run `bash tools/publish-pages.sh`.
+(An automatic deploy on every push would need a GitHub Actions workflow, which requires the `workflow` permission on the
+GitHub login: `gh auth refresh -s workflow`.)
 The preview is for review only: it is marked `noindex` (meta tag + `robots.txt`) so it does not compete with the live Framer site.
 Remove those two when/if this copy should ever be public. Note: a Pages site is publicly reachable by anyone with the link even when the repo is private.
