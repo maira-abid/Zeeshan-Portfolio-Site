@@ -501,3 +501,20 @@ img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -we
 .keystats { position: relative; z-index: 1; list-style: none; margin: 0 0 clamp(20px, 3vw, 32px); padding: 16px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px clamp(22px, 3vw, 40px); border-block: 1px solid var(--line); }
 .keystats li { display: flex; align-items: baseline; gap: 8px; font-size: 14px; line-height: 1.35; color: var(--grey); }
 .keystats b { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 2vw, 26px); line-height: 1; letter-spacing: -.01em; color: var(--white); white-space: nowrap; }
+
+/* ---------- Themed cursor (see js/cursor.js): a card-suit pointer + a trailing ring; mouse only, off with "Pause animations" ---------- */
+html.zc-on:not(.motion-off), html.zc-on:not(.motion-off) *:not(input):not(textarea):not(select),
+html.zc-pre:not(.motion-off), html.zc-pre:not(.motion-off) *:not(input):not(textarea):not(select) { cursor: none !important; }
+.zc { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; transition: opacity .2s; }
+.zc.is-out, .zc.is-text { opacity: 0; }
+html.motion-off .zc { display: none; }
+.zc__ring, .zc__dot { position: fixed; left: 0; top: 0; will-change: transform; }
+.zc__ring i { display: block; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--violet); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .85); transition: transform .28s var(--ease), background-color .2s; }
+.zc.is-link .zc__ring i { transform: scale(1.7); background: rgba(143, 0, 255, .16); }
+.zc.is-down .zc__ring i { transform: scale(.7); }
+.zc.is-link.is-down .zc__ring i { transform: scale(1.35); }
+.zc__dot svg { display: block; fill: var(--violet); stroke: #fff; stroke-width: 1.6; stroke-linejoin: round; paint-order: stroke; transition: transform .25s var(--ease); }
+.zc.is-link .zc__dot svg { transform: scale(.7); }
+.zc__dot svg.pop { animation: zc-pop .38s var(--ease); }
+@keyframes zc-pop { 0% { transform: scale(1.7) rotate(-25deg); } 100% { transform: scale(1) rotate(0); } }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .zc { display: none; } }
