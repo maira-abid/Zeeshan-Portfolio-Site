@@ -67,12 +67,11 @@
 
   /* ---------- cards ---------- */
   function cardHTML(p, eager) {
-    var tags = p.categories.map(function (c) { return '<a class="chip chip--cat" data-filter rel="nofollow" href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('') +
-      p.industries.map(function (i) { return '<a class="chip chip--ind" data-filter rel="nofollow" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
+    // the industry comes after the client name ("CarSwitch | Automotive"), clickable (it filters the Projects page)
+    var inds = p.industries.map(function (i) { return '<a class="card__tag" data-filter rel="nofollow" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join(', ');
     return '<article class="card"><a class="card__img" href="' + projectUrl(p) + '" tabindex="-1" aria-hidden="true">' +
       '<img src="assets/img/thumbs/' + p.slug + '.webp" srcset="assets/img/thumbs/' + p.slug + '-450.webp 450w, assets/img/thumbs/' + p.slug + '.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
-      '<div class="card__tags">' + tags + '</div>' +
-      '<div class="card__body"><h3 class="card__title"><a href="' + projectUrl(p) + '">' + esc(p.title) + '</a></h3><p class="card__client">' + esc(p.client) + '</p></div></article>';
+      '<div class="card__body"><h3 class="card__title"><a href="' + projectUrl(p) + '">' + esc(p.title) + '</a></h3><p class="card__client">' + esc(p.client) + (inds ? ' <span class="card__sep" aria-hidden="true">|</span> ' + inds : '') + '</p></div></article>';
   }
 
   /* ---------- HOME ---------- */
@@ -80,7 +79,7 @@
     var h = S.hero;
     var hero = '<section class="hero" aria-label="Introduction">' +
       '<video class="hero__video" id="heroVideo" muted loop playsinline preload="none" poster="assets/' + h.poster + '"><source src="assets/' + h.video + '" type="video/mp4"></video>' +
-      '<div class="hero__inner"><h1 class="sr-only">Zeeshan Abid, multi-disciplinary designer in Toronto</h1><p class="hero__sub">' + esc(h.sub) + '</p>' +
+      '<div class="hero__inner"><h1>Answering questions with design</h1><p class="hero__sub">' + esc(h.sub) + '</p>' +
       '<div class="hero__actions"><a class="btn btn--fill" href="projects/">View Projects</a><a class="btn btn--outline" href="about/">About Me</a></div></div>' +
       '<button class="hero__toggle" id="heroToggle" type="button" aria-label="Pause background video"><svg viewBox="0 0 16 16" aria-hidden="true"><path id="heroToggleIcon" d="M3 2h4v12H3zM9 2h4v12H9z"/></svg></button>' +
       '</section>';
@@ -108,7 +107,7 @@
       '<div class="wrap home-cats"><section class="cat"><div class="browse"><p class="browse__label">Browse by category</p><div class="browse__list">' + browse + '</div>' +
       '<a class="btn btn--fill" href="projects/">View all projects</a></div></section></div>';
 
-    $('main').innerHTML = hero + ticker + featuredHTML;
+    $('main').innerHTML = hero + featuredHTML + ticker; // the client ticker sits at the bottom of the page
 
     // video play/pause control (WCAG 2.2.2) + respect reduced motion
     var v = $('#heroVideo'), t = $('#heroToggle'), ic = $('#heroToggleIcon');
@@ -145,27 +144,24 @@
     function render() {
       var list = filtered();
       var all = !state.category && !state.industry;
-      var side = '<h2>Projects</h2><div class="list">' + link('All projects', '', {}, all) + '</div>' +
-        '<h2>Categories</h2><div class="list">' + S.categories.map(function (c) { return link(c.name, projectsInCategory(c.id).length, { category: c.id }, state.category === c.id); }).join('') + '</div>' +
-        '<h2>Industries</h2><div class="list">' + S.industries.map(function (i) { return link(i.name, projectsInIndustry(i.id).length, { industry: i.id }, state.industry === i.id); }).join('') + '</div>';
-      var label = all ? 'All projects' : (state.category ? cat(state.category) : ind(state.industry));
-      label = typeof label === 'string' ? label : (label ? label.name : 'All projects');
+      // the categories sit across the top; switching category keeps an industry that is already chosen
+      var inInd = function (p) { return !state.industry || p.industries.indexOf(state.industry) > -1; };
+      var bar = link('All projects', '', {}, all) + S.categories.map(function (c) {
+        var n = S.projects.filter(function (p) { return p.categories.indexOf(c.id) > -1 && inInd(p); }).length;
+        return link(c.name, n, { category: c.id, industry: state.industry }, state.category === c.id);
+      }).join('');
+      var label = all ? 'All projects' : [state.category ? cat(state.category).name : '', state.industry ? ind(state.industry).name : ''].filter(Boolean).join(' / ');
+      var note = state.industry ? '<p class="pnote">Industry: <b>' + esc(ind(state.industry).name) + '</b> <a data-filter href="projects/' + (state.category ? '?category=' + state.category : '') + '">Clear</a></p>' : '';
       var grid = list.length ? '<div class="grid">' + list.map(function (p, i) { return cardHTML(p, i < 3); }).join('') + '</div>' :
         '<div class="empty">' + icon('heart-o') + '<h3>Coming soon</h3><p>No projects in &ldquo;' + esc(label) + '&rdquo; yet. <a data-filter href="projects/" style="color:var(--violet-light)">See all projects</a></p></div>';
-      $('#side').innerHTML = side;
-      $('#filtersLabel').textContent = label;
-      $('#results').innerHTML = '<div class="results__bar"><p class="sr-only" aria-live="polite">' + list.length + ' ' + (list.length === 1 ? 'project' : 'projects') + (all ? '' : ' in ' + esc(label)) + '</p>' +
+      $('#side').innerHTML = bar;
+      $('#results').innerHTML = '<div class="results__bar">' + note + '<p class="sr-only" aria-live="polite">' + list.length + ' ' + (list.length === 1 ? 'project' : 'projects') + (all ? '' : ' in ' + esc(label)) + '</p>' +
         '<label class="sort">Sort by <select id="sort"><option value="default">Featured</option><option value="az">Name: A &rarr; Z</option><option value="za">Name: Z &rarr; A</option></select></label></div>' + grid;
       $('#sort').value = state.sort;
     }
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">The work</p><h1>Projects</h1></div>' +
-      '<div class="projects-layout"><button type="button" class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="side"><span>Filter</span><b id="filtersLabel">All projects</b></button><aside class="filters" id="side" aria-label="Filter projects"></aside><div id="results"></div></div></div>';
+      '<div class="projects-layout"><nav class="pfilters" id="side" aria-label="Filter projects by category"></nav><div id="results"></div></div></div>';
     render();
-
-    // On phones the filter list is hidden behind a "Filter" button
-    var toggle = $('#filtersToggle'), panel = $('#side');
-    function setFilters(open) { panel.classList.toggle('is-open', open); toggle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
-    toggle.addEventListener('click', function () { setFilters(!panel.classList.contains('is-open')); });
 
     function push() {
       var q = []; if (state.category) q.push('category=' + state.category); if (state.industry) q.push('industry=' + state.industry); if (state.sort !== 'default') q.push('sort=' + state.sort);
@@ -176,8 +172,8 @@
       e.preventDefault();
       var u = new URL(a.href);
       state.category = u.searchParams.get('category') || ''; state.industry = u.searchParams.get('industry') || '';
-      push(); render(); setFilters(false);
-      window.scrollTo({ top: toggle.offsetParent && getComputedStyle(toggle).display !== 'none' ? $('.projects-layout').offsetTop - 12 : 0, behavior: 'smooth' });
+      push(); render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
     document.addEventListener('change', function (e) { if (e.target.id === 'sort') { state.sort = e.target.value; push(); render(); $('#sort').focus(); } });
     window.addEventListener('popstate', function () { state = readState(); render(); });
@@ -307,7 +303,15 @@
     var facts = '<ul class="facts"><li>' + icon('heart') + esc(S.location) + '</li><li>' + icon('bolt') + 'Designing professionally since 2017</li><li>' + icon('diamond') + 'Branding &middot; Motion &middot; Marketing &middot; UI/UX</li></ul>';
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Hello there</p><h1>About Me</h1></div>' +
       '<div class="about"><div class="headshot" role="img" aria-label="Headshot placeholder"><div class="headshot__ph">' + icon('spade') + 'Headshot<br>coming soon</div></div>' +
-      '<div class="about__text">' + paras + facts + '</div></div></div>';
+      '<div class="about__text">' + paras + facts + '</div></div>' + allStats() + '</div>';
+  }
+  // every published result, from every project, in one place (the same figures as the Outcome sections; none are invented)
+  function allStats() {
+    var out = [];
+    S.projects.forEach(function (p) { p.blocks.forEach(function (b) { if (b.stats) b.stats.forEach(function (s) { out.push({ n: String(s.n).replace(/^-(?=\d)/, '\u2212').replace(/(\d)-(\d)/g, '$1\u2013$2'), l: s.l, p: p }); }); }); });
+    if (!out.length) return '';
+    return '<section class="allstats" aria-labelledby="h-stats"><h2 id="h-stats">The results, all in one place</h2><p class="allstats__lede">Every published figure from my projects.</p><ul class="allstats__grid">' +
+      out.map(function (s) { return '<li><b>' + esc(s.n) + '</b><span>' + esc(s.l) + '</span><a href="' + projectUrl(s.p) + '">' + esc(s.p.title) + '</a></li>'; }).join('') + '</ul></section>';
   }
 
   /* ---------- CONTACT ---------- */
@@ -320,9 +324,9 @@
     var socials = S.social.map(function (s) { return '<a href="' + esc(s.href) + '" target="_blank" rel="noopener">' + icon(s.id) + '<span>' + s.label + '</span></a>'; }).join('');
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Say hello</p><h1>Contact</h1><p>Have a design question or a project in mind? Fill in the form and your message will land straight in my inbox.</p></div>' +
       '<div class="contact"><aside class="side">' +
-      '<div class="side__hero"><h2>Based in Toronto</h2><p>' + esc(S.location) + '. Happy to work with clients anywhere.</p><p class="side__time" id="localTime"></p><p class="side__open"><i aria-hidden="true"></i>Open to new roles and projects</p></div>' +
-      '<div class="side__card"><h2>Find me online</h2><div class="socials" style="margin-top:14px">' + socials + '</div></div>' +
-      '<div class="side__card"><h2>Helpful to include</h2><ul class="side__list"><li>What you want to achieve</li><li>Your timeline</li><li>A link to anything relevant</li></ul></div></aside>' +
+      '<div class="side__hero"><h2>Based in Toronto</h2><p>Happy to work with clients anywhere.</p><p class="side__time" id="localTime"></p><p class="side__open"><i aria-hidden="true"></i>Open to new roles and projects</p></div>' +
+      '<div class="side__card"><h2>Helpful to include</h2><ul class="side__list"><li>What you want to achieve</li><li>Your timeline</li><li>A link to anything relevant</li></ul></div>' +
+      '<div class="side__card"><h2>Find me online</h2><div class="socials" style="margin-top:14px">' + socials + '</div></div>' + '</aside>' +
       '<form class="form" id="contactForm" novalidate><div class="form__row">' + field('first', 'First name', 'text', 'autocomplete="given-name"') + field('last', 'Last name', 'text', 'autocomplete="family-name"') + '</div>' +
       field('email', 'Email address', 'email', 'autocomplete="email" inputmode="email"') + field('subject', 'Subject', 'text') + field('message', 'Message', 'textarea') +
       '<button class="btn btn--fill" type="submit">Send message</button><p class="form__note">By sending this message you agree to the use of your details to reply to you, as described in the <a href="privacy/">Privacy Policy</a>.</p><div class="form__status" id="formStatus" role="status"></div></form></div></div>';
@@ -404,6 +408,9 @@
     }
     btn.addEventListener('click', function () { apply(!isLight(), true); });
     apply(isLight(), false);
+    // with no saved choice the site follows the system colour mode, including when it changes while the page is open
+    var sys = window.matchMedia && matchMedia('(prefers-color-scheme: light)');
+    if (sys && sys.addEventListener) sys.addEventListener('change', function (e) { var saved = null; try { saved = localStorage.getItem('zk-theme'); } catch (er) {} if (!saved) apply(e.matches, false); });
   })();
 
   /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */

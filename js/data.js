@@ -31,7 +31,7 @@ window.SITE = {
   },
 
   hero: {
-    sub: 'Multi-disciplinary designer based in Toronto, ON, working in branding, motion, marketing and product design since 2017.',
+    sub: 'Multi-disciplinary designer, based in Toronto, working on animations, digital & print marketing, branding.',
     video: 'video/hero-reel.mp4',
     poster: 'img/posters/hero-reel.webp',
   },
@@ -101,11 +101,9 @@ window.SITE = {
   about: [
     "Hello, my name is Zeeshan. I'm a multi-disciplinary designer based in Toronto, ON, Canada and have been professionally working as a designer since 2017.",
     "I have worked on graphic design, social media design, print/ packaging design, branding, motion graphics animations and marketing campaigns in many different industries such as fashion, advertising, healthcare, retail, tech, apps, food and cannabis.",
-    "Within the design process I enjoy working with clients, building brands, understanding various design challenges, problem solving and answering questions through design.",
-    "Recently, I have developed a keen interest in design research, creative management and marketing and looking for ways in which I can apply my skills, knowledge and experience within these domains as well.",
-    "When I'm not working, you'll usually find me exploring other hobbies such as tango dancing, going to the cinema, reading fiction or somewhere in a restaurant/ cafe critiquing the menu design.",
+    "Within the design process I enjoy building brands, understanding various design challenges, problem solving and answering questions through design.",
     // The last paragraph contains the two required links; {{work}} and {{contact}} are replaced in app.js.
-    "So if you're looking for someone to answer your design questions, someone with a {{work}} and skill-set and someone who has built brands that have raised significantly and consistently raised revenues, look no further. {{contact}} and we'll start answering those questions.",
+    "So if you're looking for someone to answer your design questions, someone with a {{work}} and skill-set and someone who has built brands that have raised significantly and consistently raised revenues, look no further. {{contact}} and we'll start answering those questions."
   ],
 
   // Generic Canadian privacy policy (PIPEDA). Template only: have it reviewed before relying on it.
