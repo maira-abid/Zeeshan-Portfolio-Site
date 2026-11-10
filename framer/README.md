@@ -1,5 +1,7 @@
 # Copying the site into Framer
 
+> **Out of date in places (09-Nov-2026):** the website has since dropped the floating elements, the checker is now very subtle black/grey or white/grey, all corners are square, the cursor is a simple inverting dot, the Projects page has no side panel (categories across the top, industry after the client name), the home page has a headline, left-aligned copy and the ticker at the bottom, and the About copy changed. See the main README ("Feedback of 09-Nov-2026") and update this pack in the single Framer pass.
+
 Framer cannot import an HTML/CSS/JS site, so the local build (`site/`) is the design reference and this folder holds everything that can be
 pasted, imported or uploaded into Framer. Regenerate the exports after editing `site/js/data.js`:
 `cd tools && node export-framer.js` (and `node extract-ambient.js` if the background artwork changes). Updated for the design as of
