@@ -107,7 +107,19 @@
       '<div class="wrap home-cats"><section class="cat"><div class="browse"><p class="browse__label">Browse by category</p><div class="browse__list">' + browse + '</div>' +
       '<a class="btn btn--fill" href="projects/">View all projects</a></div></section></div>';
 
-    $('main').innerHTML = hero + featuredHTML + ticker; // the client ticker sits at the bottom of the page
+    // What I can help with: the same six-part list as the new site
+    var services = [
+      ['Brand identity', 'Names, logos, colour, type and the voice that makes people remember you.'],
+      ['Motion and animation', 'Explainers, social videos and kinetic type that make a message stick.'],
+      ['Campaign design', 'Email, social and web visuals that turn attention into sales.'],
+      ['Print and packaging', 'Newspaper ads, magazines, boxes and storefronts.'],
+      ['UI and UX design', 'App screens, flows and wireframes people can actually use.'],
+      ['Photography', 'Event photography, from brand launches to tango floors.']
+    ];
+    var servicesHTML = '<section class="svc" aria-labelledby="h-svc"><div class="wrap"><div class="cat__head"><h2 id="h-svc">What I can help with</h2></div><ul class="services">' +
+      services.map(function (s) { return '<li><b>' + esc(s[0]) + '</b><span>' + esc(s[1]) + '</span></li>'; }).join('') + '</ul></div></section>';
+
+    $('main').innerHTML = hero + featuredHTML + servicesHTML + ticker; // the client ticker sits at the bottom of the page
 
     // video play/pause control (WCAG 2.2.2) + respect reduced motion
     var v = $('#heroVideo'), t = $('#heroToggle'), ic = $('#heroToggleIcon');
@@ -214,19 +226,30 @@
 
     var catChips = p.categories.map(function (c) { return '<a class="chip chip--cat" href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('');
     var indChips = p.industries.map(function (i) { return '<a class="chip chip--ind" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join('');
-    var head = '<div class="wrap"><div class="p-head"><a class="back" href="projects/">' + icon('bolt-o') + ' All projects</a><h1>' + esc(p.title) + '</h1>' +
-      '<dl class="meta"><div><dt>Client</dt><dd>' + esc(p.client) + '</dd></div><div><dt>Industry</dt><dd class="chips">' + indChips + '</dd></div><div><dt>Design category</dt><dd class="chips">' + catChips + '</dd></div></dl>' +
-      '<p class="lede">' + esc(p.summary) + '</p>' + (p.placeholder ? '<p class="notice">Full write-up coming soon</p>' : '') + '</div></div>';
+    // Same layout as the new site's case pages: a band in the project's own colour, the cover, a "at a glance" box beside the story, and a next-project band.
+    var cm = (S.caseMeta || {})[p.slug] || {}, pc = cm.color || ['#8f00ff', '#ffffff'];
+    var theme = '--pa:' + pc[0] + ';--on:' + pc[1];
+    var heroChips = p.categories.map(function (c) { return '<a class="chip chip--hero" href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a>'; }).join('');
+    var head = '<section class="case-hero" style="' + theme + '"><div class="wrap"><p class="crumbs"><a href="projects/">Projects</a> / ' + esc(p.title) + '</p><h1>' + esc(p.title) + '</h1>' +
+      '<p class="lede">' + esc(cm.outcome || p.summary) + '</p>' + (p.placeholder ? '<p class="notice">Full write-up coming soon</p>' : '') + '<div class="tags">' + heroChips + '</div></div></section>';
 
     var lead = '<div class="wrap lead-media">' + mediaItem(p.lead, '(max-width: 1280px) 100vw, 1240px', true) + '</div>';
 
-    // Key results as one compact line at the very top of the page (same figures as the Outcome section; none are invented, so projects
-    // without published figures get no line).
+    // Key results (the same figures as the Outcome section; none are invented, so projects without published figures get no results box)
     var keyBlock = p.blocks.filter(function (b) { return b.stats; })[0];
-    var keystats = keyBlock ? '<div class="wrap"><ul class="keystats" aria-label="Key results">' + keyBlock.stats.map(function (s) {
-      var n = String(s.n).replace(/^-(?=\d)/, '−').replace(/(\d)-(\d)/g, '$1–$2');
-      return '<li><b>' + esc(n) + '</b> <span>' + esc(s.l) + '</span></li>';
-    }).join('') + '</ul></div>' : '';
+    var results = keyBlock ? '<div class="glance__res"><dt>Results</dt><dd><ul>' + keyBlock.stats.slice(0, 3).map(function (s) {
+      var n = String(s.n).replace(/^-(?=d)/, '−').replace(/(d)-(d)/g, '$1–$2');
+      return '<li><b>' + esc(n) + '</b> ' + esc(s.l) + '</li>';
+    }).join('') + '</ul></dd></div>' : '';
+    var glance = '<aside class="glance" aria-label="Project at a glance"><dl><div><dt>Client</dt><dd>' + esc(p.client) + '</dd></div>' +
+      '<div><dt>Industry</dt><dd>' + p.industries.map(function (i) { return '<a class="card__tag" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join(', ') + '</dd></div>' +
+      '<div><dt>What I did</dt><dd><ul>' + p.categories.map(function (c) { return '<li><a href="' + filterUrl('category', c) + '">' + esc(cat(c).name) + '</a></li>'; }).join('') + '</ul></dd></div>' + results + '</dl></aside>';
+    // "The short version" is the project's own Reframe write-up (projects without one use their summary). Reframe is not repeated as a chapter below.
+    var reframe = p.blocks.filter(function (b) { return b.title === 'Reframe'; })[0];
+    var tldr = '<div class="tldr" style="' + theme + '"><p class="tldr__label">The short version</p>' + (reframe && reframe.paras && reframe.paras.length ? reframe.paras : [p.summary]).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' +
+      (reframe && reframe.media && reframe.media.length ? '<div class="tldr__media">' + reframe.media.map(function (m) { return mediaItem(m, '(max-width: 960px) 100vw, 840px'); }).join('') + '</div>' : '');
+    var LABELS = { 'Introduction': ['Context', 'About the client'], 'Problem Identification': ['The challenge', 'What needed solving'], 'My Role': ['My role', 'What I did'], 'Process & Problem Solving': ['Approach', 'How I worked it out'], 'The Outcome': ['Results', 'What happened'] };
+    var secN = 0;
 
     // One steady layout for every chapter: the title sits in a left column, the writing and pictures in a right column, always in the same
     // place. How the pictures are arranged depends on their shape: one tall picture sits beside the text; several tall pictures sit side by
@@ -237,8 +260,10 @@
       return d && d.h > d.w * 1.1 ? 'p' : 'l';
     }
     var body = p.blocks.map(function (b) {
+      if (b.type === 'section' && b.title === 'Reframe') return '';
       if (b.type === 'section') {
-        var head = '<div class="sec__head"><h2 class="sec__title"><span class="badge">' + icon((b.icon || 'bolt').replace(/-o$/, '') + '-o') + '</span><span>' + esc(b.title) + '</span></h2></div>';
+        var lab = LABELS[b.title] || [b.title, b.title]; secN++;
+        var head = '<div class="sec__head"><h2 class="sec__title"><small>' + (secN < 10 ? '0' : '') + secN + ' / ' + esc(lab[0]) + '</small><span>' + esc(lab[1]) + '</span></h2></div>';
         var text = '<div class="sec__text">' +
           (b.paras || []).map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') +
           (b.stats ? '<div class="stats">' + b.stats.map(function (s) { return '<div class="stat"><b>' + esc(s.n) + '</b><span>' + esc(s.l) + '</span></div>'; }).join('') + '</div>' : '') +
@@ -255,7 +280,7 @@
         // Tall designs (the email newsletters, magazines, app screens): same title-left / content-right layout as every other chapter, with the
         // scrolling frames inside the text column, up to three in one row (they stack on small phones).
         var ns = b.items.length;
-        return '<section class="sec"><div class="sec__head"><h2 class="sec__title"><span class="badge">' + icon('bolt-o') + '</span><span>' + esc(b.heading) + '</span></h2></div>' +
+        return '<section class="sec"><div class="sec__head"><h2 class="sec__title"><small>Full designs</small><span>' + esc(b.heading) + '</span></h2></div>' +
           '<div class="sec__body">' + (b.note ? '<div class="sec__text"><p>' + esc(b.note) + '</p></div>' : '') +
           '<div class="sec__media sec__media--s sec__media--n' + Math.min(ns, 3) + '">' + b.items.map(function (m) { return mediaItem(m, '(max-width: 599px) 100vw, 300px'); }).join('') + '</div></div></section>';
       }
@@ -265,11 +290,12 @@
       return '';
     }).join('');
 
-    var prev = S.projects[(idx - 1 + S.projects.length) % S.projects.length], next = S.projects[(idx + 1) % S.projects.length];
-    var pager = '<nav class="pager" aria-label="More projects"><a class="prev" href="' + projectUrl(prev) + '"><span>&larr; Previous</span><b>' + esc(prev.title) + '</b></a><a class="next" href="' + projectUrl(next) + '"><span>Next &rarr;</span><b>' + esc(next.title) + '</b></a>' +
-      '<a class="btn btn--outline pager__all" href="projects/" style="display:inline-flex;flex-direction:row;padding:0 30px;border-width:2px">Back to all projects</a></nav>';
+    var next = S.projects[(idx + 1) % S.projects.length], nm = (S.caseMeta || {})[next.slug] || {}, nc = nm.color || ['#8f00ff', '#ffffff'];
+    var nextBand = '<div class="c-next"><a href="' + projectUrl(next) + '" style="--pa:' + nc[0] + ';--on:' + nc[1] + '"><div class="wrap c-next__in"><span class="c-next__img"><img src="assets/img/thumbs/' + next.slug + '-450.webp" alt="" width="450" height="338" loading="lazy" decoding="async"></span>' +
+      '<span class="c-next__txt"><span class="c-next__label">Next project</span><b>' + esc(next.title) + '</b></span></div></a></div>' +
+      '<div class="wrap c-back"><a class="btn btn--outline" href="projects/">Back to all projects</a></div>';
 
-    $('main').innerHTML = head + keystats + lead + '<div class="wrap">' + body + pager + '</div>';
+    $('main').innerHTML = head + lead + '<div class="wrap c-case">' + glance + '<div class="c-prose">' + tldr + body + '</div></div>' + nextBand;
     initLightbox();
   }
 

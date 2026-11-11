@@ -205,3 +205,9 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 - **About:** the new copy from `ABOUT ME_2.txt` (the "versatile art-style" and "Drop me a message" links are kept), and a section at the bottom with every published result from every project (16 figures, each linking to its project).
 - **Contact:** "Based in Toronto. Happy to work with clients anywhere." (the heading plus the line); "Helpful to include" now comes before "Find me online".
 - **Framer:** `framer/` was written before these changes (it still describes the floating elements, rounded boxes, the old cursor, the side filter and the old About). Update it in the single Framer pass.
+
+## Changes of 10-Nov-2026
+
+- **Pointer:** the normal arrow shape, solid black in the light version and solid white in the dark version; over anything clickable it inverts what is under it (code: `site/js/cursor.js`, styles at the end of `site/css/style.css`). The real arrow is hidden from the first paint and the position is carried between pages so nothing flashes. Text fields keep the text cursor; "Pause animations" brings back the normal arrow.
+- **Single project pages:** now laid out like the new site's case pages: a band in the project colour with the title and result line, the cover, an "at a glance" box (client, industry, what I did, results) beside the short version and numbered sections, and a next-project band with a thumbnail. Code: `renderProject()` in `site/js/app.js`; colours and wording in `caseMeta` in `site/js/data.js`.
+- **Home:** a "What I can help with" list (six numbered items) now sits between Featured Work and the client ticker. Code: `renderHome()` in `site/js/app.js`, styles under "What I can help with".
