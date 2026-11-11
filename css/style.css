@@ -491,18 +491,6 @@ img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -we
 .keystats li { display: flex; align-items: baseline; gap: 8px; font-size: 14px; line-height: 1.35; color: var(--grey); }
 .keystats b { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 2vw, 26px); line-height: 1; letter-spacing: -.01em; color: var(--white); white-space: nowrap; }
 
-/* ---------- Pointer (see js/cursor.js): a small dot that inverts what it is over: black on light pages, white on dark ones ---------- */
-html.zc-on:not(.motion-off), html.zc-on:not(.motion-off) *:not(input):not(textarea):not(select),
-html.zc-pre:not(.motion-off), html.zc-pre:not(.motion-off) *:not(input):not(textarea):not(select) { cursor: none !important; }
-.zc { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; transition: opacity .15s; }
-.zc i { display: block; width: 16px; height: 16px; border-radius: 50%; background: rgba(255, 255, 255, .02); -webkit-backdrop-filter: grayscale(1) invert(1); backdrop-filter: grayscale(1) invert(1); transition: scale .18s var(--ease); }
-@supports not ((backdrop-filter: invert(1)) or (-webkit-backdrop-filter: invert(1))) { .zc { mix-blend-mode: difference; } .zc i { background: #fff; } }
-.zc.is-big i { scale: 2.8; }
-.zc.is-down i { scale: .8; }
-.zc.is-big.is-down i { scale: 2.2; }
-.zc.is-out, .zc.is-text { opacity: 0; }
-html.motion-off .zc { display: none; }
-@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .zc { display: none; } }
 
 /* ---------- 09-Nov feedback: hero copy and buttons to the left ---------- */
 .hero__inner { width: 100%; max-width: calc(var(--wrap) + var(--gutter) * 2); margin-inline: auto; text-align: left; }
@@ -539,3 +527,86 @@ html.motion-off .zc { display: none; }
 .allstats__grid span { font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--grey); }
 .allstats__grid a { margin-top: auto; padding-top: 6px; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--violet-light); text-underline-offset: 3px; }
 .allstats__grid a:hover { color: var(--white); }
+
+/* ---------- What I can help with (home) ---------- */
+.svc { position: relative; z-index: 1; padding: clamp(48px, 7vw, 90px) 0 clamp(48px, 7vw, 90px); }
+.svc .cat__head { border-bottom: 0; padding-bottom: 0; margin-bottom: clamp(22px, 3vw, 36px); }
+.services { list-style: none; counter-reset: svc; display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--white); }
+.services li { counter-increment: svc; display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 16px; align-content: start; padding: 26px 24px 28px 0; border-bottom: 2px solid var(--white); }
+.services li:nth-child(odd) { border-right: 2px solid var(--white); }
+.services li:nth-child(even) { padding-left: 24px; }
+.services li::before { content: counter(svc, decimal-leading-zero); grid-row: span 2; font-size: 12px; font-weight: 500; color: var(--muted); padding-top: .8em; }
+.services b { font-family: var(--f-display); font-weight: 850; font-size: clamp(18px, 1.7vw, 24px); line-height: 1; text-transform: uppercase; margin-bottom: 8px; }
+.services span { color: var(--muted); max-width: 44ch; line-height: 1.55; }
+@media (max-width: 720px) {
+  .services { grid-template-columns: 1fr; }
+  .services li:nth-child(odd) { border-right: 0; }
+  .services li:nth-child(even) { padding-left: 0; }
+}
+
+/* ---------- Single project pages (same layout as the new site's case pages) ---------- */
+.case-hero { position: relative; z-index: 1; margin-top: clamp(24px, 3.5vw, 44px); background: var(--pa); border-top: 2px solid var(--white); color: var(--on); border-bottom: 2px solid var(--white); padding: clamp(32px, 5vw, 64px) 0 clamp(32px, 5vw, 56px); }
+.case-hero .crumbs { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 26px; }
+.case-hero .crumbs a { color: inherit; }
+.case-hero h1 { font-family: var(--f-display); font-weight: 850; font-size: clamp(32px, 5.4vw, 74px); line-height: .98; letter-spacing: -.02em; text-transform: uppercase; text-wrap: balance; color: inherit; }
+.case-hero .lede { margin-top: 24px; max-width: 36ch; font-size: clamp(18px, 1.7vw, 22px); font-weight: 600; color: inherit; }
+.case-hero .notice { margin-top: 14px; color: inherit; }
+.case-hero .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.chip--hero { display: inline-block; padding: 6px 10px; border: 1.5px solid currentColor; color: inherit; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+.chip--hero:hover, .chip--hero:focus-visible { background: var(--on); color: var(--pa); border-color: var(--on); }
+.lead-media { margin-top: clamp(24px, 4vw, 48px); }
+.c-case { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(250px, 310px) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); padding-block: clamp(40px, 6vw, 80px); align-items: start; }
+.glance { position: sticky; top: 24px; border: 2px solid var(--white); background: var(--surface-88); }
+.glance dl > div { padding: 14px 16px; border-bottom: 2px solid var(--white); }
+.glance dl > div:last-child { border-bottom: 0; }
+.glance dt { margin-bottom: 5px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.glance dd { font-weight: 600; }
+.glance ul { list-style: none; padding: 0; }
+.glance li a { text-decoration: none; }
+.glance li a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.glance .glance__res { background: var(--pa); color: var(--on); }
+.glance .glance__res dt { color: inherit; }
+.glance .glance__res li + li { margin-top: 6px; }
+.glance .glance__res b { font-family: var(--f-display); font-weight: 850; font-size: 24px; line-height: 1; }
+.c-prose { min-width: 0; }
+.tldr { background: var(--pa); color: var(--on); border: 2px solid var(--white); padding: clamp(20px, 3vw, 32px); }
+.tldr__label { margin-bottom: 12px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.tldr p:not(.tldr__label) { font-size: clamp(17px, 1.6vw, 21px); font-weight: 600; line-height: 1.5; }
+.tldr p:not(.tldr__label) + p { margin-top: 14px; }
+.tldr__media { margin-top: 18px; }
+.c-prose .sec { display: block; margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--white); }
+.c-prose .tldr + .sec { margin-top: 36px; }
+.c-prose .sec__head { position: static; margin-bottom: 18px; }
+.c-prose .sec__title { display: block; font-family: var(--f-display); font-weight: 850; font-size: clamp(24px, 3vw, 40px); line-height: .98; text-transform: uppercase; letter-spacing: -.01em; }
+.c-prose .sec__title small { display: block; margin-bottom: 12px; font-size: 12px; font-weight: 700; letter-spacing: .14em; line-height: 1.4; color: var(--muted); }
+.c-prose .sec__title span { display: block; }
+.c-prose .mb { margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--white); }
+.c-next a { display: block; background: var(--pa); color: var(--on); text-decoration: none; border-block: 2px solid var(--white); padding: clamp(36px, 6vw, 80px) 0; }
+.c-next__in { display: grid; grid-template-columns: clamp(110px, 22vw, 260px) minmax(0, 1fr); gap: clamp(16px, 3vw, 44px); align-items: center; }
+.c-next__img { display: block; aspect-ratio: 4 / 3; overflow: hidden; border: 2px solid var(--white); background: var(--panel); }
+.c-next__img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.c-next__label { display: block; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.c-next b { display: block; margin-top: 10px; font-family: var(--f-display); font-weight: 850; font-size: clamp(26px, 4.6vw, 62px); line-height: .95; text-transform: uppercase; text-decoration-thickness: .05em; }
+.c-next a:hover b, .c-next a:focus-visible b { text-decoration: underline; }
+.c-back { padding-block: 32px clamp(48px, 7vw, 90px); position: relative; z-index: 1; }
+@media (max-width: 860px) {
+  .c-case { grid-template-columns: minmax(0, 1fr); }
+  .glance { position: static; }
+}
+
+/* ---------- Pointer (see js/cursor.js): the normal arrow, solid black on the light version and solid white on the dark one. Over anything clickable it inverts. ---------- */
+html.zc-on:not(.motion-off), html.zc-on:not(.motion-off) *:not(input):not(textarea):not(select),
+html.zc-pre:not(.motion-off), html.zc-pre:not(.motion-off) *:not(input):not(textarea):not(select) { cursor: none !important; }
+.zc { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; transition: opacity .15s; }
+.zc svg { display: block; width: 17px; height: 27px; overflow: visible; }
+.zc svg path { fill: #fff; stroke: #000; stroke-width: 1.3; stroke-linejoin: round; }
+html[data-theme="light"] .zc svg path { fill: #000; stroke: #fff; }
+.zc.on-dark svg path { fill: #fff; stroke: #000; }
+.zc i { display: none; width: 16px; height: 26px; clip-path: polygon(0 0, 0 22px, 5.2px 17.4px, 8.6px 25.4px, 11.6px 24px, 8.3px 16.4px, 15.2px 16.4px); background: rgba(255, 255, 255, .02); -webkit-backdrop-filter: grayscale(1) invert(1) contrast(4); backdrop-filter: grayscale(1) invert(1) contrast(4); }
+.zc.is-big svg { display: none; }
+.zc.is-big i { display: block; }
+@supports not ((backdrop-filter: invert(1)) or (-webkit-backdrop-filter: invert(1))) { .zc.is-big { mix-blend-mode: difference; } .zc.is-big i { background: #fff; } }
+.zc.is-out, .zc.is-text { opacity: 0; }
+.zc.is-down { transform-origin: 0 0; }
+html.motion-off .zc { display: none; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .zc { display: none; } }

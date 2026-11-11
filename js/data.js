@@ -71,6 +71,20 @@ window.SITE = {
     { id: 'events', name: 'Events' },
   ],
 
+  // Single project pages: the page colour (taken from the work, white text on it), the one-line result under the title.
+  // Same wording as the new site. Projects not listed here fall back to violet and their summary.
+  caseMeta: {
+    "pizza-now": {"color":["#17763a","#ffffff"],"outcome":"The highest-selling brand on the Byte app for a year, driving 50–60% of daily sales."},
+    "collegiate-survival-sale": {"color":["#d3202b","#ffffff"],"outcome":"Tripled sales and sold 60% of the stock in five days."},
+    "carswitch": {"color":["#c97c00","#ffffff"],"outcome":"35k views, 30% fewer queries and 50% more website visits."},
+    "evercare": {"color":["#14367a","#ffffff"],"outcome":"Cut common COVID-19 queries by 40% with explainers averaging 20K views."},
+    "breakfast-box": {"color":["#dc6b8e","#ffffff"],"outcome":"150–200 orders a day for the four months after launch."},
+    "black-friday": {"color":["#14a074","#ffffff"],"outcome":"Lifted Black Friday product sales by 60–70%."},
+    "byte-app": {"color":["#c4312f","#ffffff"],"outcome":"A full redesign of a food-delivery app for usability and a modern look."},
+    "annual-winter-sale": {"color":["#b3121a","#ffffff"],"outcome":"One sale, adapted for newspaper, web and social media."},
+    "generation-magazines": {"color":["#a08b64","#ffffff"],"outcome":"Editorial design for three issues of a fashion magazine."},
+    "tango-photos": {"color":["#c2185b","#ffffff"],"outcome":"Photography from the Toronto Tango 8 Festival, 2026."},
+  },
   // Projects shown on the home page, in this order (slugs). Everything else lives on the Projects page.
   featured: ['carswitch', 'evercare', 'pizza-now', 'collegiate-survival-sale', 'breakfast-box', 'black-friday'],
   // Home page "Featured Work" panels. Every figure comes from the project write-ups below. color = [panel colour taken from the work, readable text colour on it].
