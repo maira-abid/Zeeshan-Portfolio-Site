@@ -18,6 +18,7 @@ const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'originals', 'Portfolio Work Compilations 2026-2027');
+const ADD = path.join(ROOT, 'originals', 'Additional Images (2026-11-11)'); // the owner's second batch (11-Nov-2026): hi-res replacements and new images
 const EXTRACTS = path.join(__dirname, 'extracts');
 const OUT_IMG = path.join(ROOT, 'site', 'assets', 'img');
 const OUT_VID = path.join(ROOT, 'site', 'assets', 'video');
@@ -29,10 +30,11 @@ const BF = `${D}/Black Friday 2025`, CSS = `${D}/Collegiate Survival Sale 2025`;
 // ---- IMAGES: [project slug, output name, source path, kind] -----------------------------------------------
 // kind: img (max 1800w webp) | tall (long scrolling image, jpg 1000w) | gif (copied as is) | extract (pre-rendered PDF page)
 const images = [];
-const add = (slug, name, src, kind = 'img') => images.push({ slug, name, src, kind });
+// from = 'add' reads the file from the Additional Images folder instead of the first batch; width overrides the default size of an animation
+const add = (slug, name, src, kind = 'img', from, width) => images.push({ slug, name, src, kind, from, width });
+const inputOf = (it) => it.kind === 'extract' ? path.join(EXTRACTS, it.src) : path.join(it.from === 'add' ? ADD : SRC, it.src);
 
 // CarSwitch
-add('carswitch', 'intro', `${A}/CarSwitch/CS December 2019 - 001-03.jpg`);
 for (let i = 1; i <= 6; i++) add('carswitch', `storyboard-${i}`, `${A}/CarSwitch/CS-Storyboards-0${i}.jpg`);
 add('carswitch', 'palette', 'carswitch-palette.png', 'extract');
 add('carswitch', 'typography', 'carswitch-typography.png', 'extract');
@@ -40,26 +42,30 @@ add('carswitch', 'characters', 'carswitch-characters.png', 'extract');
 // Evercare
 add('evercare', 'flatten-curve', `${A}/Evercare/Flatten Curve 03-13-01.jpg`);
 for (let i = 1; i <= 12; i++) add('evercare', `storyboard-${i}`, `${A}/Evercare/EC-Portfolio-${String(i).padStart(2, '0')}.jpg`);
-add('evercare', 'colour-typography', 'evercare-colour-typography.png', 'extract');
-add('evercare', 'assets', 'evercare-assets.png', 'extract');
+const EC = 'Evercare';
+add('evercare', 'palette', `${EC}/Missing Images_1-04.jpg`, 'img', 'add');
+add('evercare', 'typography', `${EC}/Missing Images_1-05.jpg`, 'img', 'add');
+add('evercare', 'assets', `${EC}/Missing Images_1-06.jpg`, 'img', 'add');
 // Pizza Now
 add('pizza-now', 'box-1', 'Branding/Pizza-Now_PF-Website_Box-1.jpg');
 add('pizza-now', 'box-2', 'Branding/Pizza-Now_PF-Website_Box-2.jpg');
 add('pizza-now', 'socials', 'Branding/Pizza-Now_PF-Website_Socials.jpg');
 add('pizza-now', 'storefront', 'Branding/Pizza-Now_PF-Website_Storefront.jpg');
 add('pizza-now', 'storefront-wide', 'Branding/Pizza-Now-Storefront-01.jpg');
-add('pizza-now', 'food-court', 'Branding/Pizza Now - Food Court.jpg');
 add('pizza-now', 'logo-iterations', 'Branding/Preview-Images-for-Website-2026-07.jpg');
 add('pizza-now', 'logo-evolution', 'Branding/Pizza-Now_Logo-Evolution.gif', 'gif');
 // Breakfast Box
 for (let i = 1; i <= 6; i++) add('breakfast-box', `bb-${i}`, `Branding/BB_2022_PF-Website_Images_${i}.jpg`);
 // Black Friday
 add('black-friday', 'hero-1', `${BF}/Black-Friday_2025_PF-Website_Image_1.jpg`);
-add('black-friday', 'hero-4', `${BF}/Black-Friday_2025_PF-Website_Image_4.jpg`);
 add('black-friday', 'post-starts-1', `${BF}/Black-Friday_Nov,2025_STARTS_POST_1.jpg`);
 add('black-friday', 'post-starts-2', `${BF}/Black-Friday_Nov,2025_STARTS_POST_2.jpg`);
 add('black-friday', 'post-still-on-1', `${BF}/Black-Friday_Nov,2025_Still-On_POST_1.jpg`);
 add('black-friday', 'post-still-on-2', `${BF}/Black-Friday_Nov,2025_Still-On_POST_2.jpg`);
+add('black-friday', 'about-the-client', 'Black Friday/Black-Friday_Nov,2025_about-the-client.jpg', 'img', 'add');
+add('black-friday', 'what-needs-solving', 'Black Friday/November_Restocks_Are_Here_what-needs-solving.jpg', 'img', 'add');
+add('black-friday', 'how-it-worked-out', 'Black Friday/rewards-post_how-it-worked-out.jpg', 'img', 'add');
+add('black-friday', 'what-happened', 'Black Friday/Black-Friday_2025_PF-Website_what-happened.jpg', 'img', 'add');
 // NOTE: the five email newsletters (here and under Collegiate Survival Sale) are trimmed to the email's own width (no side margins, no -640 copy).
 // After running this script, run `node tools/trim-emails.js` to apply that; the 'tall' entries below are only the starting point.
 add('black-friday', 'email-rewards', `${BF}/2025-11-Black-Friday-Sale-2-Rewards.png`, 'tall');
@@ -67,36 +73,41 @@ add('black-friday', 'email-starts', `${BF}/2025-11-Black-Friday-Sale-3-Sale-STAR
 add('black-friday', 'email-whats-left', `${BF}/2025-11-Black-Friday-Sale-5-Whats-Left.png`, 'tall');
 // Collegiate Survival Sale
 add('collegiate-survival-sale', 'hero-5', `${CSS}/CSS_2025_PF-Website_Images_5.jpg`);
-add('collegiate-survival-sale', 'hero-6', `${CSS}/CSS_2025_PF-Website_Images_6.jpg`);
-add('collegiate-survival-sale', 'launch', `${CSS}/B2S CSS Sale - Launch - Post-01.jpg`);
-add('collegiate-survival-sale', 'still-on', `${CSS}/B2S CSS Sale - Still On - Post 01_2.jpg`);
-add('collegiate-survival-sale', 'teaser-1', `${CSS}/CSS-teaser_Sep, 2025_POST_1.jpg`);
-add('collegiate-survival-sale', 'teaser-2', `${CSS}/CSS-teaser_Sep, 2025_POST_1B.jpg`);
-add('collegiate-survival-sale', 'last-call-1', `${CSS}/CSS-Last-Call_Sep, 2025_POST_1.jpg`);
-add('collegiate-survival-sale', 'last-call-2', `${CSS}/CSS-Last-Call_Sep, 2025_POST_2.jpg`);
+const CS = 'CSS Sale';
+add('collegiate-survival-sale', 'about-the-client', `${CS}/CSS-teaser_Sep, 2025_POST_about-the-client.jpg`, 'img', 'add');
+add('collegiate-survival-sale', 'what-needs-solving', `${CS}/CSS-launch_Sep, 2025_POST_what-needs-solving.jpg`, 'img', 'add');
+add('collegiate-survival-sale', 'how-i-worked-it-out', `${CS}/CSS-Still-On_Sep, 2025_POST_how-i-worked-it-out.jpg`, 'img', 'add');
+add('collegiate-survival-sale', 'what-happened', `${CS}/CSS-Last-Call_Sep, 2025_POST_what-happened.jpg`, 'img', 'add');
+add('collegiate-survival-sale', 'story-last-call', `${CS}/CSS-last-call-gif.gif`, 'gif', 'add', 540);
+add('collegiate-survival-sale', 'story-still-on', `${CS}/CSS-still-on-gif.gif`, 'gif', 'add', 540);
 add('collegiate-survival-sale', 'email-launch', `${BF}/2025-09-CSS-Sale-1-Launch.png`, 'tall');
 add('collegiate-survival-sale', 'email-last-call', `${BF}/2025-09-CSS-Sale-2-Last-Call.png`, 'tall');
 // Annual Winter Sale (Generation)
-add('annual-winter-sale', 'title', `${P}/01-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'brief', `${P}/02-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'inspiration', `${P}/03-AWS---Newspaper-Ad01.jpg`, 'tall');
-add('annual-winter-sale', 'initial-attempts', `${P}/04-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'final-designs', `${P}/05-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'newspapers', `${P}/06-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'web-social', `${P}/07-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'templates', `${P}/08-AWS---Newspaper-Ad01.jpg`);
-add('annual-winter-sale', 'banner-15cm', `${P}/15 cm adaption (for newspaper)(DONE)-01.jpg`);
-add('annual-winter-sale', 'ad-27cm', `${P}/27 cm adaption(for newspaper)(DONE)-01.jpg`);
-add('annual-winter-sale', 'website', `${P}/aws-website.jpg`);
-add('annual-winter-sale', 'daraz', `${P}/daraz-aws.jpg`);
-add('annual-winter-sale', 'dawn', `${P}/dawn-news-ad.jpg`);
-add('annual-winter-sale', 'facebook-ad', `${P}/sale-ad-facebook.jpg`);
-add('annual-winter-sale', 'facebook-cover', `${P}/sale-cover-fb.jpg`);
+const AWS = 'AWS - Generation';
+add('annual-winter-sale', 'inspiration', `${P}/03-AWS---Newspaper-Ad01.jpg`, 'tall'); // kept: the Inspirations & References scroll
+add('annual-winter-sale', 'palette', `${AWS}/Missing Images_1-07.jpg`, 'img', 'add');
+add('annual-winter-sale', 'typography', `${AWS}/Missing Images_1-08.jpg`, 'img', 'add');
+add('annual-winter-sale', 'initial-attempts', `${AWS}/Generation_AWS_Initial-Attempts_2.gif`, 'gif', 'add', 1000);
+add('annual-winter-sale', 'banner-15cm', `${AWS}/15 cm adaption (for newspaper)(DONE)-01.jpg`, 'img', 'add');
+add('annual-winter-sale', 'ad-27cm', `${AWS}/27 cm adaption(for newspaper)(DONE)-01.jpg`, 'photo', 'add');
+add('annual-winter-sale', 'dawn', `${AWS}/Layer 15.jpg`, 'photo', 'add');
+add('annual-winter-sale', 'the-news', `${AWS}/Layer 16.jpg`, 'photo', 'add');
+add('annual-winter-sale', 'website', `${AWS}/aws-website.jpg`, 'img', 'add');
+add('annual-winter-sale', 'daraz', `${AWS}/daraz-aws.jpg`, 'img', 'add');
+add('annual-winter-sale', 'facebook-ad', `${AWS}/sale-ad-facebook.jpg`, 'img', 'add');
+add('annual-winter-sale', 'socials', `${AWS}/Generation_AWS_Socials.gif`, 'gif', 'add', 900);
 // Generation Magazines
 add('generation-magazines', 'covers', `${P}/cover images (magazines).jpg`);
-add('generation-magazines', 'magazine-1', `${P}/magazine design 01.jpg`, 'tall');
-add('generation-magazines', 'magazine-2', `${P}/magazine design 02.jpg`, 'tall');
-add('generation-magazines', 'magazine-3', `${P}/magazine design 03.jpg`, 'tall');
+add('generation-magazines', 'magazine-1', `${P}/magazine design 01.jpg`, 'tall', undefined, 800);
+add('generation-magazines', 'magazine-2', `${P}/magazine design 02.jpg`, 'tall', undefined, 800);
+add('generation-magazines', 'magazine-3', `${P}/magazine design 03.jpg`, 'tall', undefined, 800);
+const GM = 'Magazines - Generation';
+add('generation-magazines', 'mockup-eu', `${GM}/01 Free EU Magazine Mockup_1.jpg`, 'img', 'add');
+add('generation-magazines', 'mockup-concrete', `${GM}/01 Free Open A4 Magazine Mockup On Concrete_1.jpg`, 'img', 'add');
+add('generation-magazines', 'mockup-green', `${GM}/Magazine_Mockup_3A.jpg`, 'img', 'add');
+add('generation-magazines', 'mockup-flip', `${GM}/Magazine_Mockup_6A.jpg`, 'img', 'add');
+add('generation-magazines', 'mockup-covers', `${GM}/Magazine_Mockup_7A.jpg`, 'img', 'add');
+add('generation-magazines', 'mockup-wall', `${GM}/Open-Magazine-Mockup_1a.jpg`, 'img', 'add');
 // Byte app
 add('byte-app', 'cover', 'UI-UX/Byte App_Cover_3.jpg');
 for (const i of [2, 3, 4, 6]) add('byte-app', `byte-0${i}`, `UI-UX/Byte-0${i}.jpg`);
@@ -106,6 +117,146 @@ add('byte-app', 'screens', 'UI-UX/Byte-05.jpg', 'tall');
 const TANGO = '../Toronto Tango 8 Festival, 2026';
 [3947, 3948, 3921, 3923, 3928, 3929, 3931, 3933, 3934, 3935, 3939, 3940, 3946, 3951, 3953, 3954, 3956, 3957, 3959, 3962, 3964, 3965, 3967, 3969]
   .forEach((n) => add('tango-photos', `tango-${n}`, `${TANGO}/IMG_${n}.JPG`, 'photo'));
+
+// ---- SEO / GEO file names: <project or client>-<what the picture shows>, lowercase words joined by hyphens ----------
+const NAMES = {
+ 'annual-winter-sale/ad-27cm': 'generation-annual-winter-sale-newspaper-ad-27cm',
+ 'annual-winter-sale/banner-15cm': 'generation-annual-winter-sale-newspaper-banner-15cm',
+ 'annual-winter-sale/daraz': 'generation-annual-winter-sale-daraz-online-marketplace-banner',
+ 'annual-winter-sale/dawn': 'generation-annual-winter-sale-dawn-newspaper-front-page-ad',
+ 'annual-winter-sale/facebook-ad': 'generation-annual-winter-sale-facebook-page-banner',
+ 'annual-winter-sale/initial-attempts': 'generation-annual-winter-sale-initial-layout-attempts-animation',
+ 'annual-winter-sale/inspiration': 'generation-annual-winter-sale-russian-constructivism-inspirations',
+ 'annual-winter-sale/palette': 'generation-brand-colour-palette-red-white-black',
+ 'annual-winter-sale/socials': 'generation-annual-winter-sale-social-media-post-animation',
+ 'annual-winter-sale/the-news': 'generation-annual-winter-sale-the-news-newspaper-ad',
+ 'annual-winter-sale/typography': 'generation-brand-typography-itc-avant-garde-gothic',
+ 'annual-winter-sale/website': 'generation-annual-winter-sale-website-banner',
+ 'black-friday/about-the-client': 'multiverse-black-friday-sale-launch-social-posts',
+ 'black-friday/email-rewards': 'multiverse-black-friday-rewards-email-newsletter',
+ 'black-friday/email-starts': 'multiverse-black-friday-sale-starts-email-newsletter',
+ 'black-friday/email-whats-left': 'multiverse-black-friday-whats-left-email-newsletter',
+ 'black-friday/hero-1': 'multiverse-black-friday-sale-25-percent-off-social-post',
+ 'black-friday/how-it-worked-out': 'multiverse-black-friday-rewards-members-carousel',
+ 'black-friday/post-starts-1': 'multiverse-black-friday-carousel-sale-starts-slide-1',
+ 'black-friday/post-starts-2': 'multiverse-black-friday-carousel-sale-starts-slide-2',
+ 'black-friday/post-still-on-1': 'multiverse-black-friday-carousel-sale-still-on-slide-1',
+ 'black-friday/post-still-on-2': 'multiverse-black-friday-carousel-sale-still-on-slide-2',
+ 'black-friday/what-happened': 'multiverse-black-friday-stock-running-out-social-post',
+ 'black-friday/what-needs-solving': 'multiverse-black-friday-november-restocks-social-post',
+ 'breakfast-box/bb-1': 'breakfast-box-instagram-posts-pastel-pink',
+ 'breakfast-box/bb-2': 'breakfast-box-in-byte-app-restaurant-list',
+ 'breakfast-box/bb-3': 'breakfast-box-logo-and-eggs-on-toast',
+ 'breakfast-box/bb-4': 'breakfast-box-typefaces-monggoland-and-figtree',
+ 'breakfast-box/bb-5': 'breakfast-box-branded-coffee-cups',
+ 'breakfast-box/bb-6': 'breakfast-box-logo-on-hanging-shop-sign',
+ 'byte-app/byte-02': 'byte-food-delivery-app-redesign-introduction',
+ 'byte-app/byte-03': 'byte-food-delivery-app-user-flow-diagram',
+ 'byte-app/byte-04': 'byte-food-delivery-app-hand-drawn-wireframes',
+ 'byte-app/byte-06': 'byte-food-delivery-app-screens-on-tilted-phones',
+ 'byte-app/cover': 'byte-food-delivery-app-home-screen-cover',
+ 'byte-app/screens': 'byte-food-delivery-app-screen-designs',
+ 'carswitch/characters': 'carswitch-dubai-animation-character-sheet',
+ 'carswitch/palette': 'carswitch-dubai-animation-colour-palette',
+ 'carswitch/typography': 'carswitch-dubai-animation-typography',
+ 'carswitch/storyboard-1': 'carswitch-dubai-storyboard-seller-and-greedy-car-dealer',
+ 'carswitch/storyboard-2': 'carswitch-dubai-storyboard-endless-phone-calls',
+ 'carswitch/storyboard-3': 'carswitch-dubai-storyboard-mechanic-inspects-and-certifies-car',
+ 'carswitch/storyboard-4': 'carswitch-dubai-storyboard-looking-to-sell-your-car',
+ 'carswitch/storyboard-5': 'carswitch-dubai-storyboard-success-fees-after-sale',
+ 'carswitch/storyboard-6': 'carswitch-dubai-storyboard-online-inspection-report',
+ 'collegiate-survival-sale/about-the-client': 'multiverse-collegiate-survival-sale-teaser-social-posts',
+ 'collegiate-survival-sale/email-last-call': 'multiverse-collegiate-survival-sale-last-call-email-newsletter',
+ 'collegiate-survival-sale/email-launch': 'multiverse-collegiate-survival-sale-launch-email-newsletter',
+ 'collegiate-survival-sale/hero-5': 'multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone',
+ 'collegiate-survival-sale/how-i-worked-it-out': 'multiverse-collegiate-survival-sale-still-on-social-posts',
+ 'collegiate-survival-sale/story-last-call': 'multiverse-collegiate-survival-sale-last-call-instagram-story-animation',
+ 'collegiate-survival-sale/story-still-on': 'multiverse-collegiate-survival-sale-still-on-instagram-story-animation',
+ 'collegiate-survival-sale/what-happened': 'multiverse-collegiate-survival-sale-last-call-social-posts',
+ 'collegiate-survival-sale/what-needs-solving': 'multiverse-collegiate-survival-sale-launch-social-posts',
+ 'evercare/assets': 'evercare-hospital-animation-characters-and-backgrounds',
+ 'evercare/flatten-curve': 'evercare-hospital-flatten-the-curve-animation-frame',
+ 'evercare/palette': 'evercare-hospital-animation-colour-palette',
+ 'evercare/typography': 'evercare-hospital-animation-typography',
+ 'evercare/storyboard-1': 'evercare-hospital-covid-19-storyboard-pandemic-curve-chart',
+ 'evercare/storyboard-2': 'evercare-hospital-covid-19-storyboard-sick-person-isolates',
+ 'evercare/storyboard-3': 'evercare-hospital-covid-19-storyboard-working-at-home-in-isolation',
+ 'evercare/storyboard-4': 'evercare-hospital-covid-19-storyboard-turn-away-when-sneezing',
+ 'evercare/storyboard-5': 'evercare-hospital-covid-19-storyboard-seek-medical-help-ambulance',
+ 'evercare/storyboard-6': 'evercare-hospital-covid-19-storyboard-stay-updated-on-phone',
+ 'evercare/storyboard-7': 'evercare-hospital-covid-19-storyboard-home-isolation-guidelines',
+ 'evercare/storyboard-8': 'evercare-hospital-covid-19-storyboard-wear-a-face-mask-in-crowd',
+ 'evercare/storyboard-9': 'evercare-hospital-covid-19-storyboard-disinfect-hard-surfaces',
+ 'evercare/storyboard-10': 'evercare-hospital-covid-19-storyboard-avoid-holding-breath-when-walking',
+ 'evercare/storyboard-11': 'evercare-hospital-covid-19-storyboard-use-support-on-stairs',
+ 'evercare/storyboard-12': 'evercare-hospital-covid-19-storyboard-keep-daily-items-within-reach',
+ 'generation-magazines/covers': 'generation-magazine-three-covers-eid-beach-autumn-winter',
+ 'generation-magazines/magazine-1': 'generation-magazine-eid-2018-full-layout',
+ 'generation-magazines/magazine-2': 'generation-magazine-beach-cover-full-layout',
+ 'generation-magazines/magazine-3': 'generation-magazine-autumn-winter-2018-19-full-layout',
+ 'generation-magazines/mockup-concrete': 'generation-magazine-spread-on-concrete-mockup',
+ 'generation-magazines/mockup-covers': 'generation-magazine-front-and-back-cover-mockup',
+ 'generation-magazines/mockup-eu': 'generation-magazine-open-spread-mockup',
+ 'generation-magazines/mockup-flip': 'generation-magazine-page-turn-spread-mockup',
+ 'generation-magazines/mockup-green': 'generation-magazine-green-border-spread-mockup',
+ 'generation-magazines/mockup-wall': 'generation-magazine-spread-on-wall-mockup',
+ 'pizza-now/box-1': 'pizza-now-pizza-boxes-checkerboard-pattern',
+ 'pizza-now/box-2': 'pizza-now-pizza-box-pattern-in-rows',
+ 'pizza-now/logo-evolution': 'pizza-now-logo-evolution-animation',
+ 'pizza-now/logo-iterations': 'pizza-now-final-logo-on-pizza-pan',
+ 'pizza-now/socials': 'pizza-now-instagram-posts',
+ 'pizza-now/storefront-wide': 'pizza-now-banner-pizza-and-logo',
+ 'pizza-now/storefront': 'pizza-now-in-byte-app-restaurant-list',
+ 'posters/byte-just-5-taps': 'byte-app-order-in-5-taps-video-poster',
+ 'posters/byte-order-tutorial': 'byte-app-order-tutorial-video-poster',
+ 'posters/byte-too-much-on-food': 'byte-app-take-a-byte-video-poster',
+ 'posters/byte-wheel': 'byte-app-wheel-animation-video-poster',
+ 'posters/colabs-launch': 'colabs-launch-video-poster',
+ 'posters/hero-reel': 'zeeshan-abid-animation-showreel-video-poster',
+ 'posters/startup-grind-2019': 'startup-grind-2019-video-poster',
+ 'posters/treble-product': 'treble-product-video-poster',
+ 'posters/ut-launch': 'ut-launch-video-poster',
+ 'tango-photos/tango-3921': 'toronto-tango-festival-2026-couple-dancing-3921',
+ 'tango-photos/tango-3923': 'toronto-tango-festival-2026-couple-dancing-3923',
+ 'tango-photos/tango-3928': 'toronto-tango-festival-2026-couple-dancing-3928',
+ 'tango-photos/tango-3929': 'toronto-tango-festival-2026-couple-dancing-3929',
+ 'tango-photos/tango-3931': 'toronto-tango-festival-2026-couple-dancing-3931',
+ 'tango-photos/tango-3933': 'toronto-tango-festival-2026-couple-dancing-3933',
+ 'tango-photos/tango-3934': 'toronto-tango-festival-2026-couple-dancing-3934',
+ 'tango-photos/tango-3935': 'toronto-tango-festival-2026-couple-dancing-3935',
+ 'tango-photos/tango-3939': 'toronto-tango-festival-2026-couple-dancing-3939',
+ 'tango-photos/tango-3940': 'toronto-tango-festival-2026-couple-dancing-3940',
+ 'tango-photos/tango-3946': 'toronto-tango-festival-2026-couple-dancing-3946',
+ 'tango-photos/tango-3947': 'toronto-tango-festival-2026-couple-dancing-3947',
+ 'tango-photos/tango-3948': 'toronto-tango-festival-2026-couple-dancing-3948',
+ 'tango-photos/tango-3951': 'toronto-tango-festival-2026-couple-dancing-3951',
+ 'tango-photos/tango-3953': 'toronto-tango-festival-2026-couple-dancing-3953',
+ 'tango-photos/tango-3954': 'toronto-tango-festival-2026-couple-dancing-3954',
+ 'tango-photos/tango-3956': 'toronto-tango-festival-2026-couple-dancing-3956',
+ 'tango-photos/tango-3957': 'toronto-tango-festival-2026-couple-dancing-3957',
+ 'tango-photos/tango-3959': 'toronto-tango-festival-2026-couple-dancing-3959',
+ 'tango-photos/tango-3962': 'toronto-tango-festival-2026-couple-dancing-3962',
+ 'tango-photos/tango-3964': 'toronto-tango-festival-2026-couple-dancing-3964',
+ 'tango-photos/tango-3965': 'toronto-tango-festival-2026-couple-dancing-3965',
+ 'tango-photos/tango-3967': 'toronto-tango-festival-2026-couple-dancing-3967',
+ 'tango-photos/tango-3969': 'toronto-tango-festival-2026-couple-dancing-3969',
+ 'thumbs/annual-winter-sale': 'annual-winter-sale-project-thumbnail',
+ 'thumbs/app-launch': 'app-launch-project-thumbnail',
+ 'thumbs/black-friday': 'black-friday-project-thumbnail',
+ 'thumbs/breakfast-box': 'breakfast-box-project-thumbnail',
+ 'thumbs/byte-app': 'byte-app-project-thumbnail',
+ 'thumbs/carswitch': 'carswitch-project-thumbnail',
+ 'thumbs/collegiate-survival-sale': 'collegiate-survival-sale-project-thumbnail',
+ 'thumbs/evercare': 'evercare-project-thumbnail',
+ 'thumbs/generation-magazines': 'generation-magazines-project-thumbnail',
+ 'thumbs/pizza-now': 'pizza-now-project-thumbnail',
+ 'thumbs/showreel': 'showreel-project-thumbnail',
+ 'thumbs/startup-grind': 'startup-grind-project-thumbnail',
+ 'thumbs/tango-photos': 'tango-photos-project-thumbnail'
+};
+images.forEach((it) => { it.key = it.name; it.name = NAMES[it.slug + '/' + it.name] || it.name; });
+const thumbName = (slug) => slug + '-project-thumbnail';
+const posterName = (out) => NAMES['posters/' + out] || out;
 
 // ---- THUMBNAILS (4:3 crop) -----------------------------------------------------------------------------
 // NOTE: carswitch, evercare, breakfast-box and annual-winter-sale are recomposed with exact crops (the automatic crop clipped their logos and
@@ -131,7 +282,7 @@ const videos = [
   { out: 'startup-grind-2019', src: `${A}/Startup Grind 2019.mp4` },
   { out: 'byte-order-tutorial', src: `${A}/Byte Order Tutorial - 03.mp4` },
   { out: 'byte-just-5-taps', src: `${A}/Just 5 Taps.mp4` },
-  { out: 'byte-too-much-on-food', src: `${A}/Too Much on Food B - 02.mp4` },
+  { out: 'byte-too-much-on-food', src: `${A}/Too Much on Food B - 02.mp4`, at: 5 }, // the opening frame is plain red, so the poster is taken from the burger shot
   { out: 'byte-wheel', src: `${A}/Wheel Animation.mp4` },
 ];
 
@@ -172,20 +323,22 @@ async function webp(input, outFile, resize, quality, opts) {
   return r;
 }
 
+const ONLY = process.argv.slice(3); // optional project slugs: only those projects are rebuilt
 async function doImages() {
   for (const it of images) {
+    if (ONLY.length && ONLY.indexOf(it.slug) < 0) continue;
     const dir = path.join(OUT_IMG, it.slug);
     mkdir(dir);
-    const input = it.kind === 'extract' ? path.join(EXTRACTS, it.src) : path.join(SRC, it.src);
+    const input = inputOf(it);
     if (!fs.existsSync(input)) { console.error('MISSING', input); continue; }
     const base = path.join(dir, it.name);
     let r, q = 80;
     if (it.kind === 'gif') {
       // animated GIF -> animated WebP (keeps the GIF only if WebP would be bigger)
-      r = await webp(input, base + '.webp', { width: 800, withoutEnlargement: true }, 70, { animated: true });
+      r = await webp(input, base + '.webp', { width: it.width || 800, withoutEnlargement: true }, 70, { animated: true });
       if (r.size > fs.statSync(input).size) console.warn('NOTE: webp larger than gif for', it.name);
     } else if (it.kind === 'tall') {
-      r = await webp(input, base + '.webp', { width: 1000, withoutEnlargement: true }, 66);
+      r = await webp(input, base + '.webp', { width: it.width || 1000, withoutEnlargement: true }, 66);
     } else if (it.kind === 'photo') {
       r = await webp(input, base + '.webp', { width: 1800, height: 1800, fit: 'inside', withoutEnlargement: true }, 78);
     } else {
@@ -207,10 +360,11 @@ async function doImages() {
   // card thumbnails: 900w + 450w
   mkdir(path.join(OUT_IMG, 'thumbs'));
   for (const t of thumbs) {
-    const it = images.find((i) => i.slug === t.from[0] && i.name === t.from[1]);
-    const input = it.kind === 'extract' ? path.join(EXTRACTS, it.src) : path.join(SRC, it.src);
+    if (ONLY.length && ONLY.indexOf(t.slug) < 0) continue;
+    const it = images.find((i) => i.slug === t.from[0] && i.key === t.from[1]);
+    const input = inputOf(it);
     for (const w of [900, 450]) {
-      const outFile = path.join(OUT_IMG, 'thumbs', t.slug + (w === 900 ? '' : '-' + w) + '.webp');
+      const outFile = path.join(OUT_IMG, 'thumbs', thumbName(t.slug) + (w === 900 ? '' : '-' + w) + '.webp');
       await webp(input, outFile, { width: w, height: Math.round(w * 0.75), fit: 'cover', position: t.position || 'attention' }, 80);
     }
     console.log('thumb', t.slug);
@@ -233,11 +387,11 @@ async function doVideos() {
     const pr = probe(input);
     if (!fs.existsSync(out)) {
       console.log('video', v.out);
-      ff(['-i', input, '-vf', "scale='if(gt(iw,ih),min(1280,iw),min(720,iw))':-2", '-c:v', 'libx264', '-crf', '27', '-preset', 'fast', '-pix_fmt', 'yuv420p',
-        '-c:a', 'aac', '-b:a', '96k', '-movflags', '+faststart', out]);
+      ff(['-i', input, '-vf', "scale='if(gt(iw,ih),min(1280,iw),min(720,iw))':-2", '-c:v', 'libx264', '-crf', '30', '-preset', 'slow', '-pix_fmt', 'yuv420p',
+        '-c:a', 'aac', '-b:a', '64k', '-movflags', '+faststart', out]);
     }
-    const poster = path.join(OUT_IMG, 'posters', v.out + '.webp');
-    ff(['-ss', String(Math.min(pr.d * 0.3, 20)), '-i', input, '-frames:v', '1', '-vf', 'scale=960:-2:force_original_aspect_ratio=decrease', '-c:v', 'libwebp', '-quality', '72', poster]);
+    const poster = path.join(OUT_IMG, 'posters', posterName(v.out) + '.webp');
+    ff(['-ss', String(v.at || Math.min(pr.d * 0.3, 20)), '-i', input, '-frames:v', '1', '-vf', 'scale=960:-2:force_original_aspect_ratio=decrease', '-c:v', 'libwebp', '-quality', '72', poster]);
     media[rel('video', v.out + '.mp4')] = { w: pr.w, h: pr.h };
   }
   // Hero reel (silent, 960x540: it is a background under a dark overlay, so this halves the download with no visible loss)
@@ -250,7 +404,7 @@ async function doVideos() {
   });
   const concat = reelClips.map((_, i) => `[v${i}]`).join('') + `concat=n=${reelClips.length}:v=1:a=0[out]`;
   ff([...inputs, '-filter_complex', filters.join(';') + ';' + concat, '-map', '[out]', '-c:v', 'libx264', '-crf', '30', '-preset', 'slow', '-an', '-movflags', '+faststart', reel]);
-  ff(['-ss', '3', '-i', reel, '-frames:v', '1', '-vf', 'scale=1280:-2', '-c:v', 'libwebp', '-quality', '72', path.join(OUT_IMG, 'posters', 'hero-reel.webp')]);
+  ff(['-ss', '3', '-i', reel, '-frames:v', '1', '-vf', 'scale=1280:-2', '-c:v', 'libwebp', '-quality', '72', path.join(OUT_IMG, 'posters', posterName('hero-reel') + '.webp')]);
 }
 
 // Thumbnails for video-only projects, cut from the generated poster frames.
@@ -259,8 +413,8 @@ async function doVideoThumbs() {
   mkdir(path.join(OUT_IMG, 'thumbs'));
   for (const [slug, poster] of Object.entries(map)) {
     for (const w of [900, 450]) {
-      await sharp(path.join(OUT_IMG, 'posters', poster + '.webp')).resize(w, Math.round(w * 0.75), { fit: 'cover', position: 'attention' })
-        .webp({ quality: 80 }).toFile(path.join(OUT_IMG, 'thumbs', slug + (w === 900 ? '' : '-' + w) + '.webp'));
+      await sharp(path.join(OUT_IMG, 'posters', posterName(poster) + '.webp')).resize(w, Math.round(w * 0.75), { fit: 'cover', position: 'attention' })
+        .webp({ quality: 80 }).toFile(path.join(OUT_IMG, 'thumbs', thumbName(slug) + (w === 900 ? '' : '-' + w) + '.webp'));
     }
     console.log('thumb', slug);
   }

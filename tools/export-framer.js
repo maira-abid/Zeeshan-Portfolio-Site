@@ -99,7 +99,7 @@ fs.writeFileSync(path.join(outCmp, 'ProjectsData.ts'), ts);
   const img = path.join(ROOT, 'site', 'assets', 'img'), out = path.join(ROOT, 'framer', 'assets');
   const copy = (src, dir, name) => { fs.mkdirSync(path.join(out, dir), { recursive: true }); fs.copyFileSync(path.join(img, src), path.join(out, dir, name)); };
   ['thumbs', 'featured', 'tall'].forEach((d) => fs.rmSync(path.join(out, d), { recursive: true, force: true }));
-  S.projects.forEach((p) => copy('thumbs/' + p.slug + '.webp', 'thumbs', p.slug + '.webp'));
+  S.projects.forEach((p) => copy('thumbs/' + p.slug + '-project-thumbnail.webp', 'thumbs', p.slug + '.webp'));
   S.featured.forEach((slug) => copy(S.featuredMeta[slug].img, 'featured', slug + '.webp'));
   const tall = [];
   S.projects.forEach((p) => p.blocks.forEach((b) => (b.items || []).concat(b.media || []).forEach((m) => { if (m.t === 'scroll') tall.push(m.src); })));

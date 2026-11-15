@@ -40,11 +40,11 @@ const realSocials = () => S.social.filter((s) => s.href && s.href !== '#').map((
 
 // ---------- routes ----------
 const routes = [
-  { page: 'home', dir: '', url: '/', ...SEO.pages.home, og: 'home' },
-  { page: 'projects', dir: 'projects', url: '/projects/', ...SEO.pages.projects, og: 'projects' },
-  { page: 'about', dir: 'about', url: '/about/', ...SEO.pages.about, og: 'about' },
-  { page: 'contact', dir: 'contact', url: '/contact/', ...SEO.pages.contact, og: 'contact' },
-  { page: 'privacy', dir: 'privacy', url: '/privacy/', ...SEO.pages.privacy, og: 'privacy' },
+  { page: 'home', dir: '', url: '/', ...SEO.pages.home, og: 'zeeshan-abid-multidisciplinary-designer-toronto' },
+  { page: 'projects', dir: 'projects', url: '/projects/', ...SEO.pages.projects, og: 'zeeshan-abid-design-projects-portfolio' },
+  { page: 'about', dir: 'about', url: '/about/', ...SEO.pages.about, og: 'about-zeeshan-abid-designer-toronto' },
+  { page: 'contact', dir: 'contact', url: '/contact/', ...SEO.pages.contact, og: 'contact-zeeshan-abid-designer-toronto' },
+  { page: 'privacy', dir: 'privacy', url: '/privacy/', ...SEO.pages.privacy, og: 'privacy-policy-zeeshan-abid-portfolio' },
 ];
 S.projects.forEach((p) => {
   const c0 = catName(p.categories[0]);
@@ -54,7 +54,7 @@ S.projects.forEach((p) => {
   const description = fit([
     `${sum} Client: ${p.client}. Results: ${res.slice(0, 2).join(', ')}.`, `${sum} Results: ${res.slice(0, 2).join(', ')}.`, `${sum} Client: ${p.client}.${sum.length + p.client.length < 90 ? tag : ''}`, sum + tag, sum,
   ].filter((t) => !/Results: \.$/.test(t)), 160);
-  routes.push({ page: 'project', slug: p.slug, dir: 'projects/' + p.slug, url: '/projects/' + p.slug + '/', title, description, og: p.slug, project: p });
+  routes.push({ page: 'project', slug: p.slug, dir: 'projects/' + p.slug, url: '/projects/' + p.slug + '/', title, description, og: p.slug + '-project-zeeshan-abid-designer', project: p });
 });
 
 // ---------- share images (1200 x 630) ----------
@@ -63,14 +63,14 @@ async function ogImages() {
   fs.mkdirSync(out, { recursive: true });
   // Pages that are not a project (home, projects, about, contact, privacy) share one preview picture: three project images side by side
   // (Pizza Now, Collegiate Survival Sale, CarSwitch), the same look as the new site's link preview.
-  const trio = ['pizza-now/box-1.webp', 'collegiate-survival-sale/hero-5.webp', 'carswitch/intro.webp'];
+  const trio = ['pizza-now/pizza-now-pizza-boxes-checkerboard-pattern.webp', 'collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp', 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp'];
   const tiles = await Promise.all(trio.map((f) => sharp(path.join(SITE, 'assets', 'img', f)).resize(400, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82 }).toBuffer()));
   const collage = await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#1b1b1b' } })
     .composite(tiles.map((input, i) => ({ input, left: i * 400, top: 0 }))).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
   for (const r of routes) {
     if (!r.project) { fs.writeFileSync(path.join(out, r.og + '.jpg'), collage); continue; }
     const lead = r.project.lead;
-    const src = lead.t === 'img' ? path.join(SITE, 'assets', 'img', lead.src) : path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '.webp');
+    const src = lead.t === 'img' ? path.join(SITE, 'assets', 'img', lead.src) : path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '-project-thumbnail.webp');
     await sharp(src).resize(1200, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(out, r.og + '.jpg'));
   }
 }
@@ -82,7 +82,7 @@ function jsonld(r) {
   const place = [{ '@type': 'City', name: SEO.city }, { '@type': 'AdministrativeArea', name: SEO.province }, { '@type': 'Country', name: SEO.country }];
   const person = { '@type': 'Person', '@id': personId, name: S.fullName, jobTitle: SEO.jobTitle, url: BASE + '/', description: `${SEO.jobTitle} based in ${SEO.city}, ${SEO.province}, ${SEO.country}, working professionally since 2017 in branding, motion graphics, marketing, UI/UX and more.`, address, homeLocation: { '@type': 'Place', name: `${SEO.city}, ${SEO.province}, ${SEO.country}`, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon } }, knowsAbout: SEO.knowsAbout, sameAs: realSocials() };
   if (!person.sameAs.length) delete person.sameAs;
-  const service = { '@type': 'ProfessionalService', '@id': serviceId, name: `${S.fullName} - design services`, url: BASE + '/', image: BASE + '/assets/og/home.jpg', founder: { '@id': personId }, address, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon }, areaServed: place, serviceType: SEO.knowsAbout, knowsLanguage: 'en' };
+  const service = { '@type': 'ProfessionalService', '@id': serviceId, name: `${S.fullName} - design services`, url: BASE + '/', image: BASE + '/assets/og/zeeshan-abid-multidisciplinary-designer-toronto.jpg', founder: { '@id': personId }, address, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon }, areaServed: place, serviceType: SEO.knowsAbout, knowsLanguage: 'en' };
   const website = { '@type': 'WebSite', '@id': websiteId, url: BASE + '/', name: SEO.siteName, inLanguage: 'en-CA', publisher: { '@id': personId } };
   const pageUrl = BASE + r.url, image = { '@type': 'ImageObject', url: BASE + '/assets/og/' + r.og + '.jpg', width: 1200, height: 630 };
   const crumbs = [{ name: 'Home', url: BASE + '/' }];

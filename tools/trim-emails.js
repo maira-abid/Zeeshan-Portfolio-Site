@@ -19,11 +19,11 @@ const MEDIA_JS = path.join(ROOT, 'site', 'js', 'media.js');
 sharp.cache(false);
 
 const EMAILS = [
-  ['black-friday', 'email-rewards', '2025-11-Black-Friday-Sale-2-Rewards.png'],
-  ['black-friday', 'email-starts', '2025-11-Black-Friday-Sale-3-Sale-STARTS.png'],
-  ['black-friday', 'email-whats-left', '2025-11-Black-Friday-Sale-5-Whats-Left.png'],
-  ['collegiate-survival-sale', 'email-launch', '2025-09-CSS-Sale-1-Launch.png'],
-  ['collegiate-survival-sale', 'email-last-call', '2025-09-CSS-Sale-2-Last-Call.png'],
+  ['black-friday', 'multiverse-black-friday-rewards-email-newsletter', '2025-11-Black-Friday-Sale-2-Rewards.png'],
+  ['black-friday', 'multiverse-black-friday-sale-starts-email-newsletter', '2025-11-Black-Friday-Sale-3-Sale-STARTS.png'],
+  ['black-friday', 'multiverse-black-friday-whats-left-email-newsletter', '2025-11-Black-Friday-Sale-5-Whats-Left.png'],
+  ['collegiate-survival-sale', 'multiverse-collegiate-survival-sale-launch-email-newsletter', '2025-09-CSS-Sale-1-Launch.png'],
+  ['collegiate-survival-sale', 'multiverse-collegiate-survival-sale-last-call-email-newsletter', '2025-09-CSS-Sale-2-Last-Call.png'],
 ];
 
 (async () => {

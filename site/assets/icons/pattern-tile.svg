@@ -8,7 +8,7 @@
     <path id="bolt" d="M10 1.800h8l-4 7h4.500L6 22.200l3-9H5z"/>
     <path id="star" d="M12 2l2.900 6.900 7.500.5-5.800 4.800 1.900 7.300L12 17.500l-6.500 4 1.900-7.300L1.600 9.400l7.500-.5z"/>
   </defs>
-  <g fill="none" stroke="#a77fe0" stroke-width="1.1" stroke-linejoin="round" opacity=".18">
+  <g fill="none" stroke="#8f00ff" stroke-width="1.1" stroke-linejoin="round" opacity=".18">
     <use href="#spade"   transform="translate(60 70) rotate(-12) scale(3.2)"/>
     <use href="#bolt"    transform="translate(610 40) rotate(18) scale(2.8)"/>
     <use href="#heart"   transform="translate(330 300) rotate(-10) scale(2.4)"/>
@@ -18,7 +18,7 @@
     <use href="#spade"   transform="translate(800 760) rotate(10) scale(2.2)"/>
     <use href="#heart"   transform="translate(230 800) rotate(-6) scale(2.8)"/>
   </g>
-  <g fill="#a77fe0" opacity=".06">
+  <g fill="#8f00ff" opacity=".06">
     <use href="#star" transform="translate(430 110) rotate(-6) scale(1.6)"/>
     <use href="#bolt" transform="translate(30 330) rotate(8) scale(1.5)"/>
     <use href="#club" transform="translate(660 560) rotate(12) scale(1.5)"/>

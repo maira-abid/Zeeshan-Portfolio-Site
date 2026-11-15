@@ -16,7 +16,7 @@ No dependencies. Any static host also works (open `site/index.html` through a se
 ```
 brief/        the website brief and About Me text
 brand/        style guide, colour/pattern references, icons, typefaces (source files)
-originals/    LOCAL ONLY, not in git: raw photos, source videos, PDFs ("Portfolio Work Compilations ...", tango photos)
+originals/    LOCAL ONLY, not in git: source videos, PDFs and images ("Portfolio Work Compilations ..."), the second batch ("Additional Images (2026-11-11)", with the 11-Nov feedback), and the tango festival photos at web size (2400 px WebP, 323 files; the full-size raw files were deleted)
 site/         the website itself (this is what gets published)
   index.html  projects/  projects/<slug>/  about/  contact/  privacy/   (one folder + index.html per page: generated, see "SEO and GEO")
   css/style.css          all styling + design tokens (:root)
@@ -32,7 +32,7 @@ tools/
   build-seo.js           SEO + GEO build: pre-renders every page to static HTML, titles, schema, sitemap, robots, llms.txt (npm run build)
   prepare-assets.js      rebuilds site/assets from originals/ (cd tools, npm i, node prepare-assets.js)
   export-framer.js       regenerates the Framer CSVs/data file
-  extracts/              PDF pages used in the CarSwitch / Evercare write-ups
+  extracts/              PDF pages used in the CarSwitch write-up
 framer/       CMS CSVs, code components and the Framer guide
 (GitHub Pages is served from the gh-pages branch, which holds only the site/ folder; see below)
 ```
@@ -211,3 +211,31 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 - **Pointer:** the normal arrow shape, solid black in the light version and solid white in the dark version; over anything clickable it inverts what is under it (code: `site/js/cursor.js`, styles at the end of `site/css/style.css`). The real arrow is hidden from the first paint and the position is carried between pages so nothing flashes. Text fields keep the text cursor; "Pause animations" brings back the normal arrow.
 - **Single project pages:** now laid out like the new site's case pages: a band in the project colour with the title and result line, the cover, an "at a glance" box (client, industry, what I did, results) beside the short version and numbered sections, and a next-project band with a thumbnail. Code: `renderProject()` in `site/js/app.js`; colours and wording in `caseMeta` in `site/js/data.js`.
 - **Home:** a "What I can help with" list (six numbered items) now sits between Featured Work and the client ticker. Code: `renderHome()` in `site/js/app.js`, styles under "What I can help with".
+
+## Feedback of 11-Nov-2026: what was done
+
+The second batch of files (images, GIFs and `WEBSITE FEEDBACK - 2026-11-11.txt`) is kept in `originals/Additional Images (2026-11-11)/`; `tools/prepare-assets.js` reads it (entries marked `'add'`).
+
+- **Purple:** one violet everywhere, the style guide's `#8F00FF`. The lighter tone used for text in the dark version (`--violet-light`) and the lighter violet in the three background patterns (`site/assets/icons/pattern-*.svg`) are now `#8F00FF`. Small purple text on the dark version is therefore about 3:1 contrast (below the 4.5:1 guideline); that was the client's call.
+- **Stats under "What happened":** black outline style (outline in the text colour: black on the light version, white on the dark one), no tinted fill.
+- **CarSwitch / Evercare:** the first animation autoplays (muted, as browsers require; skipped with "reduce motion" or "Pause animations"). CarSwitch: the 2nd animation replaces the picture under "About the client"; the 3rd sits under "What I did" with the character sheet below it (so the three are no longer repeated under "What happened"). Evercare: the masked-crowd frame is under "What I did", the living-room frame under "How I worked it out", and the three new palette / typography / assets images replace the old ones. **CarSwitch's new characters, colour and typography images were not in the folder**, so the old ones are still in use, and more storyboards are still to come.
+- **Pizza Now:** the low-resolution food-court banner is gone; the picture with many pizza boxes sits under "What needed solving" (and is no longer repeated under "What happened"); under "How I worked it out" the animation is above the still, and every picture is the same width as the others (`stack: true` on a section in `data.js` does this).
+- **Black Friday / Collegiate Survival Sale:** the new images sit under the paragraph they are named for; Black Friday has a "Social Media Carousels" block after the email newsletters (two carousels, each a row of full-size slides that scrolls sideways, `layout: 'carousel'` in `data.js`); Collegiate Survival Sale has a "Social Media Stories" block (two animations) after the emails.
+- **Annual Winter Sale:** the supplied write-up (obvious typos fixed), all new hi-res images, the Inspirations & References scroll now sits below its paragraph at the same width as the other images, and the "coming soon" note is removed. The result figures are 2.5x sales, about PKR 1.5M a day and about 35 in-store artworks.
+- **Generation Magazines:** six new mockups ("Spreads & Mockups"). **Byte App:** user flow, wireframes and screens are now separate blocks (the wireframes image was not being shown before). The write-ups for both are still to come, so both keep the "coming soon" note.
+
+### Image and video check (whole site)
+
+- Every image is WebP (animated WebP for the GIFs), never upscaled, 1800 px wide at most, with `-640` / `-1200` copies; the long scrolling designs are 800-1000 px wide. The magazine scrolls were cut from 1000 to 800 px wide (about 40% lighter). The GIFs became animated WebP (the stories are 540 px wide, the others 900-1000 px).
+- Every video is H.264 + AAC with `faststart`, at most 1280x720 (960x540 for the hero reel), with a poster image and `preload="none"`. The two largest videos (both on hidden projects) were re-encoded about 30% smaller. The poster of "Take a Byte" was a blank red frame and is now the burger shot.
+- Pictures that are no longer used were deleted from `site/assets/img` (`tools/prepare-assets.js` is the list of what belongs there).
+- **Descriptions (alt text):** every image now has a specific description of what it shows (and the on-screen words); mismatched ones were corrected (for example the CarSwitch and Evercare storyboards). Videos get an `aria-label` and the Vimeo frames a descriptive title. Card thumbnails and the next-project thumbnail keep an empty `alt` on purpose, because the title next to each is the description.
+- **Framer:** `framer/` still describes the earlier content. Run `node tools/export-framer.js` in the single Framer pass to refresh it.
+
+### File names (SEO and GEO)
+
+Every project image, card thumbnail, video poster and share image has a descriptive, lowercase, hyphenated name that says whose work it is and what it shows, for example `carswitch-dubai-storyboard-looking-to-sell-your-car.webp`, `multiverse-black-friday-carousel-sale-starts-slide-1.webp`, `pizza-now-project-thumbnail.webp`, `evercare-project-zeeshan-abid-designer.jpg`. The list is `NAMES` in `tools/prepare-assets.js` (old working name -> published name), so a rebuild keeps them; share images are named in `tools/build-seo.js`. To add an image, add it to the pipeline and give it a name in `NAMES` in the same pattern: `<client or project>-<what the picture shows>`. The small decorative background pieces in `ambient/` and the video files keep their names.
+
+### Page changes without a reload (pointer fix of 15-Nov-2026)
+
+A screen recording showed the browser's own white arrow appearing on top of the themed pointer right after every page change, until the mouse moved. A browser restarts its pointer whenever a new document opens, and a page cannot stop that. So moving between pages of the site (links, nav, cards, next-project band, back and forward) now swaps the page inside the same document instead of loading a new one (`go()` in `site/js/app.js`); the pointer, and the cursor state, are never reset. The static pages are still real pages for search engines, shared links, new tabs and Ctrl/Cmd-click; links to other sites, files and `target="_blank"` open as usual. After a change the title and description are read from the target page, the page scrolls to the top and `main` takes focus. `site/js/cursor.js` listens for the `zk:navigate` event to re-read what is under the pointer.
