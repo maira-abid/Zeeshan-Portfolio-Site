@@ -29,6 +29,8 @@
     x = e.clientX; y = e.clientY; wrap.classList.remove('is-out'); place();
     if (e.target !== lastT) state(e.target); // read on every change of the element under the pointer, so it never goes stale
   }, { passive: true });
+  // a page change inside the site swaps the page without reloading the document: the pointer stays where it is, and what is under it is read again
+  document.addEventListener('zk:navigate', function () { lastT = null; if (built && x >= 0) { var u = document.elementFromPoint(x, y); if (u) state(u); } });
   document.addEventListener('pointerdown', function (e) { if (built && e.button === 0) wrap.classList.add('is-down'); save(); }, { passive: true });
   document.addEventListener('pointerup', function () { if (built) { wrap.classList.remove('is-down'); lastT = null; } }, { passive: true });
   document.documentElement.addEventListener('mouseleave', function () { if (built) wrap.classList.add('is-out'); });

@@ -18,7 +18,7 @@
   --line: #3b3b3b;
   --violet: #8f00ff;            /* Violet Ray - fills, borders, buttons */
   --violet-soft: #8f00ff;       /* the muted violet shown in the style guide swatches / checker pattern */
-  --violet-light: #cba6ff;      /* violet for text on dark (AA contrast) */
+  --violet-light: #8f00ff;      /* the one violet of the style guide, used everywhere (client feedback of 11-Nov-2026: no second, lighter purple) */
   --lime: #d4ff00;              /* neon lime highlight (stat numbers, bullets, stars, eyebrows) */
   --grey: #e5e5e5;
   --white: #ffffff;
@@ -67,7 +67,7 @@ html[data-theme="light"] {
   --soft: #2b2b2b;
   --footer: #e5e5e5;
   --field: #ffffff;
-  --ticker-text: rgba(27, 27, 27, .8);
+  --ticker-text: #777777;             /* client names in the scrolling strip: grey, like the dark version (client feedback) */
   --hair: rgba(27, 27, 27, .4);
   --err: #b3123a; --err-edge: #b3123a;
 }
@@ -162,7 +162,7 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 
 /* ---------- Ticker ---------- */
 .ticker { position: relative; z-index: 1; border-block: 1px solid var(--line); background: var(--surface-92); overflow: hidden; padding: 26px 0 22px; }
-.ticker__label { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.ticker__label { width: 100%; max-width: calc(var(--wrap) + var(--gutter) * 2); margin: 0 auto 16px; padding-inline: var(--gutter); text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); } /* starts on the same left edge as the headings above */
 .ticker__viewport { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .ticker__track { display: flex; width: max-content; animation: ticker 48s linear infinite; }
 .ticker:hover .ticker__track, .ticker:focus-within .ticker__track { animation-play-state: paused; }
@@ -172,7 +172,12 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 @keyframes ticker { to { transform: translateX(-50%); } }
 
 /* ---------- Home sections ---------- */
-.home-cats { padding: clamp(48px, 7vw, 90px) 0 20px; }
+/* Home page rhythm: every section has the same side edge (the .wrap gutter) and the same, shorter space above and below it.
+   (The category block used a "padding: … 0 …" shorthand that removed the gutter, so it sat flush against the screen edge.) */
+.home-cats { padding-block: clamp(44px, 6vw, 76px) 0; }
+.home-cats .cat { margin-bottom: 0; }
+.home-cats .browse { margin-top: 0; }
+.home-cats .browse__list { margin-bottom: 24px; }
 .cat { margin-bottom: clamp(54px, 7vw, 92px); }
 .cat__head { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .cat__head .ico { font-size: 30px; color: var(--violet-light); }
@@ -271,7 +276,8 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 .sec__media--p .media { aspect-ratio: 4 / 5; display: grid; place-items: center; }
 .sec__media--p .media img { width: 100%; height: 100%; object-fit: contain; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 22px 0 8px; }
-.stat { padding: 18px 16px 16px; border-radius: 0; background: linear-gradient(160deg, rgba(143, 0, 255, .28), rgba(143, 0, 255, .08)); border: 1px solid rgba(201, 160, 255, .35); }
+/* "What happened" figures: an outlined box in the text colour (black outline on the light version, white on the dark one), no tinted fill */
+.stat { padding: 18px 16px 16px; border-radius: 0; background: transparent; border: 2px solid var(--white); }
 .stat b { display: block; font-family: var(--f-punk); font-weight: 800; font-size: clamp(30px, 3.4vw, 42px); line-height: 1; color: var(--white); letter-spacing: -.01em; }
 .stat span { display: block; margin-top: 8px; font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--grey); }
 
@@ -299,6 +305,17 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 .scrollframe::-webkit-scrollbar { width: 9px; }
 .scrollframe::-webkit-scrollbar-thumb { background: var(--violet); border-radius: 0; }
 .scrollhint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px; background: var(--panel); border-top: 1px solid var(--line); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--violet-light); }
+/* pictures stacked one above the other, each at the full width of the text column (same width as the other images on the page) */
+.sec__media--stack { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+.sec__media--stack .scrollframe { max-height: min(78vh, 720px); }
+/* social media carousels: each carousel is a row of full-size slides that scrolls sideways (snaps slide by slide) */
+.car + .car { margin-top: 30px; }
+.car__label { margin-bottom: 12px; font-size: 12px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--violet-light); }
+.car__strip { display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: var(--violet) var(--panel); }
+.car__strip .media { flex: 0 0 calc(50% - 7px); min-width: 240px; scroll-snap-align: start; }
+.car__strip::-webkit-scrollbar { height: 9px; }
+.car__strip::-webkit-scrollbar-thumb { background: var(--violet); }
+@media (max-width: 599px) { .car__strip .media { flex-basis: 82%; } }
 
 .pager { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-block: 40px 20px; border-top: 1px solid var(--line); margin-top: 20px; }
 .pager a { display: flex; flex-direction: column; gap: 6px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 0; text-decoration: none; background: var(--surface-85); transition: border-color .2s, transform .2s var(--ease); }
@@ -457,7 +474,8 @@ html.motion-off .ticker__track { animation-play-state: paused; }
 }
 
 /* ---------- Featured Work: full-screen panels that slide over one another ---------- */
-.stack { position: relative; z-index: 1; padding-top: clamp(48px, 7vw, 90px); }
+.stack { position: relative; z-index: 1; padding-top: clamp(44px, 6vw, 76px); }
+.stack .cat__head { border-bottom: 0; padding-bottom: 0; margin-bottom: clamp(22px, 3vw, 36px); } /* same heading treatment as "What I can help with" */
 .stack__list { list-style: none; margin: 0; padding: 0; }
 .pan { position: sticky; top: 0; z-index: 1; min-height: 100svh; display: flex; align-items: center; background: var(--pa); color: var(--on); border-top: 2px solid var(--ink); padding: clamp(28px, 4vw, 56px) 0; }
 .pan__in { width: min(var(--wrap), 100% - 2 * var(--gutter)); margin-inline: auto; position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
@@ -529,7 +547,7 @@ img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; -we
 .allstats__grid a:hover { color: var(--white); }
 
 /* ---------- What I can help with (home) ---------- */
-.svc { position: relative; z-index: 1; padding: clamp(48px, 7vw, 90px) 0 clamp(48px, 7vw, 90px); }
+.svc { position: relative; z-index: 1; padding: clamp(44px, 6vw, 76px) 0 clamp(48px, 6.5vw, 84px); }
 .svc .cat__head { border-bottom: 0; padding-bottom: 0; margin-bottom: clamp(22px, 3vw, 36px); }
 .services { list-style: none; counter-reset: svc; display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--white); }
 .services li { counter-increment: svc; display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 16px; align-content: start; padding: 26px 24px 28px 0; border-bottom: 2px solid var(--white); }
@@ -610,3 +628,6 @@ html[data-theme="light"] .zc svg path { fill: #000; stroke: #fff; }
 .zc.is-down { transform-origin: 0 0; }
 html.motion-off .zc { display: none; }
 @media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) { .zc { display: none; } }
+
+/* the page body takes focus after a page change (so keyboard and screen-reader users start at the top of the new page); no ring for that */
+main:focus { outline: none; }

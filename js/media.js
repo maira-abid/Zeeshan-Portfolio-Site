@@ -1,5 +1,5 @@
 window.MEDIA = {
- "img/carswitch/intro.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-seller-and-greedy-car-dealer.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -7,7 +7,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/storyboard-1.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-endless-phone-calls.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -15,7 +15,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/storyboard-2.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-mechanic-inspects-and-certifies-car.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -23,15 +23,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/storyboard-3.webp": {
-  "w": 1800,
-  "h": 1013,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/carswitch/storyboard-4.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp": {
   "w": 1800,
   "h": 1012,
   "v": [
@@ -39,7 +31,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/storyboard-5.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-success-fees-after-sale.webp": {
   "w": 1800,
   "h": 1012,
   "v": [
@@ -47,7 +39,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/storyboard-6.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-online-inspection-report.webp": {
   "w": 1800,
   "h": 1012,
   "v": [
@@ -55,7 +47,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/palette.webp": {
+ "img/carswitch/carswitch-dubai-animation-colour-palette.webp": {
   "w": 1600,
   "h": 1131,
   "v": [
@@ -63,7 +55,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/typography.webp": {
+ "img/carswitch/carswitch-dubai-animation-typography.webp": {
   "w": 1600,
   "h": 1131,
   "v": [
@@ -71,7 +63,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/characters.webp": {
+ "img/carswitch/carswitch-dubai-animation-character-sheet.webp": {
   "w": 1600,
   "h": 1131,
   "v": [
@@ -79,7 +71,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/flatten-curve.webp": {
+ "img/evercare/evercare-hospital-flatten-the-curve-animation-frame.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -87,7 +79,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-1.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-pandemic-curve-chart.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -95,7 +87,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-2.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-sick-person-isolates.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -103,7 +95,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-3.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-working-at-home-in-isolation.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -111,7 +103,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-4.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-turn-away-when-sneezing.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -119,7 +111,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-5.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-seek-medical-help-ambulance.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -127,7 +119,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-6.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-stay-updated-on-phone.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -135,7 +127,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-7.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-home-isolation-guidelines.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -143,7 +135,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-8.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-wear-a-face-mask-in-crowd.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -151,7 +143,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-9.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-disinfect-hard-surfaces.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -159,7 +151,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-10.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-avoid-holding-breath-when-walking.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -167,7 +159,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-11.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-use-support-on-stairs.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -175,7 +167,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/storyboard-12.webp": {
+ "img/evercare/evercare-hospital-covid-19-storyboard-keep-daily-items-within-reach.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -183,23 +175,15 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/colour-typography.webp": {
-  "w": 1600,
-  "h": 1131,
+ "img/evercare/evercare-hospital-animation-characters-and-backgrounds.webp": {
+  "w": 1800,
+  "h": 1013,
   "v": [
    640,
    1200
   ]
  },
- "img/evercare/assets.webp": {
-  "w": 1600,
-  "h": 1131,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/pizza-now/box-1.webp": {
+ "img/pizza-now/pizza-now-pizza-boxes-checkerboard-pattern.webp": {
   "w": 1800,
   "h": 1359,
   "v": [
@@ -207,7 +191,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/box-2.webp": {
+ "img/pizza-now/pizza-now-pizza-box-pattern-in-rows.webp": {
   "w": 1800,
   "h": 1359,
   "v": [
@@ -215,7 +199,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/socials.webp": {
+ "img/pizza-now/pizza-now-instagram-posts.webp": {
   "w": 1800,
   "h": 1359,
   "v": [
@@ -223,7 +207,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/storefront.webp": {
+ "img/pizza-now/pizza-now-in-byte-app-restaurant-list.webp": {
   "w": 1800,
   "h": 1359,
   "v": [
@@ -231,7 +215,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/storefront-wide.webp": {
+ "img/pizza-now/pizza-now-banner-pizza-and-logo.webp": {
   "w": 1800,
   "h": 900,
   "v": [
@@ -239,25 +223,14 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/food-court.webp": {
-  "w": 1080,
-  "h": 432,
-  "v": [
-   640
-  ]
- },
- "img/pizza-now/logo-iterations.webp": {
+ "img/pizza-now/pizza-now-final-logo-on-pizza-pan.webp": {
   "w": 960,
   "h": 960,
   "v": [
    640
   ]
  },
- "img/pizza-now/logo-evolution.gif": {
-  "w": 1080,
-  "h": 1080
- },
- "img/breakfast-box/bb-1.webp": {
+ "img/breakfast-box/breakfast-box-instagram-posts-pastel-pink.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -265,7 +238,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/breakfast-box/bb-2.webp": {
+ "img/breakfast-box/breakfast-box-in-byte-app-restaurant-list.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -273,7 +246,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/breakfast-box/bb-3.webp": {
+ "img/breakfast-box/breakfast-box-logo-and-eggs-on-toast.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -281,7 +254,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/breakfast-box/bb-4.webp": {
+ "img/breakfast-box/breakfast-box-typefaces-monggoland-and-figtree.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -289,7 +262,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/breakfast-box/bb-5.webp": {
+ "img/breakfast-box/breakfast-box-branded-coffee-cups.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -297,7 +270,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/breakfast-box/bb-6.webp": {
+ "img/breakfast-box/breakfast-box-logo-on-hanging-shop-sign.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -305,7 +278,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/hero-1.webp": {
+ "img/black-friday/multiverse-black-friday-sale-25-percent-off-social-post.webp": {
   "w": 1600,
   "h": 1200,
   "v": [
@@ -313,55 +286,35 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/hero-4.webp": {
-  "w": 1600,
-  "h": 1200,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/black-friday/post-starts-1.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-sale-starts-slide-1.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/post-starts-2.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-sale-starts-slide-2.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/post-still-on-1.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-sale-still-on-slide-1.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/post-still-on-2.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-sale-still-on-slide-2.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/email-rewards.jpg": {
-  "w": 1000,
-  "h": 2193
- },
- "img/black-friday/email-starts.jpg": {
-  "w": 1000,
-  "h": 2298
- },
- "img/black-friday/email-whats-left.jpg": {
-  "w": 1000,
-  "h": 2758
- },
- "img/collegiate-survival-sale/hero-5.webp": {
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -369,120 +322,11 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/hero-6.webp": {
-  "w": 1740,
-  "h": 1140,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/collegiate-survival-sale/launch.webp": {
-  "w": 1800,
-  "h": 1125,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/collegiate-survival-sale/still-on.webp": {
-  "w": 1800,
-  "h": 1125,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/collegiate-survival-sale/teaser-1.webp": {
-  "w": 1200,
-  "h": 1500,
-  "v": [
-   640
-  ]
- },
- "img/collegiate-survival-sale/teaser-2.webp": {
-  "w": 1200,
-  "h": 1500,
-  "v": [
-   640
-  ]
- },
- "img/collegiate-survival-sale/last-call-1.webp": {
-  "w": 1200,
-  "h": 1500,
-  "v": [
-   640
-  ]
- },
- "img/collegiate-survival-sale/last-call-2.webp": {
-  "w": 1200,
-  "h": 1500,
-  "v": [
-   640
-  ]
- },
- "img/collegiate-survival-sale/email-launch.jpg": {
+ "img/annual-winter-sale/generation-annual-winter-sale-initial-layout-attempts-animation.webp": {
   "w": 1000,
-  "h": 2725
+  "h": 675
  },
- "img/collegiate-survival-sale/email-last-call.jpg": {
-  "w": 1000,
-  "h": 1914
- },
- "img/annual-winter-sale/title.webp": {
-  "w": 1200,
-  "h": 600,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/brief.webp": {
-  "w": 1200,
-  "h": 1299,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/inspiration.jpg": {
-  "w": 1000,
-  "h": 4916
- },
- "img/annual-winter-sale/initial-attempts.webp": {
-  "w": 1200,
-  "h": 2401,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/final-designs.webp": {
-  "w": 1200,
-  "h": 2100,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/newspapers.webp": {
-  "w": 1200,
-  "h": 1201,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/web-social.webp": {
-  "w": 1200,
-  "h": 2200,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/templates.webp": {
-  "w": 1200,
-  "h": 2100,
-  "v": [
-   640
-  ]
- },
- "img/annual-winter-sale/banner-15cm.webp": {
+ "img/annual-winter-sale/generation-annual-winter-sale-newspaper-banner-15cm.webp": {
   "w": 1800,
   "h": 839,
   "v": [
@@ -490,15 +334,14 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/ad-27cm.webp": {
-  "w": 1800,
-  "h": 2963,
+ "img/annual-winter-sale/generation-annual-winter-sale-newspaper-ad-27cm.webp": {
+  "w": 1093,
+  "h": 1800,
   "v": [
-   640,
-   1200
+   640
   ]
  },
- "img/annual-winter-sale/website.webp": {
+ "img/annual-winter-sale/generation-annual-winter-sale-website-banner.webp": {
   "w": 1800,
   "h": 1005,
   "v": [
@@ -506,7 +349,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/daraz.webp": {
+ "img/annual-winter-sale/generation-annual-winter-sale-daraz-online-marketplace-banner.webp": {
   "w": 1800,
   "h": 1059,
   "v": [
@@ -514,15 +357,11 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/dawn.webp": {
-  "w": 1800,
-  "h": 1060,
-  "v": [
-   640,
-   1200
-  ]
+ "img/annual-winter-sale/generation-annual-winter-sale-dawn-newspaper-front-page-ad.webp": {
+  "w": 620,
+  "h": 1072
  },
- "img/annual-winter-sale/facebook-ad.webp": {
+ "img/annual-winter-sale/generation-annual-winter-sale-facebook-page-banner.webp": {
   "w": 1800,
   "h": 1056,
   "v": [
@@ -530,15 +369,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/facebook-cover.webp": {
-  "w": 1800,
-  "h": 1059,
-  "v": [
-   640,
-   1200
-  ]
- },
- "img/generation-magazines/covers.webp": {
+ "img/generation-magazines/generation-magazine-three-covers-eid-beach-autumn-winter.webp": {
   "w": 1600,
   "h": 1260,
   "v": [
@@ -546,19 +377,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/generation-magazines/magazine-1.jpg": {
-  "w": 1000,
-  "h": 11000
- },
- "img/generation-magazines/magazine-2.jpg": {
-  "w": 1000,
-  "h": 10333
- },
- "img/generation-magazines/magazine-3.jpg": {
-  "w": 1000,
-  "h": 11000
- },
- "img/byte-app/cover.webp": {
+ "img/byte-app/byte-food-delivery-app-home-screen-cover.webp": {
   "w": 1616,
   "h": 1264,
   "v": [
@@ -566,7 +385,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-02.webp": {
+ "img/byte-app/byte-food-delivery-app-redesign-introduction.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
@@ -574,7 +393,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-03.webp": {
+ "img/byte-app/byte-food-delivery-app-user-flow-diagram.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
@@ -582,7 +401,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-04.webp": {
+ "img/byte-app/byte-food-delivery-app-hand-drawn-wireframes.webp": {
   "w": 1500,
   "h": 2000,
   "v": [
@@ -590,17 +409,13 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-06.webp": {
+ "img/byte-app/byte-food-delivery-app-screens-on-tilted-phones.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
    640,
    1200
   ]
- },
- "img/byte-app/screens.jpg": {
-  "w": 1000,
-  "h": 2500
  },
  "video/colabs-launch.mp4": {
   "w": 1920,
@@ -634,7 +449,7 @@ window.MEDIA = {
   "w": 1080,
   "h": 1080
  },
- "img/tango-photos/tango-3947.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3947.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -642,7 +457,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3948.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3948.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -650,7 +465,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3921.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3921.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -658,7 +473,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3923.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3923.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -666,7 +481,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3928.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3928.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -674,7 +489,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3929.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3929.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -682,7 +497,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3931.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3931.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -690,7 +505,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3933.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3933.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -698,7 +513,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3934.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3934.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -706,7 +521,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3935.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3935.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -714,28 +529,28 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3939.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3939.webp": {
   "w": 1200,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/tango-photos/tango-3940.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3940.webp": {
   "w": 1200,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/tango-photos/tango-3946.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3946.webp": {
   "w": 1200,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/tango-photos/tango-3951.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3951.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -743,7 +558,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3953.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3953.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -751,7 +566,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3954.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3954.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -759,7 +574,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3956.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3956.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -767,7 +582,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3957.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3957.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -775,7 +590,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3959.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3959.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -783,7 +598,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3962.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3962.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -791,7 +606,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3964.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3964.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -799,7 +614,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3965.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3965.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -807,7 +622,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3967.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3967.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -815,7 +630,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/tango-photos/tango-3969.webp": {
+ "img/tango-photos/toronto-tango-festival-2026-couple-dancing-3969.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -823,63 +638,226 @@ window.MEDIA = {
    1200
   ]
  },
- "img/pizza-now/logo-evolution.webp": {
+ "img/pizza-now/pizza-now-logo-evolution-animation.webp": {
   "w": 800,
   "h": 800
  },
- "img/black-friday/email-rewards.webp": {
+ "img/black-friday/multiverse-black-friday-rewards-email-newsletter.webp": {
   "w": 750,
   "h": 4188
  },
- "img/black-friday/email-starts.webp": {
+ "img/black-friday/multiverse-black-friday-sale-starts-email-newsletter.webp": {
   "w": 750,
   "h": 4389
  },
- "img/black-friday/email-whats-left.webp": {
+ "img/black-friday/multiverse-black-friday-whats-left-email-newsletter.webp": {
   "w": 750,
   "h": 5268
  },
- "img/collegiate-survival-sale/email-launch.webp": {
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-email-newsletter.webp": {
   "w": 750,
   "h": 5205
  },
- "img/collegiate-survival-sale/email-last-call.webp": {
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-email-newsletter.webp": {
   "w": 750,
   "h": 3655
  },
- "img/annual-winter-sale/inspiration.webp": {
+ "img/annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp": {
   "w": 1000,
   "h": 4916,
   "v": [
    640
   ]
  },
- "img/generation-magazines/magazine-1.webp": {
-  "w": 1000,
-  "h": 11000,
+ "img/generation-magazines/generation-magazine-eid-2018-full-layout.webp": {
+  "w": 800,
+  "h": 8800,
   "v": [
    640
   ]
  },
- "img/generation-magazines/magazine-2.webp": {
-  "w": 1000,
-  "h": 10333,
+ "img/generation-magazines/generation-magazine-beach-cover-full-layout.webp": {
+  "w": 800,
+  "h": 8267,
   "v": [
    640
   ]
  },
- "img/generation-magazines/magazine-3.webp": {
-  "w": 1000,
-  "h": 11000,
+ "img/generation-magazines/generation-magazine-autumn-winter-2018-19-full-layout.webp": {
+  "w": 800,
+  "h": 8800,
   "v": [
    640
   ]
  },
- "img/byte-app/screens.webp": {
+ "img/byte-app/byte-food-delivery-app-screen-designs.webp": {
   "w": 1000,
   "h": 2500,
   "v": [
    640
+  ]
+ },
+ "img/evercare/evercare-hospital-animation-colour-palette.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/evercare/evercare-hospital-animation-typography.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/black-friday/multiverse-black-friday-sale-launch-social-posts.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/black-friday/multiverse-black-friday-november-restocks-social-post.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/black-friday/multiverse-black-friday-rewards-members-carousel.webp": {
+  "w": 1800,
+  "h": 750,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/black-friday/multiverse-black-friday-stock-running-out-social-post.webp": {
+  "w": 1600,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-teaser-social-posts.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-social-posts.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-social-posts.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-social-posts.webp": {
+  "w": 1800,
+  "h": 1125,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-instagram-story-animation.webp": {
+  "w": 540,
+  "h": 960
+ },
+ "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-instagram-story-animation.webp": {
+  "w": 540,
+  "h": 960
+ },
+ "img/annual-winter-sale/generation-brand-colour-palette-red-white-black.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-brand-typography-itc-avant-garde-gothic.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-the-news-newspaper-ad.webp": {
+  "w": 1094,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-social-media-post-animation.webp": {
+  "w": 900,
+  "h": 900
+ },
+ "img/generation-magazines/generation-magazine-open-spread-mockup.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/generation-magazines/generation-magazine-spread-on-concrete-mockup.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/generation-magazines/generation-magazine-green-border-spread-mockup.webp": {
+  "w": 1800,
+  "h": 1145,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/generation-magazines/generation-magazine-page-turn-spread-mockup.webp": {
+  "w": 1800,
+  "h": 1309,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/generation-magazines/generation-magazine-front-and-back-cover-mockup.webp": {
+  "w": 1800,
+  "h": 1145,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/generation-magazines/generation-magazine-spread-on-wall-mockup.webp": {
+  "w": 1800,
+  "h": 1201,
+  "v": [
+   640,
+   1200
   ]
  }
 };

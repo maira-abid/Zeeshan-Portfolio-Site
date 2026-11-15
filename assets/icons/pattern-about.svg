@@ -7,7 +7,7 @@
     <path id="star" d="M12 2l2.9 6.9 7.5.5-5.8 4.8 1.9 7.3L12 17.5l-6.5 4 1.9-7.3L1.6 9.4l7.5-.5z"/>
     <path id="sparkle" d="M12 1.5c.9 5.6 4.9 9.6 10.5 10.5-5.6.9-9.6 4.9-10.5 10.5-.9-5.6-4.9-9.6-10.5-10.5C7.1 11.1 11.1 7.1 12 1.5z"/>
   </defs>
-  <g fill="none" stroke="#a77fe0" stroke-width="1.1" stroke-linejoin="round" opacity=".18">
+  <g fill="none" stroke="#8f00ff" stroke-width="1.1" stroke-linejoin="round" opacity=".18">
     <use href="#heart"   transform="translate(80 120) rotate(10) scale(3)"/>
     <use href="#star"    transform="translate(360 60) rotate(-14) scale(2.6)"/>
     <use href="#sparkle" transform="translate(650 150) rotate(8) scale(3)"/>
@@ -18,7 +18,7 @@
     <use href="#star"    transform="translate(720 770) rotate(12) scale(3.2)"/>
     <use href="#spade"   transform="translate(370 850) rotate(6) scale(2.4)"/>
   </g>
-  <g fill="#a77fe0" opacity=".06">
+  <g fill="#8f00ff" opacity=".06">
     <use href="#heart"   transform="translate(570 330) rotate(-6) scale(1.5)"/>
     <use href="#star"    transform="translate(150 270) rotate(8) scale(1.4)"/>
     <use href="#diamond" transform="translate(850 640) rotate(12) scale(1.3)"/>

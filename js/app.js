@@ -70,7 +70,7 @@
     // the industry comes after the client name ("CarSwitch | Automotive"), clickable (it filters the Projects page)
     var inds = p.industries.map(function (i) { return '<a class="card__tag" data-filter rel="nofollow" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join(', ');
     return '<article class="card"><a class="card__img" href="' + projectUrl(p) + '" tabindex="-1" aria-hidden="true">' +
-      '<img src="assets/img/thumbs/' + p.slug + '.webp" srcset="assets/img/thumbs/' + p.slug + '-450.webp 450w, assets/img/thumbs/' + p.slug + '.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
+      '<img src="assets/img/thumbs/' + p.slug + '-project-thumbnail.webp" srcset="assets/img/thumbs/' + p.slug + '-project-thumbnail-450.webp 450w, assets/img/thumbs/' + p.slug + '-project-thumbnail.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
       '<div class="card__body"><h3 class="card__title"><a href="' + projectUrl(p) + '">' + esc(p.title) + '</a></h3><p class="card__client">' + esc(p.client) + (inds ? ' <span class="card__sep" aria-hidden="true">|</span> ' + inds : '') + '</p></div></article>';
   }
 
@@ -179,7 +179,7 @@
       var q = []; if (state.category) q.push('category=' + state.category); if (state.industry) q.push('industry=' + state.industry); if (state.sort !== 'default') q.push('sort=' + state.sort);
       history.pushState(null, '', 'projects/' + (q.length ? '?' + q.join('&') : ''));
     }
-    document.addEventListener('click', function (e) {
+    listen(document, 'click', function (e) {
       var a = e.target.closest('a[data-filter]'); if (!a) return;
       e.preventDefault();
       var u = new URL(a.href);
@@ -187,19 +187,27 @@
       push(); render();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    document.addEventListener('change', function (e) { if (e.target.id === 'sort') { state.sort = e.target.value; push(); render(); $('#sort').focus(); } });
-    window.addEventListener('popstate', function () { state = readState(); render(); });
+    listen(document, 'change', function (e) { if (e.target.id === 'sort') { state.sort = e.target.value; push(); render(); $('#sort').focus(); } });
+    listen(window, 'popstate', function () { state = readState(); render(); });
   }
 
   /* ---------- PROJECT ---------- */
+  function autoplayOK() {
+    try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false; if (localStorage.getItem('zk-motion') === 'off') return false; } catch (e) { /* storage blocked: autoplay stays on */ }
+    return true;
+  }
   function mediaItem(m, sizes, eager) {
     if (m.t === 'img') return '<figure class="media media--zoom">' + imgTag(m.src, m.alt, ' data-zoom data-full="' + webSrc(m.src) + '" tabindex="0" role="button" aria-label="Enlarge image: ' + esc(m.alt) + '"', sizes, eager) + (m.caption ? '<figcaption class="media__cap">' + esc(m.caption) + '</figcaption>' : '') + '</figure>';
     if (m.t === 'scroll') return '<figure class="media"><div class="scrollframe" tabindex="0" role="region" aria-label="' + esc(m.alt) + ' (scrollable)">' + imgTag(m.src, m.alt, '', sizes) + '</div><div class="scrollhint">' + icon('bolt-o') + ' Scroll to explore</div></figure>';
-    if (m.t === 'vimeo') return '<figure class="media"><div class="ratio"><iframe src="https://player.vimeo.com/video/' + m.id + '?dnt=1" title="' + esc(m.title) + '" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
+    if (m.t === 'vimeo') {
+      // autoplay (the first animation on a project): Vimeo only allows it muted, and it is skipped for visitors who asked for less motion
+      var ap = !!m.autoplay && autoplayOK();
+      return '<figure class="media"><div class="ratio"><iframe src="https://player.vimeo.com/video/' + m.id + '?dnt=1' + (ap ? '&autoplay=1&muted=1' : '') + '" title="' + esc(m.title) + '" loading="' + (ap ? 'eager' : 'lazy') + '" allow="' + (ap ? 'autoplay; ' : '') + 'fullscreen; picture-in-picture" allowfullscreen></iframe></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
+    }
     if (m.t === 'video') {
       var dim = MEDIA['video/' + m.src.replace('video/', '')] || {}; var cls = 'ratio';
       if (dim.w && dim.h && dim.h > dim.w * 1.1) cls += ' ratio--portrait'; else if (dim.w && dim.h && Math.abs(dim.w - dim.h) < 4) cls += ' ratio--square';
-      return '<figure class="media"><div class="' + cls + '"><video controls playsinline preload="none" poster="assets/' + m.poster + '"><source src="assets/' + m.src + '" type="video/mp4"></video></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
+      return '<figure class="media"><div class="' + cls + '"><video controls playsinline preload="none" aria-label="' + esc(m.alt || m.title || '') + '" poster="assets/' + m.poster + '"><source src="assets/' + m.src + '" type="video/mp4"></video></div>' + (m.title ? '<figcaption class="vcap">' + esc(m.title) + '</figcaption>' : '') + '</figure>';
     }
     return '';
   }
@@ -269,10 +277,11 @@
           (b.stats ? '<div class="stats">' + b.stats.map(function (s) { return '<div class="stat"><b>' + esc(s.n) + '</b><span>' + esc(s.l) + '</span></div>'; }).join('') + '</div>' : '') +
           (b.bullets && !b.stats ? '<ul class="sec__list">' + b.bullets.map(function (t) { return '<li><i class="bullet" aria-hidden="true"></i><span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
         if (b.media && b.media.length) {
-          var n = b.media.length, o = shape(b.media[0]), side = n === 1 && o === 'p';
-          var sizes = side ? '(max-width: 960px) 100vw, 360px' : (n === 1 ? '(max-width: 960px) 100vw, 840px' : '(max-width: 960px) 50vw, 420px');
+          // stack: true = every picture on its own row at the full width of the text column (used when pictures must line up with the rest)
+          var n = b.media.length, o = b.stack ? 'l' : shape(b.media[0]), side = n === 1 && o === 'p';
+          var sizes = side ? '(max-width: 960px) 100vw, 360px' : (n === 1 || b.stack ? '(max-width: 960px) 100vw, 840px' : '(max-width: 960px) 50vw, 420px');
           return '<section class="sec">' + head + '<div class="sec__body' + (side ? ' sec__body--side' : '') + '">' + text +
-            '<div class="sec__media sec__media--' + o + ' sec__media--n' + Math.min(n, 3) + '">' + b.media.map(function (m) { return mediaItem(m, sizes); }).join('') + '</div></div></section>';
+            '<div class="sec__media sec__media--' + o + ' sec__media--n' + (b.stack ? 1 : Math.min(n, 3)) + (b.stack ? ' sec__media--stack' : '') + '">' + b.media.map(function (m) { return mediaItem(m, sizes); }).join('') + '</div></div></section>';
         }
         return '<section class="sec">' + head + '<div class="sec__body">' + text + '</div></section>';
       }
@@ -284,6 +293,13 @@
           '<div class="sec__body">' + (b.note ? '<div class="sec__text"><p>' + esc(b.note) + '</p></div>' : '') +
           '<div class="sec__media sec__media--s sec__media--n' + Math.min(ns, 3) + '">' + b.items.map(function (m) { return mediaItem(m, '(max-width: 599px) 100vw, 300px'); }).join('') + '</div></div></section>';
       }
+      if (b.type === 'media' && b.layout === 'carousel') {
+        // Social media carousels: one row per carousel, full-size slides that scroll sideways
+        return '<section class="mb"><div class="mb__head"><h2>' + esc(b.heading) + '</h2>' + (b.note ? '<p>' + esc(b.note) + '</p>' : '') + '</div>' + b.rows.map(function (r) {
+          return '<div class="car"><p class="car__label">' + esc(r.label) + '</p><div class="car__strip" tabindex="0" role="region" aria-label="' + esc(b.heading + ': ' + r.label) + ' (scrolls sideways)">' +
+            r.items.map(function (m) { return mediaItem(m, '(max-width: 599px) 82vw, 410px'); }).join('') + '</div></div>';
+        }).join('') + '</section>';
+      }
       if (b.type === 'media') {
         return '<section class="mb"><div class="mb__head"><h2>' + esc(b.heading) + '</h2>' + (b.note ? '<p>' + esc(b.note) + '</p>' : '') + '</div><div class="mb__grid mb__grid--' + b.layout + '">' + b.items.map(function (m) { return mediaItem(m, BLOCK_SIZES[b.layout]); }).join('') + '</div></section>';
       }
@@ -291,7 +307,7 @@
     }).join('');
 
     var next = S.projects[(idx + 1) % S.projects.length], nm = (S.caseMeta || {})[next.slug] || {}, nc = nm.color || ['#8f00ff', '#ffffff'];
-    var nextBand = '<div class="c-next"><a href="' + projectUrl(next) + '" style="--pa:' + nc[0] + ';--on:' + nc[1] + '"><div class="wrap c-next__in"><span class="c-next__img"><img src="assets/img/thumbs/' + next.slug + '-450.webp" alt="" width="450" height="338" loading="lazy" decoding="async"></span>' +
+    var nextBand = '<div class="c-next"><a href="' + projectUrl(next) + '" style="--pa:' + nc[0] + ';--on:' + nc[1] + '"><div class="wrap c-next__in"><span class="c-next__img"><img src="assets/img/thumbs/' + next.slug + '-project-thumbnail-450.webp" alt="" width="450" height="338" loading="lazy" decoding="async"></span>' +
       '<span class="c-next__txt"><span class="c-next__label">Next project</span><b>' + esc(next.title) + '</b></span></div></a></div>' +
       '<div class="wrap c-back"><a class="btn btn--outline" href="projects/">Back to all projects</a></div>';
 
@@ -299,7 +315,10 @@
     initLightbox();
   }
 
+  var lbReady = false;
   function initLightbox() {
+    if (lbReady) return; // the viewer and its listeners are made once; they stay in the page when the visitor moves between pages
+    lbReady = true;
     var lb = document.createElement('div'); lb.className = 'lightbox'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', 'Image viewer');
     lb.innerHTML = '<button type="button" aria-label="Close image">&times;</button><img alt="">'; document.body.appendChild(lb);
     var im = $('img', lb), last = null;
@@ -408,9 +427,13 @@
   }
 
   /* ---------- boot ---------- */
-  renderChrome();
   var routes = { home: renderHome, projects: renderProjects, project: renderProject, about: renderAbout, contact: renderContact, privacy: renderPrivacy };
-  if (routes[page]) routes[page]();
+  var themeMQ = false;
+  // listeners that belong to one page (the Projects filters) are removed when the visitor moves to another page
+  var cleanups = [];
+  function listen(target, type, fn) { target.addEventListener(type, fn); cleanups.push(function () { target.removeEventListener(type, fn); }); }
+  function cleanup() { while (cleanups.length) cleanups.pop()(); }
+  function boot() { renderChrome(); if (routes[page]) routes[page](); initTheme(); initMotion(); }
 
   /* In-page links (skip link, privacy contents): pages use a <base href>, so a bare "#id" would point at the site root. Handle them here. */
   document.addEventListener('click', function (e) {
@@ -422,25 +445,25 @@
 
   /* Light / dark switch (the header button). Same site, same pages: only the colours change. Remembered on this device; dark is the default.
      A tiny script in <head> (tools/templates/shell.html) applies the saved choice before the page paints, so there is no flash. */
-  (function initTheme() {
+  function initTheme() {
     var btn = $('#themeToggle'); if (!btn) return;
     var root = document.documentElement, meta = $('meta[name="theme-color"]');
     function isLight() { return root.getAttribute('data-theme') === 'light'; }
     function apply(light, save) {
       if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
-      btn.setAttribute('aria-label', light ? 'Switch to the dark version' : 'Switch to the light version');
+      ($('#themeToggle') || btn).setAttribute('aria-label', light ? 'Switch to the dark version' : 'Switch to the light version');
       if (meta) meta.setAttribute('content', light ? '#ffffff' : '#1b1b1b');
       if (save) { try { localStorage.setItem('zk-theme', light ? 'light' : 'dark'); } catch (e) {} }
     }
     btn.addEventListener('click', function () { apply(!isLight(), true); });
     apply(isLight(), false);
     // with no saved choice the site follows the system colour mode, including when it changes while the page is open
-    var sys = window.matchMedia && matchMedia('(prefers-color-scheme: light)');
+    var sys = !themeMQ && window.matchMedia && matchMedia('(prefers-color-scheme: light)'); themeMQ = true; // the system-colour listener is added once, not on every page change
     if (sys && sys.addEventListener) sys.addEventListener('change', function (e) { var saved = null; try { saved = localStorage.getItem('zk-theme'); } catch (er) {} if (!saved) apply(e.matches, false); });
-  })();
+  }
 
   /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */
-  (function initMotion() {
+  function initMotion() {
     var btn = $('#motionToggle'); if (!btn) return;
     var off = false; try { off = localStorage.getItem('zk-motion') === 'off'; } catch (e) {}
     function apply(isOff, save) {
@@ -451,5 +474,60 @@
     }
     btn.addEventListener('click', function () { apply(!off, true); });
     if (off) apply(true, false);
-  })();
+  }
+
+  /* ---------- page changes without a reload ----------
+     Moving between pages of the site swaps the page in place instead of loading a new document. The browser reloads its own pointer
+     whenever a new document opens (it shows the system arrow until the mouse moves, on top of the themed pointer), and it keeps the
+     pointer as it is when the document stays. Anything that is not a page of this site (other sites, files, new tabs, Ctrl-click) opens as usual. */
+  var ROOT = new URL(document.baseURI), BASES = { home: '', projects: '../', about: '../', contact: '../', privacy: '../', project: '../../' };
+  function routeFor(u) {
+    if (u.origin !== ROOT.origin || u.pathname.indexOf(ROOT.pathname) !== 0) return null;
+    var rel = u.pathname.slice(ROOT.pathname.length).replace(/index\.html$/, '').replace(/^(projects|about|contact|privacy)\.html$/, '$1/');
+    if (rel && rel.charAt(rel.length - 1) !== '/') rel += '/';
+    if (rel === '') return { page: 'home' };
+    if (/^(projects|about|contact|privacy)\/$/.test(rel)) return { page: rel.slice(0, -1) };
+    var m = rel.match(/^projects\/([^\/]+)\/$/);
+    if (m) { var slug = decodeURIComponent(m[1]); if (S.projects.some(function (p) { return p.slug === slug; })) return { page: 'project', slug: slug }; }
+    return null;
+  }
+  var navSeq = 0;
+  function go(u, push) {
+    var r = routeFor(u); if (!r) { location.href = u.href; return; }
+    cleanup();
+    if (push) history.pushState(null, '', u.href);
+    var base = document.querySelector('base'); // the home page has none; the others point back to the site root
+    if (!base) { base = document.createElement('base'); document.head.insertBefore(base, document.head.firstChild); }
+    base.setAttribute('href', BASES[r.page]);
+    page = r.page; document.body.dataset.page = r.page;
+    if (r.slug) document.body.dataset.slug = r.slug; else delete document.body.dataset.slug;
+    delete document.body.dataset.prerendered; // so the page code sets a title straight away; the real one is read from the page below
+    boot();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    var mn = $('main'); if (mn) { mn.setAttribute('tabindex', '-1'); mn.focus({ preventScroll: true }); }
+    document.dispatchEvent(new CustomEvent('zk:navigate'));
+    var mine = ++navSeq;
+    fetch(u.href).then(function (res) { return res.ok ? res.text() : ''; }).then(function (html) {
+      if (!html || mine !== navSeq) return;
+      var d = new DOMParser().parseFromString(html, 'text/html'), t = d.querySelector('title'), md = d.querySelector('meta[name="description"]'), cur = document.querySelector('meta[name="description"]');
+      if (t) document.title = t.textContent; if (md && cur) cur.setAttribute('content', md.getAttribute('content'));
+    }).catch(function () { /* the fallback title stays */ });
+  }
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.hasAttribute('data-filter') || a.hasAttribute('download') || (a.target && a.target !== '_self')) return;
+    var href = a.getAttribute('href'); if (!href || href.charAt(0) === '#') return;
+    var u = new URL(a.href);
+    if (u.pathname === location.pathname && u.search === location.search) { if (u.hash) return; e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    if (!routeFor(u)) return;
+    e.preventDefault(); go(u, true);
+  });
+  window.addEventListener('popstate', function () {
+    var u = new URL(location.href), r = routeFor(u); if (!r) { location.reload(); return; }
+    if (r.page !== page || (r.slug || '') !== (document.body.dataset.slug || '')) go(u, false); // same page (Projects filters): its own handler deals with it
+  });
+
+  boot();
 })();
