@@ -37,11 +37,14 @@ window.SITE = {
   },
 
   // Social links - TODO: add the real URLs (the owner will provide them).
+  // Where contact-form messages go. The form needs a form service to deliver them (see contactEndpoint); until then it opens the visitor's email app addressed here.
+  email: 'zeeshanabid.design@outlook.com',
+  contactEndpoint: '', // paste the form service's URL here (for example a Formspree form address) and the form sends straight to the email above
   social: [
     { id: 'behance', label: 'Behance', href: 'https://www.behance.net/Zeeshan-Abid' },
-    { id: 'vimeo', label: 'Vimeo', href: 'https://vimeo.com/zeeshanabid' },
-    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/zeeshan-abid1/' },
-    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/zeeshanabid_photodesign/' },
+    { id: 'vimeo', label: 'Vimeo', href: 'https://vimeo.com/zeeshanabid?fl=pl&fe=by' },
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/zeeshan-abid1' },
+    { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/zeeshanabid_photodesign' },
   ],
 
   // Placeholder client "logos" for the ticker (names as text until real logos are supplied).
@@ -90,11 +93,11 @@ window.SITE = {
   // Home page "Featured Work" panels. Every figure comes from the project write-ups below. color = [panel colour taken from the work, readable text colour on it].
   featuredMeta: {
     carswitch: { need: 'Animation that gets noticed', metric: '35k', words: 'views, 30% fewer queries', outcome: '35k views, 30% fewer queries and 50% more website visits.', color: ['#c97c00', '#ffffff'], img: 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp', pos: '64% 50%', alt: 'CarSwitch animation frame: the seller character beside the question “Looking to sell your car?”' },
-    evercare: { need: 'A hard message made simple', metric: '−40%', words: 'common COVID-19 queries', outcome: 'Cut common COVID-19 queries by 40% with explainers averaging 20K views.', color: ['#14367a', '#ffffff'], img: 'evercare/evercare-hospital-flatten-the-curve-animation-frame.webp', pos: '50% 50%', alt: 'Evercare Hospital explainer animation frame: a woman in a red cape working on a laptop at home' },
+    evercare: { need: 'A hard message made simple', metric: '−40%', words: 'common COVID-19 queries', outcome: 'Cut common COVID-19 queries by 40% with explainers averaging 20K views.', color: ['#14367a', '#ffffff'], img: 'evercare/evercare-flatten-the-curve-frame.webp', pos: '50% 50%', alt: 'Evercare Hospital explainer animation frame: a woman in a red cape working on a laptop at home' },
     'pizza-now': { need: 'A brand that sells', metric: '#1', words: 'selling brand for a year', outcome: 'The highest-selling brand on the Byte app for a year, driving 50–60% of daily sales.', color: ['#17763a', '#ffffff'], img: 'pizza-now/pizza-now-pizza-boxes-checkerboard-pattern.webp', alt: 'Two Pizza Now pizza boxes with a red and green checkerboard pattern' },
-    'collegiate-survival-sale': { need: 'A campaign that converts', metric: '3x', words: 'sales in five days', outcome: 'Tripled sales and sold 60% of the stock in five days.', color: ['#d3202b', '#ffffff'], img: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp', alt: 'Collegiate Survival Sale posts in an Instagram grid and on a phone' },
+    'collegiate-survival-sale': { need: 'A campaign that converts', metric: '3x', words: 'sales in five days', outcome: 'Tripled sales and sold 60% of the stock in five days.', color: ['#d3202b', '#ffffff'], img: 'collegiate-survival-sale/collegiate-survival-sale-posts-on-instagram-and-phone.webp', alt: 'Collegiate Survival Sale posts in an Instagram grid and on a phone' },
     'breakfast-box': { need: 'A launch that gets orders', metric: '150–200', words: 'orders a day', outcome: '150–200 orders a day for the four months after launch.', color: ['#dc6b8e', '#ffffff'], img: 'breakfast-box/breakfast-box-logo-and-eggs-on-toast.webp', pos: '0% 50%', alt: 'Breakfast Box logo beside plates of eggs on toast on a pink background' },
-    'black-friday': { need: 'A sale that stands out', metric: '+60–70%', words: 'Black Friday sales', outcome: 'Lifted Black Friday product sales by 60–70%.', color: ['#14a074', '#ffffff'], img: 'black-friday/multiverse-black-friday-sale-25-percent-off-social-post.webp', alt: 'Black Friday sale post with “25% off site wide” in green lettering on black' },
+    'black-friday': { need: 'A sale that stands out', metric: '+60–70%', words: 'Black Friday sales', outcome: 'Lifted Black Friday product sales by 60–70%.', color: ['#14a074', '#ffffff'], img: 'black-friday/multiverse-black-friday-sale-25-percent-off-post.webp', alt: 'Black Friday sale post with “25% off site wide” in green lettering on black' },
   },
 
   // Planned projects with no material yet (from NEW PORTFOLIO, 2026 - 2027.txt). Not shown anywhere at the moment;
@@ -123,7 +126,7 @@ window.SITE = {
   // Generic Canadian privacy policy (PIPEDA). Template only: have it reviewed before relying on it.
   privacy: {
     updated: 'November 6, 2026',
-    email: '', // TODO: add the contact email for privacy requests; shown as a placeholder until filled in
+    email: 'zeeshanabid.design@outlook.com',
     sections: [
       { title: 'Who we are', paras: [
         'This website is operated by Zeeshan Abid, a designer based in Toronto, Ontario, Canada ("I", "me", "my"). This policy explains what personal information is collected when you visit the site or get in touch, how it is used, and the choices you have.',
@@ -204,7 +207,7 @@ window.SITE = {
           paras: ['CarSwitch wanted to market its services and the unique advantages they offer to both vehicle buyers and sellers. For sellers, CarSwitch handles all of the problems, process and paperwork that come with selling the car. Sellers can expect to get the selling price that they want and not lose value of their car. For buyers, CarSwitch inspects and tests the cars. This way buyers know that they\'re not being sold "lemon cars". They wanted to highlight how and why all of these services set them apart from other brands in Dubai\'s used car market and that they offer a complete solution from beginning to end. Customers do not need to put in effort and instead CarSwitch does the work for them.'],
           media: [
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-endless-phone-calls.webp', alt: 'CarSwitch storyboard frame: “But that means handling endless phone calls”, with a hand holding a phone and speech bubbles saying “blah”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-mechanic-inspects-and-certifies-car.webp', alt: 'CarSwitch storyboard frame: a smiling mechanic in blue overalls beside a yellow car, with the line “Our experts inspect and certify so buyers are willing to pay more”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-mechanic-inspects-car.webp', alt: 'CarSwitch storyboard frame: a smiling mechanic in blue overalls beside a yellow car, with the line “Our experts inspect and certify so buyers are willing to pay more”' },
           ],
         },
         {
@@ -225,23 +228,23 @@ window.SITE = {
           type: 'media', layout: 'grid3', heading: 'Storyboards',
           items: [
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp', alt: 'CarSwitch storyboard frame: the seller character beside the question “Looking to sell your car?”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-seller-and-greedy-car-dealer.webp', alt: 'CarSwitch storyboard frame: a car seller imagines “$$” while a car dealer in a suit imagines “$$$$” outside a dealership' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-seller-and-car-dealer.webp', alt: 'CarSwitch storyboard frame: a car seller imagines “$$” while a car dealer in a suit imagines “$$$$” outside a dealership' },
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-haggling-with-strangers.webp', alt: 'CarSwitch storyboard frame: the seller beside a yellow car with three strangers and the line “…haggling with strangers…”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-managing-the-transfer-paperwork.webp', alt: 'CarSwitch storyboard frame: a stack of paper towering over the seller’s legs, with the line “…and managing the transfer”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-transfer-paperwork.webp', alt: 'CarSwitch storyboard frame: a stack of paper towering over the seller’s legs, with the line “…and managing the transfer”' },
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-you-set-the-price.webp', alt: 'CarSwitch storyboard frame: the seller holding a “$$$$” price tag on a yellow car, with the line “you set the price!”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-where-you-set-your-own-price.webp', alt: 'CarSwitch storyboard frame: a yellow car with a “$$$$” price tag and the line “…where you set your own price”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-management-of-transfers-test-drives-phone-calls.webp', alt: 'CarSwitch storyboard frame: a blue car on a road with the words “Management of transfers”, “Test drives” and “Phone calls”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-success-fee-only-when-we-sell-the-car.webp', alt: 'CarSwitch storyboard frame: a small yellow car under the line “success fee only applies when WE SELL THE CAR!”' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-success-fees-after-sale.webp', alt: 'CarSwitch storyboard frame: a mechanic in a yellow cap holding a clipboard, with the line “Success fees charged after we sell the car”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-set-your-own-price.webp', alt: 'CarSwitch storyboard frame: a yellow car with a “$$$$” price tag and the line “…where you set your own price”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-transfers-test-drives-calls.webp', alt: 'CarSwitch storyboard frame: a blue car on a road with the words “Management of transfers”, “Test drives” and “Phone calls”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-fee-only-when-we-sell.webp', alt: 'CarSwitch storyboard frame: a small yellow car under the line “success fee only applies when WE SELL THE CAR!”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-fees-charged-after-sale.webp', alt: 'CarSwitch storyboard frame: a mechanic in a yellow cap holding a clipboard, with the line “Success fees charged after we sell the car”' },
           ],
         },
         {
           type: 'media', layout: 'grid2', heading: 'Vertical Storyboards', note: 'The same story for tall phone screens, in English and Arabic.',
           items: [
             { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-selling-your-car.webp', alt: 'CarSwitch vertical storyboard: “Selling your car?” in English and Arabic over a phone showing a red car on a road, with the CarSwitch logo and phone number' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-road.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic over a phone showing a white car on a country road' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-coins.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic beside a tall stack of coins compared with a short one' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-download-the-app.webp', alt: 'CarSwitch vertical storyboard end card: the CarSwitch logo, the phone number 04 506 1300 and “Download the app now!”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-more-value-road.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic over a phone showing a white car on a country road' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-more-value-coins.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic beside a tall stack of coins compared with a short one' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-download-app.webp', alt: 'CarSwitch vertical storyboard end card: the CarSwitch logo, the phone number 04 506 1300 and “Download the app now!”' },
           ],
         },
         {
@@ -269,7 +272,7 @@ window.SITE = {
         {
           type: 'section', title: 'Introduction', icon: 'spade',
           paras: ['As an esteemed hospital and healthcare brand present in 6 countries, Evercare aims to provide accessible high quality health and medical care for low and middle income patients in countries with emerging markets.'],
-          media: [{ t: 'img', src: 'evercare/evercare-hospital-flatten-the-curve-animation-frame.webp', alt: 'Evercare animation frame: a woman in a red cape working on a laptop at home under a “Home Sweet Home” sign' }],
+          media: [{ t: 'img', src: 'evercare/evercare-flatten-the-curve-frame.webp', alt: 'Evercare animation frame: a woman in a red cape working on a laptop at home under a “Home Sweet Home” sign' }],
         },
         {
           type: 'media', layout: 'videos', heading: 'The Animations',
@@ -284,47 +287,47 @@ window.SITE = {
           type: 'section', title: 'Problem Identification', icon: 'diamond',
           paras: ['As the COVID-19 pandemic started to spread quickly in Lahore and other major cities of Pakistan, there was an up-rise in cases across the country, causing panic amongst the public. People did not understand what COVID-19 was, how to avoid it and what to do if they contract it. People were confused by either an excess of information or a lack of information about COVID-19.'],
           media: [
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-working-at-home-in-isolation.webp', alt: 'Evercare storyboard frame: the woman in a red cape on her laptop at home, under a “Home Sweet Home” sign' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-seek-medical-help-ambulance.webp', alt: 'Evercare storyboard frame: paramedics in protective suits beside an ambulance, with the line “Seek specialised medical help if symptoms are persistent or get worse”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-working-at-home-isolating.webp', alt: 'Evercare storyboard frame: the woman in a red cape on her laptop at home, under a “Home Sweet Home” sign' },
+            { t: 'img', src: 'evercare/evercare-storyboard-seek-medical-help.webp', alt: 'Evercare storyboard frame: paramedics in protective suits beside an ambulance, with the line “Seek specialised medical help if symptoms are persistent or get worse”' },
           ],
         },
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['I designed the art direction for the explainer animations using the brand guidelines and brand manuals that they had provided. The design of the animations also included all the characters and backgrounds. I also animated 4 different videos, with each animation explaining a different topic related to COVID-19.'],
-          media: [{ t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-wear-a-face-mask-in-crowd.webp', alt: 'Evercare storyboard frame: a crowd of people wearing face masks, with the line “Wear a face mask that covers your nose when you are around others”' }],
+          media: [{ t: 'img', src: 'evercare/evercare-storyboard-wear-face-mask-in-crowd.webp', alt: 'Evercare storyboard frame: a crowd of people wearing face masks, with the line “Wear a face mask that covers your nose when you are around others”' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['The client emphasized on visually communicating the branding of the hospital in the videos. The colours and typography of the brand needed to be at the forefront. The brand had previously used vectors illustrations and characters to communicate to its audience. I had previously used these design elements for their social media posts and graphics. Backgrounds were kept simple to avoid clutter and to focus more on the characters and the animated text. A calm background music was added to relax and de-stress the viewer.'],
-          media: [{ t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-home-isolation-guidelines.webp', alt: 'Evercare storyboard frame: a person standing in a living room, with the line “Go through the home isolation guidelines provided by the Government of Pakistan, NIH and WHO”' }],
+          media: [{ t: 'img', src: 'evercare/evercare-storyboard-home-isolation-guidelines.webp', alt: 'Evercare storyboard frame: a person standing in a living room, with the line “Go through the home isolation guidelines provided by the Government of Pakistan, NIH and WHO”' }],
         },
         {
           type: 'media', layout: 'single', heading: 'Colour & Typography',
           items: [
-            { t: 'img', src: 'evercare/evercare-hospital-animation-colour-palette.webp', alt: 'Evercare animation colour palette: dark blue, cyan, purple and green swatches' },
-            { t: 'img', src: 'evercare/evercare-hospital-animation-typography.webp', alt: 'Evercare animation typography: the typeface Brown in light and bold on a dark blue background' },
+            { t: 'img', src: 'evercare/evercare-animation-colour-palette.webp', alt: 'Evercare animation colour palette: dark blue, cyan, purple and green swatches' },
+            { t: 'img', src: 'evercare/evercare-animation-typography.webp', alt: 'Evercare animation typography: the typeface Brown in light and bold on a dark blue background' },
           ],
         },
         {
           type: 'media', layout: 'single', heading: 'Assets',
-          items: [{ t: 'img', src: 'evercare/evercare-hospital-animation-characters-and-backgrounds.webp', alt: 'Evercare animation assets: illustrated characters, blob shapes, a living room and a park backdrop' }],
+          items: [{ t: 'img', src: 'evercare/evercare-animation-characters-backgrounds.webp', alt: 'Evercare animation assets: illustrated characters, blob shapes, a living room and a park backdrop' }],
         },
         {
           type: 'media', layout: 'grid3', heading: 'Storyboards',
           items: [
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-pandemic-curve-chart.webp', alt: 'Evercare storyboard frame: a chart titled “COVID-19 pandemic” with a tall curve of cases above the healthcare capacity line' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-sick-person-isolates.webp', alt: 'Evercare storyboard frame: rings of white and red dots on navy, with the line “But if that sick person isolates themselves…”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-wash-your-hands-with-soap.webp', alt: 'Evercare storyboard frame: hands being washed with soap, with the line “Wash your hands frequently with soap”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-turn-away-when-sneezing.webp', alt: 'Evercare storyboard frame: a man sneezing into his elbow beside a worried woman, with the line “Turn away from other people when sneezing or coughing”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-take-adequate-measures-on-public-transport.webp', alt: 'Evercare storyboard frame: masked passengers standing and sitting on a bus, with the line “When you do, take adequate measures”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-stay-updated-on-phone.webp', alt: 'Evercare storyboard frame: a hand holding a phone with a COVID-19 updates screen, with the line “Stay updated about the latest COVID-19 information”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-disinfect-hard-surfaces.webp', alt: 'Evercare storyboard frame: a spray bottle beside a bedside table, with the line “Clean hard surfaces with a disinfectant mixture”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-avoid-holding-breath-when-walking.webp', alt: 'Evercare storyboard frame: a man walking in a park past a bench, with the line “When walking… avoid holding your breath”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-use-support-on-stairs.webp', alt: 'Evercare storyboard frame: a person climbing purple stairs, with the line “Avoid unnecessary climbing; if you do, use support”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-keep-daily-items-within-reach.webp', alt: 'Evercare storyboard frame: a person working on a sofa in a living room, with the line “Keep your daily usable items within your reach”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-talk-to-family-and-friends.webp', alt: 'Evercare storyboard frame: two people checking their phones, with the line “When feeling anxious, talk to your family members or friends”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-avoid-foods-difficult-to-chew.webp', alt: 'Evercare storyboard frame: a man beside four snack icons, with the line “When eating, avoid foods that are difficult to chew”' },
-            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-keep-in-touch-with-friends.webp', alt: 'Evercare storyboard frame: three people in circles waving, with the line “Keep in touch: make sure your friends are informed about your condition”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-pandemic-curve-chart.webp', alt: 'Evercare storyboard frame: a chart titled “COVID-19 pandemic” with a tall curve of cases above the healthcare capacity line' },
+            { t: 'img', src: 'evercare/evercare-storyboard-sick-person-isolates.webp', alt: 'Evercare storyboard frame: rings of white and red dots on navy, with the line “But if that sick person isolates themselves…”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-wash-hands-with-soap.webp', alt: 'Evercare storyboard frame: hands being washed with soap, with the line “Wash your hands frequently with soap”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-turn-away-when-sneezing.webp', alt: 'Evercare storyboard frame: a man sneezing into his elbow beside a worried woman, with the line “Turn away from other people when sneezing or coughing”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-adequate-measures-on-bus.webp', alt: 'Evercare storyboard frame: masked passengers standing and sitting on a bus, with the line “When you do, take adequate measures”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-stay-updated.webp', alt: 'Evercare storyboard frame: a hand holding a phone with a COVID-19 updates screen, with the line “Stay updated about the latest COVID-19 information”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-disinfect-surfaces.webp', alt: 'Evercare storyboard frame: a spray bottle beside a bedside table, with the line “Clean hard surfaces with a disinfectant mixture”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-avoid-holding-breath.webp', alt: 'Evercare storyboard frame: a man walking in a park past a bench, with the line “When walking… avoid holding your breath”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-use-support-on-stairs.webp', alt: 'Evercare storyboard frame: a person climbing purple stairs, with the line “Avoid unnecessary climbing; if you do, use support”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-daily-items-within-reach.webp', alt: 'Evercare storyboard frame: a person working on a sofa in a living room, with the line “Keep your daily usable items within your reach”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-talk-to-family-friends.webp', alt: 'Evercare storyboard frame: two people checking their phones, with the line “When feeling anxious, talk to your family members or friends”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-avoid-hard-foods.webp', alt: 'Evercare storyboard frame: a man beside four snack icons, with the line “When eating, avoid foods that are difficult to chew”' },
+            { t: 'img', src: 'evercare/evercare-storyboard-keep-in-touch.webp', alt: 'Evercare storyboard frame: three people in circles waving, with the line “Keep in touch: make sure your friends are informed about your condition”' },
           ],
         },
         {
@@ -471,34 +474,34 @@ window.SITE = {
       industries: ['cannabis'],
       categories: ['digital-marketing', 'social-media'],
       summary: 'A turquoise-on-black Black Friday campaign across email and social that lifted product sales by 60-70%.',
-      lead: { t: 'img', src: 'black-friday/multiverse-black-friday-sale-25-percent-off-social-post.webp', alt: 'Black Friday sale post: “Black Friday Sale, starts now, 25% off site wide” in green lettering over a dark glass-pipe pattern' },
+      lead: { t: 'img', src: 'black-friday/multiverse-black-friday-sale-25-percent-off-post.webp', alt: 'Black Friday sale post: “Black Friday Sale, starts now, 25% off site wide” in green lettering over a dark glass-pipe pattern' },
       blocks: [
         {
           type: 'section', title: 'Introduction', icon: 'spade',
           paras: ['Multiverse is a brand that provides unique, high quality artistic cannabis smoking products and accessories across North America with a focus on aesthetics, function and price. Their portfolio consists of three brands, Milkyway, Milkyway X and Wormhole, through which they aim to create collectable works of art, prized for their unique style, quality and craftsmanship.'],
-          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-sale-launch-social-posts.webp', alt: 'Two Black Friday social posts side by side: “It’s here… Black Friday Sale, starts now, 25% off site wide”, and “Comment or head over to our website”' }],
+          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-sale-launch-posts.webp', alt: 'Two Black Friday social posts side by side: “It’s here… Black Friday Sale, starts now, 25% off site wide”, and “Comment or head over to our website”' }],
         },
         {
           type: 'section', title: 'Problem Identification', icon: 'diamond',
           paras: ['The goal of the project was to utilize and take advantage of the yearly time for Black Friday Sales across North America to market and advertise products at a time when people are looking for good deals to spend money on. The goal was to sell more products and generate more revenue. The campaign was targeted towards the brand\'s current customers as well as new customers.'],
-          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-november-restocks-social-post.webp', alt: 'Black Friday post: “November restocks are here! 25% off during Black Friday” in red-orange and white over a green pattern of glass pieces' }],
+          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-november-restocks-post.webp', alt: 'Black Friday post: “November restocks are here! 25% off during Black Friday” in red-orange and white over a green pattern of glass pieces' }],
         },
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['As the brand\'s designer, I came up with the art direction and design for the key visuals of the marketing and sales material that included marketing emails and social media posts.'],
-          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-stock-running-out-social-post.webp', alt: 'Black Friday post: “Stock is running out! 25% off the entire store” in red-orange over a dark green glass pattern, with free shipping on orders above $100' }],
+          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-stock-running-out-post.webp', alt: 'Black Friday post: “Stock is running out! 25% off the entire store” in red-orange over a dark green glass pattern, with free shipping on orders above $100' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['For the visuals, I introduced a new color palette and typography style. Common colours such as red had been done a lot previously, whereas turquoise was unfamiliar to the brand yet aligned with the brand values.', 'The design used the texture of the products as backgrounds, contrary to having them at the forefront. The typeface was decorated with colours and strokes to make it visually appealing to the audience. The % of the discount needed to be emphasized as it was the main selling point.'],
-          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-rewards-members-carousel.webp', alt: 'Three-slide rewards carousel: “Black Friday Sale for Milkyway Rewards Members”, 25% off with a free vortex bowl, and “Rewards”' }],
+          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-rewards-carousel.webp', alt: 'Three-slide rewards carousel: “Black Friday Sale for Milkyway Rewards Members”, 25% off with a free vortex bowl, and “Rewards”' }],
         },
         {
           type: 'media', layout: 'scroll', heading: 'Email Newsletters', note: 'Scroll inside each email to see the full design.',
           items: [
-            { t: 'scroll', src: 'black-friday/multiverse-black-friday-rewards-email-newsletter.webp', alt: 'Full-length Black Friday rewards email with a 25% off headline and a grid of featured glass products' },
-            { t: 'scroll', src: 'black-friday/multiverse-black-friday-sale-starts-email-newsletter.webp', alt: 'Full-length Black Friday sale-starts email with a “Black Friday Sale” headline and rows of discounted products' },
-            { t: 'scroll', src: 'black-friday/multiverse-black-friday-whats-left-email-newsletter.webp', alt: 'Full-length “what’s left” Black Friday email with a countdown timer and rows of remaining products' },
+            { t: 'scroll', src: 'black-friday/multiverse-black-friday-rewards-email.webp', alt: 'Full-length Black Friday rewards email with a 25% off headline and a grid of featured glass products' },
+            { t: 'scroll', src: 'black-friday/multiverse-black-friday-sale-starts-email.webp', alt: 'Full-length Black Friday sale-starts email with a “Black Friday Sale” headline and rows of discounted products' },
+            { t: 'scroll', src: 'black-friday/multiverse-black-friday-whats-left-email.webp', alt: 'Full-length “what’s left” Black Friday email with a countdown timer and rows of remaining products' },
           ],
         },
         {
@@ -507,15 +510,15 @@ window.SITE = {
             {
               label: 'Sale starts',
               items: [
-                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-sale-starts-slide-1.webp', alt: 'Black Friday carousel slide 1: “It’s here… Black Friday Sale, starts now, 25% off site wide” in green lettering on black' },
-                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-sale-starts-slide-2.webp', alt: 'Black Friday carousel slide 2: “Comment or head over to our website” over a hand holding a glass piece' },
+                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-starts-1.webp', alt: 'Black Friday carousel slide 1: “It’s here… Black Friday Sale, starts now, 25% off site wide” in green lettering on black' },
+                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-starts-2.webp', alt: 'Black Friday carousel slide 2: “Comment or head over to our website” over a hand holding a glass piece' },
               ],
             },
             {
               label: 'Sale still on',
               items: [
-                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-sale-still-on-slide-1.webp', alt: 'Black Friday carousel slide 1: “25% off, sale is still on!” over an engraved portrait pattern' },
-                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-sale-still-on-slide-2.webp', alt: 'Black Friday carousel slide 2: “Stock up for the holidays, now’s the time” in red-orange on a dark gift-wrap pattern' },
+                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-still-on-1.webp', alt: 'Black Friday carousel slide 1: “25% off, sale is still on!” over an engraved portrait pattern' },
+                { t: 'img', src: 'black-friday/multiverse-black-friday-carousel-still-on-2.webp', alt: 'Black Friday carousel slide 2: “Stock up for the holidays, now’s the time” in red-orange on a dark gift-wrap pattern' },
               ],
             },
           ],
@@ -539,40 +542,40 @@ window.SITE = {
       industries: ['cannabis'],
       categories: ['digital-marketing', 'social-media'],
       summary: 'A rough, chaotic back-to-school campaign that tripled sales and sold 60% of stock within five days.',
-      lead: { t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp', alt: 'Collegiate Survival Sale posts shown in an Instagram grid and on a phone, on a dark background' },
+      lead: { t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-posts-on-instagram-and-phone.webp', alt: 'Collegiate Survival Sale posts shown in an Instagram grid and on a phone, on a dark background' },
       blocks: [
         {
           type: 'section', title: 'Introduction', icon: 'spade',
           paras: ['Multiverse is a brand that provides unique, high quality artistic cannabis smoking products and accessories across North America with a focus on aesthetics, function and price. Their portfolio consists of three brands, Milkyway, Milkyway X and Wormhole, through which they aim to create collectable works of art, prized for their unique style, quality and craftsmanship.'],
-          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-teaser-social-posts.webp', alt: 'Two Collegiate Survival Sale teaser posts: a torn notebook page reading “the Collegiate Survival Sale” with a circled A+, and a collage of an alarm clock, megaphone, globe and books dated September 8th' }],
+          media: [{ t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-teaser-posts.webp', alt: 'Two Collegiate Survival Sale teaser posts: a torn notebook page reading “the Collegiate Survival Sale” with a circled A+, and a collage of an alarm clock, megaphone, globe and books dated September 8th' }],
         },
         {
           type: 'section', title: 'Problem Identification', icon: 'diamond',
           paras: ['Usually, at the start of the academic year, students are stressed or frustrated because of their studies and assignments and are looking to relieve their stress. Potheads and smokers use cannabis to relieve and relax themselves and the brand wanted to capitalize on this moment.', 'Milkyway wanted to sell more of its products to the young university going student demographic. They wanted to take advantage of the "Back to School" time (August/ September) when students are returning to the university after summer holidays.'],
-          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-social-posts.webp', alt: 'Two Collegiate Survival Sale launch posts: “Now live, 20% off entire stock” beside an alarm clock and megaphone collage, and “Survive the school year with 20% off the entire website”' }],
+          media: [{ t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-launch-posts.webp', alt: 'Two Collegiate Survival Sale launch posts: “Now live, 20% off entire stock” beside an alarm clock and megaphone collage, and “Survive the school year with 20% off the entire website”' }],
         },
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['I directed and designed the art direction of the whole campaign which included all of the digital marketing materials; emails, social media posts, animations.'],
-          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-social-posts.webp', alt: 'Two “last call” Collegiate Survival Sale posts: “Everything’s 20% off… last call!”, and a hand holding a glass piece beneath a thumbs-up' }],
+          media: [{ t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-last-call-posts.webp', alt: 'Two “last call” Collegiate Survival Sale posts: “Everything’s 20% off… last call!”, and a hand holding a glass piece beneath a thumbs-up' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['The art direction needed to be rough and chaotic with bold colors that are captivating and portray the stress of university life. The typography also needed to be just as rough and bold.', 'I took inspiration from collages that use torn paper, photographs and coloured markings. I used visuals such as papers, laptops, scribbles, stationery, eyes, mouths as decorative design elements and elements such as assignment sheets, grids and torn paper as essential background design elements. The text was arranged in a tilted fashion to show urgency and chaos.'],
-          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-social-posts.webp', alt: 'Two “still on” Collegiate Survival Sale posts with halftone lips, a pencil and a pointing hand, announcing 20% off the entire website stock from September 8 to 19' }],
+          media: [{ t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-still-on-posts.webp', alt: 'Two “still on” Collegiate Survival Sale posts with halftone lips, a pencil and a pointing hand, announcing 20% off the entire website stock from September 8 to 19' }],
         },
         {
           type: 'media', layout: 'scroll', heading: 'Email Newsletters', note: 'Scroll inside each email to see the full design.',
           items: [
-            { t: 'scroll', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-email-newsletter.webp', alt: 'Full-length Collegiate Survival Sale launch email with the sale headline, product tiles and a red call-to-action button' },
-            { t: 'scroll', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-email-newsletter.webp', alt: 'Full-length Collegiate Survival Sale last-call email with the “last call” headline and rows of products' },
+            { t: 'scroll', src: 'collegiate-survival-sale/collegiate-survival-sale-launch-email.webp', alt: 'Full-length Collegiate Survival Sale launch email with the sale headline, product tiles and a red call-to-action button' },
+            { t: 'scroll', src: 'collegiate-survival-sale/collegiate-survival-sale-last-call-email.webp', alt: 'Full-length Collegiate Survival Sale last-call email with the “last call” headline and rows of products' },
           ],
         },
         {
           type: 'media', layout: 'grid2', heading: 'Social Media Stories', note: 'Animated Instagram stories.',
           items: [
-            { t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-instagram-story-animation.webp', alt: 'Animated Instagram story: “the Collegiate Survival Sale is still on” with halftone lips and a pointing finger on a torn notebook page' },
-            { t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-instagram-story-animation.webp', alt: 'Animated Instagram story: “Everything’s 20% off… last call!” on a torn notebook page with a paper clip' },
+            { t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-still-on-story-animation.webp', alt: 'Animated Instagram story: “the Collegiate Survival Sale is still on” with halftone lips and a pointing finger on a torn notebook page' },
+            { t: 'img', src: 'collegiate-survival-sale/collegiate-survival-sale-last-call-story-animation.webp', alt: 'Animated Instagram story: “Everything’s 20% off… last call!” on a torn notebook page with a paper clip' },
           ],
         },
         {
@@ -596,7 +599,7 @@ window.SITE = {
       industries: ['fashion'],
       categories: ['print-marketing'],
       summary: 'A bold, Constructivism-inspired Annual Winter Sale campaign for Generation across newspapers, web banners, social media and in-store graphics that multiplied sales by 2.5x.',
-      lead: { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-newspaper-banner-15cm.webp', alt: 'Generation Annual Winter Sale newspaper banner: a red circle badge reading “Annual Winter Sale, up to 70% off” between two white wedges saying “Starts today” and “6th January, 2018”, with store addresses below' },
+      lead: { t: 'img', src: 'annual-winter-sale/generation-winter-sale-newspaper-banner-15cm.webp', alt: 'Generation Annual Winter Sale newspaper banner: a red circle badge reading “Annual Winter Sale, up to 70% off” between two white wedges saying “Starts today” and “6th January, 2018”, with store addresses below' },
       blocks: [
         {
           type: 'section', title: 'Introduction', icon: 'spade',
@@ -606,23 +609,23 @@ window.SITE = {
           type: 'section', title: 'Problem Identification', icon: 'diamond',
           paras: ['Every year, Generation has its Annual Summer and Annual Winter Sales through which it attracts new and existing customers. The brand wanted to create an Annual Winter Sale campaign according to its brand requirements which included the use of Generation’s signature red colour and “Avant Garde” as its main font. The client wanted the design to look “bold”, “striking” and “masculine”. The primary design outcome would be newspaper advertisements, web banners, social media posts and in-store graphics.'],
           media: [
-            { t: 'img', src: 'annual-winter-sale/generation-brand-colour-palette-red-white-black.webp', alt: 'Generation colour palette: Generation’s red C4232A, white FFFFFF and black 000000' },
-            { t: 'img', src: 'annual-winter-sale/generation-brand-typography-itc-avant-garde-gothic.webp', alt: 'Generation typography: ITC Avant Garde Gothic Pro in Book, Medium, Demi and Bold, with the alphabet and numerals' },
+            { t: 'img', src: 'annual-winter-sale/generation-brand-colour-palette.webp', alt: 'Generation colour palette: Generation’s red C4232A, white FFFFFF and black 000000' },
+            { t: 'img', src: 'annual-winter-sale/generation-brand-typography-avant-garde.webp', alt: 'Generation typography: ITC Avant Garde Gothic Pro in Book, Medium, Demi and Bold, with the alphabet and numerals' },
           ],
         },
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['As the graphic designer I was tasked with developing the campaign. I researched on various design references and took them as inspiration to create the art direction for the main artwork of the newspaper advertisements. The main artwork was used as a base to create the rest of the campaign.'],
           stack: true,
-          media: [{ t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-newspaper-ad-27cm.webp', alt: 'Generation Annual Winter Sale vertical poster, the 27 cm newspaper advertisement: a red and white funnel above a black circle reading “up to 70% off”, starting 6th January, 2018' }],
+          media: [{ t: 'img', src: 'annual-winter-sale/generation-winter-sale-newspaper-ad-27cm.webp', alt: 'Generation Annual Winter Sale vertical poster, the 27 cm newspaper advertisement: a red and white funnel above a black circle reading “up to 70% off”, starting 6th January, 2018' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['The art style and direction was inspired by the “Russian Constructivism” movement from the 1920s and 1930s. I had researched on the artwork from that era and found that it aligned well with what Generation required from their campaign. The historical artwork helped inspire the shapes, patterns, design elements and compositions for the campaign artwork. For the advertisements, I also had to make sure that all the relevant information was communicated clearly.'],
           stack: true,
           media: [
-            { t: 'scroll', src: 'annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp', alt: 'Scrolling collection of Russian Constructivist and later poster references that shaped the campaign: a red wedge poster, a book advertisement, a Rodchenko poster, a vodka advert, a Blondie poster and a red triangle poster' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-initial-layout-attempts-animation.webp', alt: 'Animation stepping through early Annual Winter Sale layouts in red, black and white, starting with “Iteration number 1”' },
+            { t: 'scroll', src: 'annual-winter-sale/generation-winter-sale-constructivism-inspirations.webp', alt: 'Scrolling collection of Russian Constructivist and later poster references that shaped the campaign: a red wedge poster, a book advertisement, a Rodchenko poster, a vodka advert, a Blondie poster and a red triangle poster' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-initial-layouts-animation.webp', alt: 'Animation stepping through early Annual Winter Sale layouts in red, black and white, starting with “Iteration number 1”' },
           ],
         },
         {
@@ -638,30 +641,30 @@ window.SITE = {
         {
           type: 'media', layout: 'single', heading: 'Newspaper Adaptations',
           items: [
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-dawn-newspaper-front-page-ad.webp', alt: 'The Annual Winter Sale banner printed across the bottom of the front page of the Dawn newspaper' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-the-news-newspaper-ad.webp', alt: 'The Annual Winter Sale advertisement placed on a page of The News newspaper' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-dawn-newspaper-ad.webp', alt: 'The Annual Winter Sale banner printed across the bottom of the front page of the Dawn newspaper' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-the-news-newspaper-ad.webp', alt: 'The Annual Winter Sale advertisement placed on a page of The News newspaper' },
           ],
         },
         {
           type: 'media', layout: 'single', heading: 'Websites & Social Media',
           items: [
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-social-media-post-animation.webp', alt: 'Animated social media post: a woman in a floral dress beside the Annual Winter Sale badge, with “Was PKR 3698, now PKR 2698”' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-facebook-page-banner.webp', alt: 'Annual Winter Sale artwork used as the cover and a post on Generation’s Facebook page' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-website-banner.webp', alt: 'Annual Winter Sale “Now live” banner on the Generation website, with the red sale badge in the centre' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-daraz-online-marketplace-banner.webp', alt: 'Annual Winter Sale “Now live” banner on Generation’s page on the Daraz online marketplace' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-social-post-animation.webp', alt: 'Animated social media post: a woman in a floral dress beside the Annual Winter Sale badge, with “Was PKR 3698, now PKR 2698”' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-facebook-banner.webp', alt: 'Annual Winter Sale artwork used as the cover and a post on Generation’s Facebook page' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-website-banner.webp', alt: 'Annual Winter Sale “Now live” banner on the Generation website, with the red sale badge in the centre' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-daraz-banner.webp', alt: 'Annual Winter Sale “Now live” banner on Generation’s page on the Daraz online marketplace' },
           ],
         },
         {
           type: 'media', layout: 'single', heading: 'Store Displays',
           items: [
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-window-banners-and-mannequins.webp', alt: 'Store window with large red Annual Winter Sale banners on either side of mannequins in dark and red outfits' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-entrance-window.webp', alt: 'Generation store entrance in a mall, with red Annual Winter Sale banners across the window display' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-tall-banner-above-seated-mannequins.webp', alt: 'A tall red Annual Winter Sale banner hanging above seated mannequins in a store display' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-building-with-window-banners.webp', alt: 'A Generation store building with red Annual Winter Sale banners in its windows and a large billboard on the roof' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-billboard-above-store-sign.webp', alt: 'A large red Annual Winter Sale billboard above the Generation sign outside a store' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-arched-windows-annual-winter-sale.webp', alt: 'Three arched windows of a stone building with the words Annual, Winter and Sale, above a red sale display with a mannequin' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-red-door-banner.webp', alt: 'A Generation mall store with a red Annual Winter Sale banner by the door and a window display' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-entrance-large-banner.webp', alt: 'A Generation mall entrance with a large red Annual Winter Sale banner beside the door' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-window-banners-mannequins.webp', alt: 'Store window with large red Annual Winter Sale banners on either side of mannequins in dark and red outfits' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-mall-entrance-window.webp', alt: 'Generation store entrance in a mall, with red Annual Winter Sale banners across the window display' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-tall-banner-mannequins.webp', alt: 'A tall red Annual Winter Sale banner hanging above seated mannequins in a store display' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-building-window-banners.webp', alt: 'A Generation store building with red Annual Winter Sale banners in its windows and a large billboard on the roof' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-billboard-above-sign.webp', alt: 'A large red Annual Winter Sale billboard above the Generation sign outside a store' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-arched-windows-banners.webp', alt: 'Three arched windows of a stone building with the words Annual, Winter and Sale, above a red sale display with a mannequin' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-mall-red-door-banner.webp', alt: 'A Generation mall store with a red Annual Winter Sale banner by the door and a window display' },
+            { t: 'img', src: 'annual-winter-sale/generation-winter-sale-store-mall-entrance-banner.webp', alt: 'A Generation mall entrance with a large red Annual Winter Sale banner beside the door' },
           ],
         },
       ],
@@ -675,7 +678,7 @@ window.SITE = {
       categories: ['print-marketing'],
       placeholder: true,
       summary: 'Editorial design for three Generation magazines, shown together as one project. Full write-up coming soon.',
-      lead: { t: 'img', src: 'generation-magazines/generation-magazine-three-covers-eid-beach-autumn-winter.webp', alt: 'Three Generation magazine covers standing side by side: a beach portrait of three women, the Eid 2018 issue and the Autumn/Winter 2018-19 issue' },
+      lead: { t: 'img', src: 'generation-magazines/generation-magazine-three-covers.webp', alt: 'Three Generation magazine covers standing side by side: a beach portrait of three women, the Eid 2018 issue and the Autumn/Winter 2018-19 issue' },
       blocks: [
         {
           type: 'media', layout: 'single', heading: 'Magazine 1: Eid 2018', note: 'Scroll inside the last picture to see the full layout.',
@@ -698,7 +701,7 @@ window.SITE = {
           items: [
             { t: 'img', src: 'generation-magazines/generation-magazine-page-turn-spread-mockup.webp', alt: 'Generation magazine open with a page mid-turn, showing photographs of models in dark and red clothing against a beige wall' },
             { t: 'img', src: 'generation-magazines/generation-magazine-spread-on-wall-mockup.webp', alt: 'Generation magazine open against a wall, with a seated model and two women carrying water containers above three coloured lines' },
-            { t: 'scroll', src: 'generation-magazines/generation-magazine-autumn-winter-2018-19-full-layout.webp', alt: 'Generation Autumn/Winter 2018-19 magazine layout, scrolling from the cover through the Director’s note and the inside spreads' },
+            { t: 'scroll', src: 'generation-magazines/generation-magazine-autumn-winter-18-19-layout.webp', alt: 'Generation Autumn/Winter 2018-19 magazine layout, scrolling from the cover through the Director’s note and the inside spreads' },
           ],
         },
       ],
@@ -713,17 +716,17 @@ window.SITE = {
       categories: ['ui-ux'],
       placeholder: true,
       summary: 'A redesign of the Byte food delivery app to be easier to use and look more contemporary. Full write-up coming soon.',
-      lead: { t: 'img', src: 'byte-app/byte-food-delivery-app-home-screen-cover.webp', alt: 'The Byte food delivery app home screen on a phone, beside the white “byte” logo on a red background' },
+      lead: { t: 'img', src: 'byte-app/byte-app-home-screen.webp', alt: 'The Byte food delivery app home screen on a phone, beside the white “byte” logo on a red background' },
       blocks: [
         {
           type: 'section', title: 'Introduction', icon: 'spade',
           paras: ['Byte Technology Systems was a Y-Combinator funded food delivery start-up based in Lahore, Pakistan. The aim of this project was to re-design the whole Byte app to make it easier in terms of usability and to make it look more visually appealing and contemporary.'],
-          media: [{ t: 'img', src: 'byte-app/byte-food-delivery-app-redesign-introduction.webp', alt: 'Byte app introduction slide: text about the redesign beside a phone showing the home screen with categories and recent orders' }],
+          media: [{ t: 'img', src: 'byte-app/byte-app-redesign-intro.webp', alt: 'Byte app introduction slide: text about the redesign beside a phone showing the home screen with categories and recent orders' }],
         },
-        { type: 'media', layout: 'single', heading: 'User Flow', items: [{ t: 'img', src: 'byte-app/byte-food-delivery-app-user-flow-diagram.webp', alt: 'Byte app user flow diagram: the steps from opening the app and the splash screen, through onboarding and choosing a restaurant and item, to adding to the cart, checking out and placing the order' }] },
-        { type: 'media', layout: 'single', heading: 'Wireframes', items: [{ t: 'img', src: 'byte-app/byte-food-delivery-app-hand-drawn-wireframes.webp', alt: 'Hand-drawn wireframes sketching twelve screens of the Byte app' }] },
-        { type: 'media', layout: 'single', heading: 'Screens', items: [{ t: 'img', src: 'byte-app/byte-food-delivery-app-screens-on-tilted-phones.webp', alt: 'Byte app screens on tilted phones arranged across a red background' }] },
-        { type: 'media', layout: 'scroll', heading: 'Screen Designs', note: 'Scroll to see all the screens.', items: [{ t: 'scroll', src: 'byte-app/byte-food-delivery-app-screen-designs.webp', alt: 'Byte app screen designs grouped as onboarding, main menus, post order, and profile and help' }] },
+        { type: 'media', layout: 'single', heading: 'User Flow', items: [{ t: 'img', src: 'byte-app/byte-app-user-flow.webp', alt: 'Byte app user flow diagram: the steps from opening the app and the splash screen, through onboarding and choosing a restaurant and item, to adding to the cart, checking out and placing the order' }] },
+        { type: 'media', layout: 'single', heading: 'Wireframes', items: [{ t: 'img', src: 'byte-app/byte-app-wireframes.webp', alt: 'Hand-drawn wireframes sketching twelve screens of the Byte app' }] },
+        { type: 'media', layout: 'single', heading: 'Screens', items: [{ t: 'img', src: 'byte-app/byte-app-screens-on-phones.webp', alt: 'Byte app screens on tilted phones arranged across a red background' }] },
+        { type: 'media', layout: 'scroll', heading: 'Screen Designs', note: 'Scroll to see all the screens.', items: [{ t: 'scroll', src: 'byte-app/byte-app-screen-designs.webp', alt: 'Byte app screen designs grouped as onboarding, main menus, post order, and profile and help' }] },
         {
           type: 'media', layout: 'videos', heading: 'Promo Animations',
           items: [
