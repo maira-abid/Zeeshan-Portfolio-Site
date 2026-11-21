@@ -24,7 +24,8 @@ const SITE = path.join(ROOT, 'site');
 const ctx = { window: {} };
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(SITE, 'js', 'data.js'), 'utf8'), ctx);
-const S = ctx.window.SITE;
+vm.runInContext(fs.readFileSync(path.join(SITE, 'js', 'media.js'), 'utf8'), ctx);
+const S = ctx.window.SITE, MEDIA = ctx.window.MEDIA || {};
 const SEO = S.seo;
 const BASE = SEO.url.replace(/\/$/, '');
 const TODAY = new Date().toISOString().slice(0, 10);
@@ -54,7 +55,7 @@ S.projects.forEach((p) => {
   const description = fit([
     `${sum} Client: ${p.client}. Results: ${res.slice(0, 2).join(', ')}.`, `${sum} Results: ${res.slice(0, 2).join(', ')}.`, `${sum} Client: ${p.client}.${sum.length + p.client.length < 90 ? tag : ''}`, sum + tag, sum,
   ].filter((t) => !/Results: \.$/.test(t)), 160);
-  routes.push({ page: 'project', slug: p.slug, dir: 'projects/' + p.slug, url: '/projects/' + p.slug + '/', title, description, og: p.slug + '-project-zeeshan-abid-designer', project: p });
+  routes.push({ page: 'project', slug: p.slug, dir: 'projects/' + p.slug, url: '/projects/' + p.slug + '/', title, description, og: p.slug + '-zeeshan-abid', project: p });
 });
 
 // ---------- share images (1200 x 630) ----------
@@ -63,16 +64,31 @@ async function ogImages() {
   fs.mkdirSync(out, { recursive: true });
   // Pages that are not a project (home, projects, about, contact, privacy) share one preview picture: three project images side by side
   // (Pizza Now, Collegiate Survival Sale, CarSwitch), the same look as the new site's link preview.
-  const trio = ['pizza-now/pizza-now-pizza-boxes-checkerboard-pattern.webp', 'collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp', 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp'];
+  const trio = ['pizza-now/pizza-now-pizza-boxes-checkerboard-pattern.webp', 'collegiate-survival-sale/collegiate-survival-sale-posts-on-instagram-and-phone.webp', 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp'];
   const tiles = await Promise.all(trio.map((f) => sharp(path.join(SITE, 'assets', 'img', f)).resize(400, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82 }).toBuffer()));
   const collage = await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#1b1b1b' } })
     .composite(tiles.map((input, i) => ({ input, left: i * 400, top: 0 }))).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
   for (const r of routes) {
     if (!r.project) { fs.writeFileSync(path.join(out, r.og + '.jpg'), collage); continue; }
     const lead = r.project.lead;
-    const src = lead.t === 'img' ? path.join(SITE, 'assets', 'img', lead.src) : path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '-project-thumbnail.webp');
+    const src = lead.t === 'img' ? path.join(SITE, 'assets', 'img', lead.src) : path.join(SITE, 'assets', 'img', 'thumbs', r.project.slug + '-thumbnail.webp');
     await sharp(src).resize(1200, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(out, r.og + '.jpg'));
   }
+}
+
+// ---------- the pictures on a project page (for the image sitemap and the structured data) ----------
+function pageImages(p) {
+  const out = [], seen = new Set();
+  const add = (m) => {
+    if (!m || !m.src || (m.t !== 'img' && m.t !== 'scroll') || seen.has(m.src)) return;
+    seen.add(m.src);
+    const d = MEDIA['img/' + m.src] || {};
+    const file = d.v && d.v.length ? m.src.replace(/\.webp$/, '') + '-' + d.v[d.v.length - 1] + '.webp' : m.src; // the largest web copy, as the page itself uses
+    out.push({ url: BASE + '/assets/img/' + file, alt: m.alt || '', w: d.w, h: d.h });
+  };
+  add(p.lead);
+  (p.blocks || []).forEach((b) => { (b.media || []).forEach(add); (b.items || []).forEach(add); (b.rows || []).forEach((r) => r.items.forEach(add)); });
+  return out;
 }
 
 // ---------- structured data ----------
@@ -80,7 +96,7 @@ function jsonld(r) {
   const personId = BASE + '/#zeeshan', websiteId = BASE + '/#website', serviceId = BASE + '/#service';
   const address = { '@type': 'PostalAddress', addressLocality: SEO.city, addressRegion: SEO.provinceCode, addressCountry: SEO.countryCode };
   const place = [{ '@type': 'City', name: SEO.city }, { '@type': 'AdministrativeArea', name: SEO.province }, { '@type': 'Country', name: SEO.country }];
-  const person = { '@type': 'Person', '@id': personId, name: S.fullName, jobTitle: SEO.jobTitle, url: BASE + '/', description: `${SEO.jobTitle} based in ${SEO.city}, ${SEO.province}, ${SEO.country}, working professionally since 2017 in branding, motion graphics, marketing, UI/UX and more.`, address, homeLocation: { '@type': 'Place', name: `${SEO.city}, ${SEO.province}, ${SEO.country}`, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon } }, knowsAbout: SEO.knowsAbout, sameAs: realSocials() };
+  const person = { '@type': 'Person', '@id': personId, name: S.fullName, image: BASE + '/assets/img/about/zeeshan-abid-designer-portrait-toronto.webp', jobTitle: SEO.jobTitle, url: BASE + '/', description: `${SEO.jobTitle} based in ${SEO.city}, ${SEO.province}, ${SEO.country}, working professionally since 2017 in branding, motion graphics, marketing, UI/UX and more.`, address, homeLocation: { '@type': 'Place', name: `${SEO.city}, ${SEO.province}, ${SEO.country}`, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon } }, knowsAbout: SEO.knowsAbout, sameAs: realSocials() };
   if (!person.sameAs.length) delete person.sameAs;
   const service = { '@type': 'ProfessionalService', '@id': serviceId, name: `${S.fullName} - design services`, url: BASE + '/', image: BASE + '/assets/og/zeeshan-abid-multidisciplinary-designer-toronto.jpg', logo: BASE + '/assets/img/logo/zeeshan-abid-designer-logo-dark-text.webp', founder: { '@id': personId }, address, geo: { '@type': 'GeoCoordinates', latitude: SEO.lat, longitude: SEO.lon }, areaServed: place, serviceType: SEO.knowsAbout, knowsLanguage: 'en' };
   const website = { '@type': 'WebSite', '@id': websiteId, url: BASE + '/', name: SEO.siteName, inLanguage: 'en-CA', publisher: { '@id': personId } };
@@ -107,6 +123,7 @@ function jsonld(r) {
       creator: { '@id': personId }, author: { '@id': personId }, publisher: { '@id': personId }, inLanguage: 'en-CA', isPartOf: { '@id': websiteId },
       genre: p.categories.map(catName), keywords: [...p.categories.map(catName), ...p.industries.map(indName), 'Toronto designer'].join(', '),
       about: p.industries.map((i) => ({ '@type': 'Thing', name: indName(i) })), sponsor: { '@type': 'Organization', name: p.client },
+      associatedMedia: pageImages(p).map((im) => ({ '@type': 'ImageObject', contentUrl: im.url, url: im.url, description: im.alt, name: im.alt.split(/[:.]/)[0].slice(0, 90), ...(im.w ? { width: im.w, height: im.h } : {}), creator: { '@id': personId }, representativeOfPage: false })),
     });
   }
   graph.push(breadcrumb);
@@ -168,8 +185,9 @@ async function prerender(r) {
 
 // ---------- sitemap, robots, llms ----------
 function writeSitemap() {
-  const items = routes.map((r) => `  <url>\n    <loc>${BASE}${r.url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${r.page === 'project' ? 'monthly' : 'weekly'}</changefreq>\n    <priority>${r.page === 'home' ? '1.0' : r.page === 'project' || r.page === 'projects' ? '0.8' : '0.5'}</priority>\n  </url>`);
-  fs.writeFileSync(path.join(SITE, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + items.join('\n') + '\n</urlset>\n');
+  const imgs = (r) => (r.page === 'project' ? pageImages(r.project).map((im) => im.url) : r.page === 'about' ? [BASE + '/assets/img/about/zeeshan-abid-designer-portrait-toronto-640.webp'] : []).map((u) => `\n    <image:image><image:loc>${u}</image:loc></image:image>`).join('');
+  const items = routes.map((r) => `  <url>\n    <loc>${BASE}${r.url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${r.page === 'project' ? 'monthly' : 'weekly'}</changefreq>\n    <priority>${r.page === 'home' ? '1.0' : r.page === 'project' || r.page === 'projects' ? '0.8' : '0.5'}</priority>${imgs(r)}\n  </url>`);
+  fs.writeFileSync(path.join(SITE, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + items.join('\n') + '\n</urlset>\n');
 }
 function writeRobots() {
   const ai = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];

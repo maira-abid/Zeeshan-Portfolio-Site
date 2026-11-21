@@ -19,11 +19,11 @@ const MEDIA_JS = path.join(ROOT, 'site', 'js', 'media.js');
 sharp.cache(false);
 
 const EMAILS = [
-  ['black-friday', 'multiverse-black-friday-rewards-email-newsletter', '2025-11-Black-Friday-Sale-2-Rewards.png'],
-  ['black-friday', 'multiverse-black-friday-sale-starts-email-newsletter', '2025-11-Black-Friday-Sale-3-Sale-STARTS.png'],
-  ['black-friday', 'multiverse-black-friday-whats-left-email-newsletter', '2025-11-Black-Friday-Sale-5-Whats-Left.png'],
-  ['collegiate-survival-sale', 'multiverse-collegiate-survival-sale-launch-email-newsletter', '2025-09-CSS-Sale-1-Launch.png'],
-  ['collegiate-survival-sale', 'multiverse-collegiate-survival-sale-last-call-email-newsletter', '2025-09-CSS-Sale-2-Last-Call.png'],
+  ['black-friday', 'multiverse-black-friday-rewards-email', '2025-11-Black-Friday-Sale-2-Rewards.png'],
+  ['black-friday', 'multiverse-black-friday-sale-starts-email', '2025-11-Black-Friday-Sale-3-Sale-STARTS.png'],
+  ['black-friday', 'multiverse-black-friday-whats-left-email', '2025-11-Black-Friday-Sale-5-Whats-Left.png'],
+  ['collegiate-survival-sale', 'collegiate-survival-sale-launch-email', '2025-09-CSS-Sale-1-Launch.png'],
+  ['collegiate-survival-sale', 'collegiate-survival-sale-last-call-email', '2025-09-CSS-Sale-2-Last-Call.png'],
 ];
 
 (async () => {

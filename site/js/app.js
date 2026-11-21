@@ -70,7 +70,7 @@
     // the industry comes after the client name ("CarSwitch | Automotive"), clickable (it filters the Projects page)
     var inds = p.industries.map(function (i) { return '<a class="card__tag" data-filter rel="nofollow" href="' + filterUrl('industry', i) + '">' + esc(ind(i).name) + '</a>'; }).join(', ');
     return '<article class="card"><a class="card__img" href="' + projectUrl(p) + '" tabindex="-1" aria-hidden="true">' +
-      '<img src="assets/img/thumbs/' + p.slug + '-project-thumbnail.webp" srcset="assets/img/thumbs/' + p.slug + '-project-thumbnail-450.webp 450w, assets/img/thumbs/' + p.slug + '-project-thumbnail.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
+      '<img src="assets/img/thumbs/' + p.slug + '-thumbnail.webp" srcset="assets/img/thumbs/' + p.slug + '-thumbnail-450.webp 450w, assets/img/thumbs/' + p.slug + '-thumbnail.webp 900w" sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 400px" alt="" width="900" height="675" loading="' + (eager ? 'eager' : 'lazy') + '" decoding="async"></a>' +
       '<div class="card__body"><h3 class="card__title"><a href="' + projectUrl(p) + '">' + esc(p.title) + '</a></h3><p class="card__client">' + esc(p.client) + (inds ? ' <span class="card__sep" aria-hidden="true">|</span> ' + inds : '') + '</p></div></article>';
   }
 
@@ -307,7 +307,7 @@
     }).join('');
 
     var next = S.projects[(idx + 1) % S.projects.length], nm = (S.caseMeta || {})[next.slug] || {}, nc = nm.color || ['#8f00ff', '#ffffff'];
-    var nextBand = '<div class="c-next"><a href="' + projectUrl(next) + '" style="--pa:' + nc[0] + ';--on:' + nc[1] + '"><div class="wrap c-next__in"><span class="c-next__img"><img src="assets/img/thumbs/' + next.slug + '-project-thumbnail-450.webp" alt="" width="450" height="338" loading="lazy" decoding="async"></span>' +
+    var nextBand = '<div class="c-next"><a href="' + projectUrl(next) + '" style="--pa:' + nc[0] + ';--on:' + nc[1] + '"><div class="wrap c-next__in"><span class="c-next__img"><img src="assets/img/thumbs/' + next.slug + '-thumbnail-450.webp" alt="" width="450" height="338" loading="lazy" decoding="async"></span>' +
       '<span class="c-next__txt"><span class="c-next__label">Next project</span><b>' + esc(next.title) + '</b></span></div></a></div>' +
       '<div class="wrap c-back"><a class="btn btn--outline" href="projects/">Back to all projects</a></div>';
 
@@ -347,7 +347,7 @@
     }).join('');
     var facts = '<ul class="facts"><li>' + icon('heart') + esc(S.location) + '</li><li>' + icon('bolt') + 'Designing professionally since 2017</li><li>' + icon('diamond') + 'Branding &middot; Motion &middot; Marketing &middot; UI/UX</li></ul>';
     $('main').innerHTML = '<div class="wrap"><div class="page-head"><p class="eyebrow">Hello there</p><h1>About Me</h1></div>' +
-      '<div class="about"><div class="headshot" role="img" aria-label="Headshot placeholder"><div class="headshot__ph">' + icon('spade') + 'Headshot<br>coming soon</div></div>' +
+      '<div class="about"><div class="headshot">' + imgTag('about/zeeshan-abid-designer-portrait-toronto.webp', 'Portrait of Zeeshan Abid, a designer with dark swept-back hair, a moustache and a goatee, in a dark denim jacket with a white-speckled star-field print over a dark sweater, looking to the left against a grey background', '', '(max-width: 860px) 100vw, 400px', true) + '</div>' +
       '<div class="about__text">' + paras + facts + '</div></div>' + allStats() + '</div>';
   }
   // every published result, from every project, in one place (the same figures as the Outcome sections; none are invented)
@@ -397,13 +397,16 @@
       e.preventDefault(); status.className = 'form__status';
       if (!validate()) return;
       var data = {}; new FormData(form).forEach(function (v, k) { data[k] = v; });
-      if (window.CONTACT_ENDPOINT) {
-        fetch(window.CONTACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+      var endpoint = S.contactEndpoint || window.CONTACT_ENDPOINT;
+      if (endpoint) {
+        fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
           .then(function (r) { if (!r.ok) throw new Error(); status.textContent = 'Thanks ' + data.first + ' - your message has been sent.'; status.className = 'form__status is-ok'; form.reset(); })
           .catch(function () { status.textContent = 'Sorry, something went wrong. Please try again in a moment.'; status.className = 'form__status is-error'; });
       } else {
-        // Prototype: no mail service is connected yet. In Framer this form is replaced by Framer's built-in form.
-        status.textContent = 'Prototype preview: the form is not connected to email yet, so nothing was sent. In Framer this will use the built-in form.';
+        // No form service is connected yet, so the visitor's email app opens with the message addressed to the site owner.
+        var body = data.message + '\n\n' + data.first + ' ' + data.last + '\n' + data.email;
+        window.location.href = 'mailto:' + S.email + '?subject=' + encodeURIComponent(data.subject) + '&body=' + encodeURIComponent(body);
+        status.textContent = 'Your email app should open with your message ready to send.';
         status.className = 'form__status is-ok';
       }
     });

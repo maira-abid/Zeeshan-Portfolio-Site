@@ -1,5 +1,5 @@
 window.MEDIA = {
- "img/carswitch/carswitch-dubai-storyboard-seller-and-greedy-car-dealer.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-seller-and-car-dealer.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -15,7 +15,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-mechanic-inspects-and-certifies-car.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-mechanic-inspects-car.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -31,7 +31,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-success-fees-after-sale.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-fees-charged-after-sale.webp": {
   "w": 1800,
   "h": 1012,
   "v": [
@@ -71,7 +71,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-flatten-the-curve-animation-frame.webp": {
+ "img/evercare/evercare-flatten-the-curve-frame.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -79,7 +79,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-pandemic-curve-chart.webp": {
+ "img/evercare/evercare-storyboard-pandemic-curve-chart.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -87,7 +87,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-sick-person-isolates.webp": {
+ "img/evercare/evercare-storyboard-sick-person-isolates.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -95,7 +95,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-working-at-home-in-isolation.webp": {
+ "img/evercare/evercare-storyboard-working-at-home-isolating.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -103,7 +103,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-turn-away-when-sneezing.webp": {
+ "img/evercare/evercare-storyboard-turn-away-when-sneezing.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -111,7 +111,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-seek-medical-help-ambulance.webp": {
+ "img/evercare/evercare-storyboard-seek-medical-help.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -119,7 +119,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-stay-updated-on-phone.webp": {
+ "img/evercare/evercare-storyboard-stay-updated.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -127,7 +127,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-home-isolation-guidelines.webp": {
+ "img/evercare/evercare-storyboard-home-isolation-guidelines.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -135,7 +135,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-wear-a-face-mask-in-crowd.webp": {
+ "img/evercare/evercare-storyboard-wear-face-mask-in-crowd.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -143,7 +143,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-disinfect-hard-surfaces.webp": {
+ "img/evercare/evercare-storyboard-disinfect-surfaces.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -151,7 +151,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-avoid-holding-breath-when-walking.webp": {
+ "img/evercare/evercare-storyboard-avoid-holding-breath.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -159,7 +159,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-use-support-on-stairs.webp": {
+ "img/evercare/evercare-storyboard-use-support-on-stairs.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -167,7 +167,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-keep-daily-items-within-reach.webp": {
+ "img/evercare/evercare-storyboard-daily-items-within-reach.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -175,7 +175,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-animation-characters-and-backgrounds.webp": {
+ "img/evercare/evercare-animation-characters-backgrounds.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -278,7 +278,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-sale-25-percent-off-social-post.webp": {
+ "img/black-friday/multiverse-black-friday-sale-25-percent-off-post.webp": {
   "w": 1600,
   "h": 1200,
   "v": [
@@ -286,35 +286,35 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-carousel-sale-starts-slide-1.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-starts-1.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/multiverse-black-friday-carousel-sale-starts-slide-2.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-starts-2.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/multiverse-black-friday-carousel-sale-still-on-slide-1.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-still-on-1.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/black-friday/multiverse-black-friday-carousel-sale-still-on-slide-2.webp": {
+ "img/black-friday/multiverse-black-friday-carousel-still-on-2.webp": {
   "w": 1200,
   "h": 1500,
   "v": [
    640
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-social-posts-on-instagram-and-phone.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-posts-on-instagram-and-phone.webp": {
   "w": 1740,
   "h": 1140,
   "v": [
@@ -322,11 +322,11 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-initial-layout-attempts-animation.webp": {
+ "img/annual-winter-sale/generation-winter-sale-initial-layouts-animation.webp": {
   "w": 1000,
   "h": 675
  },
- "img/annual-winter-sale/generation-annual-winter-sale-newspaper-banner-15cm.webp": {
+ "img/annual-winter-sale/generation-winter-sale-newspaper-banner-15cm.webp": {
   "w": 1800,
   "h": 839,
   "v": [
@@ -334,14 +334,14 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-newspaper-ad-27cm.webp": {
+ "img/annual-winter-sale/generation-winter-sale-newspaper-ad-27cm.webp": {
   "w": 1093,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-website-banner.webp": {
+ "img/annual-winter-sale/generation-winter-sale-website-banner.webp": {
   "w": 1800,
   "h": 1005,
   "v": [
@@ -349,7 +349,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-daraz-online-marketplace-banner.webp": {
+ "img/annual-winter-sale/generation-winter-sale-daraz-banner.webp": {
   "w": 1800,
   "h": 1059,
   "v": [
@@ -357,11 +357,11 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-dawn-newspaper-front-page-ad.webp": {
+ "img/annual-winter-sale/generation-winter-sale-dawn-newspaper-ad.webp": {
   "w": 620,
   "h": 1072
  },
- "img/annual-winter-sale/generation-annual-winter-sale-facebook-page-banner.webp": {
+ "img/annual-winter-sale/generation-winter-sale-facebook-banner.webp": {
   "w": 1800,
   "h": 1056,
   "v": [
@@ -369,7 +369,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/generation-magazines/generation-magazine-three-covers-eid-beach-autumn-winter.webp": {
+ "img/generation-magazines/generation-magazine-three-covers.webp": {
   "w": 1600,
   "h": 1260,
   "v": [
@@ -377,7 +377,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-food-delivery-app-home-screen-cover.webp": {
+ "img/byte-app/byte-app-home-screen.webp": {
   "w": 1616,
   "h": 1264,
   "v": [
@@ -385,7 +385,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-food-delivery-app-redesign-introduction.webp": {
+ "img/byte-app/byte-app-redesign-intro.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
@@ -393,7 +393,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-food-delivery-app-user-flow-diagram.webp": {
+ "img/byte-app/byte-app-user-flow.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
@@ -401,7 +401,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-food-delivery-app-hand-drawn-wireframes.webp": {
+ "img/byte-app/byte-app-wireframes.webp": {
   "w": 1500,
   "h": 2000,
   "v": [
@@ -409,7 +409,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/byte-app/byte-food-delivery-app-screens-on-tilted-phones.webp": {
+ "img/byte-app/byte-app-screens-on-phones.webp": {
   "w": 1500,
   "h": 1000,
   "v": [
@@ -642,27 +642,27 @@ window.MEDIA = {
   "w": 800,
   "h": 800
  },
- "img/black-friday/multiverse-black-friday-rewards-email-newsletter.webp": {
+ "img/black-friday/multiverse-black-friday-rewards-email.webp": {
   "w": 750,
   "h": 4188
  },
- "img/black-friday/multiverse-black-friday-sale-starts-email-newsletter.webp": {
+ "img/black-friday/multiverse-black-friday-sale-starts-email.webp": {
   "w": 750,
   "h": 4389
  },
- "img/black-friday/multiverse-black-friday-whats-left-email-newsletter.webp": {
+ "img/black-friday/multiverse-black-friday-whats-left-email.webp": {
   "w": 750,
   "h": 5268
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-email-newsletter.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-launch-email.webp": {
   "w": 750,
   "h": 5205
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-email-newsletter.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-last-call-email.webp": {
   "w": 750,
   "h": 3655
  },
- "img/annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp": {
+ "img/annual-winter-sale/generation-winter-sale-constructivism-inspirations.webp": {
   "w": 1200,
   "h": 7200,
   "v": [
@@ -683,21 +683,21 @@ window.MEDIA = {
    640
   ]
  },
- "img/generation-magazines/generation-magazine-autumn-winter-2018-19-full-layout.webp": {
+ "img/generation-magazines/generation-magazine-autumn-winter-18-19-layout.webp": {
   "w": 800,
   "h": 8800,
   "v": [
    640
   ]
  },
- "img/byte-app/byte-food-delivery-app-screen-designs.webp": {
+ "img/byte-app/byte-app-screen-designs.webp": {
   "w": 1000,
   "h": 2500,
   "v": [
    640
   ]
  },
- "img/evercare/evercare-hospital-animation-colour-palette.webp": {
+ "img/evercare/evercare-animation-colour-palette.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -705,7 +705,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-animation-typography.webp": {
+ "img/evercare/evercare-animation-typography.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -713,7 +713,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-sale-launch-social-posts.webp": {
+ "img/black-friday/multiverse-black-friday-sale-launch-posts.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -721,7 +721,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-november-restocks-social-post.webp": {
+ "img/black-friday/multiverse-black-friday-november-restocks-post.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -729,7 +729,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-rewards-members-carousel.webp": {
+ "img/black-friday/multiverse-black-friday-rewards-carousel.webp": {
   "w": 1800,
   "h": 750,
   "v": [
@@ -737,7 +737,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/black-friday/multiverse-black-friday-stock-running-out-social-post.webp": {
+ "img/black-friday/multiverse-black-friday-stock-running-out-post.webp": {
   "w": 1600,
   "h": 1200,
   "v": [
@@ -745,7 +745,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-teaser-social-posts.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-teaser-posts.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -753,7 +753,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-launch-social-posts.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-launch-posts.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -761,7 +761,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-social-posts.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-still-on-posts.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -769,7 +769,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-social-posts.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-last-call-posts.webp": {
   "w": 1800,
   "h": 1125,
   "v": [
@@ -777,15 +777,15 @@ window.MEDIA = {
    1200
   ]
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-instagram-story-animation.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-last-call-story-animation.webp": {
   "w": 540,
   "h": 960
  },
- "img/collegiate-survival-sale/multiverse-collegiate-survival-sale-still-on-instagram-story-animation.webp": {
+ "img/collegiate-survival-sale/collegiate-survival-sale-still-on-story-animation.webp": {
   "w": 540,
   "h": 960
  },
- "img/annual-winter-sale/generation-brand-colour-palette-red-white-black.webp": {
+ "img/annual-winter-sale/generation-brand-colour-palette.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -793,7 +793,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-brand-typography-itc-avant-garde-gothic.webp": {
+ "img/annual-winter-sale/generation-brand-typography-avant-garde.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -801,14 +801,14 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-the-news-newspaper-ad.webp": {
+ "img/annual-winter-sale/generation-winter-sale-the-news-newspaper-ad.webp": {
   "w": 1094,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-social-media-post-animation.webp": {
+ "img/annual-winter-sale/generation-winter-sale-social-post-animation.webp": {
   "w": 900,
   "h": 900
  },
@@ -868,7 +868,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-management-of-transfers-test-drives-phone-calls.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-transfers-test-drives-calls.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -884,7 +884,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-managing-the-transfer-paperwork.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-transfer-paperwork.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -892,7 +892,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-where-you-set-your-own-price.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-set-your-own-price.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -900,7 +900,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/carswitch/carswitch-dubai-storyboard-success-fee-only-when-we-sell-the-car.webp": {
+ "img/carswitch/carswitch-dubai-storyboard-fee-only-when-we-sell.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -915,28 +915,28 @@ window.MEDIA = {
    640
   ]
  },
- "img/carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-road.webp": {
+ "img/carswitch/carswitch-dubai-vertical-storyboard-more-value-road.webp": {
   "w": 1013,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-coins.webp": {
+ "img/carswitch/carswitch-dubai-vertical-storyboard-more-value-coins.webp": {
   "w": 1013,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/carswitch/carswitch-dubai-vertical-storyboard-download-the-app.webp": {
+ "img/carswitch/carswitch-dubai-vertical-storyboard-download-app.webp": {
   "w": 1013,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-wash-your-hands-with-soap.webp": {
+ "img/evercare/evercare-storyboard-wash-hands-with-soap.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -944,7 +944,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-take-adequate-measures-on-public-transport.webp": {
+ "img/evercare/evercare-storyboard-adequate-measures-on-bus.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -952,7 +952,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-talk-to-family-and-friends.webp": {
+ "img/evercare/evercare-storyboard-talk-to-family-friends.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -960,7 +960,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-avoid-foods-difficult-to-chew.webp": {
+ "img/evercare/evercare-storyboard-avoid-hard-foods.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -968,7 +968,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/evercare/evercare-hospital-covid-19-storyboard-keep-in-touch-with-friends.webp": {
+ "img/evercare/evercare-storyboard-keep-in-touch.webp": {
   "w": 1800,
   "h": 1013,
   "v": [
@@ -976,7 +976,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-window-banners-and-mannequins.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-window-banners-mannequins.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -984,7 +984,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-entrance-window.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-mall-entrance-window.webp": {
   "w": 1800,
   "h": 1199,
   "v": [
@@ -992,14 +992,14 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-tall-banner-above-seated-mannequins.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-tall-banner-mannequins.webp": {
   "w": 1200,
   "h": 1800,
   "v": [
    640
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-building-with-window-banners.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-building-window-banners.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -1007,7 +1007,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-billboard-above-store-sign.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-billboard-above-sign.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -1015,7 +1015,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-arched-windows-annual-winter-sale.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-arched-windows-banners.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -1023,7 +1023,7 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-red-door-banner.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-mall-red-door-banner.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
@@ -1031,12 +1031,19 @@ window.MEDIA = {
    1200
   ]
  },
- "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-entrance-large-banner.webp": {
+ "img/annual-winter-sale/generation-winter-sale-store-mall-entrance-banner.webp": {
   "w": 1800,
   "h": 1200,
   "v": [
    640,
    1200
+  ]
+ },
+ "img/about/zeeshan-abid-designer-portrait-toronto.webp": {
+  "w": 1080,
+  "h": 1350,
+  "v": [
+   640
   ]
  }
 };

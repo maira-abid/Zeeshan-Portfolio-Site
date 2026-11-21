@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -17,6 +17,7 @@
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/about/zeeshan-abid-designer-portrait-toronto-640.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/contact/</loc>
@@ -35,53 +36,163 @@
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-endless-phone-calls-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-mechanic-inspects-car-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-animation-colour-palette-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-animation-typography-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-animation-character-sheet-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-seller-and-car-dealer-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-haggling-with-strangers-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-transfer-paperwork-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-you-set-the-price-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-set-your-own-price-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-transfers-test-drives-calls-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-fee-only-when-we-sell-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-fees-charged-after-sale-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-vertical-storyboard-selling-your-car-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-vertical-storyboard-more-value-road-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-vertical-storyboard-more-value-coins-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-vertical-storyboard-download-app-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/carswitch/carswitch-dubai-storyboard-online-inspection-report-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/evercare/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-flatten-the-curve-frame-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-working-at-home-isolating-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-seek-medical-help-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-wear-face-mask-in-crowd-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-home-isolation-guidelines-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-animation-colour-palette-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-animation-typography-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-animation-characters-backgrounds-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-pandemic-curve-chart-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-sick-person-isolates-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-wash-hands-with-soap-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-turn-away-when-sneezing-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-adequate-measures-on-bus-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-stay-updated-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-disinfect-surfaces-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-avoid-holding-breath-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-use-support-on-stairs-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-daily-items-within-reach-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-talk-to-family-friends-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-avoid-hard-foods-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/evercare/evercare-storyboard-keep-in-touch-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/pizza-now/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-pizza-boxes-checkerboard-pattern-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-banner-pizza-and-logo-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-pizza-box-pattern-in-rows-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-instagram-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-logo-evolution-animation.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-final-logo-on-pizza-pan-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/pizza-now/pizza-now-in-byte-app-restaurant-list-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/breakfast-box/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-logo-and-eggs-on-toast-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-in-byte-app-restaurant-list-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-instagram-posts-pastel-pink-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-typefaces-monggoland-and-figtree-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-logo-on-hanging-shop-sign-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/breakfast-box/breakfast-box-branded-coffee-cups-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/black-friday/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-sale-25-percent-off-post-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-sale-launch-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-november-restocks-post-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-stock-running-out-post-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-rewards-carousel-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-rewards-email.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-sale-starts-email.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-whats-left-email.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-carousel-starts-1-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-carousel-starts-2-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-carousel-still-on-1-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/black-friday/multiverse-black-friday-carousel-still-on-2-640.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/collegiate-survival-sale/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-posts-on-instagram-and-phone-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-teaser-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-launch-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-last-call-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-still-on-posts-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-launch-email.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-last-call-email.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-still-on-story-animation.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/collegiate-survival-sale/collegiate-survival-sale-last-call-story-animation.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/annual-winter-sale/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-newspaper-banner-15cm-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-brand-colour-palette-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-brand-typography-avant-garde-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-newspaper-ad-27cm-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-constructivism-inspirations-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-initial-layouts-animation.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-dawn-newspaper-ad.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-the-news-newspaper-ad-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-social-post-animation.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-facebook-banner-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-website-banner-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-daraz-banner-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-window-banners-mannequins-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-mall-entrance-window-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-tall-banner-mannequins-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-building-window-banners-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-billboard-above-sign-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-arched-windows-banners-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-mall-red-door-banner-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/annual-winter-sale/generation-winter-sale-store-mall-entrance-banner-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/generation-magazines/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-three-covers-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-green-border-spread-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-front-and-back-cover-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-eid-2018-full-layout-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-open-spread-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-spread-on-concrete-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-beach-cover-full-layout-640.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-page-turn-spread-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-spread-on-wall-mockup-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/generation-magazines/generation-magazine-autumn-winter-18-19-layout-640.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/projects/byte-app/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-home-screen-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-redesign-intro-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-user-flow-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-wireframes-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-screens-on-phones-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://maira-abid.github.io/Zeeshan-Portfolio-Site/assets/img/byte-app/byte-app-screen-designs-640.webp</image:loc></image:image>
   </url>
 </urlset>

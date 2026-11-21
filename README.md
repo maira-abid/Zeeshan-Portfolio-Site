@@ -254,3 +254,18 @@ The third batch (new folders and `WEBSITE FEEDBACK - 2026-11-16.txt`) is in `ori
 
 - The "Pause animations" button in the footer is gone (and its saved choice is cleared on the next visit). The hero video keeps its own play/pause button, the client strip still pauses on hover or keyboard focus, and the system's "reduce motion" setting still stops the autoplay, the themed pointer and the smooth scrolling.
 - **Back to top:** an icon-only button (an up arrow, labelled "Back to top" for screen readers) at the bottom right, shown once the page has been scrolled about 500 px, and only on pages longer than the Contact page (never on Contact itself; Contact is about 1,700 px tall on a desktop layout and 2,700 px on a phone, which is what `longEnough()` compares against). It is a dark square with a light arrow on the light version and a light square with a dark arrow on the dark version, and turns violet on hover or keyboard focus. Code: `initToTop()` in `site/js/app.js`, styles at the end of `site/css/style.css`. The footer line keeps clear of it.
+
+## Portrait, links and email (20-Nov-2026)
+
+- **Portrait:** the About page shows the supplied photo (source in `originals/Headshot (2026-11-20)/`, published as `site/assets/img/about/zeeshan-abid-designer-portrait-toronto.webp`, with a description for screen readers). It is also in the structured data.
+- **Profile links:** LinkedIn, Instagram, Vimeo and Behance are the ones supplied (`social` in `site/js/data.js`; they also feed the footer and the structured data). The supplied text file is kept in `brief/`.
+- **Email:** `zeeshanabid.design@outlook.com` is the contact address in the Privacy Policy only (it is not shown on the Contact page and is not in the structured data, at the owner's request). **The form cannot send email by itself**: a static site needs a form service. Until `contactEndpoint` in `data.js` is set, sending the form opens the visitor's email app with the message addressed to that address. To make messages arrive directly: create a form with a service such as Formspree (free plan) using that email, and paste its form URL into `contactEndpoint`. In Framer, use Framer's built-in form instead.
+
+## SEO / GEO / AEO clean-up of 21-Nov-2026
+
+- **Contact page:** the email address is no longer shown there (nor in the structured data); it stays in the Privacy Policy only. The form still opens the visitor's email app (or sends through `contactEndpoint` once a form service is set).
+- **Shorter file names:** every image name is now 54 characters or fewer (it was up to 80), without repeated words: `carswitch-dubai-storyboard-looking-to-sell-your-car.webp`, `evercare-storyboard-wash-hands-with-soap.webp`, `generation-winter-sale-store-tall-banner-mannequins.webp`, card thumbnails `<project>-thumbnail.webp`, share images `<project>-zeeshan-abid.jpg`. The list is `NAMES` in `tools/prepare-assets.js`.
+- **Image sitemap:** `sitemap.xml` now lists every picture on every project page (111 pictures) and the portrait, using the Google image-sitemap format.
+- **Structured data:** each project's CreativeWork now carries its pictures as ImageObjects (address, description from the alt text, size, creator).
+- **Not done, on purpose:** visible captions under the pictures. The text of each chapter sits directly above its picture, and a caption would repeat the description screen readers already read, so it would add clutter without adding meaning.
+- **Needs the owner:** the site is still set to "noindex" because it is on the GitHub preview address. When the real domain is known, set `seo.url` and `indexable` in `site/js/data.js` and run `cd tools && npm run build`; until then no search engine or AI assistant will list it.
