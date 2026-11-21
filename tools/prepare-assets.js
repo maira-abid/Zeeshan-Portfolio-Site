@@ -18,6 +18,7 @@ const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'originals', 'Portfolio Work Compilations 2026-2027');
+const ADD2 = path.join(ROOT, 'originals', 'Additional Images (2026-11-16)'); // the third batch (16-Nov-2026): storyboards, store photos, new inspirations scroll, new phone mockup
 const ADD = path.join(ROOT, 'originals', 'Additional Images (2026-11-11)'); // the owner's second batch (11-Nov-2026): hi-res replacements and new images
 const EXTRACTS = path.join(__dirname, 'extracts');
 const OUT_IMG = path.join(ROOT, 'site', 'assets', 'img');
@@ -32,17 +33,34 @@ const BF = `${D}/Black Friday 2025`, CSS = `${D}/Collegiate Survival Sale 2025`;
 const images = [];
 // from = 'add' reads the file from the Additional Images folder instead of the first batch; width overrides the default size of an animation
 const add = (slug, name, src, kind = 'img', from, width) => images.push({ slug, name, src, kind, from, width });
-const inputOf = (it) => it.kind === 'extract' ? path.join(EXTRACTS, it.src) : path.join(it.from === 'add' ? ADD : SRC, it.src);
+const inputOf = (it) => it.kind === 'extract' ? path.join(EXTRACTS, it.src) : path.join(it.from === 'add2' ? ADD2 : it.from === 'add' ? ADD : SRC, it.src);
 
 // CarSwitch
 for (let i = 1; i <= 6; i++) add('carswitch', `storyboard-${i}`, `${A}/CarSwitch/CS-Storyboards-0${i}.jpg`);
-add('carswitch', 'palette', 'carswitch-palette.png', 'extract');
-add('carswitch', 'typography', 'carswitch-typography.png', 'extract');
-add('carswitch', 'characters', 'carswitch-characters.png', 'extract');
+const CSW = 'CarSwitch';
+add('carswitch', 'palette', `${CSW}/Missing Images_1-01.jpg`, 'img', 'add2');
+add('carswitch', 'typography', `${CSW}/Missing Images_1-02.jpg`, 'img', 'add2');
+add('carswitch', 'characters', `${CSW}/Missing Images_1-03.jpg`, 'img', 'add2');
+// the other storyboard frames (the ones that repeat storyboard-1 to -4 are not added again)
+add('carswitch', 'sb-you-set-the-price', `${CSW}/CS December 2019 - 001-04.jpg`, 'img', 'add2');
+add('carswitch', 'sb-management-of-transfers', `${CSW}/CS December 2019 - 001-08.jpg`, 'img', 'add2');
+add('carswitch', 'sb-haggling', `${CSW}/CS October Video Screens_v4-10.jpg`, 'img', 'add2');
+add('carswitch', 'sb-managing-transfer', `${CSW}/CS October Video Screens_v4-12.jpg`, 'img', 'add2');
+add('carswitch', 'sb-own-price', `${CSW}/CS October Video Screens_v4-17.jpg`, 'img', 'add2');
+add('carswitch', 'sb-success-fee', `${CSW}/CS October Video Screens_v4-23.jpg`, 'img', 'add2');
+add('carswitch', 'story-selling-your-car', `${CSW}/Selling-your-car_Storyboard-03.jpg`, 'photo', 'add2');
+add('carswitch', 'story-get-more-value-cars', `${CSW}/Selling-your-car_Storyboard-05.jpg`, 'photo', 'add2');
+add('carswitch', 'story-get-more-value-coins', `${CSW}/Selling-your-car_Storyboard-08.jpg`, 'photo', 'add2');
+add('carswitch', 'story-download-the-app', `${CSW}/Selling-your-car_Storyboard-09.jpg`, 'photo', 'add2');
 // Evercare
 add('evercare', 'flatten-curve', `${A}/Evercare/Flatten Curve 03-13-01.jpg`);
 for (let i = 1; i <= 12; i++) add('evercare', `storyboard-${i}`, `${A}/Evercare/EC-Portfolio-${String(i).padStart(2, '0')}.jpg`);
 const EC = 'Evercare';
+add('evercare', 'sb-wash-hands', `${EC}/7 Ways to Stop Covid-04.jpg`, 'img', 'add2');
+add('evercare', 'sb-adequate-measures', `${EC}/7 Ways to Stop Covid-14.jpg`, 'img', 'add2');
+add('evercare', 'sb-talk-to-family', `${EC}/Shortness of Breath-18.jpg`, 'img', 'add2');
+add('evercare', 'sb-avoid-hard-foods', `${EC}/Shortness of Breath-24.jpg`, 'img', 'add2');
+add('evercare', 'sb-keep-in-touch', `${EC}/Shortness of Breath-27.jpg`, 'img', 'add2');
 add('evercare', 'palette', `${EC}/Missing Images_1-04.jpg`, 'img', 'add');
 add('evercare', 'typography', `${EC}/Missing Images_1-05.jpg`, 'img', 'add');
 add('evercare', 'assets', `${EC}/Missing Images_1-06.jpg`, 'img', 'add');
@@ -56,6 +74,7 @@ add('pizza-now', 'logo-iterations', 'Branding/Preview-Images-for-Website-2026-07
 add('pizza-now', 'logo-evolution', 'Branding/Pizza-Now_Logo-Evolution.gif', 'gif');
 // Breakfast Box
 for (let i = 1; i <= 6; i++) add('breakfast-box', `bb-${i}`, `Branding/BB_2022_PF-Website_Images_${i}.jpg`);
+Object.assign(images.find((i) => i.slug === 'breakfast-box' && i.name === 'bb-2'), { src: 'Breakfast Box/BB_2022_PF-Website_Images_2.jpg', from: 'add2' });
 // Black Friday
 add('black-friday', 'hero-1', `${BF}/Black-Friday_2025_PF-Website_Image_1.jpg`);
 add('black-friday', 'post-starts-1', `${BF}/Black-Friday_Nov,2025_STARTS_POST_1.jpg`);
@@ -84,7 +103,7 @@ add('collegiate-survival-sale', 'email-launch', `${BF}/2025-09-CSS-Sale-1-Launch
 add('collegiate-survival-sale', 'email-last-call', `${BF}/2025-09-CSS-Sale-2-Last-Call.png`, 'tall');
 // Annual Winter Sale (Generation)
 const AWS = 'AWS - Generation';
-add('annual-winter-sale', 'inspiration', `${P}/03-AWS---Newspaper-Ad01.jpg`, 'tall'); // kept: the Inspirations & References scroll
+add('annual-winter-sale', 'inspiration', `${AWS}/Generation_AWS_Inspirations.jpg`, 'tall', 'add2', 1200); // the new Inspirations scroll (16-Nov)
 add('annual-winter-sale', 'palette', `${AWS}/Missing Images_1-07.jpg`, 'img', 'add');
 add('annual-winter-sale', 'typography', `${AWS}/Missing Images_1-08.jpg`, 'img', 'add');
 add('annual-winter-sale', 'initial-attempts', `${AWS}/Generation_AWS_Initial-Attempts_2.gif`, 'gif', 'add', 1000);
@@ -95,6 +114,8 @@ add('annual-winter-sale', 'the-news', `${AWS}/Layer 16.jpg`, 'photo', 'add');
 add('annual-winter-sale', 'website', `${AWS}/aws-website.jpg`, 'img', 'add');
 add('annual-winter-sale', 'daraz', `${AWS}/daraz-aws.jpg`, 'img', 'add');
 add('annual-winter-sale', 'facebook-ad', `${AWS}/sale-ad-facebook.jpg`, 'img', 'add');
+['IMG_1402_2', 'IMG_1421_2', 'IMG_1429_2', 'IMG_1475_2', 'IMG_1497_2', 'IMG_1537_2', '_MG_1582_2', '_MG_1609_2']
+  .forEach((n, i) => add('annual-winter-sale', 'store-display-' + (i + 1), `${AWS}/${n}.jpg`, 'photo', 'add2'));
 add('annual-winter-sale', 'socials', `${AWS}/Generation_AWS_Socials.gif`, 'gif', 'add', 900);
 // Generation Magazines
 add('generation-magazines', 'covers', `${P}/cover images (magazines).jpg`);
@@ -254,6 +275,31 @@ const NAMES = {
  'thumbs/startup-grind': 'startup-grind-project-thumbnail',
  'thumbs/tango-photos': 'tango-photos-project-thumbnail'
 };
+Object.assign(NAMES, {
+ 'carswitch/sb-you-set-the-price': 'carswitch-dubai-storyboard-you-set-the-price',
+ 'carswitch/sb-management-of-transfers': 'carswitch-dubai-storyboard-management-of-transfers-test-drives-phone-calls',
+ 'carswitch/sb-haggling': 'carswitch-dubai-storyboard-haggling-with-strangers',
+ 'carswitch/sb-managing-transfer': 'carswitch-dubai-storyboard-managing-the-transfer-paperwork',
+ 'carswitch/sb-own-price': 'carswitch-dubai-storyboard-where-you-set-your-own-price',
+ 'carswitch/sb-success-fee': 'carswitch-dubai-storyboard-success-fee-only-when-we-sell-the-car',
+ 'carswitch/story-selling-your-car': 'carswitch-dubai-vertical-storyboard-selling-your-car',
+ 'carswitch/story-get-more-value-cars': 'carswitch-dubai-vertical-storyboard-get-more-value-with-us-road',
+ 'carswitch/story-get-more-value-coins': 'carswitch-dubai-vertical-storyboard-get-more-value-with-us-coins',
+ 'carswitch/story-download-the-app': 'carswitch-dubai-vertical-storyboard-download-the-app',
+ 'evercare/sb-wash-hands': 'evercare-hospital-covid-19-storyboard-wash-your-hands-with-soap',
+ 'evercare/sb-adequate-measures': 'evercare-hospital-covid-19-storyboard-take-adequate-measures-on-public-transport',
+ 'evercare/sb-talk-to-family': 'evercare-hospital-covid-19-storyboard-talk-to-family-and-friends',
+ 'evercare/sb-avoid-hard-foods': 'evercare-hospital-covid-19-storyboard-avoid-foods-difficult-to-chew',
+ 'evercare/sb-keep-in-touch': 'evercare-hospital-covid-19-storyboard-keep-in-touch-with-friends',
+ 'annual-winter-sale/store-display-1': 'generation-annual-winter-sale-store-display-window-banners-and-mannequins',
+ 'annual-winter-sale/store-display-2': 'generation-annual-winter-sale-store-display-mall-store-entrance-window',
+ 'annual-winter-sale/store-display-3': 'generation-annual-winter-sale-store-display-tall-banner-above-seated-mannequins',
+ 'annual-winter-sale/store-display-4': 'generation-annual-winter-sale-store-display-building-with-window-banners',
+ 'annual-winter-sale/store-display-5': 'generation-annual-winter-sale-store-display-billboard-above-store-sign',
+ 'annual-winter-sale/store-display-6': 'generation-annual-winter-sale-store-display-arched-windows-annual-winter-sale',
+ 'annual-winter-sale/store-display-7': 'generation-annual-winter-sale-store-display-mall-store-red-door-banner',
+ 'annual-winter-sale/store-display-8': 'generation-annual-winter-sale-store-display-mall-entrance-large-banner'
+});
 images.forEach((it) => { it.key = it.name; it.name = NAMES[it.slug + '/' + it.name] || it.name; });
 const thumbName = (slug) => slug + '-project-thumbnail';
 const posterName = (out) => NAMES['posters/' + out] || out;

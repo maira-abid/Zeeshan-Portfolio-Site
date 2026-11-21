@@ -46,7 +46,7 @@
     var activePage = page === 'project' ? 'projects' : page;
     var nav = navItems.map(function (n) { return '<a href="' + n[0] + '"' + (n[2] === activePage ? ' aria-current="page"' : '') + '>' + n[1] + '</a>'; }).join('');
     // Placeholder logo (replace with the real one)
-    var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home"><span class="logo__text">' + esc(S.name.toUpperCase()) + '<small>Designer</small></span></a>';
+    var logo = '<a class="logo" href="./" aria-label="' + esc(S.fullName) + ' - home"><img class="logo__img logo__img--dark" src="assets/img/logo/zeeshan-abid-designer-logo-white-text.webp" alt="' + esc(S.fullName) + '" width="640" height="100"><img class="logo__img logo__img--light" src="assets/img/logo/zeeshan-abid-designer-logo-dark-text.webp" alt="' + esc(S.fullName) + '" width="640" height="100"></a>';
 
     var header = '<a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="wrap">' + logo + '<nav class="nav" aria-label="Main">' + nav + '</nav>' +
       '<button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to the light version"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg></button></div></header>';
@@ -59,7 +59,7 @@
       '<div class="footer__brand">' + logo.replace('class="logo"', 'class="logo"') + '<p>Multi-disciplinary designer based in ' + esc(S.location) + '.</p></div>' +
       '<div><h2>Pages</h2><nav class="footer__links" aria-label="Footer">' + nav.replace(/ aria-current="page"/g, '') + '</nav></div>' +
       '<div><h2>Elsewhere</h2><div class="socials">' + socials + '</div></div>' +
-      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><span class="footer__links2"><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause animations</button><a href="privacy/">Privacy Policy</a></span></div></div></footer>';
+      '</div><div class="footer__bar"><span>&copy; 2026 ' + esc(S.fullName) + '. All rights reserved.</span><span class="footer__links2"><a href="privacy/">Privacy Policy</a></span></div></div></footer>';
     var mainForFooter = $('main'); // directly after <main> (before any scripts) so the pre-built footer is already in the page when this runs
     if (mainForFooter) mainForFooter.insertAdjacentHTML('afterend', footer); else document.body.insertAdjacentHTML('beforeend', footer);
     var mainEl = $('main'); if (mainEl) mainEl.id = 'main';
@@ -193,7 +193,7 @@
 
   /* ---------- PROJECT ---------- */
   function autoplayOK() {
-    try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false; if (localStorage.getItem('zk-motion') === 'off') return false; } catch (e) { /* storage blocked: autoplay stays on */ }
+    try { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false; } catch (e) { /* storage blocked: autoplay stays on */ }
     return true;
   }
   function mediaItem(m, sizes, eager) {
@@ -278,10 +278,10 @@
           (b.bullets && !b.stats ? '<ul class="sec__list">' + b.bullets.map(function (t) { return '<li><i class="bullet" aria-hidden="true"></i><span>' + esc(t) + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
         if (b.media && b.media.length) {
           // stack: true = every picture on its own row at the full width of the text column (used when pictures must line up with the rest)
-          var n = b.media.length, o = b.stack ? 'l' : shape(b.media[0]), side = n === 1 && o === 'p';
-          var sizes = side ? '(max-width: 960px) 100vw, 360px' : (n === 1 || b.stack ? '(max-width: 960px) 100vw, 840px' : '(max-width: 960px) 50vw, 420px');
+          var n = b.media.length, stk = b.stack === true || (n > 1 && b.stack !== false), o = stk ? 'l' : shape(b.media[0]), side = n === 1 && o === 'p' && !stk;
+          var sizes = side ? '(max-width: 960px) 100vw, 360px' : (n === 1 || stk ? '(max-width: 960px) 100vw, 840px' : '(max-width: 960px) 50vw, 420px');
           return '<section class="sec">' + head + '<div class="sec__body' + (side ? ' sec__body--side' : '') + '">' + text +
-            '<div class="sec__media sec__media--' + o + ' sec__media--n' + (b.stack ? 1 : Math.min(n, 3)) + (b.stack ? ' sec__media--stack' : '') + '">' + b.media.map(function (m) { return mediaItem(m, sizes); }).join('') + '</div></div></section>';
+            '<div class="sec__media sec__media--' + o + ' sec__media--n' + (stk ? 1 : Math.min(n, 3)) + (stk ? ' sec__media--stack' : '') + '">' + b.media.map(function (m) { return mediaItem(m, sizes); }).join('') + '</div></div></section>';
         }
         return '<section class="sec">' + head + '<div class="sec__body">' + text + '</div></section>';
       }
@@ -428,12 +428,11 @@
 
   /* ---------- boot ---------- */
   var routes = { home: renderHome, projects: renderProjects, project: renderProject, about: renderAbout, contact: renderContact, privacy: renderPrivacy };
-  var themeMQ = false;
   // listeners that belong to one page (the Projects filters) are removed when the visitor moves to another page
   var cleanups = [];
   function listen(target, type, fn) { target.addEventListener(type, fn); cleanups.push(function () { target.removeEventListener(type, fn); }); }
   function cleanup() { while (cleanups.length) cleanups.pop()(); }
-  function boot() { renderChrome(); if (routes[page]) routes[page](); initTheme(); initMotion(); }
+  function boot() { renderChrome(); if (routes[page]) routes[page](); initTheme(); }
 
   /* In-page links (skip link, privacy contents): pages use a <base href>, so a bare "#id" would point at the site root. Handle them here. */
   document.addEventListener('click', function (e) {
@@ -453,27 +452,31 @@
       if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
       ($('#themeToggle') || btn).setAttribute('aria-label', light ? 'Switch to the dark version' : 'Switch to the light version');
       if (meta) meta.setAttribute('content', light ? '#ffffff' : '#1b1b1b');
+      ['favicon', 'favicon-large', 'favicon-apple'].forEach(function (id) { var l = document.getElementById(id); if (l) l.setAttribute('href', l.getAttribute('href').replace(/-(light|dark)-/, light ? '-light-' : '-dark-')); }); // browser-tab icon for the version on screen
       if (save) { try { localStorage.setItem('zk-theme', light ? 'light' : 'dark'); } catch (e) {} }
     }
     btn.addEventListener('click', function () { apply(!isLight(), true); });
     apply(isLight(), false);
-    // with no saved choice the site follows the system colour mode, including when it changes while the page is open
-    var sys = !themeMQ && window.matchMedia && matchMedia('(prefers-color-scheme: light)'); themeMQ = true; // the system-colour listener is added once, not on every page change
-    if (sys && sys.addEventListener) sys.addEventListener('change', function (e) { var saved = null; try { saved = localStorage.getItem('zk-theme'); } catch (er) {} if (!saved) apply(e.matches, false); });
   }
 
-  /* Pause / play all moving decoration (ticker, floating background, hero video). Remembered on this device. */
-  function initMotion() {
-    var btn = $('#motionToggle'); if (!btn) return;
-    var off = false; try { off = localStorage.getItem('zk-motion') === 'off'; } catch (e) {}
-    function apply(isOff, save) {
-      off = isOff; document.documentElement.classList.toggle('motion-off', off);
-      btn.setAttribute('aria-pressed', off ? 'true' : 'false'); btn.textContent = off ? 'Play animations' : 'Pause animations';
-      var v = $('#heroVideo'); if (v) { if (off) v.pause(); else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
-      if (save) { try { localStorage.setItem('zk-motion', off ? 'off' : 'on'); } catch (e) {} }
-    }
-    btn.addEventListener('click', function () { apply(!off, true); });
-    if (off) apply(true, false);
+  /* Back to top: an icon-only button at the bottom right that appears once the visitor has scrolled a little. It takes the colours of the
+     version on screen (CSS), and scrolls smoothly unless the visitor asked for less motion. */
+  function initToTop() {
+    try { localStorage.removeItem('zk-motion'); } catch (e) { /* the old "Pause animations" choice is gone */ }
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'to-top'; b.setAttribute('aria-label', 'Back to top'); b.setAttribute('title', 'Back to top'); b.tabIndex = -1;
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/></svg>';
+    document.body.appendChild(b);
+    var shown = false, ticking = false;
+    // only pages longer than the Contact page get the button (Contact is about 1,700 px tall on a desktop layout and about 2,700 px when the columns stack on a phone); shorter pages do not need it
+    function longEnough() { return page !== 'contact' && document.documentElement.scrollHeight > (window.innerWidth > 960 ? 1800 : 2800); }
+    function update() { ticking = false; var on = window.scrollY > 500 && longEnough(); if (on !== shown) { shown = on; b.classList.toggle('is-visible', on); b.tabIndex = on ? 0 : -1; } }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    document.addEventListener('zk:navigate', update);
+    b.addEventListener('click', function () {
+      var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' });
+    });
+    update();
   }
 
   /* ---------- page changes without a reload ----------
@@ -530,4 +533,5 @@
   });
 
   boot();
+  initToTop();
 })();

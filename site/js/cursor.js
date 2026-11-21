@@ -1,5 +1,5 @@
 /* Pointer: the normal arrow shape, solid black on the light version and solid white on the dark one. Over anything clickable (links, buttons, pictures
-   that open) it inverts whatever is under it. Mouse and trackpad only (nothing on touch screens or with reduced-motion); off with "Pause animations". Text fields keep
+   that open) it inverts whatever is under it. Mouse and trackpad only (nothing on touch screens or with reduced-motion). Text fields keep
    the normal text cursor. The real arrow is hidden from the first paint (class zc-pre, set in <head>), and the pointer position is carried to the next
    page, so the two never show together and nothing flashes between pages. No animation loop: it only moves when the mouse moves. */
 (function () {

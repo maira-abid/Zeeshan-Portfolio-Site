@@ -32,7 +32,6 @@ tools/
   build-seo.js           SEO + GEO build: pre-renders every page to static HTML, titles, schema, sitemap, robots, llms.txt (npm run build)
   prepare-assets.js      rebuilds site/assets from originals/ (cd tools, npm i, node prepare-assets.js)
   export-framer.js       regenerates the Framer CSVs/data file
-  extracts/              PDF pages used in the CarSwitch write-up
 framer/       CMS CSVs, code components and the Framer guide
 (GitHub Pages is served from the gh-pages branch, which holds only the site/ folder; see below)
 ```
@@ -63,11 +62,8 @@ Typical image weight per page is 150 KB to 900 KB (the Annual Winter Sale and ma
   checkerboard and the icon patterns (`--violet-soft`) and `#8F00FF` for buttons and highlights.
 - **Source of truth: the style-guide PDF** (`brand/Website Branding_style-guide.pdf`, 4 pages: colours, typeface, patterns, icons), not the
   Illustrator file. Client feedback (2026-11-07): the Illustrator file contained extra fonts that were never part of the style guide.
-- Typefaces: **Raleway only**, as the PDF specifies, in different weights for headings, labels, numbers and body text. The one exception
-  is the **placeholder logo lettering** (Jockey Full of Bourbon, trimmed to a 49 KB logo-only file): the client confirmed the punk font is for
-  the logo only and will supply their own logo later. Magazine Letter, Kingthings Extortion, Hit Me Punk and Anton are no longer loaded
-  (the old files are still in `site/assets/fonts/`). Note for Framer: Raleway is in Framer's font list, so no custom font upload (and no paid
-  plan for fonts) is needed except for the placeholder logo. The `framer/` files still mention the old fonts and have no stacked Featured
+- Typefaces: **Raleway only**, as the PDF specifies, in different weights for headings, labels, numbers and body text. There are no other typefaces: the logo is artwork, not a font. Magazine Letter, Kingthings Extortion, Hit Me Punk, Jockey Full of Bourbon and Anton
+  are no longer in `site/assets/fonts/` (the sources stay in `brand/Typefaces`). Note for Framer: Raleway is in Framer's font list, so no custom font upload is needed. The `framer/` files still mention the old fonts and have no stacked Featured
   Work yet; they get updated in the single Framer pass at the end.
 - Colours in the stylesheet now match the PDF exactly: Violet Ray `#8F00FF`, Carbon Black `#1B1B1B` (they were `#8800ff` and `#141414`,
   taken from the Illustrator file).
@@ -136,7 +132,7 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 
 ## Performance and hidden projects (quick wins)
 
-- **Logo font:** `site/assets/fonts/JockeyFullOfBourbon-logo.woff2` is a 49 KB cut of the supplied 883 KB font containing only capitals, digits and a few marks (the logo always upper-cases the name). The original `.ttf` is kept for reference. Check the font's licence allows web use and modification before launch.
+- **Logo:** the supplied artwork (16-Nov-2026), in `site/assets/img/logo/` (white lettering for dark surfaces, dark lettering for light ones; the home header is always dark). The old placeholder lettering and its font are gone.
 - **Hero video:** 960x540, about 1 MB (was 2 MB, 1280x720). It no longer autoplays on page load: it starts after the page has loaded, and stays still for reduced-motion and Save-Data visitors (the play button still works). `tools/prepare-assets.js` uses the same settings.
 - **Hidden projects:** `showreel`, `app-launch` and `startup-grind` carry `hidden: true` in `site/js/data.js`, so they appear nowhere (pages, filters, counts, sitemap, search files). Their old addresses redirect to the Projects page. Delete the flag and run `cd tools && npm run build` to bring one back.
 - **Social links:** Behance, LinkedIn, Instagram and Vimeo are set in `SITE.social` in `data.js`.
@@ -162,7 +158,7 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 
 ## Light version (a switch, not a second site)
 
-- **The switch:** a round half-moon button in the top-right of the header on every page. It flips the same site between dark (the default, the approved look) and light, and remembers the choice on that device (`localStorage` key `zk-theme`). A one-line script in `<head>` (`tools/templates/shell.html`) applies the saved choice before the page paints, so there is no flash. To make the site follow the visitor's system setting by default instead, change that script to also check `prefers-color-scheme`.
+- **The switch:** a round half-moon button in the top-right of the header on every page. It flips the same site between light (the default) and dark, and remembers the choice on that device (`localStorage` key `zk-theme`). A one-line script in `<head>` (`tools/templates/shell.html`) applies the saved choice before the page paints, so there is no flash. To make the site follow the visitor's system setting by default instead, change that script to also check `prefers-color-scheme`.
 - **Light colours (from the style guide only):** the page is That Other Grey `#E5E5E5`, cards, fields, image frames and the ticker are White, the footer is the same grey as the page (separated by a thin line), text is Carbon Black `#1B1B1B`, accents and violet text are Violet Ray `#8F00FF` (5.8:1 on white, 4.6:1 on the grey page). Only the hover shade (`#D4D4D4`) and the card border (`#BDBDBD`) are tints of the grey. The neon lime cannot be read on a light page, so in the light version the lime accents (eyebrow labels, bullet diamonds, logo mark) use the brand violet.
 - **Hero edge:** the video ends in a clean dark edge in both versions. (A white fade at the bottom was tried and removed because it looked like a glow.)
 - **What stays the same in both:** the home hero video with its white header and buttons, the six coloured Featured Work panels (white text on their own colours), the tags on thumbnails (white on dark), the image viewer, and every violet button.
@@ -197,7 +193,7 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 ## Feedback of 09-Nov-2026: what was done (both sites unless stated)
 
 - **Pointer:** the fancy cursors are gone. A small dot (`site/js/cursor.js`) inverts whatever it is over (a grayscale invert, so it reads black on a light page and white on a dark one, and flips on text and pictures). It grows over buttons, links and pictures, and shrinks when pressed. Mouse only; text fields keep the normal text cursor; off with "Pause animations". It has no animation loop, and the position is carried to the next page so the normal arrow does not flash.
-- **Colour mode:** the default is the visitor's system setting (and it follows the system if that changes while the page is open) until they use the switch; their choice is then remembered.
+- **Colour mode:** the light version is the default for everyone (16-Nov-2026), whatever the visitor's system setting is; the switch in the header changes it and the choice is remembered on that device. The static pages carry `data-theme="light"`; a one-line script in `<head>` removes it when the saved choice is dark.
 - **Square corners:** every box, button, tag, field and frame (all `border-radius` set to 0).
 - **Home:** headline "Answering questions with design" on the video; copy "Multi-disciplinary designer, based in Toronto, working on animations, digital & print marketing, branding."; copy and buttons aligned left; floating icons removed (the ambient scripts are no longer loaded; the files stay in the repo); no checkered pattern on the home page; "Brands I've worked with" ticker moved to the bottom; "Browse by category" without its box, text to the left.
 - **Checkered pattern, all other pages:** very subtle, 104 px: black and grey in dark, white-ish and grey in light (no violet).
@@ -208,7 +204,7 @@ The Framer equivalents (page titles and descriptions, share images, site-wide sc
 
 ## Changes of 10-Nov-2026
 
-- **Pointer:** the normal arrow shape, solid black in the light version and solid white in the dark version; over anything clickable it inverts what is under it (code: `site/js/cursor.js`, styles at the end of `site/css/style.css`). The real arrow is hidden from the first paint and the position is carried between pages so nothing flashes. Text fields keep the text cursor; "Pause animations" brings back the normal arrow.
+- **Pointer:** the normal arrow shape, solid black in the light version and solid white in the dark version; over anything clickable it inverts what is under it (code: `site/js/cursor.js`, styles at the end of `site/css/style.css`). The real arrow is hidden from the first paint and the position is carried between pages so nothing flashes. Text fields keep the text cursor; "reduce motion" in the system turns it off.
 - **Single project pages:** now laid out like the new site's case pages: a band in the project colour with the title and result line, the cover, an "at a glance" box (client, industry, what I did, results) beside the short version and numbered sections, and a next-project band with a thumbnail. Code: `renderProject()` in `site/js/app.js`; colours and wording in `caseMeta` in `site/js/data.js`.
 - **Home:** a "What I can help with" list (six numbered items) now sits between Featured Work and the client ticker. Code: `renderHome()` in `site/js/app.js`, styles under "What I can help with".
 
@@ -218,7 +214,7 @@ The second batch of files (images, GIFs and `WEBSITE FEEDBACK - 2026-11-11.txt`)
 
 - **Purple:** one violet everywhere, the style guide's `#8F00FF`. The lighter tone used for text in the dark version (`--violet-light`) and the lighter violet in the three background patterns (`site/assets/icons/pattern-*.svg`) are now `#8F00FF`. Small purple text on the dark version is therefore about 3:1 contrast (below the 4.5:1 guideline); that was the client's call.
 - **Stats under "What happened":** black outline style (outline in the text colour: black on the light version, white on the dark one), no tinted fill.
-- **CarSwitch / Evercare:** the first animation autoplays (muted, as browsers require; skipped with "reduce motion" or "Pause animations"). CarSwitch: the 2nd animation replaces the picture under "About the client"; the 3rd sits under "What I did" with the character sheet below it (so the three are no longer repeated under "What happened"). Evercare: the masked-crowd frame is under "What I did", the living-room frame under "How I worked it out", and the three new palette / typography / assets images replace the old ones. **CarSwitch's new characters, colour and typography images were not in the folder**, so the old ones are still in use, and more storyboards are still to come.
+- **CarSwitch / Evercare:** the first animation autoplays (muted, as browsers require; skipped with "reduce motion"). CarSwitch: the 2nd animation replaces the picture under "About the client"; the 3rd sits under "What I did" with the character sheet below it (so the three are no longer repeated under "What happened"). Evercare: the masked-crowd frame is under "What I did", the living-room frame under "How I worked it out", and the three new palette / typography / assets images replace the old ones. **CarSwitch's new characters, colour and typography images were not in the folder**, so the old ones are still in use, and more storyboards are still to come.
 - **Pizza Now:** the low-resolution food-court banner is gone; the picture with many pizza boxes sits under "What needed solving" (and is no longer repeated under "What happened"); under "How I worked it out" the animation is above the still, and every picture is the same width as the others (`stack: true` on a section in `data.js` does this).
 - **Black Friday / Collegiate Survival Sale:** the new images sit under the paragraph they are named for; Black Friday has a "Social Media Carousels" block after the email newsletters (two carousels, each a row of full-size slides that scrolls sideways, `layout: 'carousel'` in `data.js`); Collegiate Survival Sale has a "Social Media Stories" block (two animations) after the emails.
 - **Annual Winter Sale:** the supplied write-up (obvious typos fixed), all new hi-res images, the Inspirations & References scroll now sits below its paragraph at the same width as the other images, and the "coming soon" note is removed. The result figures are 2.5x sales, about PKR 1.5M a day and about 35 in-store artworks.
@@ -239,3 +235,22 @@ Every project image, card thumbnail, video poster and share image has a descript
 ### Page changes without a reload (pointer fix of 15-Nov-2026)
 
 A screen recording showed the browser's own white arrow appearing on top of the themed pointer right after every page change, until the mouse moved. A browser restarts its pointer whenever a new document opens, and a page cannot stop that. So moving between pages of the site (links, nav, cards, next-project band, back and forward) now swaps the page inside the same document instead of loading a new one (`go()` in `site/js/app.js`); the pointer, and the cursor state, are never reset. The static pages are still real pages for search engines, shared links, new tabs and Ctrl/Cmd-click; links to other sites, files and `target="_blank"` open as usual. After a change the title and description are read from the target page, the page scrolls to the top and `main` takes focus. `site/js/cursor.js` listens for the `zk:navigate` event to re-read what is under the pointer.
+
+## Feedback of 16-Nov-2026: what was done
+
+The third batch (new folders and `WEBSITE FEEDBACK - 2026-11-16.txt`) is in `originals/Additional Images (2026-11-16)/`; copies of files already in the 11-Nov batch were removed from it. The logo and icon files are in `brand/Website Logo & Icons/`. The light version is now the default (see "Colour mode" above).
+
+- **Menu:** the page you are on is a violet box with white text; hovering outlines a name in violet. No underline.
+- **Logo and tab icons:** the new wordmark replaces the placeholder in the header and footer. The browser-tab icon is the purple-on-black Z in the dark version and the white-on-purple Z in the light version (`site/assets/icons/zeeshan-abid-favicon-*`), and it changes with the switch. The Apple touch icon follows too. The logo is also in the site's structured data.
+- **All projects:** more than one picture under a heading now means one below the other, each at the full width of the text column (`stack` in `data.js` is automatic for two or more pictures; `stack: false` brings back a row). Left as they were on purpose: the Storyboards galleries (many small frames), the tall scrolling designs, the Black Friday carousels (horizontal on request) and the Collegiate Survival Sale stories (two tall animations side by side; stacked and widened they would be about 1,500 px tall each and blurry).
+- **CarSwitch:** "What I did" keeps the animation and adds colour and typography below it; "How I worked it out" has the characters; the new colour, typography and characters images are in; the Storyboards now hold every frame in story order (frames that repeated one already used above are not added twice) plus the four vertical story frames in their own block.
+- **Evercare:** images one below the other under "What needs solving" and "Colour & Typography"; five missing storyboard frames added (the other five in the folder repeated frames already there).
+- **Breakfast Box:** the phone mockup without the white line replaces the "About the client" picture.
+- **Black Friday and Collegiate Survival Sale:** the picture moved from "What happened" to "What I did".
+- **Annual Winter Sale:** the vertical poster is under "What I did" at the same width; the new Inspirations scroll; "What needed solving" stacked; Newspaper Adaptations has only the two newspaper pages; Websites & Social Media in the order GIF, Facebook, website, Daraz; a new "Store Displays" block with the eight store photos.
+- **Generation Magazines:** the pictures are grouped by magazine (Magazine 1: Eid 2018, Magazine 2, Magazine 3: Autumn/Winter 2018-19), each with its mockups and its full scrolling layout. The new write-up has not been supplied yet, so the page keeps its "coming soon" note.
+
+## Footer button and back-to-top (20-Nov-2026)
+
+- The "Pause animations" button in the footer is gone (and its saved choice is cleared on the next visit). The hero video keeps its own play/pause button, the client strip still pauses on hover or keyboard focus, and the system's "reduce motion" setting still stops the autoplay, the themed pointer and the smooth scrolling.
+- **Back to top:** an icon-only button (an up arrow, labelled "Back to top" for screen readers) at the bottom right, shown once the page has been scrolled about 500 px, and only on pages longer than the Contact page (never on Contact itself; Contact is about 1,700 px tall on a desktop layout and 2,700 px on a phone, which is what `longEnough()` compares against). It is a dark square with a light arrow on the light version and a light square with a dark arrow on the dark version, and turns violet on hover or keyboard focus. Code: `initToTop()` in `site/js/app.js`, styles at the end of `site/css/style.css`. The footer line keeps clear of it.

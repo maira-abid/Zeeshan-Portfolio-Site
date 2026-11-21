@@ -48,24 +48,24 @@ window.MEDIA = {
   ]
  },
  "img/carswitch/carswitch-dubai-animation-colour-palette.webp": {
-  "w": 1600,
-  "h": 1131,
+  "w": 1800,
+  "h": 1013,
   "v": [
    640,
    1200
   ]
  },
  "img/carswitch/carswitch-dubai-animation-typography.webp": {
-  "w": 1600,
-  "h": 1131,
+  "w": 1800,
+  "h": 1013,
   "v": [
    640,
    1200
   ]
  },
  "img/carswitch/carswitch-dubai-animation-character-sheet.webp": {
-  "w": 1600,
-  "h": 1131,
+  "w": 1800,
+  "h": 1013,
   "v": [
    640,
    1200
@@ -663,8 +663,8 @@ window.MEDIA = {
   "h": 3655
  },
  "img/annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp": {
-  "w": 1000,
-  "h": 4916,
+  "w": 1200,
+  "h": 7200,
   "v": [
    640
   ]
@@ -855,6 +855,185 @@ window.MEDIA = {
  "img/generation-magazines/generation-magazine-spread-on-wall-mockup.webp": {
   "w": 1800,
   "h": 1201,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-you-set-the-price.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-management-of-transfers-test-drives-phone-calls.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-haggling-with-strangers.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-managing-the-transfer-paperwork.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-where-you-set-your-own-price.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-storyboard-success-fee-only-when-we-sell-the-car.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/carswitch/carswitch-dubai-vertical-storyboard-selling-your-car.webp": {
+  "w": 1013,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-road.webp": {
+  "w": 1013,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-coins.webp": {
+  "w": 1013,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/carswitch/carswitch-dubai-vertical-storyboard-download-the-app.webp": {
+  "w": 1013,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/evercare/evercare-hospital-covid-19-storyboard-wash-your-hands-with-soap.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/evercare/evercare-hospital-covid-19-storyboard-take-adequate-measures-on-public-transport.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/evercare/evercare-hospital-covid-19-storyboard-talk-to-family-and-friends.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/evercare/evercare-hospital-covid-19-storyboard-avoid-foods-difficult-to-chew.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/evercare/evercare-hospital-covid-19-storyboard-keep-in-touch-with-friends.webp": {
+  "w": 1800,
+  "h": 1013,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-window-banners-and-mannequins.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-entrance-window.webp": {
+  "w": 1800,
+  "h": 1199,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-tall-banner-above-seated-mannequins.webp": {
+  "w": 1200,
+  "h": 1800,
+  "v": [
+   640
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-building-with-window-banners.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-billboard-above-store-sign.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-arched-windows-annual-winter-sale.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-red-door-banner.webp": {
+  "w": 1800,
+  "h": 1200,
+  "v": [
+   640,
+   1200
+  ]
+ },
+ "img/annual-winter-sale/generation-annual-winter-sale-store-display-mall-entrance-large-banner.webp": {
+  "w": 1800,
+  "h": 1200,
   "v": [
    640,
    1200
