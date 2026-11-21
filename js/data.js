@@ -210,26 +210,38 @@ window.SITE = {
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['I started by first understanding the client\'s business model and their requirements for the animations including the message they wanted to get across. I was at the forefront of communicating with the client throughout the entire project. At every stage, I made sure to incorporate the client\'s feedback into the animations without compromising on the quality and aesthetic of the brand.'],
-          stack: true,
           media: [
             { t: 'vimeo', id: '453621297', title: 'Get More Value with Us: CarSwitch animation about selling a car for the price you want' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-animation-character-sheet.webp', alt: 'CarSwitch character sheet: the seller, the greedy car dealer, the buyer, the car inspector and the car mechanic' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-animation-colour-palette.webp', alt: 'CarSwitch colour palette: the primary orange F8A534 and blue 689AFE, with two rows of secondary colours' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-animation-typography.webp', alt: 'CarSwitch typography: Titillium on blue and Comfortaa on orange, with their alphabets and numerals' },
           ],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['My process started with research on the brand\'s mission, vision, values and personality which I then used to design the art direction. Presenting the storyboard to the client before starting work on the animation made sure that they had a clear idea of how the animation would look once it was complete. I also worked together with social media managers and project managers and the client. However, I also had to adhere to the constraints put around the animations (such as a limited duration) as they were to be used for YouTube ads as well.'],
-          media: [
-            { t: 'img', src: 'carswitch/carswitch-dubai-animation-colour-palette.webp', alt: 'CarSwitch colour palette slide: primary orange and blue, with two rows of secondary colours' },
-            { t: 'img', src: 'carswitch/carswitch-dubai-animation-typography.webp', alt: 'CarSwitch typography slide: the typefaces Comfortaa and Titillium Web with their weights' },
-          ],
+          media: [{ t: 'img', src: 'carswitch/carswitch-dubai-animation-character-sheet.webp', alt: 'CarSwitch character sheet: the seller, the greedy car dealer, the buyer, the car inspector and the car mechanic' }],
         },
         {
           type: 'media', layout: 'grid3', heading: 'Storyboards',
           items: [
-            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-seller-and-greedy-car-dealer.webp', alt: 'CarSwitch storyboard frame: a car seller imagines “$$” while a car dealer in a suit imagines “$$$$” outside a dealership' },
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-looking-to-sell-your-car.webp', alt: 'CarSwitch storyboard frame: the seller character beside the question “Looking to sell your car?”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-seller-and-greedy-car-dealer.webp', alt: 'CarSwitch storyboard frame: a car seller imagines “$$” while a car dealer in a suit imagines “$$$$” outside a dealership' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-haggling-with-strangers.webp', alt: 'CarSwitch storyboard frame: the seller beside a yellow car with three strangers and the line “…haggling with strangers…”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-managing-the-transfer-paperwork.webp', alt: 'CarSwitch storyboard frame: a stack of paper towering over the seller’s legs, with the line “…and managing the transfer”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-you-set-the-price.webp', alt: 'CarSwitch storyboard frame: the seller holding a “$$$$” price tag on a yellow car, with the line “you set the price!”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-where-you-set-your-own-price.webp', alt: 'CarSwitch storyboard frame: a yellow car with a “$$$$” price tag and the line “…where you set your own price”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-management-of-transfers-test-drives-phone-calls.webp', alt: 'CarSwitch storyboard frame: a blue car on a road with the words “Management of transfers”, “Test drives” and “Phone calls”' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-success-fee-only-when-we-sell-the-car.webp', alt: 'CarSwitch storyboard frame: a small yellow car under the line “success fee only applies when WE SELL THE CAR!”' },
             { t: 'img', src: 'carswitch/carswitch-dubai-storyboard-success-fees-after-sale.webp', alt: 'CarSwitch storyboard frame: a mechanic in a yellow cap holding a clipboard, with the line “Success fees charged after we sell the car”' },
+          ],
+        },
+        {
+          type: 'media', layout: 'grid2', heading: 'Vertical Storyboards', note: 'The same story for tall phone screens, in English and Arabic.',
+          items: [
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-selling-your-car.webp', alt: 'CarSwitch vertical storyboard: “Selling your car?” in English and Arabic over a phone showing a red car on a road, with the CarSwitch logo and phone number' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-road.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic over a phone showing a white car on a country road' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-get-more-value-with-us-coins.webp', alt: 'CarSwitch vertical storyboard: “Get more value with us!” in English and Arabic beside a tall stack of coins compared with a short one' },
+            { t: 'img', src: 'carswitch/carswitch-dubai-vertical-storyboard-download-the-app.webp', alt: 'CarSwitch vertical storyboard end card: the CarSwitch logo, the phone number 04 506 1300 and “Download the app now!”' },
           ],
         },
         {
@@ -287,7 +299,7 @@ window.SITE = {
           media: [{ t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-home-isolation-guidelines.webp', alt: 'Evercare storyboard frame: a person standing in a living room, with the line “Go through the home isolation guidelines provided by the Government of Pakistan, NIH and WHO”' }],
         },
         {
-          type: 'media', layout: 'grid2', heading: 'Colour & Typography',
+          type: 'media', layout: 'single', heading: 'Colour & Typography',
           items: [
             { t: 'img', src: 'evercare/evercare-hospital-animation-colour-palette.webp', alt: 'Evercare animation colour palette: dark blue, cyan, purple and green swatches' },
             { t: 'img', src: 'evercare/evercare-hospital-animation-typography.webp', alt: 'Evercare animation typography: the typeface Brown in light and bold on a dark blue background' },
@@ -302,12 +314,17 @@ window.SITE = {
           items: [
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-pandemic-curve-chart.webp', alt: 'Evercare storyboard frame: a chart titled “COVID-19 pandemic” with a tall curve of cases above the healthcare capacity line' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-sick-person-isolates.webp', alt: 'Evercare storyboard frame: rings of white and red dots on navy, with the line “But if that sick person isolates themselves…”' },
+            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-wash-your-hands-with-soap.webp', alt: 'Evercare storyboard frame: hands being washed with soap, with the line “Wash your hands frequently with soap”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-turn-away-when-sneezing.webp', alt: 'Evercare storyboard frame: a man sneezing into his elbow beside a worried woman, with the line “Turn away from other people when sneezing or coughing”' },
+            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-take-adequate-measures-on-public-transport.webp', alt: 'Evercare storyboard frame: masked passengers standing and sitting on a bus, with the line “When you do, take adequate measures”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-stay-updated-on-phone.webp', alt: 'Evercare storyboard frame: a hand holding a phone with a COVID-19 updates screen, with the line “Stay updated about the latest COVID-19 information”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-disinfect-hard-surfaces.webp', alt: 'Evercare storyboard frame: a spray bottle beside a bedside table, with the line “Clean hard surfaces with a disinfectant mixture”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-avoid-holding-breath-when-walking.webp', alt: 'Evercare storyboard frame: a man walking in a park past a bench, with the line “When walking… avoid holding your breath”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-use-support-on-stairs.webp', alt: 'Evercare storyboard frame: a person climbing purple stairs, with the line “Avoid unnecessary climbing; if you do, use support”' },
             { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-keep-daily-items-within-reach.webp', alt: 'Evercare storyboard frame: a person working on a sofa in a living room, with the line “Keep your daily usable items within your reach”' },
+            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-talk-to-family-and-friends.webp', alt: 'Evercare storyboard frame: two people checking their phones, with the line “When feeling anxious, talk to your family members or friends”' },
+            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-avoid-foods-difficult-to-chew.webp', alt: 'Evercare storyboard frame: a man beside four snack icons, with the line “When eating, avoid foods that are difficult to chew”' },
+            { t: 'img', src: 'evercare/evercare-hospital-covid-19-storyboard-keep-in-touch-with-friends.webp', alt: 'Evercare storyboard frame: three people in circles waving, with the line “Keep in touch: make sure your friends are informed about your condition”' },
           ],
         },
         {
@@ -469,6 +486,7 @@ window.SITE = {
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['As the brand\'s designer, I came up with the art direction and design for the key visuals of the marketing and sales material that included marketing emails and social media posts.'],
+          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-stock-running-out-social-post.webp', alt: 'Black Friday post: “Stock is running out! 25% off the entire store” in red-orange over a dark green glass pattern, with free shipping on orders above $100' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
@@ -507,7 +525,6 @@ window.SITE = {
           bullets: ['Product sales increased by 60-70% for Black Friday.', 'Emails achieved a click rate of around 4.67%.'],
           stats: [{ n: '+60-70%', l: 'product sales over Black Friday' }, { n: '4.67%', l: 'email click rate' }],
           paras: ['I learned that customers are looking for good deals and discounts and will buy from companies they trust if they are getting an advantage.'],
-          media: [{ t: 'img', src: 'black-friday/multiverse-black-friday-stock-running-out-social-post.webp', alt: 'Black Friday post: “Stock is running out! 25% off the entire store” in red-orange over a dark green glass pattern, with free shipping on orders above $100' }],
         },
         {
           type: 'section', title: 'Reframe', icon: 'heart',
@@ -537,6 +554,7 @@ window.SITE = {
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['I directed and designed the art direction of the whole campaign which included all of the digital marketing materials; emails, social media posts, animations.'],
+          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-social-posts.webp', alt: 'Two “last call” Collegiate Survival Sale posts: “Everything’s 20% off… last call!”, and a hand holding a glass piece beneath a thumbs-up' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
@@ -562,7 +580,6 @@ window.SITE = {
           bullets: ['The sales increased by 3x.', 'Around 60% of the stock was sold within 5 days of the sale.', 'Approx 180 products were sold throughout the sale. 5x more than regular days.', 'Click rate achieved was 2.2%.'],
           stats: [{ n: '3x', l: 'sales' }, { n: '60%', l: 'of stock sold in 5 days' }, { n: '5x', l: 'more products sold than on a regular day (approx. 180)' }, { n: '2.2%', l: 'email click rate' }],
           paras: ['The timing of the sale and the target demographic plays an important role in selling any given product. Having the sale at the start of the academic year and targeting it towards university students paid off in terms of increased sales and greater revenue as compared to regular days. The target demographic likes to see graphics that relate to them and are tailored towards them.', 'Bold graphics with eye catching colors and typography helped to cut through the competition. It often pays off to take the sale as an opportunity to design graphics that are different from regular routine branding graphics.'],
-          media: [{ t: 'img', src: 'collegiate-survival-sale/multiverse-collegiate-survival-sale-last-call-social-posts.webp', alt: 'Two “last call” Collegiate Survival Sale posts: “Everything’s 20% off… last call!”, and a hand holding a glass piece beneath a thumbs-up' }],
         },
         {
           type: 'section', title: 'Reframe', icon: 'heart',
@@ -596,13 +613,15 @@ window.SITE = {
         {
           type: 'section', title: 'My Role', icon: 'club',
           paras: ['As the graphic designer I was tasked with developing the campaign. I researched on various design references and took them as inspiration to create the art direction for the main artwork of the newspaper advertisements. The main artwork was used as a base to create the rest of the campaign.'],
+          stack: true,
+          media: [{ t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-newspaper-ad-27cm.webp', alt: 'Generation Annual Winter Sale vertical poster, the 27 cm newspaper advertisement: a red and white funnel above a black circle reading “up to 70% off”, starting 6th January, 2018' }],
         },
         {
           type: 'section', title: 'Process & Problem Solving', icon: 'bolt',
           paras: ['The art style and direction was inspired by the “Russian Constructivism” movement from the 1920s and 1930s. I had researched on the artwork from that era and found that it aligned well with what Generation required from their campaign. The historical artwork helped inspire the shapes, patterns, design elements and compositions for the campaign artwork. For the advertisements, I also had to make sure that all the relevant information was communicated clearly.'],
           stack: true,
           media: [
-            { t: 'scroll', src: 'annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp', alt: 'Inspirations and references page: Russian Constructivism posters, a vodka advertisement and a Blondie poster that shaped the campaign’s look' },
+            { t: 'scroll', src: 'annual-winter-sale/generation-annual-winter-sale-russian-constructivism-inspirations.webp', alt: 'Scrolling collection of Russian Constructivist and later poster references that shaped the campaign: a red wedge poster, a book advertisement, a Rodchenko poster, a vodka advert, a Blondie poster and a red triangle poster' },
             { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-initial-layout-attempts-animation.webp', alt: 'Animation stepping through early Annual Winter Sale layouts in red, black and white, starting with “Iteration number 1”' },
           ],
         },
@@ -617,20 +636,32 @@ window.SITE = {
           paras: ['Generation is a Pakistani women’s fast fashion brand that makes an impactful statement every year with its annual summer and winter sales. The brand was looking to advertise its sale event across various print and digital mediums including in-store displays. Drawing inspiration from “Russian Constructivism”, I designed a series of digital and print artwork that multiplied sales by 2.5x.'],
         },
         {
-          type: 'media', layout: 'grid3', heading: 'Newspaper Adaptations',
+          type: 'media', layout: 'single', heading: 'Newspaper Adaptations',
           items: [
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-newspaper-ad-27cm.webp', alt: 'Generation Annual Winter Sale 27 cm newspaper advertisement: a red and white funnel above a black circle reading “up to 70% off”, starting 6th January, 2018' },
             { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-dawn-newspaper-front-page-ad.webp', alt: 'The Annual Winter Sale banner printed across the bottom of the front page of the Dawn newspaper' },
             { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-the-news-newspaper-ad.webp', alt: 'The Annual Winter Sale advertisement placed on a page of The News newspaper' },
           ],
         },
         {
-          type: 'media', layout: 'grid2', heading: 'Websites & Social Media',
+          type: 'media', layout: 'single', heading: 'Websites & Social Media',
           items: [
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-social-media-post-animation.webp', alt: 'Animated social media post: a woman in a floral dress beside the Annual Winter Sale badge, with “Was PKR 3698, now PKR 2698”' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-facebook-page-banner.webp', alt: 'Annual Winter Sale artwork used as the cover and a post on Generation’s Facebook page' },
             { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-website-banner.webp', alt: 'Annual Winter Sale “Now live” banner on the Generation website, with the red sale badge in the centre' },
             { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-daraz-online-marketplace-banner.webp', alt: 'Annual Winter Sale “Now live” banner on Generation’s page on the Daraz online marketplace' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-facebook-page-banner.webp', alt: 'Annual Winter Sale artwork used as the cover and a post on Generation’s Facebook page' },
-            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-social-media-post-animation.webp', alt: 'Animated social media post: a woman in a floral dress beside the Annual Winter Sale badge, with “Was PKR 3698, now PKR 2698”' },
+          ],
+        },
+        {
+          type: 'media', layout: 'single', heading: 'Store Displays',
+          items: [
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-window-banners-and-mannequins.webp', alt: 'Store window with large red Annual Winter Sale banners on either side of mannequins in dark and red outfits' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-entrance-window.webp', alt: 'Generation store entrance in a mall, with red Annual Winter Sale banners across the window display' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-tall-banner-above-seated-mannequins.webp', alt: 'A tall red Annual Winter Sale banner hanging above seated mannequins in a store display' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-building-with-window-banners.webp', alt: 'A Generation store building with red Annual Winter Sale banners in its windows and a large billboard on the roof' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-billboard-above-store-sign.webp', alt: 'A large red Annual Winter Sale billboard above the Generation sign outside a store' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-arched-windows-annual-winter-sale.webp', alt: 'Three arched windows of a stone building with the words Annual, Winter and Sale, above a red sale display with a mannequin' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-store-red-door-banner.webp', alt: 'A Generation mall store with a red Annual Winter Sale banner by the door and a window display' },
+            { t: 'img', src: 'annual-winter-sale/generation-annual-winter-sale-store-display-mall-entrance-large-banner.webp', alt: 'A Generation mall entrance with a large red Annual Winter Sale banner beside the door' },
           ],
         },
       ],
@@ -647,21 +678,26 @@ window.SITE = {
       lead: { t: 'img', src: 'generation-magazines/generation-magazine-three-covers-eid-beach-autumn-winter.webp', alt: 'Three Generation magazine covers standing side by side: a beach portrait of three women, the Eid 2018 issue and the Autumn/Winter 2018-19 issue' },
       blocks: [
         {
-          type: 'media', layout: 'grid2', heading: 'Spreads & Mockups',
+          type: 'media', layout: 'single', heading: 'Magazine 1: Eid 2018', note: 'Scroll inside the last picture to see the full layout.',
           items: [
-            { t: 'img', src: 'generation-magazines/generation-magazine-open-spread-mockup.webp', alt: 'Open Generation magazine on a pale surface, showing a spread with a woman in a yellow outfit beside a lake and Urdu headings' },
-            { t: 'img', src: 'generation-magazines/generation-magazine-spread-on-concrete-mockup.webp', alt: 'Open Generation magazine lying on a concrete slab, with portraits of models by a river and a circular photo crop' },
             { t: 'img', src: 'generation-magazines/generation-magazine-green-border-spread-mockup.webp', alt: 'Open Generation magazine with a green ornamental border, a photo of a woman outdoors and Urdu text on the right page' },
-            { t: 'img', src: 'generation-magazines/generation-magazine-page-turn-spread-mockup.webp', alt: 'Generation magazine open with a page mid-turn, showing photographs of models in dark and red clothing against a beige wall' },
-            { t: 'img', src: 'generation-magazines/generation-magazine-front-and-back-cover-mockup.webp', alt: 'Front and back cover of a Generation magazine with a green spine, an “Our stores” list, social links and an Urdu headline' },
-            { t: 'img', src: 'generation-magazines/generation-magazine-spread-on-wall-mockup.webp', alt: 'Generation magazine open against a wall, with a seated model and two women carrying water containers above three coloured lines' },
+            { t: 'img', src: 'generation-magazines/generation-magazine-front-and-back-cover-mockup.webp', alt: 'Front and back cover of the Generation Eid 2018 magazine with a green spine, an “Our stores” list, social links and an Urdu headline' },
+            { t: 'scroll', src: 'generation-magazines/generation-magazine-eid-2018-full-layout.webp', alt: 'Generation Eid 2018 magazine layout, scrolling from the green cover through the Director’s note and the inside spreads' },
           ],
         },
         {
-          type: 'media', layout: 'scroll', heading: 'The Magazines', note: 'Scroll inside each magazine to see the full layout.',
+          type: 'media', layout: 'single', heading: 'Magazine 2', note: 'Scroll inside the last picture to see the full layout.',
           items: [
-            { t: 'scroll', src: 'generation-magazines/generation-magazine-eid-2018-full-layout.webp', alt: 'Generation Eid 2018 magazine layout, scrolling from the green cover through the Director’s note and the inside spreads' },
+            { t: 'img', src: 'generation-magazines/generation-magazine-open-spread-mockup.webp', alt: 'Open Generation magazine on a pale surface, showing a spread with a woman in a yellow outfit beside a lake and Urdu headings' },
+            { t: 'img', src: 'generation-magazines/generation-magazine-spread-on-concrete-mockup.webp', alt: 'Open Generation magazine lying on a concrete slab, with portraits of models by a river and a circular photo crop' },
             { t: 'scroll', src: 'generation-magazines/generation-magazine-beach-cover-full-layout.webp', alt: 'Generation magazine layout with three women on a beach on the cover, scrolling through the Director’s note and the inside spreads' },
+          ],
+        },
+        {
+          type: 'media', layout: 'single', heading: 'Magazine 3: Autumn/Winter 2018-19', note: 'Scroll inside the last picture to see the full layout.',
+          items: [
+            { t: 'img', src: 'generation-magazines/generation-magazine-page-turn-spread-mockup.webp', alt: 'Generation magazine open with a page mid-turn, showing photographs of models in dark and red clothing against a beige wall' },
+            { t: 'img', src: 'generation-magazines/generation-magazine-spread-on-wall-mockup.webp', alt: 'Generation magazine open against a wall, with a seated model and two women carrying water containers above three coloured lines' },
             { t: 'scroll', src: 'generation-magazines/generation-magazine-autumn-winter-2018-19-full-layout.webp', alt: 'Generation Autumn/Winter 2018-19 magazine layout, scrolling from the cover through the Director’s note and the inside spreads' },
           ],
         },

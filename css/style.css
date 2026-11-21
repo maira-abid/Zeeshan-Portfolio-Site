@@ -2,12 +2,11 @@
    Zeeshan - portfolio site
    Brand: Violet Ray #8f00ff, Carbon Black #1b1b1b, Grey #E5E5E5, White #FFFFFF
    Typefaces: Raleway only (the style-guide PDF names no other typeface), in different weights for headings, labels and body text.
-   The only exception is the placeholder logo lettering (Jockey Full of Bourbon), which the client will replace with their own logo.
+   The logo is the supplied artwork (assets/img/logo), not a font.
    ========================================================================== */
 
 /* ---------- Fonts ---------- */
 @font-face { font-family: 'Raleway'; src: url('../assets/fonts/Raleway-Variable-latin.woff2') format('woff2'); font-weight: 300 900; font-style: normal; font-display: swap; }
-@font-face { font-family: 'Jockey Full of Bourbon'; src: url('../assets/fonts/JockeyFullOfBourbon-logo.woff2') format('woff2'); font-display: swap; } /* logo only: capitals, digits and a few marks (49 KB instead of the full 883 KB file) */
 
 /* ---------- Tokens ---------- */
 :root {
@@ -27,7 +26,6 @@
   --f-body: 'Raleway', system-ui, sans-serif;
   --f-display: 'Raleway', system-ui, sans-serif;   /* page and section headings */
   --f-sub: 'Raleway', system-ui, sans-serif;       /* smaller headings */
-  --f-logo: 'Jockey Full of Bourbon', 'Raleway', sans-serif;
   --f-punk: 'Raleway', system-ui, sans-serif;      /* eyebrow labels and stat numbers (was Hit Me Punk) */
 
   --wrap: 1240px;
@@ -122,16 +120,17 @@ body[data-page="home"] .checker-bg { display: none; } /* the home page has the v
 /* ---------- Header ---------- */
 .site-header { position: relative; z-index: 20; padding: 22px 0 8px; text-align: center; }
 body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; padding-top: 26px; }
-.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--f-logo); font-size: clamp(30px, 4.4vw, 46px); line-height: 1; letter-spacing: .04em; }
-.logo .ico { color: var(--lime); font-size: .8em; }
-.logo small { display: block; font-family: var(--f-body); font-size: 10px; font-weight: 600; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); margin-top: 6px; text-align: center; padding-left: .34em; } /* padding offsets the trailing letter-space so the word sits optically centred */
-.logo__text { display: block; text-align: center; }
-.nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px clamp(14px, 3vw, 38px); margin-top: 14px; }
-.nav a { position: relative; text-decoration: none; padding: 8px 4px; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--grey); transition: color .2s; }
-.nav a::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 0; height: 3px; background: var(--violet); border-radius: 0; transform: translateX(-50%); transition: width .25s var(--ease); }
-.nav a:hover { color: var(--white); }
-.nav a:hover::after, .nav a[aria-current="page"]::after { width: 100%; }
-.nav a[aria-current="page"] { color: var(--white); }
+.logo { display: inline-flex; align-items: center; text-decoration: none; }
+.logo__img { display: block; height: clamp(24px, 3vw, 34px); width: auto; }
+/* white lettering on dark surfaces, dark lettering on light ones; the home header sits on the dark video in both versions */
+.logo__img--dark { display: block; } .logo__img--light { display: none; }
+html[data-theme="light"] .logo__img--dark { display: none; } html[data-theme="light"] .logo__img--light { display: block; }
+html[data-theme="light"] body[data-page="home"] .site-header .logo__img--dark { display: block; }
+html[data-theme="light"] body[data-page="home"] .site-header .logo__img--light { display: none; }
+.nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px clamp(4px, 1vw, 12px); margin-top: 14px; }
+.nav a { position: relative; text-decoration: none; padding: 7px 14px; border: 2px solid transparent; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--grey); transition: color .2s, background-color .2s, border-color .2s; }
+.nav a:hover { color: var(--white); border-color: var(--violet); }
+.nav a[aria-current="page"] { color: #fff; background: var(--violet); border-color: var(--violet); }
 
 /* ---------- Buttons / chips ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 30px; border-radius: 0; border: 2px solid var(--violet); font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: transform .2s var(--ease), background .2s, color .2s, box-shadow .2s; }
@@ -400,9 +399,6 @@ body[data-page="home"] .site-header { position: absolute; inset: 0 0 auto 0; pad
 
 /* ---------- Footer ---------- */
 .footer__links2 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; }
-.motion-toggle { background: none; border: 1px solid #7a7a7a; color: var(--grey); border-radius: 0; padding: 4px 14px; min-height: 28px; font-size: 13px; font-weight: 600; cursor: pointer; }
-.motion-toggle:hover { border-color: var(--white); color: var(--white); }
-html.motion-off .ticker__track { animation-play-state: paused; }
 .footer__bar a { color: var(--muted); font-weight: 600; text-underline-offset: 4px; }
 .footer__bar a:hover { color: var(--white); }
 .site-footer { position: relative; z-index: 1; margin-top: 60px; background: var(--footer); border-top: 1px solid var(--line); }
@@ -416,7 +412,7 @@ html.motion-off .ticker__track { animation-play-state: paused; }
 .socials a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 0; text-decoration: none; font-weight: 700; font-size: 14px; color: var(--grey); transition: background .2s, border-color .2s, color .2s; }
 .socials a .ico { font-size: 22px; }
 .socials a:hover { background: var(--violet); border-color: var(--violet); color: #fff; }
-.footer__bar { border-top: 1px solid var(--line); padding-block: 18px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.footer__bar { border-top: 1px solid var(--line); padding-block: 18px; padding-right: 68px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 /* ---------- Lightbox ---------- */
 .lightbox { position: fixed; inset: 0; z-index: 200; display: none; background: rgba(27, 27, 27, .94); overflow: auto; padding: 56px 16px 32px; }
@@ -631,3 +627,10 @@ html.motion-off .zc { display: none; }
 
 /* the page body takes focus after a page change (so keyboard and screen-reader users start at the top of the new page); no ring for that */
 main:focus { outline: none; }
+
+/* ---------- Back to top (icon only, bottom right; the colours swap with the version on screen: dark on the light page, light on the dark page) ---------- */
+.to-top { position: fixed; right: clamp(14px, 2vw, 28px); bottom: clamp(14px, 2vw, 28px); z-index: 60; width: 48px; height: 48px; display: grid; place-items: center; padding: 0; background: var(--white); color: var(--black); border: 2px solid var(--white); border-radius: 0; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s, background-color .2s, border-color .2s, color .2s; }
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
+.to-top:hover, .to-top:focus-visible { background: var(--violet); border-color: var(--violet); color: #fff; }
+.to-top svg { width: 22px; height: 22px; display: block; }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
